@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Automation Test cases]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="My Test(failed)">
+    <classes>
+      <class name="testCases.homePageTest">
+        <methods>
+          <include name="end"/>
+          <include name="validateUsername"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- testCases.homePageTest -->
+      <class name="testCases.contactsPageTest">
+        <methods>
+          <include name="selectName"/>
+          <include name="setUp"/>
+          <include name="end"/>
+        </methods>
+      </class> <!-- testCases.contactsPageTest -->
+    </classes>
+  </test> <!-- My Test(failed) -->
+</suite> <!-- Failed suite [Automation Test cases] -->
