@@ -63,15 +63,15 @@ public class BaseClass{
 
         TakesScreenshot sc = (TakesScreenshot)driver;
         File path = sc.getScreenshotAs(OutputType.FILE);
-        File file = new File(System.getProperty("user.dir") + "\\Reports" +testCaseName+ ".png");
+        File file = new File(System.getProperty("user.dir") + "\\Reports\\" +testCaseName+ ".png");
 //        File file = new File("C:\\Users\\xcelliti2\\IdeaProjects\\Retail Ops\\Reports\\" +testCaseName+ ".png");
         FileUtils.copyFile(path,file);
-        return System.getProperty("user.dir") + "\\Reports" +testCaseName+ ".png";
+        return System.getProperty("user.dir") + "\\Reports\\" +testCaseName+ ".png";
     }
 
     @BeforeMethod(groups = {"Inputter"})
     public void inputterLogin(){
-        edgeConfig();
+        chromeConfig();
 
         PageObject.signIn("retail01","QWer1234");
 
