@@ -49,9 +49,6 @@ public class Customer_Create extends BaseClass {
         PageObject.select_Locator("fieldName:SEDING.FACTS:1","Not Applicable");
 
         PageObject.commitDeal("Customer Create");
-
-
     }
-
 
 }
