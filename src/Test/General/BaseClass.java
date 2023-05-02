@@ -49,6 +49,8 @@ public class BaseClass{
 
         driver = new EdgeDriver(options);
 
+        PageObject PageObject = new PageObject(driver);
+
         action = new Actions(driver);
 
         driver.get("https://172.24.128.50/R22SIT2/servlet/BrowserServlet");
@@ -69,7 +71,7 @@ public class BaseClass{
 
     @BeforeMethod(groups = {"Inputter"})
     public void inputterLogin(){
-        chromeConfig();
+        edgeConfig();
 
         PageObject.signIn("retail01","QWer1234");
 
