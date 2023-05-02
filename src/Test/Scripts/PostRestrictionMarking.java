@@ -27,6 +27,6 @@ public class PostRestrictionMarking extends BaseClass {
         PageObject.parentFrame();
         PageObject.switchFrame(0);
 
-        PageObject.menu_Link("Set/Remove Posting Restrict");
+        PageObject.form_Link("Set/Remove Posting Restrict");
     }
 }

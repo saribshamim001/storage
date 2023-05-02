@@ -10,6 +10,7 @@ import org.testng.Assert;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.io.BufferedWriter;
@@ -107,6 +108,29 @@ public class PageObject extends BaseClass {
     //This method is to perform a click on Menu Links
     public static void menu_Link(String text_Value) {
         driver.findElement(By.xpath("//ul/li/a[text()='"+text_Value+"']")).click();
+    }
+
+    public static void form_Link(String text_Value) {
+        driver.findElement(By.xpath("//table/tbody/tr/td/a[text()='"+text_Value+"']")).click();
+    }
+
+    public static void authorizeDeal () {
+        driver.findElement(By.xpath("//tr/td/a/img[@alt='Authorises a deal']")).click();
+        WebElement override = driver.findElement(By.xpath("//tr/td/a[text()='Accept Overrides']"));
+        if (override.isDisplayed()){
+            override.click();
+        }
+    }
+
+    //Generate Random Numbers
+
+    public static int idNumber() {
+        Random rand = new Random();
+        int min = 10000;
+        int max = 99999;
+
+        int rand_value = rand.nextInt((max - min) + 1) + min;
+        return rand_value;
     }
 
     public static String switchToChildWindow() {
