@@ -8,6 +8,13 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+
 public class PageObject extends BaseClass {
 
     public static WebDriver driver;
@@ -114,21 +121,43 @@ public class PageObject extends BaseClass {
         driver.manage().window().maximize();
     }
 
-    public static void txnValidate(){
+    public static void txnValidate(String testCaseName) throws IOException {
        WebElement Txn = driver.findElement(By.xpath("//table/tbody/tr/td[contains(text(),'Txn Complete:')]"));
        Assert.assertTrue(Txn.isDisplayed(),"Transaction Un-Successful");
+       File file = new File(System.getProperty("user.dir") + "\\Data\\" +testCaseName+ ".csv");
+       String pattern = "\\d+";
+       Pattern r = Pattern.compile(pattern);
+       Matcher m = r.matcher(Txn.getText());
+
+       if (m.find()) {
+           String TxnNum = m.group();
+           System.out.println("Extracted TXN Number: "+TxnNum);
+
+           try {
+               BufferedWriter outFile;
+               outFile = new BufferedWriter(new FileWriter(file, true));
+               outFile.append(TxnNum);
+               outFile.newLine();
+               outFile.close();
+           } catch (IOException e) {
+               System.out.println("Excel Not Working");
+           }
+
+       } else {
+           System.out.println("TXN number not found");
+       }
     }
 
-    public static void commitDeal () {
+    public static void commitDeal (String testCaseName) throws IOException {
         driver.findElement(By.xpath("//tr/td/a/img[@alt='Validate a deal']")).click();
         driver.findElement(By.xpath("//tr/td/a/img[@alt='Commit the deal']")).click();
         if (driver.getPageSource().contains("Txn Complete:")){
-            txnValidate();
+            txnValidate(testCaseName);
         }else{
             try {
                 WebElement acpOverride = driver.findElement(By.xpath("//tr/td/a[text()='Accept Overrides']"));
                 acpOverride.click();
-                txnValidate();
+                txnValidate(testCaseName);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

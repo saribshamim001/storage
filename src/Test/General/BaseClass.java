@@ -25,7 +25,7 @@ public class BaseClass{
 
     // Configuration Of Chrome Driver
     public void chromeConfig() {
-        System.setProperty("webdriver.chrome.driver","D:\\Shared\\Dependency_IDEA\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir") + "\\dependency\\chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.setAcceptInsecureCerts(true);
 
@@ -42,7 +42,7 @@ public class BaseClass{
 
     // Configuration Of Edge Driver
     public static void edgeConfig() {
-        System.setProperty("webdriver.edge.driver","D:\\Hassan Work\\Driver\\chromedriver.exe");
+        System.setProperty("webdriver.edge.driver",System.getProperty("user.dir") + "\\dependency\\msedgedriver.exe");
 
         EdgeOptions options = new EdgeOptions();
         options.setAcceptInsecureCerts(true);
@@ -61,10 +61,10 @@ public class BaseClass{
 
         TakesScreenshot sc = (TakesScreenshot)driver;
         File path = sc.getScreenshotAs(OutputType.FILE);
-        File file = new File(System.getProperty("user.dir") + "\\Reports" +testCaseName+ ".png");
+        File file = new File(System.getProperty("user.dir") + "\\Reports\\" +testCaseName+ ".png");
 //        File file = new File("C:\\Users\\xcelliti2\\IdeaProjects\\Retail Ops\\Reports\\" +testCaseName+ ".png");
         FileUtils.copyFile(path,file);
-        return System.getProperty("user.dir") + "\\Reports" +testCaseName+ ".png";
+        return System.getProperty("user.dir") + "\\Reports\\" +testCaseName+ ".png";
     }
 
     @BeforeMethod(groups = {"Inputter"})
