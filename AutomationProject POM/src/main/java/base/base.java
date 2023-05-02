@@ -23,7 +23,7 @@ public class base {
 		prop = new Properties();
 		
 		try {
-			FileInputStream ip = new FileInputStream("E:\\Sarib\\My work\\Home\\Eclipse workspace\\one\\src\\main\\java\\config\\config.properties");
+			FileInputStream ip = new FileInputStream("path...\\config.properties");
 			prop.load(ip);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -41,14 +41,14 @@ public class base {
 		
 		if (browserName.equalsIgnoreCase("chrome")) {
 			
-			System.setProperty("webdriver.chrome.driver","E:\\Sarib\\My work\\Home\\Selenium\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver","Path....\\chromedriver.exe");
 			driver = new ChromeDriver();
 		}
 		/*
 		 * else if (browserName.equalsIgnoreCase("firefox")) {
 		 * 
 		 * System.setProperty(
-		 * "webdriver.gecko.driver","E:\\Sarib\\My work\\Home\\Selenium\\geckodriver.exe"
+		 * "webdriver.gecko.driver","Path...\\geckodriver.exe"
 		 * ); driver = new FirefoxDriver(); }
 		 */
 		driver.manage().window().maximize();
