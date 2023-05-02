@@ -1,0 +1,65 @@
+import java.io.FileInputStream;
+import java.io.IOException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class ExcelDataProvider {
+  private static final String FILE_PATH = "path/to/your/excel/file.xlsx"; // Update with your file path
+
+// To Iterate over all rows
+
+  @DataProvider(name = "excelData")
+  public Object[][] readExcelData() throws IOException {
+    FileInputStream fis = new FileInputStream(FILE_PATH);
+    Workbook workbook = new XSSFWorkbook(fis);
+    Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+    int rowCount = sheet.getPhysicalNumberOfRows();
+    int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+    Object[][] data = new Object[rowCount - 1][colCount]; // Subtracting 1 to exclude header row
+
+    for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+      Row row = sheet.getRow(i);
+      for (int j = 0; j < colCount; j++) {
+        Cell cell = row.getCell(j);
+        DataFormatter formatter = new DataFormatter();
+        String value = formatter.formatCellValue(cell);
+        data[i - 1][j] = value;
+      }
+    }
+
+    workbook.close();
+    fis.close();
+    return data;
+  }
+}
+
+
+------------------------------------------------------------------------------------
+//To get 1 specific row
+
+@DataProvider(name = "excelData")
+public Object[][] readExcelData() throws IOException {
+    FileInputStream fis = new FileInputStream(FILE_PATH);
+    Workbook workbook = new XSSFWorkbook(fis);
+    Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+
+    int rowNum = 2; // Row number to read (change as needed)
+    Row row = sheet.getRow(rowNum - 1); // Subtracting 1 to get correct row index
+    int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+    Object[][] data = new Object[1][colCount]; // Reading only one row of data
+
+    for (int j = 0; j < colCount; j++) {
+        Cell cell = row.getCell(j);
+        DataFormatter formatter = new DataFormatter();
+        String value = formatter.formatCellValue(cell);
+        data[0][j] = value;
+    }
+
+    workbook.close();
+    fis.close();
+    return data;
+}
