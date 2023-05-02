@@ -25,7 +25,7 @@ public class BaseClass{
 
     // Configuration Of Chrome Driver
     public void chromeConfig() {
-        System.setProperty("webdriver.chrome.driver","D:\\Shared\\Dependency_IDEA\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir") + "\\dependency\\chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.setAcceptInsecureCerts(true);
 
@@ -42,12 +42,14 @@ public class BaseClass{
 
     // Configuration Of Edge Driver
     public static void edgeConfig() {
-        System.setProperty("webdriver.edge.driver","D:\\Hassan Work\\Driver\\chromedriver.exe");
+        System.setProperty("webdriver.edge.driver",System.getProperty("user.dir") + "\\dependency\\msedgedriver.exe");
 
         EdgeOptions options = new EdgeOptions();
         options.setAcceptInsecureCerts(true);
 
         driver = new EdgeDriver(options);
+
+        PageObject PageObject = new PageObject(driver);
 
         action = new Actions(driver);
 
@@ -69,7 +71,7 @@ public class BaseClass{
 
     @BeforeMethod(groups = {"Inputter"})
     public void inputterLogin(){
-        chromeConfig();
+        edgeConfig();
 
         PageObject.signIn("retail01","QWer1234");
 

@@ -117,6 +117,7 @@ public class PageObject extends BaseClass {
     public static void txnValidate(){
        WebElement Txn = driver.findElement(By.xpath("//table/tbody/tr/td[contains(text(),'Txn Complete:')]"));
        Assert.assertTrue(Txn.isDisplayed(),"Transaction Un-Successful");
+        System.out.println(Txn.getText());
     }
 
     public static void commitDeal () {
