@@ -39,6 +39,10 @@ public class PageObject extends BaseClass {
         driver.findElement(By.xpath("//tr/td/a/img[@alt='"+alt_Value+"']")).click();
     }
 
+    public static void find_Button (String alt_Value) {
+        driver.findElement(By.xpath("//tr/td/a[@alt='"+alt_Value+"']")).click();
+    }
+
     //This method is to perform action on Static Select Dropdowns
     public static void select_Locator (String Id , String value) {
         WebElement Dropdown = driver.findElement(By.xpath("//tr/td/select[@id='"+Id+"']"));

@@ -15,14 +15,18 @@ public class PostRestrictionMarking extends BaseClass {
 
         PageObject.menu_Link("Posting Restrict Marking ");
 
-        PageObject.parentFrame();
-        PageObject.switchFrame(1);
+        String menu = PageObject.switchToChildWindow();
+        PageObject.maximizeWindow();
 
-//        PageObject.img_Button("New Deal");
-//
-//        PageObject.textinput_Locator("fieldName:SECTOR","1000");
-//        PageObject.textinput_Locator("fieldName:ID.TYPE:1","ID-N");
-//        PageObject.textinput_Locator("fieldName:ID.NUMBER:1","4220179441023");
-//        PageObject.click_Locator("fieldName:ID.VAL.DT:1");
+        PageObject.parentFrame();
+        PageObject.switchFrame(0);
+
+        PageObject.textinput_Locator("value:1:1:1","12105488");
+        PageObject.find_Button("Run Selection");
+
+        PageObject.parentFrame();
+        PageObject.switchFrame(0);
+
+        PageObject.menu_Link("Set/Remove Posting Restrict");
     }
 }
