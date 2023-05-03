@@ -14,14 +14,26 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Properties;
 
 public class BaseClass{
 
     public static WebDriver driver;
     public static Actions action;
     public static String homePage;
+
+    // Configuration Property File
+    public String getProperty(String key) throws IOException {
+        //Reading configuration file from the path
+
+        FileReader reader=new FileReader(System.getProperty("user.dir") + "\\src\\Resources\\config.properties");
+        Properties props=new Properties();
+        props.load(reader);
+        return props.getProperty(key);
+    }
 
     // Configuration Of Chrome Driver
     public void chromeConfig() {
@@ -90,7 +102,7 @@ public class BaseClass{
     public void authorizerLogin(){
         chromeConfig();
 
-        PageObject.signIn("retail01","QWer1234");
+        PageObject.signIn("retailauth01","QWer1234");
 
         PageObject.switchFrame(2);
 

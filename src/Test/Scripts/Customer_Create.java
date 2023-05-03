@@ -8,6 +8,8 @@ import java.io.IOException;
 
 public class Customer_Create extends BaseClass {
 
+    String txn;
+
     @Test(groups = {"Inputter"})
     public void customerCreation() throws IOException {
 
@@ -49,6 +51,8 @@ public class Customer_Create extends BaseClass {
         PageObject.select_Locator("fieldName:SEDING.FACTS:1","Not Applicable");
 
         PageObject.commitDeal("Customer Create");
+        txn = PageObject.getTxn();
+        System.out.println(txn);
     }
 
 }
