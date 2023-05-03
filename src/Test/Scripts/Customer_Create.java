@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class Customer_Create extends BaseClass {
 
-    String txn;
+    public static String txn;
 
     @Test(groups = {"Inputter"})
     public void customerCreation() throws IOException {

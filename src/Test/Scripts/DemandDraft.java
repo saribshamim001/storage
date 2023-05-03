@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 
 public class DemandDraft extends BaseClass {
+
     @Test( groups = {"Inputter"})
     public void demandDraftInput() throws InterruptedException, IOException {
 
