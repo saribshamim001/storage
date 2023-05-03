@@ -194,6 +194,23 @@ public class PageObject extends BaseClass {
 
     }
 
+    public static String getTxn () {
+        WebElement Txn = driver.findElement(By.xpath("//table/tbody/tr/td[contains(text(),'Txn Complete:')]"));
+        String pattern = "\\d+";
+        Pattern r = Pattern.compile(pattern);
+        Matcher m = r.matcher(Txn.getText());
+        String TxnNum ="";
+
+        if (m.find()) {
+            TxnNum = m.group();
+
+
+        } else {
+            System.out.println("TXN number not found");
+        }
+        return TxnNum;
+    }
+
 
 
     //This method is for user SignOff

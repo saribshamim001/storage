@@ -90,7 +90,7 @@ public class BaseClass{
     public void authorizerLogin(){
         chromeConfig();
 
-        PageObject.signIn("retail01","QWer1234");
+        PageObject.signIn("retailauth01","QWer1234");
 
         PageObject.switchFrame(2);
 
