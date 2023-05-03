@@ -14,7 +14,7 @@ public class FT extends BaseClass {
         PageObject.menu_Link("Account to Account Transfer- Online ");
 
         PageObject.parentFrame();
-        PageObject.switchFrame(2);
+        PageObject.switchFrame(1);
 
         PageObject.img_Button("New Deal");
 
