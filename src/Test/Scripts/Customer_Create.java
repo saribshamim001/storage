@@ -4,10 +4,14 @@ import POM.PageObject;
 import Test.General.BaseClass;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 public class Customer_Create extends BaseClass {
 
+    String txn;
+
     @Test(groups = {"Inputter"})
-    public void customerCreation() {
+    public void customerCreation() throws IOException {
 
         PageObject.menu_Dropdown("Customer Relation Officer Menu");
         PageObject.menu_Dropdown("Alfalah Customer Information");
@@ -46,10 +50,9 @@ public class Customer_Create extends BaseClass {
         PageObject.textinput_Locator("fieldName:CREDIT.TURNOVER:1","402");
         PageObject.select_Locator("fieldName:SEDING.FACTS:1","Not Applicable");
 
-        PageObject.commitDeal();
-
-
+        PageObject.commitDeal("Customer Create");
+        txn = PageObject.getTxn();
+        System.out.println(txn);
     }
-
 
 }

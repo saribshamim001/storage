@@ -8,6 +8,14 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+
 public class PageObject extends BaseClass {
 
     public static WebDriver driver;
@@ -37,6 +45,10 @@ public class PageObject extends BaseClass {
     //This method is to perform actions on Form Images
     public static void img_Button (String alt_Value) {
         driver.findElement(By.xpath("//tr/td/a/img[@alt='"+alt_Value+"']")).click();
+    }
+
+    public static void find_Button (String alt_Value) {
+        driver.findElement(By.xpath("//tr/td/a[@alt='"+alt_Value+"']")).click();
     }
 
     //This method is to perform action on Static Select Dropdowns
@@ -98,6 +110,29 @@ public class PageObject extends BaseClass {
         driver.findElement(By.xpath("//ul/li/a[text()='"+text_Value+"']")).click();
     }
 
+    public static void form_Link(String text_Value) {
+        driver.findElement(By.xpath("//table/tbody/tr/td/a[text()='"+text_Value+"']")).click();
+    }
+
+    public static void authorizeDeal () {
+        driver.findElement(By.xpath("//tr/td/a/img[@alt='Authorises a deal']")).click();
+        WebElement override = driver.findElement(By.xpath("//tr/td/a[text()='Accept Overrides']"));
+        if (override.isDisplayed()){
+            override.click();
+        }
+    }
+
+    //Generate Random Numbers
+
+    public static int idNumber() {
+        Random rand = new Random();
+        int min = 10000;
+        int max = 99999;
+
+        int rand_value = rand.nextInt((max - min) + 1) + min;
+        return rand_value;
+    }
+
     public static String switchToChildWindow() {
         String homePage = driver.getWindowHandle();
         for (String winHandle : driver.getWindowHandles()){
@@ -114,28 +149,66 @@ public class PageObject extends BaseClass {
         driver.manage().window().maximize();
     }
 
-    public static void txnValidate(){
+    public static void txnValidate(String testCaseName) throws IOException {
        WebElement Txn = driver.findElement(By.xpath("//table/tbody/tr/td[contains(text(),'Txn Complete:')]"));
        Assert.assertTrue(Txn.isDisplayed(),"Transaction Un-Successful");
-        System.out.println(Txn.getText());
+       File file = new File(System.getProperty("user.dir") + "\\Data\\" +testCaseName+ ".csv");
+       String pattern = "\\d+";
+       Pattern r = Pattern.compile(pattern);
+       Matcher m = r.matcher(Txn.getText());
+
+       if (m.find()) {
+           String TxnNum = m.group();
+           System.out.println("Extracted TXN Number: "+TxnNum);
+
+           try {
+               BufferedWriter outFile;
+               outFile = new BufferedWriter(new FileWriter(file, true));
+               outFile.append(TxnNum);
+               outFile.newLine();
+               outFile.close();
+           } catch (IOException e) {
+               System.out.println("Excel Not Working");
+           }
+
+       } else {
+           System.out.println("TXN number not found");
+       }
     }
 
-    public static void commitDeal () {
+    public static void commitDeal (String testCaseName) throws IOException {
         driver.findElement(By.xpath("//tr/td/a/img[@alt='Validate a deal']")).click();
         driver.findElement(By.xpath("//tr/td/a/img[@alt='Commit the deal']")).click();
         if (driver.getPageSource().contains("Txn Complete:")){
-            txnValidate();
+            txnValidate(testCaseName);
         }else{
             try {
                 WebElement acpOverride = driver.findElement(By.xpath("//tr/td/a[text()='Accept Overrides']"));
                 acpOverride.click();
-                txnValidate();
+                txnValidate(testCaseName);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
 
         }
 
+    }
+
+    public static String getTxn () {
+        WebElement Txn = driver.findElement(By.xpath("//table/tbody/tr/td[contains(text(),'Txn Complete:')]"));
+        String pattern = "\\d+";
+        Pattern r = Pattern.compile(pattern);
+        Matcher m = r.matcher(Txn.getText());
+        String TxnNum ="";
+
+        if (m.find()) {
+            TxnNum = m.group();
+
+
+        } else {
+            System.out.println("TXN number not found");
+        }
+        return TxnNum;
     }
 
 
