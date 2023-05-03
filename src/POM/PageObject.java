@@ -83,12 +83,12 @@ public class PageObject extends BaseClass {
     //This method is to perform actions on Form Radio Buttons
     public static void radiobutton_Locator(String Id , int index) {
         //tr/td/input/following-sibling::span[text()='Small']
-        driver.findElement(By.xpath("//tr/td/input[@id='"+Id+"']["+index+"]")).click();
+        driver.findElement(By.xpath("(//tr/td/input[@id='"+Id+"'])["+index+"]")).click();
     }
 
     //This method is to perform actions on In-Form Tabs
     public static void form_Tab(String text_Value) {
-        driver.findElement(By.xpath("//tr/td/a[text()='"+text_Value+"']")).click();
+        driver.findElement(By.xpath("//tr/td/a/span[text()='"+text_Value+"']")).click();
     }
 
 //    //This method is to perform action of Accept Override
