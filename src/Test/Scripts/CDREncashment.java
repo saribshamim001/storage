@@ -39,7 +39,7 @@ public class CDREncashment extends BaseClass {
         PageObject.textinput_Locator("fieldName:CREDIT.THEIR.REF","1000");
 
         PageObject.commitDeal("CDREncashment");
-        String txn = PageObject.getTxn();
-        System.out.println("Txn is: "+txn);
+        //String txn = PageObject.getTxn();
+        //System.out.println("Txn is: "+txn);
     }
 }

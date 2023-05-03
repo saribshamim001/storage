@@ -83,7 +83,7 @@ public class BaseClass {
 
     @BeforeMethod(groups = {"Inputter"})
     public void inputterLogin() {
-        edgeConfig();
+        chromeConfig();
 
         PageObject.signIn("retail04", "QWer1234");
 
