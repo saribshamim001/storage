@@ -40,6 +40,14 @@ public class DemandDraft extends BaseClass {
         PageObject.textinput_Locator("fieldName:COMMISSION.AMT:1","PKR 0.00");
         PageObject.form_Tab("Due Delligence");
 
+        PageObject.textinput_Locator("fieldName:DD.ADDRESS:1","St.1 , ABC Street");
+        PageObject.textinput_Locator("fieldName:ID.TYPE","ID-N");
+        PageObject.textinput_Locator("fieldName:ID.NUMBER","4220198956233");
+        PageObject.textinput_Locator("fieldName:CONTACT.NO:1","03336092323");
+        PageObject.select_Locator("fieldName:INS.ISS.PURPOSE","Embassy/Visa Fee");
+
+
+
         PageObject.commitDeal("demandDraftInput");
 
 
