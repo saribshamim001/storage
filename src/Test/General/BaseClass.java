@@ -85,7 +85,7 @@ public class BaseClass{
     public void inputterLogin(){
         chromeConfig();
 
-        PageObject.signIn("retail01","QWer1234");
+        PageObject.signIn("retail08","QWer1234");
 
         PageObject.switchFrame(1);
 
@@ -104,7 +104,7 @@ public class BaseClass{
 
         PageObject.signIn("retailauth01","QWer1234");
 
-        PageObject.switchFrame(2);
+        PageObject.switchFrame(1);
 
         PageObject.menu_Dropdown("Manager Operation Menu");
         PageObject.menu_Dropdown("Core Retail Menu");
@@ -120,6 +120,8 @@ public class BaseClass{
         PageObject.switchFrame(0);
 
         PageObject.signOff();
+
+        this.driver.close();
     }
 
 
