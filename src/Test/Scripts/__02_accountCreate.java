@@ -200,7 +200,7 @@ public class __02_accountCreate extends BaseClass {
 
         homePage = PageObject.switchToChildWindow();
 
-        PageObject.textinput_Locator("value:1:1:1",PageObject.TxnNum);
+        PageObject.textinput_Locator("value:1:1:1",PageObject.getTxn());
         PageObject.click_Locator("defaultButton");
         PageObject.form_Link("Authorise");
         PageObject.authorizeDeal();

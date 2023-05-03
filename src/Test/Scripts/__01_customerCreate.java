@@ -177,7 +177,7 @@ public class __01_customerCreate extends BaseClass {
 
         homePage = PageObject.switchToChildWindow();
 
-        PageObject.textinput_Locator("value:1:1:1",PageObject.TxnNum);
+        PageObject.textinput_Locator("value:1:1:1",PageObject.getTxn());
         PageObject.click_Locator("defaultButton");
         PageObject.form_Link("Authorise a Customer");
         PageObject.authorizeDeal();
