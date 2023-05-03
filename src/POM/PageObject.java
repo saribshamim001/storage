@@ -149,17 +149,22 @@ public class PageObject extends BaseClass {
         driver.manage().window().maximize();
     }
 
+    public static String TXnNum(String num) {
+        String[] n = num.split(":");
+        String[] S = n[1].split(" ");
+        return S[1];
+    }
+
     public static void txnValidate(String testCaseName) throws IOException {
        WebElement Txn = driver.findElement(By.xpath("//table/tbody/tr/td[contains(text(),'Txn Complete:')]"));
        Assert.assertTrue(Txn.isDisplayed(),"Transaction Un-Successful");
        File file = new File(System.getProperty("user.dir") + "\\Data\\" +testCaseName+ ".csv");
-       String pattern = "\\d+";
-       Pattern r = Pattern.compile(pattern);
-       Matcher m = r.matcher(Txn.getText());
 
-       if (m.find()) {
-           String TxnNum = m.group();
-           System.out.println("Extracted TXN Number: "+TxnNum);
+       String Transaction = Txn.getText();
+       String[] first = Transaction.split(":");
+       String[] second = first[1].split(" ");
+       String TxnNum = second[1];
+       System.out.println("Transaction Number is: "+TxnNum);
 
            try {
                BufferedWriter outFile;
@@ -171,9 +176,6 @@ public class PageObject extends BaseClass {
                System.out.println("Excel Not Working");
            }
 
-       } else {
-           System.out.println("TXN number not found");
-       }
     }
 
     public static void commitDeal (String testCaseName) throws IOException {
@@ -196,18 +198,10 @@ public class PageObject extends BaseClass {
 
     public static String getTxn () {
         WebElement Txn = driver.findElement(By.xpath("//table/tbody/tr/td[contains(text(),'Txn Complete:')]"));
-        String pattern = "\\d+";
-        Pattern r = Pattern.compile(pattern);
-        Matcher m = r.matcher(Txn.getText());
-        String TxnNum ="";
-
-        if (m.find()) {
-            TxnNum = m.group();
-
-
-        } else {
-            System.out.println("TXN number not found");
-        }
+        String Transaction = Txn.getText();
+        String[] first = Transaction.split(":");
+        String[] second = first[1].split(" ");
+        String TxnNum = second[1];
         return TxnNum;
     }
 

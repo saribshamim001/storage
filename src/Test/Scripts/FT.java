@@ -7,14 +7,16 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 
 public class FT extends BaseClass {
+    Customer_Create asd = new Customer_Create();
+
     @Test( groups = {"Inputter"})
     public void fundTransferOnline() throws IOException {
-
         PageObject.menu_Dropdown("Head Teller Menu-Universal Teller-Conventiona");
         PageObject.menu_Link("Account to Account Transfer- Online ");
 
+        System.out.println(asd.txn);
         PageObject.parentFrame();
-        PageObject.switchFrame(1);
+        PageObject.switchFrame(2);
 
         PageObject.img_Button("New Deal");
 
