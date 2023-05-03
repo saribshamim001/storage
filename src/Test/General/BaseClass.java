@@ -111,18 +111,18 @@ public class BaseClass{
     }
 
 
-    @AfterMethod(groups = {"Authorizer" , "Inputter"})
-    public void userLogout(){
-        this.driver.close();
-
-        PageObject.switchToParentWindow(homePage);
-
-        PageObject.switchFrame(0);
-
-        PageObject.signOff();
-
-        this.driver.close();
-    }
+//    @AfterMethod(groups = {"Authorizer" , "Inputter"})
+//    public void userLogout(){
+//        this.driver.close();
+//
+//        PageObject.switchToParentWindow(homePage);
+//
+//        PageObject.switchFrame(0);
+//
+//        PageObject.signOff();
+//
+//        this.driver.close();
+//    }
 
 
 }

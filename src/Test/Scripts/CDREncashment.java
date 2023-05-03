@@ -25,8 +25,8 @@ public class CDREncashment extends BaseClass {
 
         PageObject.img_Button("New Deal");
 
+        //PageObject.textinput_Locator("fieldName:CREDIT.THEIR.REF","1000");
 
-        PageObject.textinput_Locator("fieldName:CREDIT.THEIR.REF","1000");
         PageObject.textinput_Locator("fieldName:CREDIT.ACCT.NO","1000140984");
         PageObject.click_Locator("fieldName:CREDIT.CURRENCY");
 
@@ -36,6 +36,12 @@ public class CDREncashment extends BaseClass {
 
         PageObject.switchToParentWindow(HomePage2);
         PageObject.switchFrame(2);
+
+
+
+
+
+
 
         //PageObject.commitDeal("CDREncashmentTest");
 
