@@ -4,15 +4,12 @@ package Test.Scripts;
 import POM.PageObject;
 import Test.General.BaseClass;
 import org.testng.annotations.Test;
-
-
 import java.io.IOException;
 
-import static POM.PageObject.idNumber;
+public class __01_customerCreate extends BaseClass {
 
-public class Customer_Creation extends BaseClass {
 
-    @Test //(groups = {"Inputter"})
+    @Test (groups = {"Inputter"})
     public void individualCustomer() throws InterruptedException, IOException {
 
         PageObject.menu_Dropdown("Customer Relation Officer Menu");
@@ -80,34 +77,13 @@ public class Customer_Creation extends BaseClass {
         PageObject.textinput_Locator("fieldName:CP.PH.RES:1","HOUSE NO 1 C");
         PageObject.textinput_Locator("fieldName:CP.EMAIL:1","SDVGDJAS@GMAIL.COM");
 
-        PageObject.commitDeal("Individual Customers");
-
-
+//        PageObject.commitDeal("Customers");
+        PageObject.getTxn();
 
     }
 
 
-//        @Test (groups = {"Authorizer"})
-    public void customerAuthorization() throws InterruptedException, IOException {
-
-
-        PageObject.menu_Dropdown("Customer Services");
-        PageObject.menu_Dropdown("Alfalah Customer Information");
-        PageObject.menu_Dropdown("Branch Level Authorization");
-        PageObject.menu_Dropdown("Authorization of CIF & ACCOUNT");
-        PageObject.menu_Dropdown("Authorization of Customer");
-        PageObject.menu_Link("Authorization of CIF- Branch Level ");
-
-        homePage = PageObject.switchToChildWindow();
-
-        PageObject.textinput_Locator("value:1:1:1","17314524");
-        PageObject.click_Locator("defaultButton");
-        PageObject.authorize_Link("Authorise a Customer");
-        PageObject.authorizeDeal();
-        PageObject.txnValidate("Hello");
-    }
-
-    @Test // (groups = {"Inputter"})
+    @Test  (groups = {"Inputter"})
     public void corporateCustomer() throws InterruptedException, IOException {
 
         PageObject.menu_Dropdown("Customer Relation Officer Menu");
@@ -184,9 +160,29 @@ public class Customer_Creation extends BaseClass {
         PageObject.textinput_Locator("fieldName:P.PROVINCE:1","");
         PageObject.textinput_Locator("fieldName:P.CUST.GENDER:1","");
 */
-        PageObject.commitDeal("Corporate Customers");
+//        PageObject.commitDeal("Customers");
 
 
+    }
+    @Test  (groups = {"Authorizer"})
+    public void customerAuthorization() throws InterruptedException, IOException {
+
+
+        PageObject.menu_Dropdown("Customer Services");
+        PageObject.menu_Dropdown("Alfalah Customer Information");
+        PageObject.menu_Dropdown("Branch Level Authorization");
+        PageObject.menu_Dropdown("Authorization of CIF & ACCOUNT");
+        PageObject.menu_Dropdown("Authorization of Customer");
+        PageObject.menu_Link("Authorization of CIF- Branch Level ");
+
+        homePage = PageObject.switchToChildWindow();
+
+        PageObject.textinput_Locator("value:1:1:1",PageObject.TxnNum);
+        PageObject.click_Locator("defaultButton");
+        PageObject.form_Link("Authorise a Customer");
+        PageObject.authorizeDeal();
+
+        PageObject.commitDeal("Customers");
     }
 
 
