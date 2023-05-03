@@ -18,9 +18,14 @@ public class CDRDuplicateIssuance extends BaseClass {
         PageObject.childmenu_Dropdown("Customer Services",2);
         PageObject.menu_Dropdown("Call Deposit Receipt- Inputter Menu");
         PageObject.menu_Dropdown("Call Deposit Receipt Maintenance");
+        //Remenbering Current page info
+        String HomePage2 = driver.getWindowHandle();
         PageObject.menu_Link("Call Deposit Receipt- Duplicate Issuance ");
 
+        //Switch to newly opened window
+        PageObject.switchToChildWindow();
         PageObject.textinput_Locator("value:1:1:1","1234567");
+
 
 
     }
