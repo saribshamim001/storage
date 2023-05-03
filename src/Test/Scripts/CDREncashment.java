@@ -28,6 +28,16 @@ public class CDREncashment extends BaseClass {
 
         PageObject.textinput_Locator("fieldName:CREDIT.THEIR.REF","1000");
         PageObject.textinput_Locator("fieldName:CREDIT.ACCT.NO","1000140984");
+        PageObject.click_Locator("fieldName:CREDIT.CURRENCY");
+
+        String HomePage2 = PageObject.switchToChildWindow();
+        //PageObject.maximizeWindow();
+        driver.close();
+
+        PageObject.switchToParentWindow(HomePage2);
+        PageObject.switchFrame(2);
+
+        //PageObject.commitDeal("CDREncashmentTest");
 
 
 

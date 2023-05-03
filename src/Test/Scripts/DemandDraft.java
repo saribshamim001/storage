@@ -48,7 +48,6 @@ public class DemandDraft extends BaseClass {
         PageObject.select_Locator("fieldName:INS.ISS.PURPOSE","Embassy/Visa Fee");
 
 
-
         PageObject.commitDeal("demandDraftInput");
 
 
