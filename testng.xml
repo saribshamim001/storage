@@ -12,6 +12,7 @@
         </groups>
         <classes>
             <class name="Test.Scripts.Customer_Create"/>
+<!--            <class name="Test.Scripts.FT"/>-->
         </classes>
     </test>
 </suite>
