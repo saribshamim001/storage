@@ -27,6 +27,8 @@ public class IssueCDRBulk extends BaseClass {
 
         PageObject.find_Button("Run Selection");
 
+        //PageObject.commitDeal("CDRBulkIssueInput");
+
 
 
 
