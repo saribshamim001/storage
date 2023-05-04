@@ -11,8 +11,7 @@
             </run>
         </groups>
         <classes>
-            <class name="Test.Scripts.Customer_Create"/>
-<!--            <class name="Test.Scripts.FT"/>-->
+            <class name="Test.Scripts.IssueCDRBulk"/>
         </classes>
     </test>
 </suite>
