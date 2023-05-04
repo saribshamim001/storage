@@ -7,9 +7,11 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 
 public class __02_accountCreate extends BaseClass {
+    __01_customerCreate customer = new __01_customerCreate();
 
     @Test (groups = {"Inputter"})
     public void lcyCurrentAccount() throws InterruptedException {
+        System.out.println(customer.Txn);
 
         PageObject.menu_Dropdown("Customer Relation Officer Menu");
         PageObject.menu_Dropdown("Alfalah Customer Information");
@@ -22,6 +24,7 @@ public class __02_accountCreate extends BaseClass {
         PageObject.switchFrame(2);
 
         PageObject.img_Button("New Deal");
+
 
         PageObject.textinput_Locator("fieldName:CUSTOMER", "");
         PageObject.textinput_Locator("fieldName:CATEGORY", "");
@@ -200,7 +203,7 @@ public class __02_accountCreate extends BaseClass {
 
         homePage = PageObject.switchToChildWindow();
 
-        PageObject.textinput_Locator("value:1:1:1",PageObject.getTxn());
+//        PageObject.textinput_Locator("value:1:1:1",PageObject.TxnNum);
         PageObject.click_Locator("defaultButton");
         PageObject.form_Link("Authorise");
         PageObject.authorizeDeal();

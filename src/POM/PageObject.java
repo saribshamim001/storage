@@ -178,6 +178,7 @@ public class PageObject extends BaseClass {
 
     }
 
+    // Commit Deal For Inputter
     public static void commitDeal (String testCaseName) throws IOException {
         driver.findElement(By.xpath("//tr/td/a/img[@alt='Validate a deal']")).click();
         driver.findElement(By.xpath("//tr/td/a/img[@alt='Commit the deal']")).click();
@@ -196,6 +197,7 @@ public class PageObject extends BaseClass {
 
     }
 
+    // Get Txn Number to pass further for Authorization
     public static String getTxn () {
         WebElement Txn = driver.findElement(By.xpath("//table/tbody/tr/td[contains(text(),'Txn Complete:')]"));
         String Transaction = Txn.getText();
