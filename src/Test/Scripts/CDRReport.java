@@ -24,7 +24,7 @@ public class CDRReport extends BaseClass {
 
         PageObject.switchToChildWindow();
 
-        PageObject.find_Button("Run Selection");
+        PageObject.find_Button();
 
         Thread.sleep(3000);
 

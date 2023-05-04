@@ -25,7 +25,7 @@ public class CDRRevalidation extends BaseClass {
         PageObject.switchToChildWindow();
         PageObject.textinput_Locator("value:1:1:1","CDR.ADY1224014");
 
-        PageObject.find_Button("Run Selection");
+        PageObject.find_Button();
 
         PageObject.form_Link("Active Instrument");
 
