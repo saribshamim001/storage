@@ -151,12 +151,6 @@ public class PageObject extends BaseClass {
         driver.manage().window().maximize();
     }
 
-    public static String TXnNum(String num) {
-        String[] n = num.split(":");
-        String[] S = n[1].split(" ");
-        return S[1];
-    }
-
     public static void txnValidate(String testCaseName) throws IOException {
        WebElement Txn = driver.findElement(By.xpath("//table/tbody/tr/td[contains(text(),'Txn Complete:')]"));
        Assert.assertTrue(Txn.isDisplayed(),"Transaction Un-Successful");
