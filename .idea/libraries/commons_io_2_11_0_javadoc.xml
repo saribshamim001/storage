@@ -19,6 +19,14 @@
       <root url="jar://$PROJECT_DIR$/dependency/selenium-server-4.9.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/dependency/slf4j-api-1.7.36.jar!/" />
       <root url="jar://$PROJECT_DIR$/dependency/testng-7.7.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dependency/commons-codec-1.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dependency/commons-collections4-4.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dependency/commons-compress-1.18.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dependency/curvesapi-1.04.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dependency/poi-4.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dependency/poi-ooxml-4.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dependency/poi-ooxml-schemas-4.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dependency/xmlbeans-3.0.1.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/dependency/commons-io-2.11.0-javadoc.jar!/" />

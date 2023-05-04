@@ -25,10 +25,10 @@ public class CDREncashment extends BaseClass {
 
         PageObject.img_Button("New Deal");
 
+        //PageObject.textinput_Locator("fieldName:CREDIT.THEIR.REF","1000");
 
-        PageObject.textinput_Locator("fieldName:CREDIT.THEIR.REF","1000");
         PageObject.textinput_Locator("fieldName:CREDIT.ACCT.NO","1000140984");
-        PageObject.click_Locator("fieldName:CREDIT.CURRENCY");
+        PageObject.click_Locator("fieldName:CREDIT.THEIR.REF");
 
         String HomePage2 = PageObject.switchToChildWindow();
         //PageObject.maximizeWindow();
@@ -36,17 +36,10 @@ public class CDREncashment extends BaseClass {
 
         PageObject.switchToParentWindow(HomePage2);
         PageObject.switchFrame(2);
+        PageObject.textinput_Locator("fieldName:CREDIT.THEIR.REF","1000");
 
-        //PageObject.commitDeal("CDREncashmentTest");
-
-
-
-
-
-
-
-
-
-
+        PageObject.commitDeal("CDREncashment");
+        //String txn = PageObject.getTxn();
+        //System.out.println("Txn is: "+txn);
     }
 }
