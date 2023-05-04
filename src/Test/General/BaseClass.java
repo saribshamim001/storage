@@ -103,7 +103,7 @@ public class BaseClass {
     public void authorizerLogin() {
         edgeConfig();
 
-        PageObject.signIn("retailauth007", "QWer1234");
+        PageObject.signIn("RETAILAUTH01", "QWer1234");
 
         PageObject.switchFrame(1);
 
