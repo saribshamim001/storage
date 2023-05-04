@@ -10,7 +10,7 @@ public class CDRInwardClearing extends BaseClass {
 
     @Test( groups = {"Inputter"})
 
-    public void CDRInwardClearingInput() throws InterruptedException, IOException {
+    public void CDRInwardClearingNormal() throws InterruptedException, IOException {
 
         PageObject.menu_Dropdown("Remittance/Clearing Officer -Universal Teller");
         PageObject.menu_Dropdown("Remittance Menu");
@@ -46,7 +46,7 @@ public class CDRInwardClearing extends BaseClass {
 
         PageObject.textinput_Locator("fieldName:BANK.SORT.CODE:1","010");
 
-        PageObject.commitDeal("CDRInwardClearingInput");
+        PageObject.commitDeal("CDRInwardClearingNormal");
 
 
 
