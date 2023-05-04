@@ -11,7 +11,7 @@
             </run>
         </groups>
         <classes>
-            <class name="Test.Scripts.IssueCDRBulk"/>
+            <class name="Test.Scripts.DDCancellation"/>
         </classes>
     </test>
 </suite>

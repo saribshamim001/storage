@@ -25,9 +25,9 @@ public class DDCancellation extends BaseClass {
 
         PageObject.img_Button("New Deal");
 
-        PageObject.textinput_Locator("fieldName:CREDIT.THEIR.REF","1234567");
+        PageObject.textinput_Locator("fieldName:CREDIT.THEIR.REF","LDA0610554");
 
-        PageObject.commitDeal("DemandDraftCancellation");
+        //PageObject.commitDeal("DemandDraftCancellation");
 
 
     }
