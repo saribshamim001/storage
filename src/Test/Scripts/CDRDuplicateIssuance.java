@@ -26,7 +26,7 @@ public class CDRDuplicateIssuance extends BaseClass {
         PageObject.switchToChildWindow();
         PageObject.textinput_Locator("value:1:1:1","CDR.LDA0610374");
 
-        PageObject.find_Button("Run Selection");
+        PageObject.find_Button();
 
         PageObject.maximizeWindow();
 
