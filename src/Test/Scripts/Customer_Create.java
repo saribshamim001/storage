@@ -69,7 +69,7 @@ public class Customer_Create extends BaseClass {
     @DataProvider(name = "excelData")
     public Object[][] readExcelData() throws IOException {
 
-        String FILE_PATH = System.getProperty("user.dir")+"\\src\\\\Resources\\\\";
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\\\";
 
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);

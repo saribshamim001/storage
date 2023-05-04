@@ -26,7 +26,7 @@ public class KYC_Amendment_Account extends BaseClass {
         PageObject.maximizeWindow();
 
         PageObject.textinput_Locator("value:1:1:1","1007240180");
-        PageObject.find_Button("Run Selection");
+        PageObject.find_Button();
 
 
         PageObject.form_Link("Amend Account KYC");
