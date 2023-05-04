@@ -25,7 +25,7 @@ public class IssueCDRBulk extends BaseClass {
         PageObject.switchToChildWindow();
         PageObject.textinput_Locator("value:1:1:1","1234567");
 
-        PageObject.find_Button("Run Selection");
+        PageObject.find_Button();
 
         //PageObject.commitDeal("CDRBulkIssueInput");
 
