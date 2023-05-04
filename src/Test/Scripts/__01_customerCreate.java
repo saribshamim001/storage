@@ -8,6 +8,8 @@ import java.io.IOException;
 
 public class __01_customerCreate extends BaseClass {
 
+    public static String Txn;
+    public static String Txn2;
 
     @Test (groups = {"Inputter"})
     public void individualCustomer() throws InterruptedException, IOException {
@@ -77,8 +79,8 @@ public class __01_customerCreate extends BaseClass {
         PageObject.textinput_Locator("fieldName:CP.PH.RES:1","HOUSE NO 1 C");
         PageObject.textinput_Locator("fieldName:CP.EMAIL:1","SDVGDJAS@GMAIL.COM");
 
-//        PageObject.commitDeal("Customers");
-        PageObject.getTxn();
+        PageObject.commitDeal("Customers");
+        Txn = PageObject.getTxn();
 
     }
 
@@ -160,7 +162,8 @@ public class __01_customerCreate extends BaseClass {
         PageObject.textinput_Locator("fieldName:P.PROVINCE:1","");
         PageObject.textinput_Locator("fieldName:P.CUST.GENDER:1","");
 */
-//        PageObject.commitDeal("Customers");
+        PageObject.commitDeal("Customers");
+        Txn2 = PageObject.getTxn();
 
 
     }
@@ -177,13 +180,39 @@ public class __01_customerCreate extends BaseClass {
 
         homePage = PageObject.switchToChildWindow();
 
-        PageObject.textinput_Locator("value:1:1:1",PageObject.getTxn());
+        PageObject.textinput_Locator("value:1:1:1",Txn);
+        Thread.sleep(5000);
         PageObject.click_Locator("defaultButton");
+        Thread.sleep(5000);
         PageObject.form_Link("Authorise a Customer");
+        Thread.sleep(5000);
         PageObject.authorizeDeal();
 
-        PageObject.commitDeal("Customers");
+//        PageObject.commitDeal("Customers");
     }
 
+    @Test  (groups = {"Authorizer"})
+    public void customerAuthorization2() throws InterruptedException, IOException {
+
+
+        PageObject.menu_Dropdown("Customer Services");
+        PageObject.menu_Dropdown("Alfalah Customer Information");
+        PageObject.menu_Dropdown("Branch Level Authorization");
+        PageObject.menu_Dropdown("Authorization of CIF & ACCOUNT");
+        PageObject.menu_Dropdown("Authorization of Customer");
+        PageObject.menu_Link("Authorization of CIF- Branch Level ");
+
+        homePage = PageObject.switchToChildWindow();
+
+        PageObject.textinput_Locator("value:1:1:1",Txn2);
+        Thread.sleep(5000);
+        PageObject.click_Locator("defaultButton");
+        Thread.sleep(5000);
+        PageObject.form_Link("Authorise a Customer");
+        Thread.sleep(5000);
+        PageObject.authorizeDeal();
+
+//        PageObject.commitDeal("Customers");
+    }
 
 }

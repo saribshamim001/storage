@@ -1,6 +1,7 @@
 package POM;
 
 import Test.General.BaseClass;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,13 +9,14 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import java.util.Random;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 
 public class PageObject extends BaseClass {
 
@@ -47,8 +49,8 @@ public class PageObject extends BaseClass {
         driver.findElement(By.xpath("//tr/td/a/img[@alt='"+alt_Value+"']")).click();
     }
 
-    public static void find_Button (String alt_Value) {
-        driver.findElement(By.xpath("//tr/td/a[@alt='"+alt_Value+"']")).click();
+    public static void find_Button () {
+        driver.findElement(By.xpath("//tr/td/a[@alt='Run Selection']")).click();
     }
 
     //This method is to perform action on Static Select Dropdowns
@@ -149,16 +151,9 @@ public class PageObject extends BaseClass {
         driver.manage().window().maximize();
     }
 
-    public static String TXnNum(String num) {
-        String[] n = num.split(":");
-        String[] S = n[1].split(" ");
-        return S[1];
-    }
-
     public static void txnValidate(String testCaseName) throws IOException {
        WebElement Txn = driver.findElement(By.xpath("//table/tbody/tr/td[contains(text(),'Txn Complete:')]"));
        Assert.assertTrue(Txn.isDisplayed(),"Transaction Un-Successful");
-       File file = new File(System.getProperty("user.dir") + "\\Data\\" +testCaseName+ ".csv");
 
        String Transaction = Txn.getText();
        String[] first = Transaction.split(":");
@@ -166,18 +161,37 @@ public class PageObject extends BaseClass {
        String TxnNum = second[1];
        System.out.println("Transaction Number is: "+TxnNum);
 
-           try {
-               BufferedWriter outFile;
-               outFile = new BufferedWriter(new FileWriter(file, true));
-               outFile.append(TxnNum);
-               outFile.newLine();
-               outFile.close();
-           } catch (IOException e) {
-               System.out.println("Excel Not Working");
-           }
+        File file = new File(System.getProperty("user.dir") + "\\Data\\" +testCaseName+ ".xlsx");
+        XSSFWorkbook workbook;
+        Row row;
+        Cell cell;
+        int rowNum = 0;
+
+        if (file.exists()) {
+            FileInputStream fis = new FileInputStream(file);
+            workbook = new XSSFWorkbook(fis);
+            Sheet sheet = workbook.getSheetAt(0);
+            rowNum = sheet.getLastRowNum() + 1; // Start writing from the next row
+        } else {
+            workbook = new XSSFWorkbook();
+            Sheet sheet = workbook.createSheet();
+            row = sheet.createRow(rowNum++);
+            cell = row.createCell(0);
+            cell.setCellValue("Transaction Number");
+        }
+
+        Sheet sheet = workbook.getSheetAt(0);
+        row = sheet.createRow(rowNum++);
+        cell = row.createCell(0);
+        cell.setCellValue(TxnNum);
+
+        FileOutputStream fos = new FileOutputStream(file);
+        workbook.write(fos);
+        fos.close();
 
     }
 
+    // Commit Deal For Inputter
     public static void commitDeal (String testCaseName) throws IOException {
         driver.findElement(By.xpath("//tr/td/a/img[@alt='Validate a deal']")).click();
         driver.findElement(By.xpath("//tr/td/a/img[@alt='Commit the deal']")).click();
@@ -196,6 +210,7 @@ public class PageObject extends BaseClass {
 
     }
 
+    // Get Txn Number to pass further for Authorization
     public static String getTxn () {
         WebElement Txn = driver.findElement(By.xpath("//table/tbody/tr/td[contains(text(),'Txn Complete:')]"));
         String Transaction = Txn.getText();
