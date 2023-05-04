@@ -11,7 +11,7 @@
             </run>
         </groups>
         <classes>
-            <class name="Test.Scripts.CDRInwardClearing"/>
+            <class name="Test.Scripts.CollectCDRBulk"/>
         </classes>
     </test>
 </suite>
