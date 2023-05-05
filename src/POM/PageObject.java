@@ -104,7 +104,7 @@ public class PageObject extends BaseClass {
     }
 
     public static void childmenu_Dropdown(String alt_Value, Integer index) {
-        driver.findElement(By.xpath("(//ul/li/span/img[@alt='"+alt_Value+"'])["+index+"]")).click();
+        driver.findElement(By.xpath("(//ul/li/span/img[contains(@alt,'"+alt_Value+"')])["+index+"]")).click();
     }
 
     //This method is to perform a click on Menu Links
