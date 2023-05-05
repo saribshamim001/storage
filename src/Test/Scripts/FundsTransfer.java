@@ -10,7 +10,7 @@ import java.io.IOException;
 public class FundsTransfer extends BaseClass {
 
     @Test(groups = {"Inputter"})
-    public void FTGeneral() throws IOException {
+    public void fTGeneral() throws IOException {
 
         String HomePage2 = driver.getWindowHandle();
         PageObject.menu_Dropdown("Head Teller Menu-Universal Teller-Conventiona");
@@ -49,7 +49,7 @@ public class FundsTransfer extends BaseClass {
     }
 
     @Test(groups = {"Inputter"})
-    public void FTOnline() throws IOException {
+    public void fTOnline() throws IOException {
 
         String HomePage2 = driver.getWindowHandle();
         PageObject.menu_Dropdown("Head Teller Menu-Universal Teller-Conventiona");
