@@ -1,11 +1,12 @@
 package Test.Scripts;
 
 import POM.PageObject;
+import Test.General.BaseClass;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class TillTransferCash {
+public class TillTransferCash extends BaseClass {
 
     String vaulttoTillTxn;
     String lcyTxn;
