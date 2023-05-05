@@ -23,7 +23,7 @@ public class IssueCDRBulk extends BaseClass {
         PageObject.menu_Link("Issuance CDR- A/c Holder Bulk- Step-2 ");
 
         PageObject.switchToChildWindow();
-        PageObject.textinput_Locator("value:1:1:1","1234567");
+        PageObject.textinput_Locator("value:1:1:1","1003052809");
 
         PageObject.find_Button();
 

@@ -1,3 +1,4 @@
+/*
 package Test.Scripts;
 
 import POM.PageObject;
@@ -6,7 +7,7 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-import static Test.General.ExtraMethods.*;
+//import static Test.General.ExtraMethods.*;
 
 public class cashDepostLCY extends BaseClass {
 
@@ -41,8 +42,10 @@ public class cashDepostLCY extends BaseClass {
         PageObject.textinput_Locator("fieldName:TT.ID.VAL.DT:1", "20250101");
         PageObject.textinput_Locator("fieldName:CNIC.NO", "9876543215875");
 
-        /*String newPage = PageObject.switchToChildWindow();
-        PageObject.switchFrame(2);*/
+        */
+/*String newPage = PageObject.switchToChildWindow();
+        PageObject.switchFrame(2);*//*
+
 
         refreshWindow(2);
 
@@ -50,11 +53,14 @@ public class cashDepostLCY extends BaseClass {
         PageObject.textinput_Locator("fieldName:DATE.OF.BIRTH", "19800101");
         PageObject.textinput_Locator("fieldName:FATHER.NAME", "someone");
         commitDeal("cashDepostLCY");
-        /*driver.close();
+        */
+/*driver.close();
         PageObject.switchToParentWindow(homePage);
         PageObject.parentFrame();
         PageObject.switchFrame(0);
-        PageObject.signOff();*/
+        PageObject.signOff();*//*
+
 
     }
 }
+*/

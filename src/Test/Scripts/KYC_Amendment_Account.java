@@ -45,17 +45,17 @@ public class KYC_Amendment_Account extends BaseClass {
 
 
 
-        PageObject.textinput_Locator("fieldName:PURPOSE","Test1");
-        PageObject.select_Locator("fieldName:MODEDEPOSITS:1","Cheque");
-        PageObject.select_Locator("fieldName:MODEDEPOSITS:2","Cash");
+        PageObject.textinput_Locator("fieldName:PURPOSE","Test2");
+        PageObject.select_Locator("fieldName:MODEDEPOSITS:1","Cash");
+        PageObject.select_Locator("fieldName:MODEDEPOSITS:2","Cheque");
         PageObject.select_Locator("fieldName:MODEDEPOSITS:3","Online Credits");
         PageObject.select_Locator("fieldName:MODEWITHDRAW:1","Issuing crossed Cheques");
         PageObject.select_Locator("fieldName:MODEWITHDRAW:2","Cash Withdrawls through cheque");
 //        PageObject.select_Locator("fieldName:MODEWITHDRAW:3","Outward local Remittance");
-        PageObject.textinput_Locator("fieldName:KYC.NO.TRANS","8");
-        PageObject.textinput_Locator("fieldName:NO.TRANS.DR","9");
+        PageObject.textinput_Locator("fieldName:KYC.NO.TRANS","7");
+        PageObject.textinput_Locator("fieldName:NO.TRANS.DR","5");
         PageObject.select_Locator("fieldName:MONTH.TOVER.DR","1M to 5M");
-        PageObject.textinput_Locator("fieldName:EX.TOVER.DR.OTH","100000");
+        PageObject.textinput_Locator("fieldName:EX.TOVER.DR.OTH","10000");
 
         PageObject.select_Locator("fieldName:KYC.ATO","Below 1M");
         PageObject.textinput_Locator("fieldName:ATOGTM","1000");
@@ -67,7 +67,7 @@ public class KYC_Amendment_Account extends BaseClass {
         String menu3 = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
 
-        PageObject.select_Locator("fieldName:CUST.SEGMENT","AFFLUENT");
+        PageObject.select_Locator("fieldName:CUST.SEGMENT","AFFLUENT"); //MASS OR AFFLUENT
         PageObject.img_Button("Commit the deal");
 
         driver.close();
@@ -75,8 +75,8 @@ public class KYC_Amendment_Account extends BaseClass {
         PageObject.switchToParentWindow(menu3);
         PageObject.maximizeWindow();
 
-        PageObject.select_Locator("fieldName:OCCUPATION","Salaried");
-        PageObject.commitDeal("KYC Amendment Account");
+        PageObject.select_Locator("fieldName:OCCUPATION","Salaried"); //Business OR Salaried
+        PageObject.commitDeal("KYC_Amendment_Account");
 
 
 
@@ -85,17 +85,10 @@ public class KYC_Amendment_Account extends BaseClass {
 ////        PageObject.radiobutton_Locator("radio:mainTab:KYC.REASON.HIGH",'0');
 ////        PageObject.radiobutton_Locator("radio:mainTab:MON.TOVER.CRG",'0');
 //
-//        PageObject.commitDeal("KYC Amendment Account ");
-//
-//        String menu3 = PageObject.switchToChildWindow();
-//        PageObject.maximizeWindow();
-//        PageObject.commitDeal("KYC Amendment Account ");
-//
-//
-//
-//
-//        txn = PageObject.getTxn();
-//        System.out.println(txn);
+
+
+        txn = PageObject.getTxn();
+        System.out.println(txn);
 
     }
 
