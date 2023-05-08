@@ -224,7 +224,8 @@ public class Accounts extends BaseClass {
         PageObject.menu_Dropdown("Branch Level Inputter");
         PageObject.menu_Dropdown("Alfalah Account Information");
         PageObject.menu_Dropdown("Foreign Currency Account Open");
-        PageObject.menu_Link("Current Account ");
+//        PageObject.menu_Link("Current Account ");
+        PageObject.childmenu_Link("Current Account ",1);
 
         PageObject.parentFrame();
         PageObject.switchFrame(2);
@@ -253,7 +254,8 @@ public class Accounts extends BaseClass {
         PageObject.menu_Dropdown("Branch Level Inputter");
         PageObject.menu_Dropdown("Alfalah Account Information");
         PageObject.menu_Dropdown("Foreign Currency Account Open");
-        PageObject.menu_Link("Saving Account ");
+//        PageObject.menu_Link("Saving Account ");
+        PageObject.childmenu_Link("Saving Account ",1);
 
         PageObject.parentFrame();
         PageObject.switchFrame(2);

@@ -112,6 +112,10 @@ public class PageObject extends BaseClass {
         driver.findElement(By.xpath("//ul/li/a[text()='"+text_Value+"']")).click();
     }
 
+    public static void childmenu_Link(String text_Value , Integer index) {
+        driver.findElement(By.xpath("(//ul/li/a[contains(text(),'"+text_Value+"')])["+index+"]")).click();
+    }
+
     public static void form_Link(String text_Value) {
         driver.findElement(By.xpath("//table/tbody/tr/td/a[text()='"+text_Value+"']")).click();
     }
