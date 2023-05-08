@@ -24,9 +24,15 @@ public class CDRDuplicateIssuance extends BaseClass {
 
         //Switch to newly opened window
         PageObject.switchToChildWindow();
-        PageObject.textinput_Locator("value:1:1:1","1234567");
+        PageObject.textinput_Locator("value:1:1:1","CDR.LDA0610374");
 
+        PageObject.find_Button();
 
+        PageObject.maximizeWindow();
+
+        PageObject.form_Link("Duplicate Issue");
+
+        //PageObject.commitDeal("DemandDraftDuplication");
 
     }
 

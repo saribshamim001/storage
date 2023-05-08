@@ -85,7 +85,7 @@ public class BaseClass {
     public void inputterLogin() {
         chromeConfig();
 
-        PageObject.signIn("retail04", "QWer1234");
+        PageObject.signIn("RETAIL888", "QWer1234");
 
         PageObject.switchFrame(1);
 
@@ -103,7 +103,7 @@ public class BaseClass {
     public void authorizerLogin() {
         edgeConfig();
 
-        PageObject.signIn("retailauth007", "QWer1234");
+        PageObject.signIn("RETAILAUTH01", "QWer1234");
 
         PageObject.switchFrame(1);
 

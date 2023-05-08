@@ -4,15 +4,30 @@
     <listeners>
         <listener class-name="Resources.Listeners"/>
     </listeners>
-    <test verbose="2" preserve-order="true" name="D:/Hassan Work/Selenium Work/Retail Ops">
+    <test verbose="1" preserve-order="true" name="Retail Operations Inputter">
         <groups>
             <run>
                 <include name="Inputter"/>
             </run>
         </groups>
         <classes>
-            <class name="Test.Scripts.Customer_Create"/>
-<!--            <class name="Test.Scripts.FT"/>-->
+            <class name="Test.Scripts.StockManagement">
+                <methods>
+                    <include name="stocksTransferFromMStoWS"/>
+                </methods>
+            </class>
         </classes>
     </test>
+
+    <!--<test verbose="1" preserve-order="true" name="Retail Operations Authorizer">
+        <groups>
+            <run>
+                <include name="Authorizer"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="Test.Scripts.StockManagement"/>
+        </classes>
+    </test>-->
+
 </suite>

@@ -25,7 +25,7 @@ public class PostRestrictionMarking extends BaseClass {
         PageObject.switchFrame(0);
 
         PageObject.textinput_Locator("value:1:1:1","12105488");
-        PageObject.find_Button("Run Selection");
+        PageObject.find_Button();
 
         PageObject.parentFrame();
         PageObject.switchFrame(0);
