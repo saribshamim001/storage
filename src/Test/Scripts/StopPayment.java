@@ -6,10 +6,10 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class StopPayment_Cheque extends BaseClass {
+public class StopPayment extends BaseClass {
 
     @Test(groups = {"Inputter"},priority = 1)
-    public void stopPayment_Cheque() throws IOException {
+    public void stopPaymentCheque() throws IOException {
         PageObject.menu_Dropdown("Customer Relation Officer Menu");
         PageObject.menu_Dropdown("Cheque Book Management Inputter Menu");
         PageObject.menu_Link("Stop Payment of Cheque(s) ");
@@ -22,13 +22,13 @@ public class StopPayment_Cheque extends BaseClass {
         PageObject.textinput_Locator("fieldName:FIRST.CHEQUE.NO:1","123456600");
         //PageObject.textinput_Locator("fieldName:LAST.CHEQUE.NO:1","123456791");
         PageObject.select_Locator("fieldName:WAIVE.CHARGE:1","YES");
-        PageObject.commitDeal("StopPayment_Cheque");
+        PageObject.commitDeal("stopPaymentCheque");
         String txn = PageObject.getTxn();
         System.out.println("Txn is:  "+txn);
     }
 
     @Test(groups = {"Inputter"}, priority = 2)
-    public void stopPayment_ChequeSeries() throws IOException {
+    public void stopPaymentChequeSeries() throws IOException {
         PageObject.menu_Dropdown("Customer Relation Officer Menu");
         PageObject.menu_Dropdown("Cheque Book Management Inputter Menu");
         PageObject.menu_Link("Stop Payment of Cheque(s) ");
@@ -49,7 +49,7 @@ public class StopPayment_Cheque extends BaseClass {
     //dependsOnMethods = {"stopPayment_Cheque","stopPayment_ChequeSeries"}
     //To make dependent on other methods
     @Test(groups = {"Inputter"}, priority = 3)
-    public void stopPayment_RevokeCheque() throws IOException {
+    public void stopPaymentRevokeCheque() throws IOException {
         PageObject.menu_Dropdown("Customer Relation Officer Menu");
         PageObject.menu_Dropdown("Cheque Book Management Inputter Menu");
         PageObject.menu_Link("Revoke Stop Payment of Cheque ");
