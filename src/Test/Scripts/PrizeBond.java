@@ -88,7 +88,6 @@ public class PrizeBond extends BaseClass {
 
         PageObject.img_Button("New Deal");
 
-
     }
 
     @Test(groups = {"Inputter"})
@@ -104,7 +103,6 @@ public class PrizeBond extends BaseClass {
         PageObject.switchFrame(2);
 
         PageObject.img_Button("New Deal");
-
 
     }
 

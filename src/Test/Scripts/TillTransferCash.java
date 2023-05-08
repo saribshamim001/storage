@@ -29,9 +29,9 @@ public class TillTransferCash extends BaseClass {
 
         PageObject.img_Button("New Deal");
 
-        PageObject.textinput_Locator("fieldName:CURRENCY.1","PKR");
-        PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1","10");
-        PageObject.textinput_Locator("fieldName:AMOUNT.FCY.1:1","");
+        PageObject.textinput_Locator("fieldName:CURRENCY.1", "PKR");
+        PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1", "10");
+        PageObject.textinput_Locator("fieldName:AMOUNT.FCY.1:1", "");
 
         PageObject.commitDeal("Vault To Till");
         vaulttoTillTxn = PageObject.getTxn();
@@ -51,8 +51,8 @@ public class TillTransferCash extends BaseClass {
 
         PageObject.img_Button("New Deal");
 
-        PageObject.textinput_Locator("fieldName:TELLER.ID.1","1005");
-        PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1","10");
+        PageObject.textinput_Locator("fieldName:TELLER.ID.1", "1005");
+        PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1", "10");
 
         PageObject.commitDeal("LCY Till Transfer");
         lcyTxn = PageObject.getTxn();
@@ -72,9 +72,9 @@ public class TillTransferCash extends BaseClass {
 
         PageObject.img_Button("New Deal");
 
-        PageObject.textinput_Locator("fieldName:TELLER.ID.1","1005");
-        PageObject.textinput_Locator("fieldName:CURRENCY.1","USD");
-        PageObject.textinput_Locator("fieldName:AMOUNT.FCY.1:1","10");
+        PageObject.textinput_Locator("fieldName:TELLER.ID.1", "1005");
+        PageObject.textinput_Locator("fieldName:CURRENCY.1", "USD");
+        PageObject.textinput_Locator("fieldName:AMOUNT.FCY.1:1", "10");
 
         PageObject.commitDeal("FCY Till Transfer");
         fcyTxn = PageObject.getTxn();
@@ -94,9 +94,9 @@ public class TillTransferCash extends BaseClass {
 
         PageObject.img_Button("New Deal");
 
-        PageObject.textinput_Locator("fieldName:CURRENCY.1","USD");
-        PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1","");
-        PageObject.textinput_Locator("fieldName:AMOUNT.FCY.1:1","10");
+        PageObject.textinput_Locator("fieldName:CURRENCY.1", "USD");
+        PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1", "");
+        PageObject.textinput_Locator("fieldName:AMOUNT.FCY.1:1", "10");
 
         PageObject.commitDeal("Till To Vault");
         tillToVaultTxn = PageObject.getTxn();
@@ -116,9 +116,9 @@ public class TillTransferCash extends BaseClass {
 
         PageObject.img_Button("New Deal");
 
-        PageObject.textinput_Locator("fieldName:TELLER.ID.2","USD");
-        PageObject.textinput_Locator("fieldName:TELLER.ID.1","1005");
-        PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1","10");
+        PageObject.textinput_Locator("fieldName:TELLER.ID.2", "USD");
+        PageObject.textinput_Locator("fieldName:TELLER.ID.1", "1005");
+        PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1", "10");
 
         PageObject.commitDeal("Till To ATM");
         tillToATMTxn = PageObject.getTxn();
@@ -138,9 +138,9 @@ public class TillTransferCash extends BaseClass {
 
         PageObject.img_Button("New Deal");
 
-        PageObject.textinput_Locator("fieldName:TELLER.ID.2","USD");
-        PageObject.textinput_Locator("fieldName:TELLER.ID.1","1005");
-        PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1","10");
+        PageObject.textinput_Locator("fieldName:TELLER.ID.2", "USD");
+        PageObject.textinput_Locator("fieldName:TELLER.ID.1", "1005");
+        PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1", "10");
 
         PageObject.commitDeal("Till To ATM");
         atmToTillTxn = PageObject.getTxn();
