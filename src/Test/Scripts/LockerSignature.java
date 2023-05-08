@@ -2,6 +2,7 @@ package Test.Scripts;
 
 import POM.PageObject;
 import Test.General.BaseClass;
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -35,10 +36,11 @@ public class LockerSignature extends BaseClass {
         PageObject.textinput_Locator("fieldName:SHORT.DESCRIPTION","Test");
         PageObject.textinput_Locator("fieldName:DESCRIPTION:1","Tester");
 
-        PageObject.commitDeal("LockerSignature");
+
+        driver.findElement(By.xpath("//tr/td/a/img[@alt='Commit the deal']")).click();
 
         PageObject.parentFrame();
-        PageObject.switchFrame(8);
+        PageObject.switchFrame(2);
 
         PageObject.textinput_Locator("fieldName:FILE.UPLOAD","ASD");
 
