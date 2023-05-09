@@ -85,7 +85,7 @@ public class BaseClass {
     public void inputterLogin() {
         chromeConfig();
 
-        PageObject.signIn("RETAIL888", "QWer1234");
+        PageObject.signIn("retail006", "QWer1234");
 
         PageObject.switchFrame(1);
 
@@ -101,9 +101,9 @@ public class BaseClass {
 
     @BeforeMethod(groups = {"Authorizer"})
     public void authorizerLogin() {
-        edgeConfig();
+        chromeConfig();
 
-        PageObject.signIn("RETAILAUTH01", "QWer1234");
+        PageObject.signIn("retailauth006", "QWer1234");
 
         PageObject.switchFrame(1);
 
