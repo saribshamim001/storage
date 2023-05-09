@@ -2,16 +2,27 @@ package Test.Scripts;
 
 import POM.PageObject;
 import Test.General.BaseClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.HashMap;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class Customer_Create extends BaseClass {
 
-    String txn;
+    public static String txn;
 
-    @Test(groups = {"Inputter"})
-    public void customerCreation() throws IOException {
+    @Test(groups = {"Inputter"} , dataProvider = "excelData")
+    public void customerCreation(Map<String, String> excelData) throws IOException {
 
         PageObject.menu_Dropdown("Customer Relation Officer Menu");
         PageObject.menu_Dropdown("Alfalah Customer Information");
@@ -25,21 +36,21 @@ public class Customer_Create extends BaseClass {
 
         PageObject.img_Button("New Deal");
 
-        PageObject.textinput_Locator("fieldName:SECTOR","1000");
-        PageObject.textinput_Locator("fieldName:ID.TYPE:1","ID-N");
-        PageObject.textinput_Locator("fieldName:ID.NUMBER:1","4220179441023");
+        PageObject.textinput_Locator("fieldName:SECTOR",excelData.get("SECTOR"));
+        PageObject.textinput_Locator("fieldName:ID.TYPE:1",excelData.get("ID-TYPE"));
+        PageObject.textinput_Locator("fieldName:ID.NUMBER:1",excelData.get("ID-NO"));
         PageObject.click_Locator("fieldName:ID.VAL.DT:1");
-        PageObject.textinput_Locator("fieldName:ID.VAL.DT:1","07 AUG 2041");
-        PageObject.textinput_Locator("fieldName:NAME.1:1","CUSTOMER01");
-        PageObject.textinput_Locator("fieldName:MB.FATH.HUS.NAM","FATHER01");
-        PageObject.textinput_Locator("fieldName:STREET:1","KARACHI");
-        PageObject.textinput_Locator("fieldName:TOWN.COUNTRY:1","KARACHI PARKISTAN");
-        PageObject.textinput_Locator("fieldName:SBP.IND.PARENT","60000000000");
-        PageObject.textinput_Locator("fieldName:SBP.INDUSTRY","60000000800");
-        PageObject.textinput_Locator("fieldName:TARGET","64");
-        PageObject.textinput_Locator("fieldName:NATIONALITY","PK");
-        PageObject.textinput_Locator("fieldName:RESIDENCE","PK");
-        PageObject.textinput_Locator("fieldName:DATE.OF.BIRT.LC","25 JUL 1998");
+        PageObject.textinput_Locator("fieldName:ID.VAL.DT:1",excelData.get("VALID-DATE"));
+        PageObject.textinput_Locator("fieldName:NAME.1:1",excelData.get("NAME"));
+        PageObject.textinput_Locator("fieldName:MB.FATH.HUS.NAM",excelData.get("FATHER-NAME"));
+        PageObject.textinput_Locator("fieldName:STREET:1",excelData.get("STREET"));
+        PageObject.textinput_Locator("fieldName:TOWN.COUNTRY:1",excelData.get("COUNTRY"));
+        PageObject.textinput_Locator("fieldName:SBP.IND.PARENT",excelData.get("SBP-IND-PR"));
+        PageObject.textinput_Locator("fieldName:SBP.INDUSTRY",excelData.get("SBP-IND"));
+        PageObject.textinput_Locator("fieldName:TARGET",excelData.get("TARGET"));
+        PageObject.textinput_Locator("fieldName:NATIONALITY",excelData.get("NATIONALITY"));
+        PageObject.textinput_Locator("fieldName:RESIDENCE",excelData.get("RESIDENCE"));
+        PageObject.textinput_Locator("fieldName:DATE.OF.BIRT.LC",excelData.get("DOB"));
 
         PageObject.textinput_Locator("fieldName:CRP.TYPE","1");
         PageObject.textinput_Locator("fieldName:INCM.LEVELSRC","102");
@@ -53,6 +64,35 @@ public class Customer_Create extends BaseClass {
         PageObject.commitDeal("Customer Create");
         txn = PageObject.getTxn();
         System.out.println(txn);
+    }
+
+    @DataProvider(name = "excelData")
+    public Object[][] readExcelData() throws IOException {
+
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\\\";
+
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
     }
 
 }
