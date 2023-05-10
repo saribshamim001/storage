@@ -18,10 +18,11 @@ public class KYC_Amendment_Customer extends BaseClass {
 
     String txn;
 
+    String CusNumber="16992982";
+
     @Test(groups = {"Inputter"})
 
     public void KYC_Amendment_Customer() throws IOException, InterruptedException {
-        String CusNumber="16992982";
 
         PageObject.menu_Dropdown("Customer Relation Officer Menu");
         PageObject.menu_Dropdown("Alfalah Customer Information");
@@ -97,7 +98,7 @@ public class KYC_Amendment_Customer extends BaseClass {
 
         txn = PageObject.getTxn();
         System.out.println(txn);
-        saveAccNumToFile(CusNumber);
+//        saveAccNumToFile(CusNumber);
 
 
     }
@@ -154,7 +155,7 @@ public class KYC_Amendment_Customer extends BaseClass {
         String menu = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
 
-        PageObject.textinput_Locator("value:1:1:1",testData.get("Transaction Number"));
+        PageObject.textinput_Locator("value:1:1:1",CusNumber);
         PageObject.find_Button();
 
 
