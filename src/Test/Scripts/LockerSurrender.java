@@ -25,15 +25,18 @@ public class LockerSurrender extends BaseClass {
         String menu = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
 
+        PageObject.textinput_Locator("value:1:1:1","OR.0019.0031");
         PageObject.find_Button();
 
         PageObject.form_Link("Surrender Version");
 
         PageObject.textinput_Locator("fieldName:BRK.REASON:1","Test");
 
-        PageObject.commitDeal("Locker Surrender");
-
         String menu1 = PageObject.switchToChildWindow();
+
+        PageObject.img_Button("Commit the deal");
+
+        String menu2 = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
 
         PageObject.img_Button("Commit the deal");
