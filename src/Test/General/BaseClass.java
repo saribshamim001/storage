@@ -85,7 +85,7 @@ public class BaseClass {
     public void inputterLogin() {
         chromeConfig();
 
-        PageObject.signIn("retail006", "QWer1234");
+        PageObject.signIn("retail006", "QWer12345");
 
         PageObject.switchFrame(1);
 
@@ -110,12 +110,9 @@ public class BaseClass {
         PageObject.menu_Dropdown("Manager Operation Menu");
         PageObject.menu_Dropdown("Core Retail Menu");
     }
-}
 
-
-
-//    @AfterMethod(groups = {"Authorizer" , "Inputter"})
-//    public void userLogout(){
+//    @AfterMethod(groups = {"Authorizer", "Inputter"})
+//    public void userLogout() {
 //        this.driver.close();
 //
 //        PageObject.switchToParentWindow(homePage);
@@ -126,6 +123,11 @@ public class BaseClass {
 //
 //        this.driver.close();
 //    }
+}
+
+
+
+
 
 
 
