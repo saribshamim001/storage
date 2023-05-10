@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class ForceSurrender extends BaseClass {
+public class LockerForceSurrender extends BaseClass {
 
     String forceTxn;
     @Test(groups = {"Inputter"})
