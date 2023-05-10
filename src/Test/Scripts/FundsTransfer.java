@@ -2,15 +2,21 @@ package Test.Scripts;
 
 import POM.PageObject;
 import Test.General.BaseClass;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.devtools.v85.page.Page;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FundsTransfer extends BaseClass {
 
-    @Test(groups = {"Inputter"})
-    public void fTGeneral() throws IOException {
+    @Test(groups = {"Inputter"},dataProvider = "excelData")
+    public void fTGeneral(Map<String, String> testData) throws IOException {
 
         String HomePage2 = driver.getWindowHandle();
         PageObject.menu_Dropdown("Head Teller Menu-Universal Teller-Conventiona");
@@ -20,17 +26,17 @@ public class FundsTransfer extends BaseClass {
         PageObject.img_Button("New Deal");
 
 
-        PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","PKR140030030");
+        PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO",testData.get("Debit acc"));
         PageObject.click_Locator("fieldName:DEBIT.AMOUNT");
         PageObject.switchToChildWindow();
         driver.close();
         PageObject.switchToParentWindow(HomePage2);
         PageObject.parentFrame();
         PageObject.switchFrame(2);
-        PageObject.textinput_Locator("fieldName:DEBIT.AMOUNT","1234");
+        PageObject.textinput_Locator("fieldName:DEBIT.AMOUNT",testData.get("Debit amount"));
 
 
-        PageObject.textinput_Locator("fieldName:CREDIT.ACCT.NO","PKR149010005");
+        PageObject.textinput_Locator("fieldName:CREDIT.ACCT.NO",testData.get("Credit acc"));
         PageObject.click_Locator("fieldName:DEBIT.AMOUNT");
         PageObject.switchToChildWindow();
         driver.close();
@@ -38,18 +44,20 @@ public class FundsTransfer extends BaseClass {
         PageObject.parentFrame();
         PageObject.switchFrame(2);
 
-        PageObject.radiobutton_Locator("radio:mainTab:AML.TYP.CUST",2);
+        PageObject.radiobutton_Locator("radio:mainTab:AML.TYP.CUST",1);
         PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE",1);
-
-        PageObject.textarea_Locator("fieldName:NAME.COND.TXN","Customer");
-        PageObject.textinput_Locator("fieldName:ID.TYPE","ID-N");
-        PageObject.textinput_Locator("fieldName:ID.NUMBER","4220797762483");
-        PageObject.textinput_Locator("fieldName:ID.VAL.DT","21221231");
+        PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE",2);
+        PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER",testData.get("ChequeNum"));
+/*
+        PageObject.textarea_Locator("fieldName:NAME.COND.TXN",testData.get("Name"));
+        PageObject.textinput_Locator("fieldName:ID.TYPE",testData.get("ID type"));
+        PageObject.textinput_Locator("fieldName:ID.NUMBER",testData.get("ID Num"));
+        PageObject.textinput_Locator("fieldName:ID.VAL.DT",testData.get("Exp Date"));*/
         PageObject.commitDeal("FundsTransfer");
     }
 
-    @Test(groups = {"Inputter"})
-    public void fTOnline() throws IOException {
+    @Test(groups = {"Inputter"},dataProvider = "excelDataForOnlineFt")
+    public void fTOnline(Map<String, String> testData) throws IOException {
 
         String HomePage2 = driver.getWindowHandle();
         PageObject.menu_Dropdown("Head Teller Menu-Universal Teller-Conventiona");
@@ -59,31 +67,34 @@ public class FundsTransfer extends BaseClass {
         PageObject.img_Button("New Deal");
 
 
-        PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","");
+        PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO",testData.get("debit"));
+        PageObject.click_Locator("fieldName:CREDIT.AMOUNT");
+        PageObject.switchToChildWindow();
+        driver.close();
+        PageObject.switchToParentWindow(HomePage2);
+        PageObject.parentFrame();
+        PageObject.switchFrame(2);
+        PageObject.textinput_Locator("fieldName:DEBIT.AMOUNT",testData.get("amount"));
+        //PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER",testData.get("ChequeNum"));
+        PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER","123456789");
+
+        PageObject.textinput_Locator("fieldName:CREDIT.ACCT.NO",testData.get("credit"));
         PageObject.click_Locator("fieldName:DEBIT.AMOUNT");
         PageObject.switchToChildWindow();
         driver.close();
         PageObject.switchToParentWindow(HomePage2);
         PageObject.parentFrame();
         PageObject.switchFrame(2);
-        PageObject.textinput_Locator("fieldName:DEBIT.AMOUNT","");
 
-
-        PageObject.textinput_Locator("fieldName:CREDIT.ACCT.NO","");
-        PageObject.click_Locator("fieldName:DEBIT.AMOUNT");
-        PageObject.switchToChildWindow();
-        driver.close();
-        PageObject.switchToParentWindow(HomePage2);
-        PageObject.parentFrame();
-        PageObject.switchFrame(2);
-
-        PageObject.radiobutton_Locator("radio:mainTab:AML.TYP.CUST",2);
+        PageObject.radiobutton_Locator("radio:mainTab:AML.TYP.CUST",1);
         PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE",1);
+/*
 
         PageObject.textarea_Locator("fieldName:NAME.COND.TXN","Customer");
         PageObject.textinput_Locator("fieldName:ID.TYPE","ID-N");
         PageObject.textinput_Locator("fieldName:ID.NUMBER","4220797762483");
         PageObject.textinput_Locator("fieldName:ID.VAL.DT","21221231");
+*/
         PageObject.commitDeal("FundsTransfer");
     }
 
@@ -171,4 +182,57 @@ public class FundsTransfer extends BaseClass {
         PageObject.commitDeal("FundsTransfer");
     }
 
+    @DataProvider(name = "excelData")
+    public Object[][] readExcelData() throws IOException {
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\FtGeneral.xlsx";
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
+    }
+
+    @DataProvider(name = "excelDataForOnlineFt")
+    public Object[][] readExcelDataForFtOnline() throws IOException {
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\FtGeneral.xlsx";
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(1);
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
+    }
 }

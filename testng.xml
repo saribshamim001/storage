@@ -11,9 +11,25 @@
             </run>
         </groups>
         <classes>
-            <class name="Test.Scripts.StockManagement">
+            <class name="Test.Scripts.LockerInputter">
                 <methods>
-                    <include name="stocksTransferFromMStoWS"/>
+                    <include name="assignLocker"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Authorizer">
+        <groups>
+            <run>
+                <include name="Authorizer"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="Test.Scripts.LockerInputter">
+                <methods>
+                    <include name="assignLocker_Auth"/>
                 </methods>
             </class>
         </classes>

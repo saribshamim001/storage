@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class __03_chequeBookManagement extends BaseClass {
 
-    public static String Txn="CD.1008203610.0000001";
+    public static String Txn="";
 
 //    @Test(groups = {"Inputter"})
     public void Issuance() throws InterruptedException, IOException {
