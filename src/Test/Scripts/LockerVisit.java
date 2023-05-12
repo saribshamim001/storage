@@ -14,43 +14,39 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LockerSurrender extends BaseClass {
+public class LockerVisit extends BaseClass {
 
-    String SurrTxn;
+    String VisitTxn;
     @Test(groups = {"Inputter"})
 
-    public void LockerSurrender() throws IOException, InterruptedException {
+    public void lockerVisit() throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown("Remittance/Clearing Officer -Universal Teller");
         PageObject.menu_Dropdown("Remittance Menu");
         PageObject.menu_Dropdown("Alfalah Core/Retail Menu ");
         PageObject.menu_Dropdown("Locker Inputter Menu");
-        PageObject.menu_Dropdown("Locker Surrender");
+        PageObject.menu_Dropdown("Locker Visit Register");
 
-
-        PageObject.menu_Link("Locker Surrender ");
+        PageObject.menu_Link("Locker Visit ");
 
         String menu = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
 
-        PageObject.textinput_Locator("value:1:1:1","OR.0021.0031");
+        PageObject.textinput_Locator("value:1:1:1","OR.0008.0031");
         PageObject.find_Button();
-
-        PageObject.form_Link("Surrender Version");
-
-        PageObject.textinput_Locator("fieldName:BRK.REASON:1","Test");
-
-        String menu1 = PageObject.switchToChildWindow();
-
-        PageObject.img_Button("Commit the deal");
 
         String menu2 = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
 
-        PageObject.img_Button("Commit the deal");
+        PageObject.img_Button("Select Drilldown");
 
-        SurrTxn = PageObject.getTxn();
-        System.out.println(SurrTxn);
+        PageObject.textinput_Locator("fieldName:OPERATED.BY","Test");
+
+        PageObject.commitDeal("Locker Visit ");
+
+        VisitTxn = PageObject.getTxn();
+        System.out.println(VisitTxn);
+
 
     }
 
@@ -59,7 +55,7 @@ public class LockerSurrender extends BaseClass {
         String TxnNum = accNumber ;
         System.out.println("Acc Number is: "+TxnNum);
 
-        File file = new File(System.getProperty("user.dir") + "\\Data\\LockerSurrender.xlsx");
+        File file = new File(System.getProperty("user.dir") + "\\Data\\Locker Visit.xlsx");
         XSSFWorkbook workbook;
         Row row;
         Cell cell;
@@ -90,39 +86,35 @@ public class LockerSurrender extends BaseClass {
     }
     @Test(groups = {"Authorizer"})
 
-    public void lockerSurrender_Auth() throws IOException, InterruptedException {
+    public void lockerVisit_Auth() throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown("Locker- Authorizer Menu");
-        PageObject.menu_Dropdown("Locker Surrender");
-        PageObject.menu_Link("Locker Surrender - Authorization ");
+        PageObject.menu_Dropdown("Locker Visit");
+        PageObject.menu_Link("Locker Visit- Authorization ");
 
         String menu1 = PageObject.switchToChildWindow();
-        PageObject.parentFrame();
-        PageObject.switchFrame(1);
+//        PageObject.parentFrame();
+//        PageObject.switchFrame(1);
 
-//        PageObject.find_Button();
+        PageObject.find_Button();
 
 //        String menu2 = PageObject.switchToChildWindow();
 
 
-        PageObject.form_Link("Authorize");
+        PageObject.form_Link("Authorize Transaction");
 
         String menu2 = PageObject.switchToChildWindow();
 
         PageObject.img_Button("Authorises a deal");
 
-        String menu3 = PageObject.switchToChildWindow();
-
-        PageObject.img_Button("Authorises a deal");
-
-        SurrTxn = PageObject.getTxn();
-        System.out.println(SurrTxn);
+        VisitTxn = PageObject.getTxn();
+        System.out.println(VisitTxn);
 
     }
 
-    @DataProvider(name = "LockerSurrenderData")
-    public Object[][] LockerSurrenderData() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\LockerSurrenderData.xlsx";
+    @DataProvider(name = "LockerVisitData")
+    public Object[][] LockerVisitData() throws IOException {
+        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\Locker VisitData.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
@@ -146,6 +138,5 @@ public class LockerSurrender extends BaseClass {
         fis.close();
         return data;
     }
-
 
 }

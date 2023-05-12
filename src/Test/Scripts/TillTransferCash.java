@@ -16,7 +16,7 @@ public class TillTransferCash extends BaseClass {
     String atmToTillTxn;
 
     @Test(groups = {"Inputter"})
-    public void vaultToTill() throws IOException {
+    public void vaultToTill() throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown("Head Teller Menu-Universal Teller-Conventiona");
         PageObject.menu_Dropdown("Teller");
@@ -31,7 +31,7 @@ public class TillTransferCash extends BaseClass {
 
         PageObject.textinput_Locator("fieldName:CURRENCY.1", "PKR");
         PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1", "10");
-        PageObject.textinput_Locator("fieldName:AMOUNT.FCY.1:1", "");
+//        PageObject.textinput_Locator("fieldName:AMOUNT.FCY.1:1", "10");
 
         PageObject.commitDeal("Vault To Till");
         vaulttoTillTxn = PageObject.getTxn();
@@ -116,8 +116,9 @@ public class TillTransferCash extends BaseClass {
 
         PageObject.img_Button("New Deal");
 
-        PageObject.textinput_Locator("fieldName:TELLER.ID.2", "USD");
-        PageObject.textinput_Locator("fieldName:TELLER.ID.1", "1005");
+//        PageObject.textinput_Locator("fieldName:TELLER.ID.2", "USD");
+        PageObject.textinput_Locator("fieldName:TELLER.ID.1", "0975");
+        PageObject.click_Locator("fieldName:TELLER.ID.2");
         PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1", "10");
 
         PageObject.commitDeal("Till To ATM");
@@ -125,7 +126,7 @@ public class TillTransferCash extends BaseClass {
     }
 
     @Test(groups = {"Inputter"})
-    public void atmToTill() throws IOException {
+    public void atmToTill() throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown("Head Teller Menu-Universal Teller-Conventiona");
         PageObject.menu_Dropdown("Teller");
@@ -138,9 +139,12 @@ public class TillTransferCash extends BaseClass {
 
         PageObject.img_Button("New Deal");
 
-        PageObject.textinput_Locator("fieldName:TELLER.ID.2", "USD");
-        PageObject.textinput_Locator("fieldName:TELLER.ID.1", "1005");
+        PageObject.textinput_Locator("fieldName:TELLER.ID.2", "0975");
+//        PageObject.textinput_Locator("fieldName:TELLER.ID.1", "1005");
+        Thread.sleep(8000);
+        PageObject.click_Locator("fieldName:TELLER.ID.1");
         PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1", "10");
+
 
         PageObject.commitDeal("Till To ATM");
         atmToTillTxn = PageObject.getTxn();

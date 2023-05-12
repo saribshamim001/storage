@@ -2,17 +2,28 @@ package Test.Scripts;
 
 import POM.PageObject;
 import Test.General.BaseClass;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class KYC_Amendment_Customer extends BaseClass {
 
     String txn;
 
+    String CusNumber="16992982";
+
     @Test(groups = {"Inputter"})
 
     public void KYC_Amendment_Customer() throws IOException, InterruptedException {
+
         PageObject.menu_Dropdown("Customer Relation Officer Menu");
         PageObject.menu_Dropdown("Alfalah Customer Information");
         PageObject.menu_Dropdown("Branch Level Inputter");
@@ -24,7 +35,7 @@ public class KYC_Amendment_Customer extends BaseClass {
         String menu = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
 
-        PageObject.textinput_Locator("value:1:1:1", "16992982");
+        PageObject.textinput_Locator("value:1:1:1", CusNumber);
         PageObject.find_Button();
 
 
@@ -35,10 +46,10 @@ public class KYC_Amendment_Customer extends BaseClass {
         String menu2 = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
 
-        PageObject.select_Locator("fieldName:OCCUPATION","Salaried");  //Business or Salaried
+        PageObject.select_Locator("fieldName:OCCUPATION","Business");  //Business or Salaried
         PageObject.textinput_Locator("fieldName:NAME.OF.BUS","Test Store");
-        PageObject.textinput_Locator("fieldName:NAT.OF.BUS","Test1");
-        PageObject.textinput_Locator("fieldName:STAT.OWNER","Test2");
+        PageObject.textinput_Locator("fieldName:NAT.OF.BUS","Test21");
+        PageObject.textinput_Locator("fieldName:STAT.OWNER","Test1");
         PageObject.textinput_Locator("fieldName:NAME.OF.EMP","7");
         PageObject.textinput_Locator("fieldName:CS.POS","11");
         PageObject.textinput_Locator("fieldName:CS.EMP.SINCE","NA");
@@ -87,8 +98,111 @@ public class KYC_Amendment_Customer extends BaseClass {
 
         txn = PageObject.getTxn();
         System.out.println(txn);
+//        saveAccNumToFile(CusNumber);
+
+
+    }
+    public static void saveAccNumToFile(String accNumber) throws IOException {
+
+        String TxnNum = accNumber ;
+        System.out.println("Acc Number is: "+TxnNum);
+
+        File file = new File(System.getProperty("user.dir") + "\\Data\\KYC_Amendment_Customer.xlsx");
+        XSSFWorkbook workbook;
+        Row row;
+        Cell cell;
+        int rowNum = 0;
+
+        if (file.exists()) {
+            FileInputStream fis = new FileInputStream(file);
+            workbook = new XSSFWorkbook(fis);
+            Sheet sheet = workbook.getSheetAt(0);
+            rowNum = sheet.getLastRowNum() + 1; // Start writing from the next row
+        } else {
+            workbook = new XSSFWorkbook();
+            Sheet sheet = workbook.createSheet();
+            row = sheet.createRow(rowNum++);
+            cell = row.createCell(0);
+            cell.setCellValue("Acc Number");
+        }
+
+        Sheet sheet = workbook.getSheetAt(0);
+        row = sheet.createRow(rowNum++);
+        cell = row.createCell(0);
+        cell.setCellValue(TxnNum);
+
+        FileOutputStream fos = new FileOutputStream(file);
+        workbook.write(fos);
+        fos.close();
+
+    }
+
+    @Test(groups = {"Authorizer"},dataProvider = "excelData")
+
+    public void kyc_Amendment_Customer_Auth(Map<String, String> testData) throws IOException, InterruptedException {
+
+//        PageObject.menu_Dropdown("Manager Operation Menu");
+//        PageObject.menu_Dropdown("Core Retail Menu");
+        PageObject.menu_Dropdown("Customer Services");
+        PageObject.menu_Dropdown("Alfalah Customer Information");
+        PageObject.menu_Dropdown("Branch Level Authorization");
+        PageObject.menu_Dropdown("Alfalah Account Information");
+        PageObject.menu_Dropdown("Authorization of KYC");
+        PageObject.menu_Dropdown("Alfalah KYC Information Authorization");
+        PageObject.menu_Dropdown("Authorization of Cusotmer KYC");
+        PageObject.menu_Link("Authorization for Customer KYC- Branch Level ");
+
+        String menu = PageObject.switchToChildWindow();
+        PageObject.maximizeWindow();
+
+        PageObject.textinput_Locator("value:1:1:1",CusNumber);
+        PageObject.find_Button();
+
+
+        PageObject.form_Link("Authorise a KYC");
+
+        String menu2 = PageObject.switchToChildWindow();
+        PageObject.maximizeWindow();
+
+        PageObject.img_Button("Authorises a deal");
+
+        txn = PageObject.getTxn();
+        System.out.println(txn);
+
+
 
 
 
     }
+
+
+
+    @DataProvider(name = "excelData")
+    public Object[][] readExcelData() throws IOException {
+        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\KYC_Amendment_Customer.xlsx";
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
+    }
+
+
 }

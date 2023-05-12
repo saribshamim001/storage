@@ -11,22 +11,27 @@
             </run>
         </groups>
         <classes>
-            <class name="Test.Scripts.StockManagement">
-                <methods>
-                    <include name="stocksTransferFromMStoWS"/>
-                </methods>
+            <class name="Test.Scripts.TillTransferCash">
+<!--                <methods>-->
+<!--                    <include name="tillToATM"/>-->
+<!--                    <include name="atmToTill"/>-->
+<!--                </methods>-->
             </class>
         </classes>
     </test>
 
-    <!--<test verbose="1" preserve-order="true" name="Retail Operations Authorizer">
+<!--    <test verbose="1" preserve-order="true" name="Retail Operations Authorizer">
         <groups>
             <run>
                 <include name="Authorizer"/>
             </run>
         </groups>
         <classes>
-            <class name="Test.Scripts.StockManagement"/>
+            <class name="Test.Scripts.StockManagement">
+                <methods>
+                    <include name="authTheStocks"/>
+                </methods>
+            </class>
         </classes>
     </test>-->
 

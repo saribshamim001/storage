@@ -25,6 +25,8 @@ public class BaseClass {
     public static Actions action;
     public static String homePage;
 
+    public static String fileName="";
+
     // Configuration Property File
     public String getProperty(String key) throws IOException {
         //Reading configuration file from the path
@@ -85,7 +87,7 @@ public class BaseClass {
     public void inputterLogin() {
         chromeConfig();
 
-        PageObject.signIn("RETAIL888", "QWer1234");
+        PageObject.signIn("retail006", "QWer12345");
 
         PageObject.switchFrame(1);
 
@@ -96,36 +98,38 @@ public class BaseClass {
 
         PageObject.maximizeWindow();
         PageObject.switchFrame(1);
+
     }
 
 
     @BeforeMethod(groups = {"Authorizer"})
     public void authorizerLogin() {
-        edgeConfig();
+        chromeConfig();
 
-        PageObject.signIn("RETAILAUTH01", "QWer1234");
+        PageObject.signIn("retailauth006", "QWer1234");
 
         PageObject.switchFrame(1);
 
         PageObject.menu_Dropdown("Manager Operation Menu");
         PageObject.menu_Dropdown("Core Retail Menu");
     }
+
+
+    @AfterMethod(groups = {"Authorizer" , "Inputter"})
+    public void userLogout(){
+        this.driver.close();
+
+        PageObject.switchToParentWindow(homePage);
+
+        PageObject.switchFrame(0);
+
+        PageObject.signOff();
+
+        this.driver.close();
+    }
+
 }
 
-
-
-//    @AfterMethod(groups = {"Authorizer" , "Inputter"})
-//    public void userLogout(){
-//        this.driver.close();
-//
-//        PageObject.switchToParentWindow(homePage);
-//
-//        PageObject.switchFrame(0);
-//
-//        PageObject.signOff();
-//
-//        this.driver.close();
-//    }
 
 
 
