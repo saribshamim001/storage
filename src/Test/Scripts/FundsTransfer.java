@@ -74,12 +74,12 @@ public class FundsTransfer extends BaseClass {
         PageObject.switchToParentWindow(HomePage2);
         PageObject.parentFrame();
         PageObject.switchFrame(2);
-        PageObject.textinput_Locator("fieldName:DEBIT.AMOUNT",testData.get("amount"));
+        PageObject.textinput_Locator("fieldName:CREDIT.AMOUNT",testData.get("amount"));
         //PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER",testData.get("ChequeNum"));
         PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER","123456789");
 
         PageObject.textinput_Locator("fieldName:CREDIT.ACCT.NO",testData.get("credit"));
-        PageObject.click_Locator("fieldName:DEBIT.AMOUNT");
+        PageObject.click_Locator("fieldName:CREDIT.AMOUNT");
         PageObject.switchToChildWindow();
         driver.close();
         PageObject.switchToParentWindow(HomePage2);
