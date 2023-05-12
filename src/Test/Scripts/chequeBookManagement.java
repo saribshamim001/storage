@@ -5,11 +5,12 @@ import Test.General.BaseClass;
 import org.testng.annotations.Test;
 import java.io.IOException;
 
-public class __03_chequeBookManagement extends BaseClass {
+public class chequeBookManagement extends BaseClass {
 
     public static String Txn="";
+    public static String chq="CD.1007306919.0000004";
 
-//    @Test(groups = {"Inputter"})
+    @Test(groups = {"Inputter"})
     public void Issuance() throws InterruptedException, IOException {
         PageObject.menu_Dropdown("Customer Relation Officer Menu");
         PageObject.menu_Dropdown("Cheque Book Management Inputter Menu");
@@ -18,7 +19,7 @@ public class __03_chequeBookManagement extends BaseClass {
         PageObject.parentFrame();
         PageObject.switchFrame(2);
 
-        PageObject.textinput_Locator("transactionId","CD.1007306919.0000004"); //CD.1007306919.0000003
+        PageObject.textinput_Locator("transactionId",chq); //CD.1007306919.0000004
         PageObject.img_Button("Edit a contract");
 
         String Deal = PageObject.switchToChildWindow();
@@ -36,11 +37,11 @@ public class __03_chequeBookManagement extends BaseClass {
         PageObject.radiobutton_Locator("radio:tab1:WAIVE.CHARGES",1);
 
         PageObject.commitDeal("chequeBookIssued");
+
     }
 
 
-
-//    @Test(groups = {"Inputter"})
+    @Test(groups = {"Inputter"})
     public void Received() throws InterruptedException, IOException {
         PageObject.menu_Dropdown("Customer Relation Officer Menu");
         PageObject.menu_Dropdown("Cheque Book Management Inputter Menu");
@@ -49,7 +50,7 @@ public class __03_chequeBookManagement extends BaseClass {
         homePage = PageObject.switchToChildWindow();
         PageObject.switchFrame(0);
 
-        PageObject.textinput_Locator("value:1:1:1","CD.1008203610.0000001"); //CD.1008203610.0000001
+        PageObject.textinput_Locator("value:1:1:1",chq); //CD.1008203610.0000001
         PageObject.click_Locator("defaultButton");
         PageObject.form_Link("Received Cheque Book");
 
@@ -62,10 +63,11 @@ public class __03_chequeBookManagement extends BaseClass {
 
         PageObject.commitDeal("chequeBookReceived");
         Txn = PageObject.getTxn();
+
     }
 
 
-//    @Test  (groups = {"Authorizer"})
+    @Test(groups = {"Authorizer"})
     public void Received_Authorization() throws InterruptedException, IOException {
 
 
@@ -84,7 +86,7 @@ public class __03_chequeBookManagement extends BaseClass {
     }
 
 
-//        @Test(groups = {"Inputter"})
+    @Test(groups = {"Inputter"})
     public void DeliveredTo3rdParty() throws InterruptedException, IOException {
         PageObject.menu_Dropdown("Customer Relation Officer Menu");
         PageObject.menu_Dropdown("Cheque Book Management Inputter Menu");
@@ -92,7 +94,7 @@ public class __03_chequeBookManagement extends BaseClass {
 
         homePage = PageObject.switchToChildWindow();
 
-        PageObject.textinput_Locator("value:1:1:1","CD.1008203610.0000001"); //CD.1008203610.0000001
+        PageObject.textinput_Locator("value:1:1:1",chq); //CD.1008203610.0000001
         PageObject.click_Locator("defaultButton");
         PageObject.form_Link("Delivered to third Party");
 
@@ -103,10 +105,10 @@ public class __03_chequeBookManagement extends BaseClass {
         PageObject.commitDeal("chequeBookDelivered");
         Txn = PageObject.getTxn();
 
+
     }
 
-
-//        @Test  (groups = {"Authorizer"})
+    @Test(groups = {"Authorizer"})
     public void DeliveredTo3rdParty_Authorization() throws InterruptedException, IOException {
 
 
@@ -131,7 +133,7 @@ public class __03_chequeBookManagement extends BaseClass {
     }
 
 
-//    @Test(groups = {"Inputter"})
+    @Test(groups = {"Inputter"})
     public void Activation() throws InterruptedException, IOException {
         PageObject.menu_Dropdown("Customer Relation Officer Menu");
         PageObject.menu_Dropdown("Cheque Book Management Inputter Menu");
@@ -140,7 +142,7 @@ public class __03_chequeBookManagement extends BaseClass {
         homePage = PageObject.switchToChildWindow();
         PageObject.switchFrame(0);
 
-        PageObject.textinput_Locator("value:1:1:1","CD.1008203610.0000001"); //CD.1008203610.0000001
+        PageObject.textinput_Locator("value:1:1:1",chq); //CD.1008203610.0000001
         PageObject.click_Locator("defaultButton");
         PageObject.form_Link("Activate Cheque Book");
 
@@ -156,8 +158,7 @@ public class __03_chequeBookManagement extends BaseClass {
 
     }
 
-
-//    @Test  (groups = {"Authorizer"})
+    @Test(groups = {"Authorizer"})
     public void ActivationAuth() throws InterruptedException, IOException {
 
 
@@ -181,27 +182,40 @@ public class __03_chequeBookManagement extends BaseClass {
     }
 
 
-    @Test(groups = {"Inputter"})
-    public void stopPaymentOfChequeBook() throws InterruptedException, IOException {
+
+
+
+
+
+//        @Test(groups = {"Inputter"})
+    public void overrideTC() throws InterruptedException, IOException {
         PageObject.menu_Dropdown("Customer Relation Officer Menu");
         PageObject.menu_Dropdown("Cheque Book Management Inputter Menu");
-        PageObject.menu_Link("Stop Payment of Cheque Book ");
+        PageObject.menu_Link("Cheque Book Request For Issuance to CBU ");
 
         PageObject.parentFrame();
         PageObject.switchFrame(2);
 
-        PageObject.textinput_Locator("transactionId","1008203610");
+        PageObject.textinput_Locator("transactionId",chq); //CD.1007306919.0000004
+        PageObject.img_Button("Edit a contract");
 
-        PageObject.click_Locator("Edit a contract");
+        String Deal = PageObject.switchToChildWindow();
+        PageObject.maximizeWindow();
+        driver.close();
 
-        PageObject.select_Locator("fieldName:ISSUED.AGAINST","REQUISTION EXISTING A/C");
-        PageObject.textinput_Locator("fieldName:CHQ.NO.START","34563486"); //34314526
+        PageObject.switchToParentWindow(Deal);
+        PageObject.switchFrame(2);
+
+        PageObject.textinput_Locator("fieldName:ORDERING.DATE","20221124");
+        PageObject.select_Locator("fieldName:ISSUED.AGAINST","FORM B");
+        PageObject.select_Locator("fieldName:NO.CHQ.ISSUED","25");
+        PageObject.textinput_Locator("fieldName:LAST.SERIAL","34314526");
         PageObject.textarea_Locator("fieldName:NOTES","CHEQUEBOOK ISSUED");
+        PageObject.radiobutton_Locator("radio:tab1:WAIVE.CHARGES",1);
 
-        PageObject.commitDeal("chequeBookPaymentStopped");
-        Txn = PageObject.getTxn();
-
+        PageObject.commitDeal("chequeBookIssued");
     }
+
 
 
 

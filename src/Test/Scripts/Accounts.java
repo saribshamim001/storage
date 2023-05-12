@@ -7,21 +7,22 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static Test.Scripts.Customers.*;
+
 public class Accounts extends BaseClass {
 //    Customers customer = new Customers();
 
-    public static String PD;
-    public  String CUSTOMER,CATEGORY,ACCOUNT_TITLE_1,ACCOUNT_TITLE_2,OTHER_OFFICER,REFEREE,JOINT_HOLDER,RELATION_CODE,
+    public static String PD,CUSTOMER;
+    public static String ACCOUNT_TITLE_1,ACCOUNT_TITLE_2,OTHER_OFFICER,REFEREE,JOINT_HOLDER,RELATION_CODE,
             JOINT_NOTES,MULTI_ACCT,BAF_PRM_IMD,BAF_PRM_CRDNAME,BAF_PRM_PEN,BAF_PRM_DATETME,REMITTER_NAME,REMITTER_ID_NO,
             RELATIONSHIP_BE,REMITTER_RESID,REMITTER_ID_TYP,CURRENCY;
-
-
-
     public static String[] LCY_CURRENT_ACCOUNTS = { "1001", "1005", "1007", "1010", "1011", "1014", "1017", "1022",
                                                     "1030", "1031", "1034", "1035", "1037", "1038", "1142", "1143",
                                                     "1150", "1171", "1326" };
@@ -30,15 +31,16 @@ public class Accounts extends BaseClass {
     public static String[] FCY_SAVING_ACCOUNTS = { "6003", "6019", "6030", "6035", "6039" };
     public static String[] KIDS_ACCOUNT = { "6020" };
 
-
-
     //		                         <<<<    CALLING DIFFERENT SCRIPTS    >>>>
 
     @Test (groups = {"Inputter"}, dataProvider = "condition")
     public void callAccountCreation(Map<String, String> column) throws InterruptedException, IOException {
 
-        Accounts.PD = column.get("CATEGORY");
         CUSTOMER = column.get("CUSTOMER");
+        Accounts.PD = column.get("CATEGORY");
+        TC = column.get("TC");
+
+        CURRENCY = column.get("CURRENCY");
         ACCOUNT_TITLE_1 = column.get("ACCOUNT_TITLE_1");
         ACCOUNT_TITLE_2 = column.get("ACCOUNT_TITLE_2");
         OTHER_OFFICER = column.get("OTHER_OFFICER");
@@ -85,9 +87,6 @@ public class Accounts extends BaseClass {
 
     }
 
-
-
-//    @Test  (groups = {"Inputter"}, dataProvider = "condition")
     public void lcyCurrentAccount() throws InterruptedException, IOException {
 //        System.out.println(customer.Txn);
 
@@ -133,10 +132,12 @@ public class Accounts extends BaseClass {
         PageObject.textinput_Locator("fieldName:RELATIONSHIP.BE:1", RELATIONSHIP_BE);
         PageObject.textinput_Locator("fieldName:REMITTER.RESID:1", REMITTER_RESID);
         PageObject.textinput_Locator("fieldName:REMITTER.ID.TYP:1", REMITTER_ID_TYP);
-        PageObject.commitDeal("LCY Current Accounts");
+
+        commitDeal();
+        txnValidate();
+        saveToDS2("LCY Current Accounts");
     }
 
-//        @Test
     public void lcySavingAccount() throws InterruptedException, IOException {
 
         PageObject.menu_Dropdown("Customer Relation Officer Menu");
@@ -184,10 +185,11 @@ public class Accounts extends BaseClass {
         PageObject.textinput_Locator("fieldName:REMITTER.RESID:1", REMITTER_RESID);
         PageObject.textinput_Locator("fieldName:REMITTER.ID.TYP:1", REMITTER_ID_TYP);
 
-        PageObject.commitDeal("LCY Saving Accounts");
+        commitDeal();
+        txnValidate();
+        saveToDS2("LCY Saving Accounts");
     }
 
-//        @Test
     public void lcyKidsAccount() throws InterruptedException, IOException {
 
         PageObject.menu_Dropdown("Customer Relation Officer Menu");
@@ -211,12 +213,12 @@ public class Accounts extends BaseClass {
         PageObject.textinput_Locator("fieldName:RELATION.CODE:1",  RELATION_CODE);
         PageObject.textinput_Locator("fieldName:JOINT.NOTES:1:1", JOINT_NOTES);
 
-
-        PageObject.commitDeal("LCY Kids Accounts");
+        commitDeal();
+        txnValidate();
+        saveToDS2("LCY Kids Accounts");
 
     }
 
-//        @Test
     public void fcyCurrentAccount() throws InterruptedException, IOException {
 
         PageObject.menu_Dropdown("Customer Relation Officer Menu");
@@ -225,7 +227,7 @@ public class Accounts extends BaseClass {
         PageObject.menu_Dropdown("Alfalah Account Information");
         PageObject.menu_Dropdown("Foreign Currency Account Open");
 //        PageObject.menu_Link("Current Account ");
-        PageObject.childmenu_Link("Current Account ",1);
+        PageObject.childmenu_Link("Current Account ",2);
 
         PageObject.parentFrame();
         PageObject.switchFrame(2);
@@ -243,10 +245,11 @@ public class Accounts extends BaseClass {
         PageObject.textinput_Locator("fieldName:RELATION.CODE:1",  RELATION_CODE);
         PageObject.textinput_Locator("fieldName:JOINT.NOTES:1:1", JOINT_NOTES);
 
-        PageObject.commitDeal("FCY Current Accounts");
+        commitDeal();
+        txnValidate();
+        saveToDS2("FCY Current Accounts");
     }
 
-//        @Test
     public void fcySavingAccount() throws InterruptedException, IOException {
 
         PageObject.menu_Dropdown("Customer Relation Officer Menu");
@@ -255,7 +258,7 @@ public class Accounts extends BaseClass {
         PageObject.menu_Dropdown("Alfalah Account Information");
         PageObject.menu_Dropdown("Foreign Currency Account Open");
 //        PageObject.menu_Link("Saving Account ");
-        PageObject.childmenu_Link("Saving Account ",1);
+        PageObject.childmenu_Link("Saving Account ",2);
 
         PageObject.parentFrame();
         PageObject.switchFrame(2);
@@ -273,11 +276,14 @@ public class Accounts extends BaseClass {
         PageObject.textinput_Locator("fieldName:RELATION.CODE:1",  RELATION_CODE);
         PageObject.textinput_Locator("fieldName:JOINT.NOTES:1:1", JOINT_NOTES);
 
-        PageObject.commitDeal("FCY Saving Accounts");
+        commitDeal();
+        txnValidate();
+        saveToDS2("FCY Saving Accounts");
     }
 
-//        @Test
-    public void accountAuthorization() throws InterruptedException, IOException {
+
+    @Test (groups = {"Authorizer"}, dataProvider = "auth")
+    public void accountAuthorization(Map<String, String> column) throws InterruptedException, IOException {
 
         PageObject.menu_Dropdown("Customer Services");
         PageObject.menu_Dropdown("Alfalah Customer Information");
@@ -289,19 +295,12 @@ public class Accounts extends BaseClass {
 
         homePage = PageObject.switchToChildWindow();
 
-//        PageObject.textinput_Locator("value:1:1:1",PageObject.TxnNum);
+        PageObject.textinput_Locator("value:1:1:1",column.get("Account_ID"));
         PageObject.click_Locator("defaultButton");
         PageObject.form_Link("Authorise");
         PageObject.authorizeDeal();
 
-        PageObject.commitDeal("Accounts");
     }
-
-
-
-
-
-
 
 
 
@@ -337,10 +336,79 @@ public class Accounts extends BaseClass {
         return data;
     }
 
+    @DataProvider(name = "auth")
+    public Object[][] auth() throws IOException {
+        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\.xlsx";
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
+    }
 
 
 
 
 
+    public static void saveToDS2(String testCaseName) throws IOException {
+        File file = new File(System.getProperty("user.dir") + "\\Data\\" +testCaseName+ ".xlsx");
+        XSSFWorkbook workbook;
+        Row row;
+        Cell cell;
+        int rowNum = 0;
+
+        if (file.exists()) {
+            FileInputStream fis = new FileInputStream(file);
+            workbook = new XSSFWorkbook(fis);
+            Sheet sheet = workbook.getSheetAt(0);
+            rowNum = sheet.getLastRowNum() + 1; // Start writing from the next row
+        } else {
+            workbook = new XSSFWorkbook();
+            Sheet sheet = workbook.createSheet();
+            row = sheet.createRow(rowNum++);
+            cell = row.createCell(0);
+            cell.setCellValue("TC");
+            cell = row.createCell(1);
+            cell.setCellValue("Account_ID");
+            cell = row.createCell(2);
+            cell.setCellValue("Customer_ID");
+            cell = row.createCell(3);
+            cell.setCellValue("PD");
+
+        }
+
+        Sheet sheet = workbook.getSheetAt(0);
+        row = sheet.createRow(rowNum++);
+        cell = row.createCell(0);
+        cell.setCellValue(Customers.TC);
+        cell = row.createCell(1);
+        cell.setCellValue(Customers.Txn);
+        cell = row.createCell(2);
+        cell.setCellValue(CUSTOMER);
+        cell = row.createCell(3);
+        cell.setCellValue(Accounts.PD);
+
+        FileOutputStream fos = new FileOutputStream(file);
+        workbook.write(fos);
+        fos.close();
+
+    }
 
 }
