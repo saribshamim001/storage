@@ -85,9 +85,9 @@ public class BaseClass {
 
     @BeforeMethod(groups = {"Inputter"})
     public void inputterLogin() {
-        edgeConfig();
+        chromeConfig();
 
-        PageObject.signIn("retail600", "QWer1234");
+        PageObject.signIn("retail006", "QWer12345");
 
         PageObject.switchFrame(1);
 

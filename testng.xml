@@ -11,11 +11,11 @@
             </run>
         </groups>
         <classes>
-            <class name="Test.Scripts.FundsTransfer">
-                <methods>
-                    <include name="fTOnline"/>
-                    <include name="fTGeneral"/>
-                </methods>
+            <class name="Test.Scripts.TillTransferCash">
+<!--                <methods>-->
+<!--                    <include name="tillToATM"/>-->
+<!--                    <include name="atmToTill"/>-->
+<!--                </methods>-->
             </class>
         </classes>
     </test>
