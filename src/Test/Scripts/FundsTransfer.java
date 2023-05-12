@@ -4,7 +4,10 @@ import POM.PageObject;
 import Test.General.BaseClass;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.devtools.v85.page.Page;
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -15,7 +18,7 @@ import java.util.Map;
 
 public class FundsTransfer extends BaseClass {
 
-    @Test(groups = {"Inputter"},dataProvider = "excelData")
+    @Test(groups = {"Inputter"},dataProvider = "excelDatafTGeneral")
     public void fTGeneral(Map<String, String> testData) throws IOException {
 
         String HomePage2 = driver.getWindowHandle();
@@ -146,6 +149,7 @@ public class FundsTransfer extends BaseClass {
     public void fTGeneralByCheque() throws IOException {
 
         String HomePage2 = driver.getWindowHandle();
+
         PageObject.menu_Dropdown("Head Teller Menu-Universal Teller-Conventiona");
         PageObject.menu_Link("Account to Account Transfer ");
         PageObject.parentFrame();
@@ -182,8 +186,110 @@ public class FundsTransfer extends BaseClass {
         PageObject.commitDeal("FundsTransfer");
     }
 
-    @DataProvider(name = "excelData")
-    public Object[][] readExcelData() throws IOException {
+    @Test(groups = {"Authorizer"},dataProvider = "excelDataAuthfTGeneral",dependsOnMethods = {"fTGeneral"})
+    public void authfTGeneral(Map<String, String> testData) throws IOException  {
+
+        PageObject.menu_Dropdown("Manager Operation Menu");
+        PageObject.menu_Dropdown("Core Retail Menu");
+        PageObject.menu_Dropdown("Deposit/Payment/Zakat");
+        PageObject.menu_Dropdown("Funds Transfer");
+
+        PageObject.menu_Link("Account to Account Transfer ");
+
+        String HomePage2 = driver.getWindowHandle();
+        PageObject.switchToChildWindow();
+
+        //Got the value from DataProvider file
+        PageObject.textinput_Locator("transactionId",testData.get("Transaction ID"));
+        PageObject.img_Button("Perform an action on the contract");
+        PageObject.img_Button("Authorises a deal");
+        WebElement theMsg = driver.findElement(By.xpath("(//td[@class='message'])[1]"));
+        String Transaction = theMsg.getText();
+        Assert.assertTrue(Transaction.contains("Deal slip printed"),"Deal slip not printed !");
+
+    }
+
+
+    @Test(groups = {"Authorizer"},dataProvider = "excelDataAuthfTOnline",dependsOnMethods = {"fTOnline"})
+    public void authfTOnline(Map<String, String> testData) throws IOException  {
+
+        PageObject.menu_Dropdown("Manager Operation Menu");
+        PageObject.menu_Dropdown("Core Retail Menu");
+        PageObject.menu_Dropdown("Deposit/Payment/Zakat");
+        PageObject.menu_Dropdown("Funds Transfer");
+
+        PageObject.menu_Link("Account to Account Transfer- Online ");
+
+        String HomePage2 = driver.getWindowHandle();
+        PageObject.switchToChildWindow();
+
+        //Got the value from DataProvider file
+        PageObject.textinput_Locator("transactionId",testData.get("Transaction ID"));
+        PageObject.img_Button("Perform an action on the contract");
+        PageObject.img_Button("Authorises a deal");
+        WebElement theMsg = driver.findElement(By.xpath("(//td[@class='message'])[1]"));
+        String Transaction = theMsg.getText();
+        Assert.assertTrue(Transaction.contains("Deal slip printed"),"Deal slip not printed !");
+
+    }
+
+    @DataProvider(name = "excelDataAuthfTOnline")
+    public Object[][] readExcelData4() throws IOException {
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\FtGeneral.xlsx";
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
+    }
+
+    @DataProvider(name = "excelDataAuthfTGeneral")
+    public Object[][] readExcelData3() throws IOException {
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\FtGeneral.xlsx";
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
+    }
+
+
+    @DataProvider(name = "excelDatafTGeneral")
+    public Object[][] readExcelData2() throws IOException {
         String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\FtGeneral.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
@@ -210,7 +316,7 @@ public class FundsTransfer extends BaseClass {
     }
 
     @DataProvider(name = "excelDataForOnlineFt")
-    public Object[][] readExcelDataForFtOnline() throws IOException {
+    public Object[][] readExcelData() throws IOException {
         String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\FtGeneral.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
