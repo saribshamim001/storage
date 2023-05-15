@@ -3,8 +3,14 @@ package Test.Scripts;
 
 import POM.PageObject;
 import Test.General.BaseClass;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.util.HashMap;
@@ -20,10 +26,11 @@ public class Customers extends BaseClass {
 
     public static String Txn;
     public static String SECTOR;
+    public static String TC;
 
 
 
-//    @Test (groups = {"Inputter"}, dataProvider = "indCustomer")
+    @Test (groups = {"Inputter"}, dataProvider = "indCustomer")
     public void individualCustomer(Map<String, String> column) throws InterruptedException, IOException {
 
         PageObject.menu_Dropdown("Customer Relation Officer Menu");
@@ -37,12 +44,20 @@ public class Customers extends BaseClass {
 
         PageObject.img_Button("New Deal");
 
+        TC = column.get("TC");
+
         PageObject.textinput_Locator("fieldName:SECTOR",column.get("SECTOR"));
         SECTOR = column.get("SECTOR");
         PageObject.select_Locator("fieldName:CUST.SEGMENT",column.get("CUST_SEGMENT"));
         PageObject.radiobutton_Locator("radio:mainTab:SME.TYPE",1);
         PageObject.textinput_Locator("fieldName:ID.TYPE:1",column.get("ID_TYPE"));
-        PageObject.textinput_Locator("fieldName:ID.NUMBER:1","42344078" + PageObject.idNumber());
+        String ID_TYPE= column.get("ID_TYPE");
+        if (ID_TYPE.equalsIgnoreCase("ID-SPR")) {
+            PageObject.textinput_Locator("fieldName:ID.NUMBER:1","EB344078" + PageObject.idNumber());
+        }
+        else  {
+            PageObject.textinput_Locator("fieldName:ID.NUMBER:1","42344078" + PageObject.idNumber());
+        }
         PageObject.click_Locator("fieldName:ID.VAL.DT:1");
         PageObject.textinput_Locator("fieldName:ID.VAL.DT:1",column.get("ID_VAL_DT"));
         PageObject.textinput_Locator("fieldName:NAME.1:1",column.get("NAME_1"));
@@ -93,13 +108,15 @@ public class Customers extends BaseClass {
         PageObject.textinput_Locator("fieldName:CP.PH.RES:1",column.get("CP_PH_RES"));
         PageObject.textinput_Locator("fieldName:CP.EMAIL:1",column.get("CP_EMAIL"));
 
-        PageObject.commitDeal("Individual Customers");
-//        Txn = PageObject.getTxn();
+        commitDeal();
+        txnValidate();
+        saveToDS("Individual Customers");
+        saveToDS("UnAuth_Customers");
 
     }
 
 
-//    @Test  (groups = {"Inputter"}, dataProvider = "corpCustomer")
+    @Test  (groups = {"Inputter"}, dataProvider = "corpCustomer")
     public void corporateCustomer(Map<String, String> column) throws InterruptedException, IOException {
 
         PageObject.menu_Dropdown("Customer Relation Officer Menu");
@@ -112,6 +129,8 @@ public class Customers extends BaseClass {
         PageObject.switchFrame(2);
 
         PageObject.img_Button("New Deal");
+
+        TC = column.get("TC");
 
         PageObject.textinput_Locator("fieldName:SECTOR",column.get("SECTOR"));
         SECTOR = column.get("SECTOR");
@@ -180,14 +199,15 @@ public class Customers extends BaseClass {
         PageObject.textinput_Locator("fieldName:P.PROVINCE:1","");
         PageObject.textinput_Locator("fieldName:P.CUST.GENDER:1","");
 */
-        PageObject.commitDeal("Corporate Customers");
-//        Txn = PageObject.getTxn();
-
+        commitDeal();
+        txnValidate();
+        saveToDS("Corporate Customers");
+        saveToDS("UnAuth_Customers");
 
     }
 
 
-//    @Test  (groups = {"Authorizer"}, dataProvider = "auth")
+    @Test  (groups = {"Authorizer"}, dataProvider = "auth")
     public void customerAuthorization(Map<String, String> column) throws InterruptedException, IOException {
 
         PageObject.menu_Dropdown("Customer Services");
@@ -200,11 +220,16 @@ public class Customers extends BaseClass {
         homePage = PageObject.switchToChildWindow();
 
         PageObject.textinput_Locator("value:1:1:1",column.get("Customer_ID"));
+        Customers.Txn = column.get("Customer_ID");
+
+        TC = column.get("TC");
+        Accounts.PD = column.get("PD");
+
         PageObject.click_Locator("defaultButton");
         PageObject.form_Link("Authorise a Customer");
         PageObject.authorizeDeal();
-
-//        PageObject.commitDeal("Customers");
+        txnValidate();
+        saveToDS("CUSTOMERS");
     }
 
 
@@ -217,7 +242,7 @@ public class Customers extends BaseClass {
 
     @DataProvider(name = "indCustomer")
     public Object[][] indCustomer() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\IndividualCustomer_PD.xlsx";
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\DevopsTC_customerIndividual.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
@@ -244,7 +269,7 @@ public class Customers extends BaseClass {
 
     @DataProvider(name = "corpCustomer")
     public Object[][] corpCustomer() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\CorporateCustomer_PD.xlsx";
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\DevopsTC_customerCorporate.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
@@ -271,7 +296,7 @@ public class Customers extends BaseClass {
 
     @DataProvider(name = "auth")
     public Object[][] auth() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\try.xlsx";
+        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\UnAuth_Customers.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
@@ -297,4 +322,75 @@ public class Customers extends BaseClass {
     }
 
 
+
+
+
+
+
+    // Commit Deal For Inputter
+    public static void commitDeal () throws IOException {
+        driver.findElement(By.xpath("//tr/td/a/img[@alt='Validate a deal']")).click();
+        driver.findElement(By.xpath("//tr/td/a/img[@alt='Commit the deal']")).click();
+        if (driver.getPageSource().contains("Txn Complete:")){
+            txnValidate();
+        }else {
+            try {
+                WebElement acpOverride = driver.findElement(By.xpath("//tr/td/a[text()='Accept Overrides']"));
+                acpOverride.click();
+                txnValidate();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
+        }
+    }
+        public static void txnValidate() throws IOException {
+            WebElement Txn = driver.findElement(By.xpath("//table/tbody/tr/td[contains(text(),'Txn Complete:')]"));
+            Assert.assertTrue(Txn.isDisplayed(),"Transaction Un-Successful");
+            String Transaction = Txn.getText();
+            String[] first = Transaction.split(":");
+            String[] second = first[1].split(" ");
+            Customers.Txn = second[1];
+            System.out.println("Transaction Number is: "+Customers.Txn);
+        }
+
+        public static void saveToDS(String testCaseName) throws IOException {
+            File file = new File(System.getProperty("user.dir") + "\\Data\\" +testCaseName+ ".xlsx");
+            XSSFWorkbook workbook;
+            Row row;
+            Cell cell;
+            int rowNum = 0;
+
+            if (file.exists()) {
+                FileInputStream fis = new FileInputStream(file);
+                workbook = new XSSFWorkbook(fis);
+                Sheet sheet = workbook.getSheetAt(0);
+                rowNum = sheet.getLastRowNum() + 1; // Start writing from the next row
+            } else {
+                workbook = new XSSFWorkbook();
+                Sheet sheet = workbook.createSheet();
+                row = sheet.createRow(rowNum++);
+                cell = row.createCell(0);
+                cell.setCellValue("TC");
+                cell = row.createCell(1);
+                cell.setCellValue("Customer_ID");
+                cell = row.createCell(2);
+                cell.setCellValue("PD");
+
+            }
+
+            Sheet sheet = workbook.getSheetAt(0);
+            row = sheet.createRow(rowNum++);
+            cell = row.createCell(0);
+            cell.setCellValue(Customers.TC);
+            cell = row.createCell(1);
+            cell.setCellValue(Customers.Txn);
+            cell = row.createCell(2);
+            cell.setCellValue(Accounts.PD);
+
+            FileOutputStream fos = new FileOutputStream(file);
+            workbook.write(fos);
+            fos.close();
+
+        }
 }
