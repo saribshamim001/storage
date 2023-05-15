@@ -29,17 +29,17 @@ public class FundsTransfer extends BaseClass {
         PageObject.img_Button("New Deal");
 
 
-        PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO",testData.get("Debit acc"));
+        PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO",testData.get("debit"));
         PageObject.click_Locator("fieldName:DEBIT.AMOUNT");
         PageObject.switchToChildWindow();
         driver.close();
         PageObject.switchToParentWindow(HomePage2);
         PageObject.parentFrame();
         PageObject.switchFrame(2);
-        PageObject.textinput_Locator("fieldName:DEBIT.AMOUNT",testData.get("Debit amount"));
+        PageObject.textinput_Locator("fieldName:DEBIT.AMOUNT",testData.get("amount"));
 
 
-        PageObject.textinput_Locator("fieldName:CREDIT.ACCT.NO",testData.get("Credit acc"));
+        PageObject.textinput_Locator("fieldName:CREDIT.ACCT.NO",testData.get("credit"));
         PageObject.click_Locator("fieldName:DEBIT.AMOUNT");
         PageObject.switchToChildWindow();
         driver.close();
@@ -50,13 +50,15 @@ public class FundsTransfer extends BaseClass {
         PageObject.radiobutton_Locator("radio:mainTab:AML.TYP.CUST",1);
         PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE",1);
         PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE",2);
-        PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER",testData.get("ChequeNum"));
+        PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER",testData.get("chequeNum"));
+        PageObject.textinput_Locator("fieldName:DEBIT.VALUE.DATE",testData.get("date"));
+        PageObject.textinput_Locator("fieldName:CREDIT.VALUE.DATE",testData.get("date"));
 /*
         PageObject.textarea_Locator("fieldName:NAME.COND.TXN",testData.get("Name"));
         PageObject.textinput_Locator("fieldName:ID.TYPE",testData.get("ID type"));
         PageObject.textinput_Locator("fieldName:ID.NUMBER",testData.get("ID Num"));
         PageObject.textinput_Locator("fieldName:ID.VAL.DT",testData.get("Exp Date"));*/
-        PageObject.commitDeal("FundsTransfer");
+        PageObject.commitDeal("FundsTransferGeneral");
     }
 
     @Test(groups = {"Inputter"},dataProvider = "excelDataForOnlineFt")
@@ -78,8 +80,8 @@ public class FundsTransfer extends BaseClass {
         PageObject.parentFrame();
         PageObject.switchFrame(2);
         PageObject.textinput_Locator("fieldName:CREDIT.AMOUNT",testData.get("amount"));
-        //PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER",testData.get("ChequeNum"));
-        PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER","123456789");
+        PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER",testData.get("chequeNum"));
+        ///PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER","123456789");
 
         PageObject.textinput_Locator("fieldName:CREDIT.ACCT.NO",testData.get("credit"));
         PageObject.click_Locator("fieldName:CREDIT.AMOUNT");
@@ -91,6 +93,8 @@ public class FundsTransfer extends BaseClass {
 
         PageObject.radiobutton_Locator("radio:mainTab:AML.TYP.CUST",1);
         PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE",1);
+        PageObject.textinput_Locator("fieldName:DEBIT.VALUE.DATE",testData.get("date"));
+        PageObject.textinput_Locator("fieldName:CREDIT.VALUE.DATE",testData.get("date"));
 /*
 
         PageObject.textarea_Locator("fieldName:NAME.COND.TXN","Customer");
@@ -98,95 +102,10 @@ public class FundsTransfer extends BaseClass {
         PageObject.textinput_Locator("fieldName:ID.NUMBER","4220797762483");
         PageObject.textinput_Locator("fieldName:ID.VAL.DT","21221231");
 */
-        PageObject.commitDeal("FundsTransfer");
+        PageObject.commitDeal("FundsTransferOnline");
     }
 
-
-    @Test(groups = {"Inputter"})
-    public void fTGeneralByDate() throws IOException {
-
-        String HomePage2 = driver.getWindowHandle();
-        PageObject.menu_Dropdown("Head Teller Menu-Universal Teller-Conventiona");
-        PageObject.menu_Link("Account to Account Transfer ");
-        PageObject.parentFrame();
-        PageObject.switchFrame(2);
-        PageObject.img_Button("New Deal");
-
-
-        PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","PKR140030030");
-        PageObject.click_Locator("fieldName:DEBIT.AMOUNT");
-        PageObject.switchToChildWindow();
-        driver.close();
-        PageObject.switchToParentWindow(HomePage2);
-        PageObject.parentFrame();
-        PageObject.switchFrame(2);
-        PageObject.textinput_Locator("fieldName:DEBIT.AMOUNT","1234");
-
-
-        PageObject.textinput_Locator("fieldName:CREDIT.ACCT.NO","PKR149010005");
-        PageObject.click_Locator("fieldName:DEBIT.AMOUNT");
-        PageObject.switchToChildWindow();
-        driver.close();
-        PageObject.switchToParentWindow(HomePage2);
-        PageObject.parentFrame();
-        PageObject.switchFrame(2);
-
-        PageObject.radiobutton_Locator("radio:mainTab:AML.TYP.CUST",2);
-        PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE",1);
-
-        PageObject.textinput_Locator("fieldName:DEBIT.VALUE.DATE","");
-        PageObject.textinput_Locator("fieldName:CREDIT.VALUE.DATE","");
-
-        PageObject.textarea_Locator("fieldName:NAME.COND.TXN","Customer");
-        PageObject.textinput_Locator("fieldName:ID.TYPE","ID-N");
-        PageObject.textinput_Locator("fieldName:ID.NUMBER","4220797762483");
-        PageObject.textinput_Locator("fieldName:ID.VAL.DT","21221231");
-        PageObject.commitDeal("FundsTransfer");
-    }
-
-
-    @Test(groups = {"Inputter"})
-    public void fTGeneralByCheque() throws IOException {
-
-        String HomePage2 = driver.getWindowHandle();
-
-        PageObject.menu_Dropdown("Head Teller Menu-Universal Teller-Conventiona");
-        PageObject.menu_Link("Account to Account Transfer ");
-        PageObject.parentFrame();
-        PageObject.switchFrame(2);
-        PageObject.img_Button("New Deal");
-
-
-        PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","PKR140030030");
-        PageObject.click_Locator("fieldName:DEBIT.AMOUNT");
-        PageObject.switchToChildWindow();
-        driver.close();
-        PageObject.switchToParentWindow(HomePage2);
-        PageObject.parentFrame();
-        PageObject.switchFrame(2);
-        PageObject.textinput_Locator("fieldName:DEBIT.AMOUNT","1234");
-
-
-        PageObject.textinput_Locator("fieldName:CREDIT.ACCT.NO","PKR149010005");
-        PageObject.click_Locator("fieldName:DEBIT.AMOUNT");
-        PageObject.switchToChildWindow();
-        driver.close();
-        PageObject.switchToParentWindow(HomePage2);
-        PageObject.parentFrame();
-        PageObject.switchFrame(2);
-
-        PageObject.radiobutton_Locator("radio:mainTab:AML.TYP.CUST",2);
-        PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE",1);
-
-        PageObject.textarea_Locator("fieldName:CHEQUE.NUMBER","");
-        PageObject.textarea_Locator("fieldName:NAME.COND.TXN","Customer");
-        PageObject.textinput_Locator("fieldName:ID.TYPE","ID-N");
-        PageObject.textinput_Locator("fieldName:ID.NUMBER","4220797762483");
-        PageObject.textinput_Locator("fieldName:ID.VAL.DT","21221231");
-        PageObject.commitDeal("FundsTransfer");
-    }
-
-    @Test(groups = {"Authorizer"},dataProvider = "excelDataAuthfTGeneral",dependsOnMethods = {"fTGeneral"})
+    @Test(groups = {"Authorizer"},dataProvider = "excelDataAuthfTGeneral")
     public void authfTGeneral(Map<String, String> testData) throws IOException  {
 
         PageObject.menu_Dropdown("Manager Operation Menu");
@@ -235,7 +154,7 @@ public class FundsTransfer extends BaseClass {
 
     @DataProvider(name = "excelDataAuthfTOnline")
     public Object[][] readExcelData4() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\FtGeneral.xlsx";
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\FundsTransferOnline.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
@@ -262,7 +181,7 @@ public class FundsTransfer extends BaseClass {
 
     @DataProvider(name = "excelDataAuthfTGeneral")
     public Object[][] readExcelData3() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\FtGeneral.xlsx";
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\FundsTransferGeneral.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
@@ -320,7 +239,7 @@ public class FundsTransfer extends BaseClass {
         String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\FtGeneral.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
-        Sheet sheet = workbook.getSheetAt(1);
+        Sheet sheet = workbook.getSheetAt(1); // ftOnlineSheet
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap

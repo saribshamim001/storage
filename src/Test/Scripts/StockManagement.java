@@ -159,7 +159,7 @@ public class StockManagement extends BaseClass {
 
     @DataProvider(name = "excelDataStocksReceived")
     public Object[][] readExcelData2() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\StockManagement_StocksReceived.xlsx";
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\StockManagement.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
