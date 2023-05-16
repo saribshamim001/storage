@@ -113,6 +113,23 @@ public class BaseClass {
         PageObject.switchFrame(1);
 
     }
+    @BeforeMethod(groups = {"IBGInputter"})
+    public void inputterIbgLogin() {
+        chromeConfig();
+
+        PageObject.signIn("retail005", "QWer1234");
+
+        PageObject.switchFrame(1);
+
+        PageObject.menu_Dropdown("CSO - IBG");
+        PageObject.menu_Link("CSO - IBG ");
+
+        homePage = PageObject.switchToChildWindow();
+
+        PageObject.maximizeWindow();
+        PageObject.switchFrame(1);
+
+    }
 
 
     @BeforeMethod(groups = {"Authorizer"})
@@ -128,7 +145,7 @@ public class BaseClass {
     }
 
 
-    /*@AfterMethod(groups = {"Authorizer" , "Inputter"})
+    @AfterMethod(groups = {"Authorizer" , "Inputter"})
     public void userLogout(){
         this.driver.close();
 
@@ -139,7 +156,7 @@ public class BaseClass {
         PageObject.signOff();
 
         this.driver.close();
-    }*/
+    }
 
 }
 

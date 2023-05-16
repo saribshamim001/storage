@@ -7,15 +7,15 @@
     <test verbose="1" preserve-order="true" name="Retail Operations Inputter">
         <groups>
             <run>
-                <include name="Inputter"/>
+                <include name="IBGInputter"/>
             </run>
         </groups>
         <classes>
-            <class name="Test.Scripts.TillTransferCash">
-                <methods>
-                    <include name="tillToATM"/>
-                    <include name="atmToTill"/>
-                </methods>
+            <class name="Test.Scripts.Customer_Create">
+<!--                <methods>-->
+<!--                    <include name="tillToATM"/>-->
+<!--                    <include name="atmToTill"/>-->
+<!--                </methods>-->
             </class>
         </classes>
     </test>
