@@ -11,7 +11,7 @@
             </run>
         </groups>
         <classes>
-            <class name="Test.Scripts.Customer_Create">
+            <class name="Test.Scripts.Conventional.Customer_Create">
 <!--                <methods>-->
 <!--                    <include name="tillToATM"/>-->
 <!--                    <include name="atmToTill"/>-->
