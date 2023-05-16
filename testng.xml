@@ -12,10 +12,10 @@
         </groups>
         <classes>
             <class name="Test.Scripts.TillTransferCash">
-<!--                <methods>-->
-<!--                    <include name="tillToATM"/>-->
-<!--                    <include name="atmToTill"/>-->
-<!--                </methods>-->
+                <methods>
+                    <include name="tillToATM"/>
+                    <include name="atmToTill"/>
+                </methods>
             </class>
         </classes>
     </test>

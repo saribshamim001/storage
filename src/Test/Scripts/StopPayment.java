@@ -73,7 +73,7 @@ public class StopPayment extends BaseClass {
 
     @DataProvider(name = "excelDataStopPaymentCheque")
     public Object[][] readExcelData() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\FtGeneral.xlsx";
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\StopPayment.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
