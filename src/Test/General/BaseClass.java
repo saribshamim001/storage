@@ -16,7 +16,9 @@ import org.testng.annotations.BeforeMethod;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.Properties;
 
 public class BaseClass {
@@ -83,11 +85,22 @@ public class BaseClass {
         return System.getProperty("user.dir") + "\\Reports\\" + testCaseName + ".png";
     }
 
+    public static String AssertionScreenshot(String testCaseName) throws IOException {
+
+        Date date1 = new Date();
+        SimpleDateFormat dft = new SimpleDateFormat("E yyyy.MM.dd");
+        TakesScreenshot sc = (TakesScreenshot) driver;
+        File path = sc.getScreenshotAs(OutputType.FILE);
+        File file = new File(System.getProperty("user.dir") + "\\"+ testCaseName+ "\\" + testCaseName + dft.format(date1) +".png");
+        FileUtils.copyFile(path, file);
+        return System.getProperty("user.dir") + "\\"+ testCaseName+ "\\" + testCaseName + dft.format(date1) +".png";
+    }
+
     @BeforeMethod(groups = {"Inputter"})
     public void inputterLogin() {
         chromeConfig();
 
-        PageObject.signIn("retail006", "QWer12345");
+        PageObject.signIn("retail05", "QWer1234");
 
         PageObject.switchFrame(1);
 
@@ -115,7 +128,7 @@ public class BaseClass {
     }
 
 
-    @AfterMethod(groups = {"Authorizer" , "Inputter"})
+    /*@AfterMethod(groups = {"Authorizer" , "Inputter"})
     public void userLogout(){
         this.driver.close();
 
@@ -126,7 +139,7 @@ public class BaseClass {
         PageObject.signOff();
 
         this.driver.close();
-    }
+    }*/
 
 }
 

@@ -2,12 +2,15 @@ package Test.Scripts;
 
 import POM.PageObject;
 import Test.General.BaseClass;
+import lombok.ToString;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
@@ -19,6 +22,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import static Test.General.ExtraMethods.*;
 import POM.PageObject.*;
+
+import javax.sql.rowset.spi.TransactionalWriter;
 
 
 public class TellerCash extends BaseClass {
@@ -1054,9 +1059,61 @@ public class TellerCash extends BaseClass {
         return data;
     }
 
+    @Test(groups = "Authorizer" , dataProvider = "CreditCardPayByAccount_Authorization")
+    public void CreditCardPayByAccount_Authorization(Map<String, String> testData) throws InterruptedException, IOException {
+
+        //VARIABLE FOR EXCEL DATA STORAGE
+        String TxnNumber = testData.get("Transaction Number");
+
+        PageObject.menu_Dropdown("Teller");
+        PageObject.menu_Dropdown("Teller Menu");
+        PageObject.menu_Dropdown("Online Transaction");
+        PageObject.menu_Link("Auth. Of Credit Card Payment By Acct. ");
+
+        String childPage = PageObject.switchToChildWindow();
+
+        PageObject.textinput_Locator("value:1:1:1", TxnNumber);
+        PageObject.find_Button();
+
+        driver.findElement(By.xpath("//tr/td/a[text()='Authorise Online Transaction']")).click();
+
+        PageObject.img_Button("Authorises a deal");
+
+//        String childPage2 = PageObject.switchToChildWindow();
+//        driver.close();
+    }
+
+    @DataProvider(name = "CreditCardPayByAccount_Authorization")
+    public Object[][] readExcelData10_A() throws IOException {
+        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\CreditCardPayByAccount.xlsx";
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
+    }
+
     /*______________________________________________________________________*/
 
-    @Test(groups = "Inputter" , dataProvider = "DenominationSetupCash")
+//    @Test(groups = "Inputter" , dataProvider = "DenominationSetupCash")
+    @Test(groups = "Inputter")
     public void DenominationSetupCash(Map<String, String> testData) throws InterruptedException, IOException {
 
         //VARIABLE FOR EXCEL DATA STORAGE
@@ -1084,8 +1141,6 @@ public class TellerCash extends BaseClass {
         String USD20 = testData.get("USD20");
         String USD50 = testData.get("USD50");
         String USD100 = testData.get("USD100");
-
-
 
         PageObject.menu_Dropdown("Head Teller Menu-Universal Teller-Conventiona");
         PageObject.menu_Dropdown("Teller");
@@ -1147,6 +1202,34 @@ public class TellerCash extends BaseClass {
         }
         PageObject.commitDeal("DenominationSetupCash");
 
+        countCurrency(58418416);
+    }
+
+    public static void countCurrency (int amount)
+    {
+        int[] notes = new int[]{5000, 1000, 500, 100, 75, 50, 20, 10, 5, 2, 1};
+        int[] noteCounter = new int[10];
+
+        // count notes using Greedy approach
+        for (int i = 0; i < 9; i++) {
+            if (amount >= notes[i]) {
+                noteCounter[i] = amount / notes[i];
+                amount = amount % notes[i];
+            }
+        }
+
+        // Print notes
+        for (int i = 0; i < 9; i++) {
+            if (noteCounter[i] != 0) {
+                System.out.println(notes[i] + " : "
+                        + noteCounter[i]);
+                int j = 8;
+                String noteCount = Integer.toString(noteCounter[i]);
+                PageObject.textinput_Locator("fieldName:QUANTITY:"+j, noteCount);
+                j--;
+
+            }
+        }
     }
 
     @DataProvider(name = "DenominationSetupCash")
@@ -1175,6 +1258,64 @@ public class TellerCash extends BaseClass {
         fis.close();
         return data;
     }
+
+    @Test(groups = "Authorizer" , dataProvider = "DenominationSetupCash_Authorization")
+    public void DenominationSetupCash_Authorization(Map<String, String> testData) throws InterruptedException, IOException {
+
+        //VARIABLE FOR EXCEL DATA STORAGE
+        String TxnNumber = testData.get("Transaction Number");
+
+        PageObject.menu_Dropdown("Teller");
+        PageObject.menu_Dropdown("Teller Menu");
+        PageObject.menu_Dropdown("Denomination Setup");
+        PageObject.menu_Link("Authorise of Denomination Transaction ");
+
+        String childPage = PageObject.switchToChildWindow();
+
+//        PageObject.parentFrame();
+//        PageObject.switchFrame(2);
+
+        PageObject.textinput_Locator("value:1:1:1", TxnNumber);
+        PageObject.find_Button();
+
+        driver.findElement(By.xpath("//tr/td/a[text()='Authorise Transaction']")).click();
+
+        PageObject.img_Button("Authorises a deal");
+
+//        String childPage2 = PageObject.switchToChildWindow();
+//        driver.close();
+    }
+
+    @DataProvider(name = "DenominationSetupCash_Authorization")
+    public Object[][] readExcelData11_A() throws IOException {
+        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\DenominationSetupCash.xlsx";
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
+    }
+
+
+    /*______________________________________________________________________*/
+
 
     @Test(groups = "Inputter" , dataProvider = "DenominationSetupPrizeBond")
     public void DenominationSetupPrizeBond(Map<String, String> testData) throws InterruptedException, IOException {
@@ -1257,4 +1398,189 @@ public class TellerCash extends BaseClass {
         return data;
     }
 
-}
+    @Test(groups = "Authorizer" , dataProvider = "DenominationSetupPrizeBond_Authorization")
+    public void DenominationSetupPrizeBond_Authorization(Map<String, String> testData) throws InterruptedException, IOException {
+
+        //VARIABLE FOR EXCEL DATA STORAGE
+        String TxnNumber = testData.get("Transaction Number");
+
+        PageObject.menu_Dropdown("Teller");
+        PageObject.menu_Dropdown("Teller Menu");
+        PageObject.menu_Dropdown("Prize Bond Menu");
+        PageObject.menu_Link("Prize Bond Denomination Authorization  ");
+
+        String childPage = PageObject.switchToChildWindow();
+
+//        PageObject.parentFrame();
+//        PageObject.switchFrame(2);
+
+        PageObject.textinput_Locator("value:1:1:1", TxnNumber);
+        PageObject.find_Button();
+
+        driver.findElement(By.xpath("//tr/td/a[text()='Authorise Transaction']")).click();
+
+        PageObject.img_Button("Authorises a deal");
+
+//        String childPage2 = PageObject.switchToChildWindow();
+//        driver.close();
+    }
+
+    @DataProvider(name = "DenominationSetupPrizeBond_Authorization")
+    public Object[][] readExcelData12_A() throws IOException {
+        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\DenominationSetupPrizeBond.xlsx";
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
+    }
+
+
+    @Test(groups = "Inputter")
+    public void DenominationSetupCash2() throws InterruptedException, IOException {
+
+        //VARIABLE FOR EXCEL DATA STORAGE
+        String CurrencyType = "PKR";
+        int amount = 0;
+
+        PageObject.menu_Dropdown("Head Teller Menu-Universal Teller-Conventiona");
+        PageObject.menu_Dropdown("Teller");
+        PageObject.menu_Dropdown("Teller Menu");
+        PageObject.menu_Dropdown("Denomination Setup");
+        PageObject.menu_Link("Denomination Transaction ");
+
+        PageObject.parentFrame();
+        PageObject.switchFrame(2);
+
+        PageObject.textinput_Locator("transactionId", CurrencyType);
+        PageObject.img_Button("Edit a contract");
+
+        refreshWindow(2);
+
+        /*try {
+            WebElement removeFields = driver.findElement(By.xpath("(//tr/td/a/img[@alt='Delete Value'])[1]"));
+            List<WebElement> elements = driver.findElements(By.xpath("(//tr/td/a/img[@alt='Delete Value'])"));
+            int occurrences = elements.size();
+            int delete_i = occurrences;
+            System.out.println("counting is" + occurrences);
+            int j = 1;
+            if (removeFields.isDisplayed()) {
+                while (delete_i > 1) {
+                    removeFields.click();
+                    j++;
+                    delete_i--;
+                    System.out.println(j);
+                    removeFields = driver.findElement(By.xpath("(//tr/td/a/img[@alt='Delete Value'])["+delete_i+"]"));
+                }
+            }
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }*/
+
+        if (CurrencyType.equalsIgnoreCase("PKR")) {
+            for (int number = 0; number <= 6; number++) {
+//                PageObject.img_Button("Expand Multi Value");
+                driver.findElement(By.xpath("(//tr/td/a/img[@alt='Expand Multi Value'])[1]")).click();
+            }
+
+            PageObject.textinput_Locator("fieldName:DENOM:1", "PKR10");
+            PageObject.textinput_Locator("fieldName:DENOM:2", "PKR20");
+            PageObject.textinput_Locator("fieldName:DENOM:3", "PKR50");
+            PageObject.textinput_Locator("fieldName:DENOM:4", "PKR75");
+            PageObject.textinput_Locator("fieldName:DENOM:5", "PKR100");
+            PageObject.textinput_Locator("fieldName:DENOM:6", "PKR500");
+            PageObject.textinput_Locator("fieldName:DENOM:7", "PKR1000");
+            PageObject.textinput_Locator("fieldName:DENOM:8", "PKR5000");
+
+            for (int number = 0; number <= 1; number++) {
+//            PageObject.img_Button("Expand Multi Value");
+                driver.findElement(By.xpath("(//tr/td/a/img[@alt='Expand Multi Value'])[last()]")).click();
+            }
+
+            PageObject.textinput_Locator("fieldName:DEN.COIN:1", "PKR01");
+            PageObject.textinput_Locator("fieldName:DEN.COIN:2", "PKR02");
+            PageObject.textinput_Locator("fieldName:DEN.COIN:3", "PKR05");
+
+            for (int number = 1; number <= 8; number++) {
+                PageObject.textinput_Locator("fieldName:QUANTITY:" + number, Integer.toString(0));
+            }
+
+            for (int number = 1; number <= 3; number++) {
+                PageObject.textinput_Locator("fieldName:QUANT.COIN:" + number, Integer.toString(0));
+            }
+
+            driver.findElement(By.xpath("//tr/td/a/img[@alt='Validate a deal']")).click();
+            WebElement AmountExceed = driver.findElement(By.xpath("//table/tbody/tr/td/span[contains(text(),'Amount exceeds')]"));
+            String Transaction = AmountExceed.getText();
+            String[] first = Transaction.split("-");
+//            String[] second = first[1].split(" ");
+            String denominationAmount = first[1];
+            amount = Integer.parseInt(denominationAmount);
+
+            int[] notes = new int[]{5000, 1000, 500, 100, 75, 50, 20, 10, 5, 2, 1};
+            int[] noteCounter = new int[11];
+
+            // count notes using Greedy approach
+            for (int i = 0; i < 11; i++) {
+                if (amount >= notes[i]) {
+                    noteCounter[i] = amount / notes[i];
+                    amount = amount % notes[i];
+                }
+            }
+
+            // Print notes
+            int note = 8;
+            int coin = 3;
+            for (int i = 0; i < 11; i++) {
+                if (noteCounter[i] != 0) {
+//                    System.out.println(notes[i] + " : " + noteCounter[i]);
+
+                    String noteCount = Integer.toString(noteCounter[i]);
+                    if (note > 0) {
+                        PageObject.textinput_Locator("fieldName:QUANTITY:" + note, noteCount);
+                        note--;
+                    } else {
+                        PageObject.textinput_Locator("fieldName:QUANT.COIN:" + coin, noteCount);
+                        coin--;
+                    }
+
+                } else {
+                    System.out.println(notes[i] + " : " + noteCounter[i]);
+
+                    String noteCount = Integer.toString(noteCounter[i]);
+                    if (note > 0) {
+                        PageObject.textinput_Locator("fieldName:QUANTITY:" + note, noteCount);
+                        note--;
+                    } else {
+                        PageObject.textinput_Locator("fieldName:QUANT.COIN:" + coin, noteCount);
+                        coin--;
+                    }
+                }
+            }
+
+            AssertionScreenshot("DenominationSetupCash");
+
+            PageObject.commitDeal("DenominationSetupCash");
+
+        }
+    }
+    }
+
