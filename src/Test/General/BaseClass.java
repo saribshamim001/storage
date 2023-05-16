@@ -145,7 +145,7 @@ public class BaseClass {
     }
 
 
-    @AfterMethod(groups = {"Authorizer" , "Inputter"})
+    @AfterMethod(groups = {"Authorizer" , "Inputter", "IBGInputter"})
     public void userLogout(){
         this.driver.close();
 
