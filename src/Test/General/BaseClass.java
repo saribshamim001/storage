@@ -132,6 +132,19 @@ public class BaseClass {
 
     }
 
+    @BeforeMethod(groups = {"IBGAuthorizer"})
+    public void authIbgLogin() {
+
+        chromeConfig();
+
+        PageObject.signIn("retailauth001", "QWer1234");
+
+        PageObject.switchFrame(1);
+
+        PageObject.menu_Dropdown("IBG - Manager Operation Menu");
+        PageObject.menu_Dropdown("Core Retail Menu");
+    }
+
 
     @BeforeMethod(groups = {"Authorizer"})
     public void authorizerLogin() {
@@ -146,7 +159,7 @@ public class BaseClass {
     }
 
 
-    @AfterMethod(groups = {"Authorizer" , "Inputter", "IBGInputter"})
+    @AfterMethod(groups = {"Authorizer" , "Inputter", "IBGInputter", "IBGAuthorizer"})
     public void userLogout(){
         this.driver.close();
 
