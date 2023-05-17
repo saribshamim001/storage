@@ -115,6 +115,7 @@ public class BaseClass {
     }
     @BeforeMethod(groups = {"IBGInputter"})
     public void inputterIbgLogin() {
+
         chromeConfig();
 
         PageObject.signIn("retail005", "QWer1234");
