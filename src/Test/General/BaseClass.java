@@ -25,8 +25,6 @@ public class BaseClass {
     public static Actions action;
     public static String homePage;
 
-    public static String fileName="";
-
     // Configuration Property File
     public String getProperty(String key) throws IOException {
         //Reading configuration file from the path
