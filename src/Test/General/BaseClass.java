@@ -16,7 +16,9 @@ import org.testng.annotations.BeforeMethod;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.Properties;
 
 public class BaseClass {
@@ -24,6 +26,8 @@ public class BaseClass {
     public static WebDriver driver;
     public static Actions action;
     public static String homePage;
+
+    public static String fileName="";
 
     // Configuration Property File
     public String getProperty(String key) throws IOException {
@@ -81,16 +85,45 @@ public class BaseClass {
         return System.getProperty("user.dir") + "\\Reports\\" + testCaseName + ".png";
     }
 
+    public static String AssertionScreenshot(String testCaseName) throws IOException {
+
+        Date date1 = new Date();
+        SimpleDateFormat dft = new SimpleDateFormat("E yyyy.MM.dd");
+        TakesScreenshot sc = (TakesScreenshot) driver;
+        File path = sc.getScreenshotAs(OutputType.FILE);
+        File file = new File(System.getProperty("user.dir") + "\\"+ testCaseName+ "\\" + testCaseName + dft.format(date1) +".png");
+        FileUtils.copyFile(path, file);
+        return System.getProperty("user.dir") + "\\"+ testCaseName+ "\\" + testCaseName + dft.format(date1) +".png";
+    }
+
     @BeforeMethod(groups = {"Inputter"})
     public void inputterLogin() {
         chromeConfig();
 
-        PageObject.signIn("retail006", "QWer12345");
+        PageObject.signIn("retail05", "QWer1234");
 
         PageObject.switchFrame(1);
 
         PageObject.menu_Dropdown("CSO - Conventional");
         PageObject.menu_Link("CSO - Conventional ");
+
+        homePage = PageObject.switchToChildWindow();
+
+        PageObject.maximizeWindow();
+        PageObject.switchFrame(1);
+
+    }
+    @BeforeMethod(groups = {"IBGInputter"})
+    public void inputterIbgLogin() {
+
+        chromeConfig();
+
+        PageObject.signIn("retail005", "QWer1234");
+
+        PageObject.switchFrame(1);
+
+        PageObject.menu_Dropdown("CSO - IBG");
+        PageObject.menu_Link("CSO - IBG ");
 
         homePage = PageObject.switchToChildWindow();
 
@@ -131,7 +164,7 @@ public class BaseClass {
     }
 
 
-    @AfterMethod(groups = {"Authorizer" , "Inputter"})
+    @AfterMethod(groups = {"Authorizer" , "Inputter", "IBGInputter"})
     public void userLogout(){
         this.driver.close();
 
