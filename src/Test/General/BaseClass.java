@@ -99,6 +99,24 @@ public class BaseClass {
 
     }
 
+    @BeforeMethod(groups = {"CaoInputter"})
+    public void caoinputterLogin() {
+        chromeConfig();
+
+        PageObject.signIn("caouser002", "QWer1234");
+
+        PageObject.switchFrame(1);
+
+        PageObject.menu_Dropdown("CSO - Conventional");
+        PageObject.menu_Link("CSO - Conventional ");
+
+        homePage = PageObject.switchToChildWindow();
+
+        PageObject.maximizeWindow();
+        PageObject.switchFrame(1);
+
+    }
+
 
     @BeforeMethod(groups = {"Authorizer"})
     public void authorizerLogin() {
