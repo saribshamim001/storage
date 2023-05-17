@@ -25,6 +25,8 @@ public class BaseClass {
     public static Actions action;
     public static String homePage;
 
+    public static String fileName="";
+
     // Configuration Property File
     public String getProperty(String key) throws IOException {
         //Reading configuration file from the path
@@ -50,7 +52,6 @@ public class BaseClass {
         driver.get("https://172.24.128.50/R22SIT2/servlet/BrowserServlet");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.manage().window().maximize();
-
     }
 
     // Configuration Of Edge Driver
@@ -82,25 +83,11 @@ public class BaseClass {
         return System.getProperty("user.dir") + "\\Reports\\" + testCaseName + ".png";
     }
 
-    @BeforeMethod(groups = {"caoInputter"})
-    public void caouserLogin() {
-        chromeConfig();
-        PageObject.signIn("caouser002", "QWer1234");
-        PageObject.switchFrame(1);
-    }
-
-    @BeforeMethod(groups = {"caoInputter"})
-    public void caoauthLogin() {
-        chromeConfig();
-        PageObject.signIn("caoauth002", "QWer1234");
-        PageObject.switchFrame(1);
-    }
-
     @BeforeMethod(groups = {"Inputter"})
     public void inputterLogin() {
         chromeConfig();
 
-        PageObject.signIn("retail007", "QWer1234");
+        PageObject.signIn("retail006", "QWer12345");
 
         PageObject.switchFrame(1);
 
@@ -111,6 +98,7 @@ public class BaseClass {
 
         PageObject.maximizeWindow();
         PageObject.switchFrame(1);
+
     }
 
 
@@ -118,7 +106,7 @@ public class BaseClass {
     public void authorizerLogin() {
         chromeConfig();
 
-        PageObject.signIn("retailauth007", "QWer1234");
+        PageObject.signIn("retailauth006", "QWer1234");
 
         PageObject.switchFrame(1);
 
@@ -128,18 +116,20 @@ public class BaseClass {
 
 
     @AfterMethod(groups = {"Authorizer" , "Inputter"})
-    public void userLogout() throws InterruptedException {
-        Thread.sleep(1000);
+    public void userLogout(){
         this.driver.close();
 
         PageObject.switchToParentWindow(homePage);
+
         PageObject.switchFrame(0);
 
         PageObject.signOff();
-        Thread.sleep(1000);
+
         this.driver.close();
     }
+
 }
+
 
 
 

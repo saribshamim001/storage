@@ -7,11 +7,11 @@
     <test verbose="1" preserve-order="true" name="Retail Operations Inputter">
         <groups>
             <run>
-                <include name="Inputter"/>
+                <include name="IBGInputter"/>
             </run>
         </groups>
         <classes>
-            <class name="Test.Scripts.TillTransferCash">
+            <class name="Test.Scripts.Conventional.Customer_Create">
 <!--                <methods>-->
 <!--                    <include name="tillToATM"/>-->
 <!--                    <include name="atmToTill"/>-->
