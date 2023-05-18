@@ -4,14 +4,35 @@
     <listeners>
         <listener class-name="Resources.Listeners"/>
     </listeners>
-    <test verbose="2" preserve-order="true" name="D:/Hassan Work/Selenium Work/Retail Ops">
+    <test verbose="1" preserve-order="true" name="Retail Operations Inputter">
         <groups>
             <run>
-                <include name="Inputter"/>
+                <include name="IBGInputter"/>
             </run>
         </groups>
         <classes>
-            <class name="Test.Scripts.IssueCDRBulk"/>
+            <class name="Test.Scripts.Conventional.Customer_Create">
+<!--                <methods>-->
+<!--                    <include name="tillToATM"/>-->
+<!--                    <include name="atmToTill"/>-->
+<!--                </methods>-->
+            </class>
         </classes>
     </test>
+
+<!--    <test verbose="1" preserve-order="true" name="Retail Operations Authorizer">
+        <groups>
+            <run>
+                <include name="Authorizer"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="Test.Scripts.StockManagement">
+                <methods>
+                    <include name="authTheStocks"/>
+                </methods>
+            </class>
+        </classes>
+    </test>-->
+
 </suite>

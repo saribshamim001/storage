@@ -49,6 +49,10 @@ public class PageObject extends BaseClass {
         driver.findElement(By.xpath("//tr/td/a/img[@alt='"+alt_Value+"']")).click();
     }
 
+    public static void imgchild_Button (String alt_Value , Integer index) {
+        driver.findElement(By.xpath("(//tr/td/a/img[@alt='"+alt_Value+"'])["+index+"]")).click();
+    }
+
     public static void find_Button () {
         driver.findElement(By.xpath("//tr/td/a[@alt='Run Selection']")).click();
     }
@@ -104,7 +108,7 @@ public class PageObject extends BaseClass {
     }
 
     public static void childmenu_Dropdown(String alt_Value, Integer index) {
-        driver.findElement(By.xpath("(//ul/li/span/img[@alt='"+alt_Value+"'])["+index+"]")).click();
+        driver.findElement(By.xpath("(//ul/li/span/img[contains(@alt,'"+alt_Value+"')])["+index+"]")).click();
     }
 
     //This method is to perform a click on Menu Links
@@ -112,8 +116,16 @@ public class PageObject extends BaseClass {
         driver.findElement(By.xpath("//ul/li/a[text()='"+text_Value+"']")).click();
     }
 
+    public static void childmenu_Link(String text_Value , Integer index) {
+        driver.findElement(By.xpath("(//ul/li/a[contains(text(),'"+text_Value+"')])["+index+"]")).click();
+    }
+
     public static void form_Link(String text_Value) {
         driver.findElement(By.xpath("//table/tbody/tr/td/a[text()='"+text_Value+"']")).click();
+    }
+
+    public static void formindex_Link(String text_Value , Integer index) {
+        driver.findElement(By.xpath("(//table/tbody/tr/td/a[text()='"+text_Value+"'])["+index+"]")).click();
     }
 
     public static void authorizeDeal () {
