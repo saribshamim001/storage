@@ -18,8 +18,12 @@ import java.util.Map;
 
 public class FundsTransfer extends BaseClass {
 
+    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\Ft.xlsx";
+
     @Test(groups = {"Inputter"},dataProvider = "excelDatafTGeneral")
     public void fTGeneral(Map<String, String> testData) throws IOException {
+
+        String CustomerTypeString = testData.get("CustomerType");
 
         String HomePage2 = driver.getWindowHandle();
         PageObject.menu_Dropdown("Head Teller Menu-Universal Teller-Conventiona");
@@ -47,17 +51,28 @@ public class FundsTransfer extends BaseClass {
         PageObject.parentFrame();
         PageObject.switchFrame(2);
 
+        if (CustomerTypeString=="1")
         PageObject.radiobutton_Locator("radio:mainTab:AML.TYP.CUST",1);
-        PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE",1);
-        PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE",2);
+
+        else{
+            PageObject.radiobutton_Locator("radio:mainTab:AML.TYP.CUST",2);
+            PageObject.textarea_Locator("fieldName:NAME.COND.TXN",testData.get("Name"));
+            PageObject.textinput_Locator("fieldName:ID.TYPE",testData.get("ID type"));
+            PageObject.textinput_Locator("fieldName:ID.NUMBER",testData.get("ID Num"));
+            PageObject.textinput_Locator("fieldName:ID.VAL.DT",testData.get("Exp Date"));
+
+        }
+
+        PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE",Integer.parseInt(testData.get("CommisionCode")));
+
         PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER",testData.get("chequeNum"));
         PageObject.textinput_Locator("fieldName:DEBIT.VALUE.DATE",testData.get("date"));
         PageObject.textinput_Locator("fieldName:CREDIT.VALUE.DATE",testData.get("date"));
-/*
-        PageObject.textarea_Locator("fieldName:NAME.COND.TXN",testData.get("Name"));
-        PageObject.textinput_Locator("fieldName:ID.TYPE",testData.get("ID type"));
-        PageObject.textinput_Locator("fieldName:ID.NUMBER",testData.get("ID Num"));
-        PageObject.textinput_Locator("fieldName:ID.VAL.DT",testData.get("Exp Date"));*/
+        PageObject.textinput_Locator("fieldName:DEBIT.THEIR.REF",testData.get("Narrative"));
+        PageObject.textinput_Locator("fieldName:CREDIT.THEIR.REF",testData.get("CdNarrative"));
+        PageObject.textinput_Locator("fieldName:PAYMENT.DETAILS:1",testData.get("Details"));
+
+
         PageObject.commitDeal("FundsTransferGeneral");
     }
 
@@ -108,8 +123,6 @@ public class FundsTransfer extends BaseClass {
     @Test(groups = {"Authorizer"},dataProvider = "excelDataAuthfTGeneral")
     public void authfTGeneral(Map<String, String> testData) throws IOException  {
 
-        PageObject.menu_Dropdown("Manager Operation Menu");
-        PageObject.menu_Dropdown("Core Retail Menu");
         PageObject.menu_Dropdown("Deposit/Payment/Zakat");
         PageObject.menu_Dropdown("Funds Transfer");
 
@@ -129,11 +142,9 @@ public class FundsTransfer extends BaseClass {
     }
 
 
-    @Test(groups = {"Authorizer"},dataProvider = "excelDataAuthfTOnline",dependsOnMethods = {"fTOnline"})
+    @Test(groups = {"Authorizer"},dataProvider = "excelDataAuthfTOnline")
     public void authfTOnline(Map<String, String> testData) throws IOException  {
 
-        PageObject.menu_Dropdown("Manager Operation Menu");
-        PageObject.menu_Dropdown("Core Retail Menu");
         PageObject.menu_Dropdown("Deposit/Payment/Zakat");
         PageObject.menu_Dropdown("Funds Transfer");
 
@@ -143,7 +154,7 @@ public class FundsTransfer extends BaseClass {
         PageObject.switchToChildWindow();
 
         //Got the value from DataProvider file
-        PageObject.textinput_Locator("transactionId",testData.get("Transaction ID"));
+        PageObject.textinput_Locator("transactionId",testData.get("Transaction Number"));
         PageObject.img_Button("Perform an action on the contract");
         PageObject.img_Button("Authorises a deal");
         WebElement theMsg = driver.findElement(By.xpath("(//td[@class='message'])[1]"));
@@ -154,7 +165,7 @@ public class FundsTransfer extends BaseClass {
 
     @DataProvider(name = "excelDataAuthfTOnline")
     public Object[][] readExcelData4() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\FundsTransferOnline.xlsx";
+        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\FundsTransferOnline.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
@@ -181,7 +192,7 @@ public class FundsTransfer extends BaseClass {
 
     @DataProvider(name = "excelDataAuthfTGeneral")
     public Object[][] readExcelData3() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\FundsTransferGeneral.xlsx";
+        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\FundsTransferGeneral.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
@@ -209,7 +220,7 @@ public class FundsTransfer extends BaseClass {
 
     @DataProvider(name = "excelDatafTGeneral")
     public Object[][] readExcelData2() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\FtGeneral.xlsx";
+
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
@@ -236,7 +247,7 @@ public class FundsTransfer extends BaseClass {
 
     @DataProvider(name = "excelDataForOnlineFt")
     public Object[][] readExcelData() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\FtGeneral.xlsx";
+       // String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\FtGeneral.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(1); // ftOnlineSheet
