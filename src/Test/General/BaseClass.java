@@ -16,7 +16,9 @@ import org.testng.annotations.BeforeMethod;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.Properties;
 
 public class BaseClass {
@@ -81,11 +83,22 @@ public class BaseClass {
         return System.getProperty("user.dir") + "\\Reports\\" + testCaseName + ".png";
     }
 
+    public static String AssertionScreenshot(String testCaseName) throws IOException {
+
+        Date date1 = new Date();
+        SimpleDateFormat dft = new SimpleDateFormat("E yyyy.MM.dd");
+        TakesScreenshot sc = (TakesScreenshot) driver;
+        File path = sc.getScreenshotAs(OutputType.FILE);
+        File file = new File(System.getProperty("user.dir") + "\\"+ testCaseName+ "\\" + testCaseName + dft.format(date1) +".png");
+        FileUtils.copyFile(path, file);
+        return System.getProperty("user.dir") + "\\"+ testCaseName+ "\\" + testCaseName + dft.format(date1) +".png";
+    }
+
     @BeforeMethod(groups = {"Inputter"})
     public void inputterLogin() {
         chromeConfig();
 
-        PageObject.signIn("retail006", "QWer12345");
+        PageObject.signIn("retail05", "QWer1234");
 
         PageObject.switchFrame(1);
 
@@ -96,6 +109,38 @@ public class BaseClass {
 
         PageObject.maximizeWindow();
         PageObject.switchFrame(1);
+
+    }
+    @BeforeMethod(groups = {"IBGInputter"})
+    public void inputterIbgLogin() {
+        chromeConfig();
+
+        PageObject.signIn("retail001", "QWer1234");
+
+        PageObject.switchFrame(1);
+
+        PageObject.menu_Dropdown("CSO - IBG");
+        PageObject.menu_Link("CSO - IBG ");
+
+        homePage = PageObject.switchToChildWindow();
+
+        PageObject.maximizeWindow();
+        PageObject.switchFrame(1);
+
+    }
+
+    @BeforeMethod(groups = {"IBGAuthorizer"})
+    public void authIbgLogin() {
+        chromeConfig();
+
+        PageObject.signIn("retailauth001", "QWer1234");
+
+        homePage = driver.getWindowHandle();
+
+        PageObject.switchFrame(1);
+
+        PageObject.menu_Dropdown("IBG - Manager Operation Menu");
+        PageObject.menu_Dropdown("Core Retail Menu");
     }
 
 
@@ -105,28 +150,29 @@ public class BaseClass {
 
         PageObject.signIn("retailauth006", "QWer1234");
 
+        homePage = driver.getWindowHandle();
+
         PageObject.switchFrame(1);
 
         PageObject.menu_Dropdown("Manager Operation Menu");
         PageObject.menu_Dropdown("Core Retail Menu");
     }
 
-//    @AfterMethod(groups = {"Authorizer", "Inputter"})
-//    public void userLogout() {
-//        this.driver.close();
-//
-//        PageObject.switchToParentWindow(homePage);
-//
-//        PageObject.switchFrame(0);
-//
-//        PageObject.signOff();
-//
-//        this.driver.close();
-//    }
+
+    @AfterMethod(groups = {"Authorizer" , "Inputter", "IBGInputter", "IBGAuthorizer"})
+    public void userLogout(){
+        this.driver.close();
+
+        PageObject.switchToParentWindow(homePage);
+
+        PageObject.switchFrame(0);
+
+        PageObject.signOff();
+
+        this.driver.close();
+    }
+
 }
-
-
-
 
 
 

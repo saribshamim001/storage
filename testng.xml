@@ -7,42 +7,31 @@
     <test verbose="1" preserve-order="true" name="Retail Operations Inputter">
         <groups>
             <run>
-                <include name="Inputter"/>
+                <include name="IBGInputter"/>
             </run>
         </groups>
         <classes>
-            <class name="Test.Scripts.LockerInputter">
-                <methods>
-                    <include name="assignLocker"/>
-                </methods>
+            <class name="Test.Scripts.Conventional.Customer_Create">
+<!--                <methods>-->
+<!--                    <include name="tillToATM"/>-->
+<!--                    <include name="atmToTill"/>-->
+<!--                </methods>-->
             </class>
         </classes>
     </test>
 
-
-    <test verbose="1" preserve-order="true" name="Retail Operations Authorizer">
+<!--    <test verbose="1" preserve-order="true" name="Retail Operations Authorizer">
         <groups>
             <run>
                 <include name="Authorizer"/>
             </run>
         </groups>
         <classes>
-            <class name="Test.Scripts.LockerInputter">
+            <class name="Test.Scripts.StockManagement">
                 <methods>
-                    <include name="assignLocker_Auth"/>
+                    <include name="authTheStocks"/>
                 </methods>
             </class>
-        </classes>
-    </test>
-
-    <!--<test verbose="1" preserve-order="true" name="Retail Operations Authorizer">
-        <groups>
-            <run>
-                <include name="Authorizer"/>
-            </run>
-        </groups>
-        <classes>
-            <class name="Test.Scripts.StockManagement"/>
         </classes>
     </test>-->
 
