@@ -130,8 +130,8 @@ public class PageObject extends BaseClass {
 
     public static void authorizeDeal () {
         driver.findElement(By.xpath("//tr/td/a/img[@alt='Authorises a deal']")).click();
-        WebElement override = driver.findElement(By.xpath("//tr/td/a[text()='Accept Overrides']"));
-        if (override.isDisplayed()){
+        if (driver.getPageSource().contains("Accept Overrides")){
+            WebElement override = driver.findElement(By.xpath("//tr/td/a[text()='Accept Overrides']"));
             override.click();
         }
     }
