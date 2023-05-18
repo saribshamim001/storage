@@ -115,7 +115,7 @@ public class BaseClass {
     public void inputterIbgLogin() {
         chromeConfig();
 
-        PageObject.signIn("retail005", "QWer1234");
+        PageObject.signIn("retail001", "QWer1234");
 
         PageObject.switchFrame(1);
 
@@ -135,6 +135,8 @@ public class BaseClass {
 
         PageObject.signIn("retailauth001", "QWer1234");
 
+        homePage = driver.getWindowHandle();
+
         PageObject.switchFrame(1);
 
         PageObject.menu_Dropdown("IBG - Manager Operation Menu");
@@ -147,6 +149,8 @@ public class BaseClass {
         chromeConfig();
 
         PageObject.signIn("retailauth006", "QWer1234");
+
+        homePage = driver.getWindowHandle();
 
         PageObject.switchFrame(1);
 
