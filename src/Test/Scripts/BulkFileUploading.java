@@ -3,6 +3,8 @@ package Test.Scripts;
 import POM.PageObject;
 import Test.General.BaseClass;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.devtools.v85.page.Page;
 import org.testng.annotations.Test;
 import java.io.IOException;
 
@@ -21,10 +23,11 @@ public class BulkFileUploading extends BaseClass {
         PageObject.parentFrame();
         PageObject.switchFrame(2);
         String pgname = driver.getWindowHandle();
-
         PageObject.img_Button("New Deal");
         PageObject.textinput_Locator("fieldName:DESCRIPTION","TEST FILE");
 
+        //iframe ID and File Path
+        PageObject.uploadFile("D:\\Excel Code.txt","fileUploadIframe");
 
     }
 }
