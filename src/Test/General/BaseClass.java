@@ -27,8 +27,6 @@ public class BaseClass {
     public static Actions action;
     public static String homePage;
 
-    public static String fileName="";
-
     // Configuration Property File
     public String getProperty(String key) throws IOException {
         //Reading configuration file from the path
@@ -88,10 +86,11 @@ public class BaseClass {
     public static String AssertionScreenshot(String testCaseName) throws IOException {
 
         Date date1 = new Date();
-        SimpleDateFormat dft = new SimpleDateFormat("E yyyy.MM.dd");
+        SimpleDateFormat dft = new SimpleDateFormat("E yyyy.MM.dd HH:mm:ss");
+        String replaceString=dft.format(date1).toString().replaceAll(":"," ");
         TakesScreenshot sc = (TakesScreenshot) driver;
         File path = sc.getScreenshotAs(OutputType.FILE);
-        File file = new File(System.getProperty("user.dir") + "\\"+ testCaseName+ "\\" + testCaseName + dft.format(date1) +".png");
+        File file = new File(System.getProperty("user.dir") + "\\"+ testCaseName+ "\\" + testCaseName + replaceString +".png");
         FileUtils.copyFile(path, file);
         return System.getProperty("user.dir") + "\\"+ testCaseName+ "\\" + testCaseName + dft.format(date1) +".png";
     }
@@ -115,10 +114,9 @@ public class BaseClass {
     }
     @BeforeMethod(groups = {"IBGInputter"})
     public void inputterIbgLogin() {
-
         chromeConfig();
 
-        PageObject.signIn("retail005", "QWer1234");
+        PageObject.signIn("retail001", "QWer1234");
 
         PageObject.switchFrame(1);
 
@@ -132,29 +130,13 @@ public class BaseClass {
 
     }
 
-    @BeforeMethod(groups = {"CaoInputter"})
-    public void caoinputterLogin() {
+    @BeforeMethod(groups = {"IBGAuthorizer"})
+    public void authIbgLogin() {
         chromeConfig();
 
-        PageObject.signIn("caouser002", "QWer1234");
+        PageObject.signIn("retailauth001", "QWer1234");
 
-        PageObject.switchFrame(1);
-
-        PageObject.menu_Dropdown("CSO - Conventional");
-        PageObject.menu_Link("CSO - Conventional ");
-
-        homePage = PageObject.switchToChildWindow();
-
-        PageObject.maximizeWindow();
-        PageObject.switchFrame(1);
-
-    }
-
-    @BeforeMethod(groups = {"IbgAuthorizer"})
-    public void authorizeribgLogin() {
-        chromeConfig();
-
-        PageObject.signIn("retailauth005", "QWer1234");
+        homePage = driver.getWindowHandle();
 
         PageObject.switchFrame(1);
 
@@ -162,11 +144,14 @@ public class BaseClass {
         PageObject.menu_Dropdown("Core Retail Menu");
     }
 
+
     @BeforeMethod(groups = {"Authorizer"})
     public void authorizerLogin() {
         chromeConfig();
 
         PageObject.signIn("retailauth006", "QWer1234");
+
+        homePage = driver.getWindowHandle();
 
         PageObject.switchFrame(1);
 
@@ -175,7 +160,7 @@ public class BaseClass {
     }
 
 
-//    @AfterMethod(groups = {"Authorizer" , "Inputter", "IBGInputter","IbgAuthorizer"})
+    @AfterMethod(groups = {"Authorizer" , "Inputter", "IBGInputter", "IBGAuthorizer"})
     public void userLogout(){
         this.driver.close();
 
