@@ -86,10 +86,11 @@ public class BaseClass {
     public static String AssertionScreenshot(String testCaseName) throws IOException {
 
         Date date1 = new Date();
-        SimpleDateFormat dft = new SimpleDateFormat("E yyyy.MM.dd");
+        SimpleDateFormat dft = new SimpleDateFormat("E yyyy.MM.dd HH:mm:ss");
+        String replaceString=dft.format(date1).toString().replaceAll(":"," ");
         TakesScreenshot sc = (TakesScreenshot) driver;
         File path = sc.getScreenshotAs(OutputType.FILE);
-        File file = new File(System.getProperty("user.dir") + "\\"+ testCaseName+ "\\" + testCaseName + dft.format(date1) +".png");
+        File file = new File(System.getProperty("user.dir") + "\\"+ testCaseName+ "\\" + testCaseName + replaceString +".png");
         FileUtils.copyFile(path, file);
         return System.getProperty("user.dir") + "\\"+ testCaseName+ "\\" + testCaseName + dft.format(date1) +".png";
     }
