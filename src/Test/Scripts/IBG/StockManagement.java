@@ -67,6 +67,27 @@ public class StockManagement extends BaseClass {
         System.out.println(txn);
     }
 
+    @Test(groups = {"IBGInputter"},dataProvider = "excelDataStocksTransferFromWStoMS")
+    public void stocksTransferFromWStoMS(Map<String, String> testData) throws IOException {
+        PageObject.menu_Dropdown("Remittance Menu -Universal Teller- IBG");
+        PageObject.menu_Dropdown("Stock Management Menu");
+        PageObject.menu_Dropdown("Stock Receive and Transfer");
+        PageObject.menu_Link("Stock Transfer from WS to MS ");
+        PageObject.parentFrame();
+        PageObject.switchFrame(2);
+        //PageObject.textinput_Locator("transactionId","BC.123456");
+        driver.findElement(By.xpath("(//input[@id='transactionId'])[2]")).sendKeys(testData.get("TID"));
+        PageObject.img_Button("Edit a contract");
+        PageObject.textinput_Locator("fieldName:FROM.SERIAL.NO:1",testData.get("Serial NumS"));
+        PageObject.click_Locator("fieldName:TO.SERIAL.NO:1");
+        PageObject.textinput_Locator("fieldName:TO.SERIAL.NO:1",testData.get("Serial NumE"));
+        PageObject.textinput_Locator("fieldName:NARRATIVE:1",testData.get("Narrative"));
+        PageObject.commitDeal("IBG_stocksTransfer");
+        String txn = PageObject.getTxn();
+        System.out.println(txn);
+    }
+
+
     @Test(groups = {"IBGInputter"},dataProvider = "excelDataStocksEnquiryMainStock")
     public void stocksEnquiryMainStock(Map<String, String> testData) throws IOException {
         PageObject.menu_Dropdown("Remittance Menu -Universal Teller- IBG");
@@ -92,15 +113,14 @@ public class StockManagement extends BaseClass {
 
     //Auth will be depended upon stocksReceived
     //Add parameter in @annotation of dependsUponMethod
-    @Test(groups = {"Authorizer"},dataProvider = "excelDataAuthStocksReceived")
+    @Test(groups = {"IBGAuthorizer"},dataProvider = "excelDataAuthStocksReceived")
     public void authTheStocks(Map<String, String> testData) throws IOException  {
 
-        PageObject.menu_Dropdown("IBG - Manager Operation Menu");
-        PageObject.menu_Dropdown("Core Retail Menu");
         PageObject.menu_Dropdown("Customer Services");
         PageObject.menu_Dropdown("Stock Managment");
         PageObject.menu_Dropdown("Authorisation of Stock");
         PageObject.menu_Link("Authorise/Delete Stock Records ");
+
         String HomePage2 = driver.getWindowHandle();
         PageObject.switchToChildWindow();
         //Got the value from DataProvider file
@@ -108,15 +128,13 @@ public class StockManagement extends BaseClass {
         PageObject.find_Button();
         PageObject.form_Link("Authorise Transaction");
         PageObject.img_Button("Authorises a deal");
-        //then logout
+//        //then logout
     }
 
     //DependsOnMethods = {"stocksTransferFromMStoWS","stocksTransferFromWStoMS"}
-    @Test(groups = {"Authorizer"},dataProvider = "excelDataAuthStocksTransfer")
+    @Test(groups = {"IBGAuthorizer"},dataProvider = "excelDataAuthStocksTransfer")
     public void authTheStockTransfers(Map<String, String> testData) throws IOException  {
 
-        PageObject.menu_Dropdown("IBG - Manager Operation Menu");
-        PageObject.menu_Dropdown("Core Retail Menu");
         PageObject.menu_Dropdown("Customer Services");
         PageObject.menu_Dropdown("Stock Managment");
         PageObject.menu_Dropdown("Authorisation of Stock");
@@ -128,7 +146,8 @@ public class StockManagement extends BaseClass {
         //Got the value from DataProvider file
         PageObject.textinput_Locator("value:1:1:1",testData.get("Transaction Number"));
         PageObject.find_Button();
-        PageObject.form_Link("Authorise Transaction");
+
+        driver.findElement(By.xpath("//img[@alt='Select Drilldown']")).click();
         PageObject.img_Button("Authorises a deal");
 
         //Authorise click
@@ -199,6 +218,7 @@ public class StockManagement extends BaseClass {
         Sheet sheet = workbook.getSheet("stocksReceivedData"); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        colCount -=3;
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 
         for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
@@ -226,6 +246,7 @@ public class StockManagement extends BaseClass {
         Sheet sheet = workbook.getSheet("stocksTransferFromMStoWS"); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        colCount -=3;
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 
         for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
@@ -245,6 +266,35 @@ public class StockManagement extends BaseClass {
         return data;
     }
 
+    @DataProvider(name = "excelDataStocksTransferFromWStoMS")
+    public Object[][] readExcelData9() throws IOException {
+        //String FILE_PATH = System.getProperty("user.dir")+"\\Data\\StockManagement_StocksReceived.xlsx";
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheet("stocksTransferFromWStoMS"); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        colCount -=3;
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
+    }
+
+
     @DataProvider(name = "excelDataStocksEnquiryMainStock")
     public Object[][] readExcelData5() throws IOException {
         //String FILE_PATH = System.getProperty("user.dir")+"\\Data\\StockManagement_StocksReceived.xlsx";
@@ -253,6 +303,7 @@ public class StockManagement extends BaseClass {
         Sheet sheet = workbook.getSheet("stocksEnquiryMainStock"); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        colCount -=3;
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 
         for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
@@ -280,6 +331,7 @@ public class StockManagement extends BaseClass {
         Sheet sheet = workbook.getSheet("stocksEnquiryWorkingStock"); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        colCount-=3;
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 
         for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
