@@ -1,8 +1,9 @@
-
-package Test.Scripts.Conventional;
-
+package Test.Scripts.IBG;
 import POM.PageObject;
 import Test.General.BaseClass;
+import Test.Scripts.Conventional.Accounts;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -10,18 +11,11 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.Map;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 
 public class Customers extends BaseClass {
 
@@ -31,13 +25,13 @@ public class Customers extends BaseClass {
 
 
 
-    @Test (groups = {"Inputter"}, dataProvider = "indCustomer")
+    @Test(groups = {"IBGInputter"}, dataProvider = "indCustomer")
     public void individualCustomer(Map<String, String> column) throws InterruptedException, IOException {
 
-        PageObject.menu_Dropdown("Customer Relation Officer Menu");
-        PageObject.menu_Dropdown("Alfalah Customer Information");
+        PageObject.menu_Dropdown("Customer Relation Officer Menu- IBG");
+        PageObject.menu_Dropdown("Alfalah Customer & Account Information-IBG ");
         PageObject.menu_Dropdown("Branch Level Inputter");
-        PageObject.childmenu_Dropdown("Alfalah Customer Information",2);
+        PageObject.menu_Dropdown("Alfalah Customer Information");
         PageObject.menu_Link("Individual/Sole/Proprietorship/Minor ");
 
         PageObject.parentFrame();
@@ -111,19 +105,20 @@ public class Customers extends BaseClass {
 
         commitDeal();
         txnValidate();
-        saveToDS("Individual Customers");
-        saveToDS("UnAuth_Customers");
+        saveToDS("Individual Customers (IBG)");
+        saveToDS("UnAuth_Customers (IBG)");
 
     }
 
 
-    @Test  (groups = {"Inputter"}, dataProvider = "corpCustomer")
+    @Test  (groups = {"IBGInputter"}, dataProvider = "corpCustomer")
     public void corporateCustomer(Map<String, String> column) throws InterruptedException, IOException {
 
-        PageObject.menu_Dropdown("Customer Relation Officer Menu");
-        PageObject.menu_Dropdown("Alfalah Customer Information");
+
+        PageObject.menu_Dropdown("Customer Relation Officer Menu- IBG");
+        PageObject.menu_Dropdown("Alfalah Customer & Account Information-IBG ");
         PageObject.menu_Dropdown("Branch Level Inputter");
-        PageObject.childmenu_Dropdown("Alfalah Customer Information",2);
+        PageObject.menu_Dropdown("Alfalah Customer Information");
         PageObject.menu_Link("Corporate Customers ");
 
         PageObject.parentFrame();
@@ -202,18 +197,18 @@ public class Customers extends BaseClass {
 */
         commitDeal();
         txnValidate();
-        saveToDS("Corporate Customers");
-        saveToDS("UnAuth_Customers");
+        saveToDS("Corporate Customers (IBG)");
+        saveToDS("UnAuth_Customers (IBG)");
 
     }
 
 
-    @Test  (groups = {"Authorizer"}, dataProvider = "auth")
+    @Test  (groups = {"IbgAuthorizer"}, dataProvider = "auth")
     public void customerAuthorization(Map<String, String> column) throws InterruptedException, IOException {
 
         PageObject.menu_Dropdown("Customer Services");
         PageObject.menu_Dropdown("Alfalah Customer Information");
-        PageObject.menu_Dropdown("Branch Level Authorization");
+        PageObject.menu_Dropdown("Branch Level Authorization IBG");
         PageObject.menu_Dropdown("Authorization of CIF & ACCOUNT");
         PageObject.menu_Dropdown("Authorization of Customer");
         PageObject.menu_Link("Authorization of CIF- Branch Level ");
@@ -230,7 +225,7 @@ public class Customers extends BaseClass {
         PageObject.form_Link("Authorise a Customer");
         PageObject.authorizeDeal();
         txnValidate();
-        saveToDS("CUSTOMERS");
+        saveToDS("CUSTOMERS (IBG)");
     }
 
 
@@ -243,7 +238,7 @@ public class Customers extends BaseClass {
 
     @DataProvider(name = "indCustomer")
     public Object[][] indCustomer() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\DevopsTC_customerIndividual.xlsx";
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\03_IBG_IndividualCustomer_PD.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
@@ -270,7 +265,7 @@ public class Customers extends BaseClass {
 
     @DataProvider(name = "corpCustomer")
     public Object[][] corpCustomer() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\DevopsTC_customerCorporate.xlsx";
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\04_IBG_CorporateCustomer_PD.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
@@ -297,7 +292,7 @@ public class Customers extends BaseClass {
 
     @DataProvider(name = "auth")
     public Object[][] auth() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\UnAuth_Customers.xlsx";
+        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\UnAuth_Customers (IBG).xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
@@ -352,7 +347,7 @@ public class Customers extends BaseClass {
         String[] first = Transaction.split(":");
         String[] second = first[1].split(" ");
         Customers.Txn = second[1];
-        System.out.println("Transaction Number is: "+Customers.Txn);
+        System.out.println("Transaction Number is: "+ Customers.Txn);
     }
 
     public static void saveToDS(String testCaseName) throws IOException {
@@ -395,3 +390,4 @@ public class Customers extends BaseClass {
 
     }
 }
+
