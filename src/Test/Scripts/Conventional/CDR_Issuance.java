@@ -32,7 +32,17 @@ public class CDR_Issuance extends BaseClass {
         PageObject.radiobutton_Locator("radio:tab1:COMMISSION.CODE" , 3 );
         PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1","WAIVE");
 
+        PageObject.form_Tab("Due Delligence");
 
+        PageObject.textinput_Locator("fieldName:DD.ADDRESS:1","D1-SAT");
+        PageObject.textinput_Locator("fieldName:ID.TYPE","ID-N");
+        PageObject.textinput_Locator("fieldName:ID.NUMBER","4220190909123");
+        PageObject.textinput_Locator("fieldName:CONTACT.NO:1","SARA");
+        PageObject.menu_Link("Business Investment");
+
+
+
+        //PageObject.commitDeal("CDRBulkIssueInput");
 
 
 
