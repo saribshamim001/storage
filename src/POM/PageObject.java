@@ -76,6 +76,15 @@ public class PageObject extends BaseClass {
         driver.switchTo().frame(index);
     }
 
+    public  static void uploadFile(String filePath,String frameID){
+
+        WebElement fileFrame = driver.findElement(By.xpath("//iframe[@id='"+frameID+"']"));
+        driver.switchTo().frame(fileFrame);
+        driver.findElement(By.xpath("//input[@id='fileInput']")).sendKeys(filePath);
+        driver.findElement(By.xpath("//img[@title='Upload']")).click();
+
+    }
+
     public static void parentFrame(){
         driver.switchTo().parentFrame();
     }
