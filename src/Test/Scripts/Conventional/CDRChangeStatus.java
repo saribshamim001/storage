@@ -1,4 +1,4 @@
-package Test.Scripts;
+package Test.Scripts.Conventional;
 
 import POM.PageObject;
 import Test.General.BaseClass;
@@ -36,6 +36,6 @@ public class CDRChangeStatus extends BaseClass {
 
         Thread.sleep(2000);
 
-        PageObject.commitDeal("CDRChngStatus");
+        //PageObject.commitDeal("CDRChngStatus");
     }
 }
