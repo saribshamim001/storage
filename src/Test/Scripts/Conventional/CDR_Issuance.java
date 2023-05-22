@@ -38,8 +38,7 @@ public class CDR_Issuance extends BaseClass {
         PageObject.textinput_Locator("fieldName:ID.TYPE","ID-N");
         PageObject.textinput_Locator("fieldName:ID.NUMBER","4220190909123");
         PageObject.textinput_Locator("fieldName:CONTACT.NO:1","SARA");
-        PageObject.menu_Link("Business Investment");
-
+        PageObject.select_Locator("fieldName:INS.ISS.PURPOSE", "Business Investment");
 
 
         //PageObject.commitDeal("CDRBulkIssueInput");
