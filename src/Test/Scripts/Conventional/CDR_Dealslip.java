@@ -2,15 +2,23 @@ package Test.Scripts.Conventional;
 
 import POM.PageObject;
 import Test.General.BaseClass;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CDR_Dealslip extends BaseClass {
 
     @Test( groups = {"Inputter"})
-
-    public void DemandDraftCancellation() throws InterruptedException, IOException {
+    public void CDRDealSliptxn() throws InterruptedException, IOException {
 
         PageObject.menu_Dropdown("Remittance/Clearing Officer -Universal Teller");
         PageObject.menu_Dropdown("Remittance Menu");
@@ -41,18 +49,69 @@ public class CDR_Dealslip extends BaseClass {
         PageObject.textinput_Locator("fieldName:CONTACT.NO:1","SARA");
         PageObject.select_Locator("fieldName:INS.ISS.PURPOSE", "Business Investment");
 
-        PageObject.img_Button("Validate a deal");
-        PageObject.img_Button("Commit the deal");
-
-
-
-
-
-
-
-
+        PageObject.commitDeal("CDRDealSliptxn");
 
 
 
     }
+
+
+    @Test(groups = {"Authorizer"},dataProvider = "excelDataAuthCDRDealSlip")
+    public void authfTOnline(Map<String, String> testData) throws IOException  {
+
+        //Menu
+        PageObject.menu_Dropdown("Remittance/Clearing Officer -Universal Teller");
+        PageObject.menu_Dropdown("Remittance Menu");
+        PageObject.menu_Dropdown("Alfalah Core/Retail Menu ");
+        PageObject.childmenu_Dropdown("Customer Services",2);
+        PageObject.menu_Dropdown("Call Deposit Receipt- Inputter Menu");
+
+        PageObject.menu_Dropdown("Call Deposit Receipt Issuance ");
+
+        PageObject.menu_Link("Call Deposit Receipt- Single Issuance ");
+
+        PageObject.parentFrame();
+        PageObject.switchFrame(2);
+
+        String HomePage2 = driver.getWindowHandle();
+        PageObject.switchToChildWindow();
+
+        PageObject.textinput_Locator("transactionId",testData.get("Transaction Number"));
+
+
+        //once again open deal slip ..
+    }
+
+
+
+    @DataProvider(name = "excelDataAuthCDRDealSlip")
+    public Object[][] readExcelData4() throws IOException {
+        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\.xlsx";
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
+
+
+    }
+
+
 }
