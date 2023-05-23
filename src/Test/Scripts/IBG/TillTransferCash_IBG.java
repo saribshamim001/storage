@@ -1,4 +1,4 @@
-package Test.Scripts.Conventional;
+package Test.Scripts.IBG;
 
 import POM.PageObject;
 import Test.General.BaseClass;
@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class TillTransferCash extends BaseClass {
+public class TillTransferCash_IBG extends BaseClass {
 
     String vaulttoTillTxn;
     String lcyTxn;
@@ -15,10 +15,10 @@ public class TillTransferCash extends BaseClass {
     String tillToATMTxn;
     String atmToTillTxn;
 
-    @Test(groups = {"Inputter"})
-    public void vaultToTill() throws IOException, InterruptedException {
+    @Test(groups = {"IBGInputter"})
+    public void vaultToTill_IBG() throws IOException, InterruptedException {
 
-        PageObject.menu_Dropdown("Head Teller Menu-Universal Teller-Conventiona");
+        PageObject.menu_Dropdown("Teller Menu - Universal Teller -IBG");
         PageObject.menu_Dropdown("Teller");
         PageObject.menu_Dropdown("Teller Menu");
         PageObject.menu_Dropdown("Till Transfer (CASH)");
@@ -37,10 +37,10 @@ public class TillTransferCash extends BaseClass {
         vaulttoTillTxn = PageObject.getTxn();
     }
 
-    @Test(groups = {"Inputter"})
-    public void lcyTillTransfer() throws IOException {
+    @Test(groups = {"IBGInputter"})
+    public void lcyTillTransfer_IBG() throws IOException {
 
-        PageObject.menu_Dropdown("Head Teller Menu-Universal Teller-Conventiona");
+        PageObject.menu_Dropdown("Teller Menu - Universal Teller -IBG");
         PageObject.menu_Dropdown("Teller");
         PageObject.menu_Dropdown("Teller Menu");
         PageObject.menu_Dropdown("Till Transfer (CASH)");
@@ -58,10 +58,10 @@ public class TillTransferCash extends BaseClass {
         lcyTxn = PageObject.getTxn();
     }
 
-    @Test(groups = {"Inputter"})
-    public void fcyTillTransfer() throws IOException {
+    @Test(groups = {"IBGInputter"})
+    public void fcyTillTransfer_IBG() throws IOException {
 
-        PageObject.menu_Dropdown("Head Teller Menu-Universal Teller-Conventiona");
+        PageObject.menu_Dropdown("Teller Menu - Universal Teller -IBG");
         PageObject.menu_Dropdown("Teller");
         PageObject.menu_Dropdown("Teller Menu");
         PageObject.menu_Dropdown("Till Transfer (CASH)");
@@ -74,16 +74,16 @@ public class TillTransferCash extends BaseClass {
 
 //        PageObject.textinput_Locator("fieldName:TELLER.ID.1", "1005");
         PageObject.textinput_Locator("fieldName:CURRENCY.1", "USD");
-        PageObject.textinput_Locator("fieldName:AMOUNT.FCY.1:1", "10");
+        PageObject.textinput_Locator("fieldName:AMOUNT.FCY.1:1", "1");
 
         PageObject.commitDeal("FCY Till Transfer");
         fcyTxn = PageObject.getTxn();
     }
 
-    @Test(groups = {"Inputter"})
-    public void tillToVault() throws IOException {
+    @Test(groups = {"IBGInputter"})
+    public void tillToVault_IBG() throws IOException {
 
-        PageObject.menu_Dropdown("Head Teller Menu-Universal Teller-Conventiona");
+        PageObject.menu_Dropdown("Teller Menu - Universal Teller -IBG");
         PageObject.menu_Dropdown("Teller");
         PageObject.menu_Dropdown("Teller Menu");
         PageObject.menu_Dropdown("Till Transfer (CASH)");
@@ -102,10 +102,10 @@ public class TillTransferCash extends BaseClass {
         tillToVaultTxn = PageObject.getTxn();
     }
 
-    @Test(groups = {"Inputter"})
-    public void tillToATM() throws IOException {
+    @Test(groups = {"IBGInputter"})
+    public void tillToATM_IBG() throws IOException {
 
-        PageObject.menu_Dropdown("Head Teller Menu-Universal Teller-Conventiona");
+        PageObject.menu_Dropdown("Teller Menu - Universal Teller -IBG");
         PageObject.menu_Dropdown("Teller");
         PageObject.menu_Dropdown("Teller Menu");
         PageObject.menu_Dropdown("Till Transfer (CASH)");
@@ -117,7 +117,7 @@ public class TillTransferCash extends BaseClass {
         PageObject.img_Button("New Deal");
 
 //        PageObject.textinput_Locator("fieldName:TELLER.ID.2", "USD");
-        PageObject.textinput_Locator("fieldName:TELLER.ID.1", "0975");
+        PageObject.textinput_Locator("fieldName:TELLER.ID.1", "7600");
         PageObject.click_Locator("fieldName:TELLER.ID.2");
         PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1", "10");
 
@@ -125,10 +125,10 @@ public class TillTransferCash extends BaseClass {
         tillToATMTxn = PageObject.getTxn();
     }
 
-    @Test(groups = {"Inputter"})
-    public void atmToTill() throws IOException, InterruptedException {
+    @Test(groups = {"IBGInputter"})
+    public void atmToTill_IBG() throws IOException, InterruptedException {
 
-        PageObject.menu_Dropdown("Head Teller Menu-Universal Teller-Conventiona");
+        PageObject.menu_Dropdown("Teller Menu - Universal Teller -IBG");
         PageObject.menu_Dropdown("Teller");
         PageObject.menu_Dropdown("Teller Menu");
         PageObject.menu_Dropdown("Till Transfer (CASH)");
@@ -139,7 +139,7 @@ public class TillTransferCash extends BaseClass {
 
         PageObject.img_Button("New Deal");
 
-        PageObject.textinput_Locator("fieldName:TELLER.ID.2", "0975");
+        PageObject.textinput_Locator("fieldName:TELLER.ID.2", "7600");
 //        PageObject.textinput_Locator("fieldName:TELLER.ID.1", "1005");
         Thread.sleep(8000);
         PageObject.click_Locator("fieldName:TELLER.ID.1");
@@ -149,6 +149,7 @@ public class TillTransferCash extends BaseClass {
         PageObject.commitDeal("Till To ATM");
         atmToTillTxn = PageObject.getTxn();
     }
+
 
 
 }

@@ -17,11 +17,12 @@ import java.util.Map;
 public class KYC_Amendment_AccIBG extends BaseClass {
 
     String txn;
+    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\KYC_Amendment_AccIBG.xlsx";
 
     String accNumber="PKR179215561";
-    @Test(groups = {"IBGInputter"})
+    @Test(groups = {"IBGInputter"},dataProvider = "excelDatakyc_Amendment_AccIBG")
 
-    public void kyc_Amendment_AccIBG() throws IOException, InterruptedException {
+    public void kyc_Amendment_AccIBG(Map<String, String> testData) throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown("Customer Relation Officer Menu- IBG");
         PageObject.menu_Dropdown("Alfalah Customer & Account Information-IBG ");
@@ -54,29 +55,29 @@ public class KYC_Amendment_AccIBG extends BaseClass {
 
 
 
-        PageObject.textinput_Locator("fieldName:PURPOSE","Test12");
+        PageObject.textinput_Locator("fieldName:PURPOSE",testData.get("PURPOSE"));
 //        PageObject.select_Locator("fieldName:MODEDEPOSITS:1","Cash");
 //        PageObject.select_Locator("fieldName:MODEDEPOSITS:2","Cheque");
 //        PageObject.select_Locator("fieldName:MODEDEPOSITS:3","Online Credits");
-        PageObject.select_Locator("fieldName:MODEWITHDRAW:1","Issuing crossed Cheques");
+        PageObject.select_Locator("fieldName:MODEWITHDRAW:1",testData.get("MODEWITHDRAW:1"));
 //        PageObject.select_Locator("fieldName:MODEWITHDRAW:2","Cash Withdrawls through cheque");
 //        PageObject.select_Locator("fieldName:MODEWITHDRAW:3","Outward local Remittance");
-        PageObject.textinput_Locator("fieldName:KYC.NO.TRANS","14");
-        PageObject.textinput_Locator("fieldName:NO.TRANS.DR","11");
-        PageObject.select_Locator("fieldName:MONTH.TOVER.DR","1M to 5M");
-        PageObject.textinput_Locator("fieldName:EX.TOVER.DR.OTH","10000");
+        PageObject.textinput_Locator("fieldName:KYC.NO.TRANS",testData.get("KYC.NO.TRANS"));
+        PageObject.textinput_Locator("fieldName:NO.TRANS.DR",testData.get("NO.TRANS.DR"));
+        PageObject.select_Locator("fieldName:MONTH.TOVER.DR",testData.get("MONTH.TOVER.DR"));
+        PageObject.textinput_Locator("fieldName:EX.TOVER.DR.OTH",testData.get("EX.TOVER.DR.OTH"));
 
-        PageObject.select_Locator("fieldName:KYC.ATO","Below 1M");
-        PageObject.textinput_Locator("fieldName:ATOGTM","1000");
-        PageObject.select_Locator("fieldName:MONTH.TOVER.RG","1M to 5M");
-        PageObject.textinput_Locator("fieldName:EXP.MONTH.TOVER","10000");
+        PageObject.select_Locator("fieldName:KYC.ATO",testData.get("KYC.ATO"));
+        PageObject.textinput_Locator("fieldName:ATOGTM",testData.get("ATOGTM"));
+        PageObject.select_Locator("fieldName:MONTH.TOVER.RG",testData.get("MONTH.TOVER.RG"));
+        PageObject.textinput_Locator("fieldName:EXP.MONTH.TOVER",testData.get("EXP.MONTH.TOVER"));
 
         PageObject.img_Button("Commit the deal");
 
         String menu3 = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
 
-        PageObject.select_Locator("fieldName:CUST.SEGMENT","MASS"); //MASS OR AFFLUENT
+        PageObject.select_Locator("fieldName:CUST.SEGMENT",testData.get("CUST.SEGMENT")); //MASS OR AFFLUENT
         PageObject.img_Button("Commit the deal");
 
         driver.close();
@@ -84,7 +85,7 @@ public class KYC_Amendment_AccIBG extends BaseClass {
         PageObject.switchToParentWindow(menu3);
         PageObject.maximizeWindow();
 
-        PageObject.select_Locator("fieldName:OCCUPATION","Salaried"); //Business OR Salaried
+        PageObject.select_Locator("fieldName:OCCUPATION",testData.get("OCCUPATION")); //Business OR Salaried
 
         PageObject.commitDeal("IBG KYC_Amendment_Account");
 
@@ -135,7 +136,6 @@ public class KYC_Amendment_AccIBG extends BaseClass {
 
 
     @Test(groups = {"Authorizer"},dataProvider = "excelData")
-
     public void kyc_Amendment_Account_Auth(Map<String, String> testData) throws IOException, InterruptedException {
 
 //        PageObject.menu_Dropdown("Manager Operation Menu");
@@ -173,10 +173,9 @@ public class KYC_Amendment_AccIBG extends BaseClass {
     }
 
 
+    @DataProvider(name = "excelDatakyc_Amendment_AccIBG")
+    public Object[][] readExcelData1() throws IOException {
 
-    @DataProvider(name = "excelData")
-    public Object[][] readExcelData() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\KYC_Amendment_Account.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
@@ -200,5 +199,6 @@ public class KYC_Amendment_AccIBG extends BaseClass {
         fis.close();
         return data;
     }
+
 
 }
