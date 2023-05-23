@@ -110,6 +110,8 @@ public class CDR_Dealslip extends BaseClass {
 
         PageObject.textinput_Locator("transactionId", testData.get("Transaction Number"));
         PageObject.img_Button("Perform an action on the contract");
+
+        PageObject.img_Button("Prints the deal slip");
     }
 
     @DataProvider(name = "excelDataAuthCDRDealSlip")
