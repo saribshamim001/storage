@@ -70,32 +70,29 @@ public class CDR_Dealslip extends BaseClass {
     public void authfTOnline(Map<String, String> testData) throws IOException {
 
         //Menu
-        PageObject.menu_Dropdown("Manager Operation Menu");
+       // PageObject.menu_Dropdown("Manager Operation Menu");
         //PageObject.menu_Dropdown("Core Retail Menu");
         PageObject.menu_Dropdown("Call Deposit Receipt- Authorizer Menu");
         PageObject.menu_Dropdown("Call Deposit Receipt Instrument Authorization");
         //PageObject.menu_Dropdown("Call Deposit Receipt- Inputter Menu");
 
         //PageObject.menu_Dropdown("Call Deposit Receipt Issuance ");
-
+        String HomePage2 = driver.getWindowHandle();
         PageObject.menu_Link("Authorization of Single CDR Issuance ");
 
-        PageObject.parentFrame();
+//        PageObject.parentFrame();
         //PageObject.switchFrame(2);
 
-        String HomePage2 = driver.getWindowHandle();
+
+
         PageObject.switchToChildWindow();
+        PageObject.switchFrame(0);
 
         PageObject.img_Button("Selection Screen");
 
-        PageObject.switchToChildWindow();
-
-        PageObject.textinput_Locator("value:1:1:1", "Transaction Number");
+        PageObject.textinput_Locator("value:2:1:1", "DEBIT.ACCT.NO");
 
         PageObject.find_Button();
-
-        PageObject.maximizeWindow();
-
 
         PageObject.form_Link("Authorise a Transaction");
 
