@@ -26,6 +26,26 @@ public class ForeignDemandDraft extends BaseClass {
         PageObject.img_Button("New Deal");
 
 
+        PageObject.textinput_Locator("fieldName:CREDIT.CURRENCY","EUR");
+        PageObject.textinput_Locator("fieldName:INSTRUMENT.TYPE:1","FDD");
+        String HomePage2 = driver.getWindowHandle();
+        PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","1000264788");
+        PageObject.switchToChildWindow();
+        driver.close();
+        PageObject.switchToParentWindow(HomePage2);
+        PageObject.parentFrame();
+        PageObject.switchFrame(2);
+
+        PageObject.textinput_Locator("fieldName:CREDIT.AMOUNT","100");
+        PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1","SARA");
+
+        PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE",4);
+
+
+
+
+
+
 
 
     }
