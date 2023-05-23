@@ -35,7 +35,7 @@ public class CDR_Dealslip extends BaseClass {
 
         PageObject.img_Button("New Deal");
 
-        PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","100295399");
+        PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","1000264788");
         PageObject.click_Locator("fieldName:BEN.CUSTOMER:1");
 
         String HomePage2 = driver.getWindowHandle();
@@ -47,7 +47,7 @@ public class CDR_Dealslip extends BaseClass {
 
         PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1","SARA");
 
-        PageObject.radiobutton_Locator("radio:tab1:COMMISSION.CODE" , 3 );
+        PageObject.radiobutton_Locator("radio:tab1:COMMISSION.CODE" , 4 );
         //PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1","WAIVE");
 
         PageObject.form_Tab("Due Delligence");
@@ -55,7 +55,7 @@ public class CDR_Dealslip extends BaseClass {
         PageObject.textinput_Locator("fieldName:DD.ADDRESS:1","D1-SAT");
         PageObject.textinput_Locator("fieldName:ID.TYPE","ID-N");
         PageObject.textinput_Locator("fieldName:ID.NUMBER","4220190909123");
-        PageObject.textinput_Locator("fieldName:CONTACT.NO:1","SARA");
+        PageObject.textinput_Locator("fieldName:CONTACT.NO:1","03332125612");
         PageObject.select_Locator("fieldName:INS.ISS.PURPOSE", "Business Investment");
 
         PageObject.commitDeal("CDRDealSliptxn");
@@ -93,7 +93,7 @@ public class CDR_Dealslip extends BaseClass {
 
     }
 
-    @Test(groups = {"Inputter"},dataProvider = "excelDataViewCDRDealSlip")
+    @Test(groups = {"Inputter"},dataProvider = "excelDataAuthCDRDealSlip")
     public void viewCDRSlip(Map<String, String> testData) throws IOException {
         PageObject.menu_Dropdown("Remittance/Clearing Officer -Universal Teller");
         PageObject.menu_Dropdown("Remittance Menu");
@@ -114,7 +114,7 @@ public class CDR_Dealslip extends BaseClass {
 
     @DataProvider(name = "excelDataAuthCDRDealSlip")
     public Object[][] readExcelData4() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\.xlsx";
+        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\CDRDealSliptxn.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
