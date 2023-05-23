@@ -26,18 +26,18 @@ public class CDR_Issuance extends BaseClass {
 
         PageObject.img_Button("New Deal");
 
-        PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","");
-        PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1","");
+        PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","1002953499");
+        PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1","SARA");
 
-        PageObject.radiobutton_Locator("radio:tab1:COMMISSION.CODE" , 3 );
-        PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1","WAIVE");
+        PageObject.radiobutton_Locator("radio:tab1:COMMISSION.CODE" , 4);
+        //PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1","WAIVE");
 
         PageObject.form_Tab("Due Delligence");
 
         PageObject.textinput_Locator("fieldName:DD.ADDRESS:1","D1-SAT");
         PageObject.textinput_Locator("fieldName:ID.TYPE","ID-N");
         PageObject.textinput_Locator("fieldName:ID.NUMBER","4220190909123");
-        PageObject.textinput_Locator("fieldName:CONTACT.NO:1","SARA");
+        PageObject.textinput_Locator("fieldName:CONTACT.NO:1","03338980967");
         PageObject.select_Locator("fieldName:INS.ISS.PURPOSE", "Business Investment");
 
         PageObject.commitDeal("CDRBulkIssueInput");
