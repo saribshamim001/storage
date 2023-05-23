@@ -35,11 +35,20 @@ public class CDR_Dealslip extends BaseClass {
 
         PageObject.img_Button("New Deal");
 
-        PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","");
-        PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1","");
+        PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","100295399");
+        PageObject.click_Locator("fieldName:BEN.CUSTOMER:1");
+
+        String HomePage2 = driver.getWindowHandle();
+        PageObject.switchToChildWindow();
+        driver.close();
+        PageObject.switchToParentWindow(HomePage2);
+        PageObject.parentFrame();
+        PageObject.switchFrame(2);
+
+        PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1","SARA");
 
         PageObject.radiobutton_Locator("radio:tab1:COMMISSION.CODE" , 3 );
-        PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1","WAIVE");
+        //PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1","WAIVE");
 
         PageObject.form_Tab("Due Delligence");
 
@@ -57,9 +66,35 @@ public class CDR_Dealslip extends BaseClass {
 
 
     @Test(groups = {"Authorizer"},dataProvider = "excelDataAuthCDRDealSlip")
-    public void authfTOnline(Map<String, String> testData) throws IOException  {
+    public void authfTOnline(Map<String, String> testData) throws IOException {
 
         //Menu
+        PageObject.menu_Dropdown("Remittance/Clearing Officer -Universal Teller");
+        PageObject.menu_Dropdown("Remittance Menu");
+        PageObject.menu_Dropdown("Alfalah Core/Retail Menu ");
+        PageObject.childmenu_Dropdown("Customer Services", 2);
+        PageObject.menu_Dropdown("Call Deposit Receipt- Inputter Menu");
+
+        PageObject.menu_Dropdown("Call Deposit Receipt Issuance ");
+
+        PageObject.menu_Link("Call Deposit Receipt- Single Issuance ");
+
+        PageObject.parentFrame();
+        PageObject.switchFrame(2);
+
+        String HomePage2 = driver.getWindowHandle();
+        PageObject.switchToChildWindow();
+
+        PageObject.textinput_Locator("transactionId", testData.get("Transaction Number"));
+
+        PageObject.img_Button("Authorises a deal");
+        //once again open deal slip ..
+
+
+    }
+
+    @Test(groups = {"Inputter"},dataProvider = "excelDataViewCDRDealSlip")
+    public void viewCDRSlip(Map<String, String> testData) throws IOException {
         PageObject.menu_Dropdown("Remittance/Clearing Officer -Universal Teller");
         PageObject.menu_Dropdown("Remittance Menu");
         PageObject.menu_Dropdown("Alfalah Core/Retail Menu ");
@@ -73,16 +108,9 @@ public class CDR_Dealslip extends BaseClass {
         PageObject.parentFrame();
         PageObject.switchFrame(2);
 
-        String HomePage2 = driver.getWindowHandle();
-        PageObject.switchToChildWindow();
-
-        PageObject.textinput_Locator("transactionId",testData.get("Transaction Number"));
-
-
-        //once again open deal slip ..
+        PageObject.textinput_Locator("transactionId", testData.get("Transaction Number"));
+        PageObject.img_Button("Perform an action on the contract");
     }
-
-
 
     @DataProvider(name = "excelDataAuthCDRDealSlip")
     public Object[][] readExcelData4() throws IOException {
