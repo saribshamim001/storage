@@ -10,7 +10,7 @@ public class ForeignDemandDraft extends BaseClass {
     @Test(groups = {"Inputter"})
 
     public void ForeignDemandDraftInput() throws InterruptedException, IOException {
-
+        String HomePage2 = driver.getWindowHandle();
         PageObject.menu_Dropdown("Remittance/Clearing Officer -Universal Teller");
         PageObject.menu_Dropdown("Remittance Menu");
         PageObject.menu_Dropdown("Alfalah Core/Retail Menu ");
@@ -28,8 +28,9 @@ public class ForeignDemandDraft extends BaseClass {
 
         PageObject.textinput_Locator("fieldName:CREDIT.CURRENCY","EUR");
         PageObject.textinput_Locator("fieldName:INSTRUMENT.TYPE:1","FDD");
-        String HomePage2 = driver.getWindowHandle();
         PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","1000264788");
+        PageObject.click_Locator("fieldName:CREDIT.AMOUNT");
+
         PageObject.switchToChildWindow();
         driver.close();
         PageObject.switchToParentWindow(HomePage2);
@@ -40,6 +41,8 @@ public class ForeignDemandDraft extends BaseClass {
         PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1","SARA");
 
         PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE",4);
+
+
 
 
 
