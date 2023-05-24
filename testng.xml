@@ -7,13 +7,12 @@
     <test verbose="2" preserve-order="true" name="Retail Operations">
         <groups>
             <run>
-                <include name="Inputter"/>
+                <include name="IBGInputter"/>
             </run>
         </groups>
         <classes>
-            <class name="Test.Scripts.Conventional.ForeignDemandDraft">
+            <class name="Test.Scripts.IBG.CDR_Issuance_IBG">
             <methods>
-                <include name="CDRDealSliptxn"/>
             </methods>
             </class>
         </classes>

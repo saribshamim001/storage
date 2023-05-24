@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class CDR_Issuance_IBG extends BaseClass {
 
-    @Test(groups = {"IBGInputter"});
+    @Test(groups = {"IBGInputter"})
 
     public void CDRIssueInputIBG(Map<String, String> testData) throws IOException, InterruptedException {
 
