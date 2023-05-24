@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class FundsTransfer extends BaseClass {
 
-    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\IBG_FtTemp.xlsx";
+    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\IBG_Ft.xlsx";
 
     @Test(groups = {"IBGInputter"},dataProvider = "excelDatafTGeneral")
     public void fTGeneral(Map<String, String> testData) throws IOException {
@@ -68,7 +68,9 @@ public class FundsTransfer extends BaseClass {
 
         PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE",Integer.parseInt(testData.get("CommisionCode")));
 
+        if ( (Integer.parseInt(testData.get("chequeNum"))) !=0)
         PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER",testData.get("chequeNum"));
+
         PageObject.textinput_Locator("fieldName:DEBIT.VALUE.DATE",testData.get("date"));
         PageObject.textinput_Locator("fieldName:CREDIT.VALUE.DATE",testData.get("date"));
         PageObject.textinput_Locator("fieldName:DEBIT.THEIR.REF",testData.get("Narrative"));
@@ -130,13 +132,16 @@ public class FundsTransfer extends BaseClass {
     @Test(groups = {"IBGAuthorizer"},dataProvider = "excelDataAuthfTGeneral")
     public void authfTGeneral(Map<String, String> testData) throws IOException  {
 
+        PageObject.menu_Dropdown("Payments/Zakat");
+        PageObject.menu_Dropdown("Funds Transfer");
+
         PageObject.menu_Link("Funds Transfer General ");
 
         String HomePage2 = driver.getWindowHandle();
         PageObject.switchToChildWindow();
 
         //Got the value from DataProvider file
-        PageObject.textinput_Locator("transactionId",testData.get("Transaction ID"));
+        PageObject.textinput_Locator("transactionId",testData.get("Transaction Number"));
         PageObject.img_Button("Perform an action on the contract");
         PageObject.img_Button("Authorises a deal");
         WebElement theMsg = driver.findElement(By.xpath("(//td[@class='message'])[1]"));
@@ -149,7 +154,10 @@ public class FundsTransfer extends BaseClass {
     @Test(groups = {"IBGAuthorizer"},dataProvider = "excelDataAuthfTOnline")
     public void authfTOnline(Map<String, String> testData) throws IOException  {
 
-        PageObject.menu_Link("Account to Account Transfer- Online ");
+        PageObject.menu_Dropdown("Payments/Zakat");
+        PageObject.menu_Dropdown("Funds Transfer");
+
+        PageObject.menu_Link("Account to Account Transfer ");
 
         String HomePage2 = driver.getWindowHandle();
         PageObject.switchToChildWindow();
@@ -224,7 +232,7 @@ public class FundsTransfer extends BaseClass {
 
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
-        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        Sheet sheet = workbook.getSheet("General"); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         colCount-=3;
@@ -252,7 +260,7 @@ public class FundsTransfer extends BaseClass {
         // String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\FtGeneral.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
-        Sheet sheet = workbook.getSheetAt(1); // ftOnlineSheet
+        Sheet sheet = workbook.getSheet("FtOnline"); // ftOnlineSheet
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap

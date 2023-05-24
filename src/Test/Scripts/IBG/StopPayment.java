@@ -57,7 +57,7 @@ public class StopPayment extends BaseClass {
 
         PageObject.textinput_Locator("fieldName:PAYM.STOP.TYPE:1",testData.get("Payment Stp Type"));
         PageObject.textinput_Locator("fieldName:FIRST.CHEQUE.NO:1",testData.get("Cheque Num"));
-        PageObject.textinput_Locator("fieldName:LAST.CHEQUE.NO:1",testData.get("Cheque NumE"));
+       // PageObject.textinput_Locator("fieldName:LAST.CHEQUE.NO:1",testData.get("Cheque NumE"));
         PageObject.select_Locator("fieldName:WAIVE.CHARGE:1","YES");
         PageObject.commitDeal("IBG_stopPaymentCheque");
 
