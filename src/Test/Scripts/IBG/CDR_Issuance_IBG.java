@@ -1,23 +1,20 @@
-package Test.Scripts.Conventional;
+package Test.Scripts.IBG;
 
 import POM.PageObject;
 import Test.General.BaseClass;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.util.Map;
 
-public class CDR_Issuance extends BaseClass {
+public class CDR_Issuance_IBG extends BaseClass {
 
-    @Test( groups = {"Inputter"})
+    @Test(groups = {"IBGInputter"})
 
-    public void CDRIssuanceinput() throws InterruptedException, IOException {
+    public void CDRIssueInputIBG() throws IOException, InterruptedException {
 
-        PageObject.menu_Dropdown("Remittance/Clearing Officer -Universal Teller");
-        PageObject.menu_Dropdown("Remittance Menu");
-        PageObject.menu_Dropdown("Alfalah Core/Retail Menu ");
-        PageObject.childmenu_Dropdown("Customer Services",2);
+        PageObject.menu_Dropdown("Remittance Menu -Universal Teller- IBG");
         PageObject.menu_Dropdown("Call Deposit Receipt- Inputter Menu");
-
         PageObject.menu_Dropdown("Call Deposit Receipt Issuance ");
         PageObject.menu_Link("Call Deposit Receipt- Single Issuance ");
 
@@ -25,12 +22,19 @@ public class CDR_Issuance extends BaseClass {
         PageObject.switchFrame(2);
 
         PageObject.img_Button("New Deal");
-
+        String HomePage2 = driver.getWindowHandle();
         PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","1000264788");
-        PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1","SARA");
+        PageObject.click_Locator("fieldName:DEBIT.ACCT.NO");
         PageObject.textinput_Locator("fieldName:CREDIT.AMOUNT","100");
-        PageObject.radiobutton_Locator("radio:tab1:COMMISSION.CODE" , 4);
-        //PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1","WAIVE");
+        PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1","SARA");
+
+        PageObject.switchToChildWindow();
+        driver.close();
+
+        PageObject.switchToParentWindow(HomePage2);
+        PageObject.switchFrame(2);
+
+        PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE" , 4);
 
         PageObject.form_Tab("Due Delligence");
 
@@ -40,9 +44,10 @@ public class CDR_Issuance extends BaseClass {
         PageObject.textinput_Locator("fieldName:CONTACT.NO:1","03338980967");
         PageObject.select_Locator("fieldName:INS.ISS.PURPOSE", "Business Investment");
 
-        PageObject.commitDeal("CDRBulkIssueInput");
+        PageObject.commitDeal("CDRIssueInputIBG");
 
 
-    }
 
+
+}
 }
