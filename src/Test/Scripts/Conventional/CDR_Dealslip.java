@@ -45,9 +45,10 @@ public class CDR_Dealslip extends BaseClass {
         PageObject.parentFrame();
         PageObject.switchFrame(2);
 
+        PageObject.textinput_Locator("fieldName:CREDIT.AMOUNT","1000");
         PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1","SARA");
 
-        PageObject.radiobutton_Locator("radio:tab1:COMMISSION.CODE" , 4 );
+        PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE" , 4 );//(//input[@id='radio:mainTab:COMMISSION.CODE'])[4]
         //PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1","WAIVE");
 
         PageObject.form_Tab("Due Delligence");
@@ -69,25 +70,35 @@ public class CDR_Dealslip extends BaseClass {
     public void authfTOnline(Map<String, String> testData) throws IOException {
 
         //Menu
-        PageObject.menu_Dropdown("Remittance/Clearing Officer -Universal Teller");
-        PageObject.menu_Dropdown("Remittance Menu");
-        PageObject.menu_Dropdown("Alfalah Core/Retail Menu ");
-        PageObject.childmenu_Dropdown("Customer Services", 2);
-        PageObject.menu_Dropdown("Call Deposit Receipt- Inputter Menu");
+       // PageObject.menu_Dropdown("Manager Operation Menu");
+        //PageObject.menu_Dropdown("Core Retail Menu");
+        PageObject.menu_Dropdown("Call Deposit Receipt- Authorizer Menu");
+        PageObject.menu_Dropdown("Call Deposit Receipt Instrument Authorization");
+        //PageObject.menu_Dropdown("Call Deposit Receipt- Inputter Menu");
 
-        PageObject.menu_Dropdown("Call Deposit Receipt Issuance ");
-
-        PageObject.menu_Link("Call Deposit Receipt- Single Issuance ");
-
-        PageObject.parentFrame();
-        PageObject.switchFrame(2);
-
+        //PageObject.menu_Dropdown("Call Deposit Receipt Issuance ");
         String HomePage2 = driver.getWindowHandle();
+        PageObject.menu_Link("Authorization of Single CDR Issuance ");
+
+//        PageObject.parentFrame();
+        //PageObject.switchFrame(2);
+
+
+
         PageObject.switchToChildWindow();
+        PageObject.switchFrame(0);
 
-        PageObject.textinput_Locator("transactionId", testData.get("Transaction Number"));
+        PageObject.img_Button("Selection Screen");
 
-        PageObject.img_Button("Authorises a deal");
+        PageObject.textinput_Locator("value:2:1:1", "DEBIT.ACCT.NO");
+
+        PageObject.find_Button();
+
+        PageObject.form_Link("Authorise a Transaction");
+
+        //PageObject.textinput_Locator("transactionId", testData.get("Transaction Number"));
+
+        //PageObject.img_Button("Authorises a deal");
         //once again open deal slip ..
 
 
