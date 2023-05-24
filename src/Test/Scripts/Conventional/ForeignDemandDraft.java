@@ -32,23 +32,23 @@ public class ForeignDemandDraft extends BaseClass {
 
         PageObject.click_Locator("fieldName:CREDIT.AMOUNT");
         PageObject.textinput_Locator("fieldName:CREDIT.AMOUNT","100");
-        //String HomePage2 = driver.getWindowHandle();
+        String HomePage2 = driver.getWindowHandle();
         PageObject.click_Locator("fieldName:DEBIT.ACCT.NO");
         PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","1000264788");
-
-
-
-        String HomePage2 = PageObject.switchToChildWindow();
-        PageObject.maximizeWindow();
-        driver.close();
-
-        PageObject.switchToParentWindow(HomePage2);
-        PageObject.switchFrame(2);
+        PageObject.click_Locator("fieldName:DEBIT.ACCT.NO");
 
 
         PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1","SARA");
 
-        PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE",4);
+        PageObject.switchToChildWindow();
+        driver.close();
+
+        PageObject.switchToParentWindow(HomePage2);
+        PageObject.switchFrame(2);
+        PageObject.radiobutton_Locator("radio:tab1:COMMISSION.CODE",4);
+
+        PageObject.radiobutton_Locator("radio:tab1:REMITTANCE.TYPE",4);
+
 
         PageObject.form_Tab("MT110 Details");
 
