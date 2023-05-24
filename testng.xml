@@ -11,9 +11,9 @@
             </run>
         </groups>
         <classes>
-            <class name="Test.Scripts.IBG.CDR_Issuance_IBG">
+            <class name="Test.Scripts.IBG.CDR_Cancellation_IBG">
             <methods>
-                <include name="CDRIssueInputIBG"/>
+                <include name="CDRCancellationIBG"/>
             </methods>
             </class>
         </classes>
