@@ -13,6 +13,7 @@
         <classes>
             <class name="Test.Scripts.IBG.CDR_Issuance_IBG">
             <methods>
+                <include name="CDRIssueInputIBG"/>
             </methods>
             </class>
         </classes>

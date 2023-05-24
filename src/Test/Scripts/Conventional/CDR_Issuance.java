@@ -28,7 +28,7 @@ public class CDR_Issuance extends BaseClass {
 
         PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","1000264788");
         PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1","SARA");
-
+        PageObject.textinput_Locator("fieldName:CREDIT.AMOUNT","100");
         PageObject.radiobutton_Locator("radio:tab1:COMMISSION.CODE" , 4);
         //PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1","WAIVE");
 
