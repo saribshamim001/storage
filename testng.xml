@@ -4,14 +4,48 @@
     <listeners>
         <listener class-name="Resources.Listeners"/>
     </listeners>
-    <test verbose="2" preserve-order="true" name="D:/Hassan Work/Selenium Work/Retail Ops">
+    <test verbose="2" preserve-order="true" name="Retail Operations">
         <groups>
             <run>
                 <include name="Inputter"/>
             </run>
         </groups>
         <classes>
-            <class name="Test.Scripts.Conventional.CDR_Issuance"/>
+            <class name="Test.Scripts.Conventional.ForeignDemandDraft">
+            <methods>
+                <include name="CDRDealSliptxn"/>
+            </methods>
+            </class>
         </classes>
     </test>
+<!--
+    <test verbose="2" preserve-order="true" name="Retail Operations Auth">
+        <groups>
+            <run>
+                <include name="Authorizer"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="Test.Scripts.Conventional.CDR_Dealslip">
+            <methods>
+                <include name="authfTOnline"/>
+            </methods>
+            </class>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true" name="Retail Operations View SLip">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="Test.Scripts.Conventional.CDR_Dealslip">
+                <methods>
+                    <include name="viewCDRSlip"/>
+                </methods>
+            </class>
+        </classes>
+    </test>-->
+
 </suite>
