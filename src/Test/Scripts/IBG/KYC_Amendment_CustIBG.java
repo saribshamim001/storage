@@ -20,9 +20,9 @@ public class KYC_Amendment_CustIBG extends BaseClass {
     String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\kYC_Amendment_CustIBG.xlsx";
     String CusNumber="16992982";
 
-    @Test(groups = {"IBGInputter"})
+    @Test(groups = {"IBGInputter"},dataProvider = "excelDataKYC_Amendment_CustIBG")
 
-    public void kYC_Amendment_CustIBG(Map<String, String> testData) throws IOException, InterruptedException {
+    public void KYC_Amendment_CustIBG(Map<String, String> testData) throws IOException, InterruptedException {
 
 
 
@@ -109,7 +109,7 @@ public class KYC_Amendment_CustIBG extends BaseClass {
         String TxnNum = accNumber ;
         System.out.println("Acc Number is: "+TxnNum);
 
-        File file = new File(System.getProperty("user.dir") + "\\Data\\kYC_Amendment_Cust_IBG.xlsx");
+        File file = new File(System.getProperty("user.dir") + "\\Data\\KYC_Amendment_Cust_IBG.xlsx");
         XSSFWorkbook workbook;
         Row row;
         Cell cell;
