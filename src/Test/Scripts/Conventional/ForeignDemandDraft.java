@@ -47,7 +47,7 @@ public class ForeignDemandDraft extends BaseClass {
         PageObject.switchFrame(2);
         PageObject.radiobutton_Locator("radio:tab1:COMMISSION.CODE",4);
 
-        PageObject.radiobutton_Locator("radio:tab1:REMITTANCE.TYPE",4);
+        PageObject.radiobutton_Locator("radio:tab1:REMITTANCE.TYPE",3);
 
 
         PageObject.form_Tab("MT110 Details");
