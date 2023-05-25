@@ -12,6 +12,8 @@ public class CDR_Status extends BaseClass {
 
     public void CDRStatusStop() throws InterruptedException, IOException {
 
+        //Data related issue, transaction couldn't perform properly
+
         PageObject.menu_Dropdown("Remittance/Clearing Officer -Universal Teller");
         PageObject.menu_Dropdown("Remittance Menu");
         PageObject.menu_Dropdown("Alfalah Core/Retail Menu ");
@@ -39,5 +41,5 @@ public class CDR_Status extends BaseClass {
 
 
 }
-
+        //Authorizer not found
 }

@@ -37,7 +37,7 @@ public class KYC_Amendment_CustIBG extends BaseClass {
         String menu = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
 
-        PageObject.textinput_Locator("value:1:1:1", CusNumber);
+        PageObject.textinput_Locator("value:1:1:1", testData.get("value:1:1:1"));
         PageObject.find_Button();
 
 

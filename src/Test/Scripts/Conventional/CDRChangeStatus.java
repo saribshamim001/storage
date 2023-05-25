@@ -10,6 +10,8 @@ public class CDRChangeStatus extends BaseClass {
 
     @Test(groups = {"Inputter"})
 
+    //Data related issue, transaction couldn't perform properly
+
     public void CDRChngStatus() throws InterruptedException, IOException {
         PageObject.menu_Dropdown("Remittance/Clearing Officer -Universal Teller");
         PageObject.menu_Dropdown("Remittance Menu");

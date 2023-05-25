@@ -17,9 +17,12 @@ import java.util.Map;
 public class LockerVisit_IBG extends BaseClass {
 
     String VisitTxn;
-    @Test(groups = {"IBGInputter"})
 
-    public void lockerVisitIBG() throws IOException, InterruptedException {
+    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\lockerVisitIBG.xlsx";
+
+    @Test(groups = {"IBGInputter"}, dataProvider = "excelDatalockerVisitIBG")
+
+    public void lockerVisitIBG(Map<String, String> testData) throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown("Remittance Menu -Universal Teller- IBG");
 //      PageObject.menu_Dropdown("Remittance Menu");
@@ -32,7 +35,7 @@ public class LockerVisit_IBG extends BaseClass {
         String menu = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
 
-        PageObject.textinput_Locator("value:1:1:1","OR.0007.5561");
+        PageObject.textinput_Locator("value:1:1:1",testData.get("value:1:1:1"));
         PageObject.find_Button();
 
         String menu2 = PageObject.switchToChildWindow();
@@ -40,7 +43,7 @@ public class LockerVisit_IBG extends BaseClass {
 
         PageObject.img_Button("Select Drilldown");
 
-        PageObject.textinput_Locator("fieldName:OPERATED.BY", "Test");
+        PageObject.textinput_Locator("fieldName:OPERATED.BY", testData.get("OPERATED.BY"));
 
         PageObject.commitDeal("Locker Visit ");
 
@@ -84,6 +87,34 @@ public class LockerVisit_IBG extends BaseClass {
         fos.close();
 
     }
+
+    @DataProvider(name = "excelDatalockerVisitIBG")
+    public Object[][] readExcelData1() throws IOException {
+
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
+    }
+
     @Test(groups = {"IBGAuthorizer"})
 
     public void lockerVisit_AuthIBG() throws IOException, InterruptedException {

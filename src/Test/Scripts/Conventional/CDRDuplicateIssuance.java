@@ -32,7 +32,7 @@ public class CDRDuplicateIssuance extends BaseClass {
 
         PageObject.form_Link("Duplicate Issue");
 
-        //PageObject.commitDeal("DemandDraftDuplication");
+        PageObject.commitDeal("DemandDraftDuplication");
 
     }
 
