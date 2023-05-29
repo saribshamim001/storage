@@ -18,9 +18,12 @@ import java.util.Map;
 public class LockerSignature extends BaseClass {
 
     String sigTxn;
-    @Test(groups = {"Inputter"})
 
-    public void lockerSignautre() throws IOException, InterruptedException {
+    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\lockerSignautre.xlsx";
+
+    @Test(groups = {"Inputter"}, dataProvider = "excelDatalockerSignautre")
+
+    public void lockerSignautre(Map<String, String> testData) throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown("Remittance/Clearing Officer -Universal Teller");
         PageObject.menu_Dropdown("Remittance Menu");
@@ -40,9 +43,9 @@ public class LockerSignature extends BaseClass {
 
         PageObject.img_Button("New Deal");
 
-        PageObject.textinput_Locator("fieldName:IMAGE.REFERENCE","OR.0001.0031");
-        PageObject.textinput_Locator("fieldName:SHORT.DESCRIPTION", "Test");
-        PageObject.textinput_Locator("fieldName:DESCRIPTION:1","Tester");
+        PageObject.textinput_Locator("fieldName:IMAGE.REFERENCE",testData.get("IMAGE.REFERENCE"));
+        PageObject.textinput_Locator("fieldName:SHORT.DESCRIPTION", testData.get("SHORT.DESCRIPTION"));
+        PageObject.textinput_Locator("fieldName:DESCRIPTION:1",testData.get("DESCRIPTION:1"));
 
 
         driver.findElement(By.xpath("//tr/td/a/img[@alt='Commit the deal']")).click();
@@ -50,7 +53,7 @@ public class LockerSignature extends BaseClass {
         PageObject.parentFrame();
         PageObject.switchFrame(2);
 
-        PageObject.textinput_Locator("fieldName:FILE.UPLOAD","ASD");
+        PageObject.textinput_Locator("fieldName:FILE.UPLOAD",testData.get("FILE.UPLOAD"));
 
         PageObject.commitDeal("LockerSignature");
 
@@ -59,6 +62,34 @@ public class LockerSignature extends BaseClass {
         System.out.println(sigTxn);
 
     }
+
+    @DataProvider(name = "excelDatalockerSignautre")
+    public Object[][] readExcelData1() throws IOException {
+
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
+    }
+
 
     public static void saveAccNumToFile(String accNumber) throws IOException {
 

@@ -20,8 +20,8 @@ public class LockerInputter_IBG extends BaseClass {
     String amendSingleTxn;
     String amendJointTxn;
 
-    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\LockerInputter_IBG.xlsx";
-    @Test(groups = {"IBGInputter"}, dataProvider = "excelDataLockerInputter_IBG")
+    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\assignLocker_IBG.xlsx";
+    @Test(groups = {"IBGInputter"}, dataProvider = "excelDataassignLocker_IBG")
 
     public void assignLocker_IBG(Map<String, String> testData) throws IOException, InterruptedException {
 
@@ -42,7 +42,7 @@ public class LockerInputter_IBG extends BaseClass {
         PageObject.form_Link("Joint");
 
         PageObject.textinput_Locator("fieldName:KEY",testData.get("KEY"));
-        PageObject.textinput_Locator("fieldName:CUSTOMER", AssignLocker);
+        PageObject.textinput_Locator("fieldName:CUSTOMER",testData.get( AssignLocker));
         PageObject.click_Locator("fieldName:CUST.ACCT");
 
         Thread.sleep(2000);
@@ -69,7 +69,7 @@ public class LockerInputter_IBG extends BaseClass {
 
     }
 
-    @DataProvider(name = "excelDataLockerInputter_IBG")
+    @DataProvider(name = "excelDataassignLocker_IBG")
     public Object[][] readExcelData1() throws IOException {
 
         FileInputStream fis = new FileInputStream(FILE_PATH);
@@ -163,7 +163,7 @@ public class LockerInputter_IBG extends BaseClass {
 
     }
 
-    @DataProvider(name = "excelDataassignLocker_IBG")
+    @DataProvider(name = "excelDataassignLocker_IBGAuth")
     public Object[][] readExcelData() throws IOException {
         String FILE_PATH = System.getProperty("user.dir")+"\\Data\\Assign Locker IBG.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
