@@ -11,28 +11,30 @@
             </run>
         </groups>
         <classes>
-            <class name="Test.Scripts.Conventional.Customer_Create">
-<!--                <methods>-->
-<!--                    <include name="tillToATM"/>-->
-<!--                    <include name="atmToTill"/>-->
-<!--                </methods>-->
+            <class name="Test.Scripts.IBG.Customers">
+                <methods>
+                    <include name="individualCustomer"/>
+<!--                    <include name="corporateCustomer"/>-->
+<!--                    <include name="customerAuthorization"/>-->
+<!--                    <include name="callAccountCreation"/>-->
+<!--                    <include name="KYC"/>-->
+                </methods>
             </class>
         </classes>
     </test>
 
-<!--    <test verbose="1" preserve-order="true" name="Retail Operations Authorizer">
-        <groups>
-            <run>
-                <include name="Authorizer"/>
-            </run>
-        </groups>
-        <classes>
-            <class name="Test.Scripts.StockManagement">
-                <methods>
-                    <include name="authTheStocks"/>
-                </methods>
-            </class>
-        </classes>
-    </test>-->
-
+<!--    <test verbose="1" preserve-order="true" name="Retail Operations Inputter">-->
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="Authorizer"/>-->
+<!--            </run>-->
+<!--        </groups>-->
+<!--        <classes>-->
+<!--            <class name="Test.Scripts.Customers">-->
+<!--                <methods>-->
+<!--                    <include name="customerAuthorization"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>

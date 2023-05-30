@@ -22,10 +22,7 @@ public class Customers extends BaseClass {
     public static String Txn;
     public static String SECTOR;
     public static String TC;
-
-
-
-    @Test(groups = {"IBGInputter"}, dataProvider = "indCustomer")
+   @Test(groups = {"IBGInputter"}, dataProvider = "indCustomer")
     public void individualCustomer(Map<String, String> column) throws InterruptedException, IOException {
 
         PageObject.menu_Dropdown("Customer Relation Officer Menu- IBG");
@@ -109,8 +106,6 @@ public class Customers extends BaseClass {
         saveToDS("UnAuth_Customers (IBG)");
 
     }
-
-
     @Test  (groups = {"IBGInputter"}, dataProvider = "corpCustomer")
     public void corporateCustomer(Map<String, String> column) throws InterruptedException, IOException {
 
@@ -133,7 +128,13 @@ public class Customers extends BaseClass {
         PageObject.select_Locator("fieldName:CUST.SEGMENT",column.get("CUST_SEGMENT"));
         PageObject.radiobutton_Locator("radio:mainTab:SME.TYPE",1);
         PageObject.textinput_Locator("fieldName:ID.TYPE:1",column.get("ID_TYPE"));
-        PageObject.textinput_Locator("fieldName:ID.NUMBER:1","42309978" + PageObject.idNumber());
+        String ID_TYPE= column.get("ID_TYPE");
+        if (ID_TYPE.equalsIgnoreCase("ID-PORC")) {
+            PageObject.textinput_Locator("fieldName:ID.NUMBER:1","EB344078" + PageObject.idNumber());
+        }
+        else  {
+            PageObject.textinput_Locator("fieldName:ID.NUMBER:1","42344078" + PageObject.idNumber());
+        }
         PageObject.click_Locator("fieldName:ID.VAL.DT:1");
         PageObject.textinput_Locator("fieldName:ID.VAL.DT:1",column.get("ID_VAL_DT"));
         PageObject.textinput_Locator("fieldName:NAME.1:1",column.get("NAME_1"));
@@ -238,7 +239,7 @@ public class Customers extends BaseClass {
 
     @DataProvider(name = "indCustomer")
     public Object[][] indCustomer() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\03_IBG_IndividualCustomer_PD.xlsx";
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\CustomersForAccounts(IBG).xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
@@ -265,7 +266,7 @@ public class Customers extends BaseClass {
 
     @DataProvider(name = "corpCustomer")
     public Object[][] corpCustomer() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\04_IBG_CorporateCustomer_PD.xlsx";
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\DevopsTC_customerCorporate(IBG).xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet

@@ -1,4 +1,4 @@
-package Test.Scripts.Conventional;
+package Test.Scripts.IBG;
 
 import POM.PageObject;
 import Test.General.BaseClass;
@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.util.Map;
 
-import static Test.General.BaseClass.driver;
 import static Test.Scripts.IBG.Customers.commitDeal;
 
 public class kycOfAccount extends BaseClass {
@@ -108,5 +107,5 @@ public class kycOfAccount extends BaseClass {
 //        commit2();
 //        Customers.txnValidate();
 //        Customers.saveToDS("ECRP");
-    }
-    }
+    }}
+
