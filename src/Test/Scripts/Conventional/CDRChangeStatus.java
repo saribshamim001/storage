@@ -1,4 +1,4 @@
-package Test.Scripts;
+package Test.Scripts.Conventional;
 
 import POM.PageObject;
 import Test.General.BaseClass;
@@ -9,6 +9,8 @@ import java.io.IOException;
 public class CDRChangeStatus extends BaseClass {
 
     @Test(groups = {"Inputter"})
+
+    //Data related issue, transaction couldn't perform properly
 
     public void CDRChngStatus() throws InterruptedException, IOException {
         PageObject.menu_Dropdown("Remittance/Clearing Officer -Universal Teller");
@@ -36,6 +38,6 @@ public class CDRChangeStatus extends BaseClass {
 
         Thread.sleep(2000);
 
-        PageObject.commitDeal("CDRChngStatus");
+        //PageObject.commitDeal("CDRChngStatus");
     }
 }

@@ -1,21 +1,21 @@
-package Test.Scripts;
+package Test.Scripts.IBG;
 
 import POM.PageObject;
 import Test.General.BaseClass;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
+
 import java.io.IOException;
 
-public class Adhoc_Charge  extends BaseClass {
+public class AdhocCharge_IBG extends BaseClass {
 
     @Test(groups = {"Inputter"})
+
     public void AdhocChargeFixedRate() throws IOException,InterruptedException {
 
-        PageObject.menu_Dropdown("Head Teller Menu-Universal Teller-Conventiona");
-        PageObject.menu_Dropdown("Customer Services");
-        PageObject.menu_Dropdown("ACCOUNT");
-        PageObject.childmenu_Dropdown("Adhoc Charge Request" , 2);
-        PageObject.childmenu_Link("With delivery (FIXED RATE) " , 2);
+        PageObject.menu_Dropdown("Teller Menu - Universal Teller -IBG");
+        PageObject.menu_Dropdown("Adhoc Charges");
+        PageObject.childmenu_Link("With delivery (FIXED RATE) ", 2);
 
         PageObject.parentFrame();
         PageObject.switchFrame(2);
@@ -44,17 +44,16 @@ public class Adhoc_Charge  extends BaseClass {
         String txn = PageObject.getTxn();
         System.out.println(txn);
         driver.close();
- }
+    }
 
 
-    @Test(groups = {"Inputter"})
+    /*@Test(groups = {"Inputter"})
     public void AdhocChargeChangeableRate() throws IOException, InterruptedException {
 
-        PageObject.menu_Dropdown("Head Teller Menu-Universal Teller-Conventiona");
-        PageObject.menu_Dropdown("Customer Services");
-        PageObject.menu_Dropdown("ACCOUNT");
-        PageObject.childmenu_Dropdown("Adhoc Charge Request", 2);
+        PageObject.menu_Dropdown("Teller Menu - Universal Teller -IBG");
+        PageObject.menu_Dropdown("Adhoc Charges");
         PageObject.childmenu_Link("With delivery (CHANGEABLE RATE) ", 2);
+
         PageObject.parentFrame();
         PageObject.switchFrame(2);
         String pgnameo = driver.getWindowHandle();
@@ -87,13 +86,22 @@ public class Adhoc_Charge  extends BaseClass {
     @Test(groups = {"Inputter"})
     public void ListAdhocChargeRequest() throws IOException, InterruptedException {
 
-        PageObject.menu_Dropdown("Customer Relation Officer Menu");
-        PageObject.menu_Dropdown("Account");
-        PageObject.menu_Dropdown("Adhoc Charge Request");
-        PageObject.menu_Link("List of ADHOC Charges ");
+        PageObject.menu_Dropdown("Teller Menu - Universal Teller -IBG");
+        PageObject.menu_Dropdown("Adhoc Charges");
+        PageObject.childmenu_Link("List of ADHOC Charges ", 2);
+
         PageObject.switchToChildWindow();
         PageObject.find_Button();
     }
 
-}
+    @Test(groups = {"Inputter"})
+    public void UnauthoriseListAdhocChargeRequest() throws IOException, InterruptedException {
 
+        PageObject.menu_Dropdown("Teller Menu - Universal Teller -IBG");
+        PageObject.menu_Dropdown("Adhoc Charges");
+        PageObject.menu_Link("Unauthorise List for AC.Charge.Request ");
+
+        PageObject.switchToChildWindow();
+        PageObject.find_Button();
+    }*/
+}

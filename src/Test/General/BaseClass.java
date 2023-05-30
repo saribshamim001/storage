@@ -50,6 +50,7 @@ public class BaseClass {
         action = new Actions(driver);
 
         driver.get("https://172.24.128.50/R22SIT2/servlet/BrowserServlet");
+        //driver.get("http://172.21.81.59:9080/R13UAT1/servlet/BrowserServlet");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.manage().window().maximize();
     }
@@ -68,6 +69,7 @@ public class BaseClass {
         action = new Actions(driver);
 
         driver.get("https://172.24.128.50/R22SIT2/servlet/BrowserServlet");
+        //driver.get("http://172.21.81.59:9080/R13UAT1/servlet/BrowserServlet");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.manage().window().maximize();
     }
@@ -97,9 +99,10 @@ public class BaseClass {
 
     @BeforeMethod(groups = {"Inputter"})
     public void inputterLogin() {
+//        edgeConfig();
         chromeConfig();
-
-        PageObject.signIn("retail05", "QWer1234");
+        PageObject.signIn("RETAIL888", "QWer1234");
+        //PageObject.signIn("SARA88", "QWer4321");
 
         PageObject.switchFrame(1);
 
@@ -160,18 +163,18 @@ public class BaseClass {
     }
 
 
-    @AfterMethod(groups = {"Authorizer" , "Inputter", "IBGInputter", "IBGAuthorizer"})
-    public void userLogout(){
-        this.driver.close();
-
-        PageObject.switchToParentWindow(homePage);
-
-        PageObject.switchFrame(0);
-
-        PageObject.signOff();
-
-        this.driver.close();
-    }
+//    @AfterMethod(groups = {"Authorizer" , "Inputter", "IBGInputter", "IBGAuthorizer"})
+//    public void userLogout(){
+//        this.driver.close();
+//
+//        PageObject.switchToParentWindow(homePage);
+//
+//        PageObject.switchFrame(0);
+//
+//        PageObject.signOff();
+//
+//        this.driver.close();
+//    }
 
 }
 

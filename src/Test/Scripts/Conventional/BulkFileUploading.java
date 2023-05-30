@@ -1,4 +1,4 @@
-package Test.Scripts;
+package Test.Scripts.Conventional;
 
 import POM.PageObject;
 import Test.General.BaseClass;

@@ -16,11 +16,13 @@ import java.util.Map;
 
 public class KYC_Amendment_CustIBG extends BaseClass {
     String txn;
+
+    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\kYC_Amendment_CustIBG.xlsx";
     String CusNumber="16992982";
 
-    @Test(groups = {"IBGInputter"})
+    @Test(groups = {"IBGInputter"},dataProvider = "excelDataKYC_Amendment_CustIBG")
 
-    public void KYC_Amendment_CustIBG() throws IOException, InterruptedException {
+    public void KYC_Amendment_CustIBG(Map<String, String> testData) throws IOException, InterruptedException {
 
 
 
@@ -35,7 +37,7 @@ public class KYC_Amendment_CustIBG extends BaseClass {
         String menu = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
 
-        PageObject.textinput_Locator("value:1:1:1", CusNumber);
+        PageObject.textinput_Locator("value:1:1:1", testData.get("value:1:1:1"));
         PageObject.find_Button();
 
 
@@ -46,31 +48,31 @@ public class KYC_Amendment_CustIBG extends BaseClass {
         String menu2 = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
 
-        PageObject.select_Locator("fieldName:OCCUPATION","Business");  //Business or Salaried
-        PageObject.textinput_Locator("fieldName:NAME.OF.BUS","Test Store");
-        PageObject.textinput_Locator("fieldName:NAT.OF.BUS","Test21");
-        PageObject.textinput_Locator("fieldName:STAT.OWNER","Test1");
-        PageObject.textinput_Locator("fieldName:NAME.OF.EMP","7");
-        PageObject.textinput_Locator("fieldName:CS.POS","11");
-        PageObject.textinput_Locator("fieldName:CS.EMP.SINCE","NA");
+        PageObject.select_Locator("fieldName:OCCUPATION",testData.get("OCCUPATION"));  //Business or Salaried
+        PageObject.textinput_Locator("fieldName:NAME.OF.BUS",testData.get("NAME.OF.BUS"));
+        PageObject.textinput_Locator("fieldName:NAT.OF.BUS",testData.get("NAT.OF.BUS"));
+        PageObject.textinput_Locator("fieldName:STAT.OWNER",testData.get("STAT.OWNER"));
+        PageObject.textinput_Locator("fieldName:NAME.OF.EMP",testData.get("NAME.OF.EMP"));
+        PageObject.textinput_Locator("fieldName:CS.POS",testData.get("CS.POS"));
+        PageObject.textinput_Locator("fieldName:CS.EMP.SINCE",testData.get("CS.EMP.SINCE"));
         PageObject.radiobutton_Locator("radio:mainTab:STATUS",1);
-        PageObject.textinput_Locator("fieldName:CURRENT.SALARY","0");
-        PageObject.textinput_Locator("fieldName:OTHER.INCOME","0");
-        PageObject.textinput_Locator("fieldName:OTHER.FUNDS","0");
-        PageObject.textinput_Locator("fieldName:PER.PROP.INMNT","20000000");
-        PageObject.textinput_Locator("fieldName:CS.ANNUM.TO","400000");
-        PageObject.textinput_Locator("fieldName:SOURCE.OF.INCOME","Business");
+        PageObject.textinput_Locator("fieldName:CURRENT.SALARY",testData.get("CURRENT.SALARY"));
+        PageObject.textinput_Locator("fieldName:OTHER.INCOME",testData.get("OTHER.INCOME"));
+        PageObject.textinput_Locator("fieldName:OTHER.FUNDS",testData.get("OTHER.FUNDS"));
+        PageObject.textinput_Locator("fieldName:PER.PROP.INMNT",testData.get("PER.PROP.INMNT"));
+        PageObject.textinput_Locator("fieldName:CS.ANNUM.TO",testData.get("CS.ANNUM.TO"));
+        PageObject.textinput_Locator("fieldName:SOURCE.OF.INCOME",testData.get("SOURCE.OF.INCOME"));
         PageObject.radiobutton_Locator("radio:mainTab:REL.POILITICAL",1);
-        PageObject.textinput_Locator("fieldName:POLITICAL.FIGURE","Test3");
+        PageObject.textinput_Locator("fieldName:POLITICAL.FIGURE",testData.get("POLITICAL.FIGURE"));
         PageObject.radiobutton_Locator("radio:mainTab:PFAMAPPROVAL",1);
-        PageObject.textinput_Locator("fieldName:KYC.REVW.COMENT","Testing");
+        PageObject.textinput_Locator("fieldName:KYC.REVW.COMENT",testData.get("KYC.REVW.COMENT"));
         PageObject.radiobutton_Locator("radio:mainTab:HRAMAPPROVAL",1);
         PageObject.radiobutton_Locator("radio:mainTab:CH.BS.CNT.PHNO",1);
-        PageObject.textinput_Locator("fieldName:CUST.COMMENTS:1","ISL");
+        PageObject.textinput_Locator("fieldName:CUST.COMMENTS:1",testData.get("CUST.COMMENTS:1"));
         PageObject.radiobutton_Locator("radio:mainTab:CH.FIN.STMT",1);
         PageObject.radiobutton_Locator("radio:mainTab:CH.EXP.GEO.LOCAL",1);
         PageObject.radiobutton_Locator("radio:mainTab:CH.EXP.GEO.INT",1);
-        PageObject.textinput_Locator("fieldName:EXP.COUNT.PARTY:1","Test4");
+        PageObject.textinput_Locator("fieldName:EXP.COUNT.PARTY:1",testData.get("EXP.COUNT.PARTY:1"));
         PageObject.radiobutton_Locator("radio:mainTab:CH.EXP.COUNT.PARTY",1);
         PageObject.radiobutton_Locator("radio:mainTab:CH.CS.OCCUPATION",1);
         PageObject.radiobutton_Locator("radio:mainTab:CH.NAME.OF.BUS",1);
@@ -107,7 +109,7 @@ public class KYC_Amendment_CustIBG extends BaseClass {
         String TxnNum = accNumber ;
         System.out.println("Acc Number is: "+TxnNum);
 
-        File file = new File(System.getProperty("user.dir") + "\\Data\\KYC_Amendment_Customer.xlsx");
+        File file = new File(System.getProperty("user.dir") + "\\Data\\KYC_Amendment_Cust_IBG.xlsx");
         XSSFWorkbook workbook;
         Row row;
         Cell cell;
@@ -175,11 +177,9 @@ public class KYC_Amendment_CustIBG extends BaseClass {
 
     }
 
+    @DataProvider(name = "excelDataKYC_Amendment_CustIBG")
+    public Object[][] readExcelData1() throws IOException {
 
-
-    @DataProvider(name = "excelData")
-    public Object[][] readExcelData() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\KYC_Amendment_Customer.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
@@ -203,6 +203,4 @@ public class KYC_Amendment_CustIBG extends BaseClass {
         fis.close();
         return data;
     }
-
-
 }
