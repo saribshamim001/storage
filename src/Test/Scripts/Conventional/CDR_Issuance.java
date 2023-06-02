@@ -29,7 +29,7 @@ public class CDR_Issuance extends BaseClass {
         PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","1000264788");
         PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1","SARA");
         PageObject.textinput_Locator("fieldName:CREDIT.AMOUNT","100");
-        PageObject.radiobutton_Locator("radio:tab1:COMMISSION.CODE" , 4);
+        PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE" , 4);
         //PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1","WAIVE");
 
         PageObject.form_Tab("Due Delligence");
@@ -45,4 +45,28 @@ public class CDR_Issuance extends BaseClass {
 
     }
 
-}
+    @Test(groups = {"Authorizer"})
+
+    public void CDRIssuance_Auth() throws IOException, InterruptedException {
+
+        PageObject.menu_Dropdown("Manager Operation Menu");
+        PageObject.menu_Dropdown("Core Retail Menu");
+        PageObject.menu_Dropdown("Call Deposit Receipt- Authorizer Menu");
+        PageObject.menu_Dropdown("Call Deposit Receipt Instrument Authorization");
+
+        PageObject.menu_Link("Authorization of Single CDR Issuance ");
+
+        //String menu1 = PageObject.switchToChildWindow();
+
+        PageObject.form_Link("Authorize Transaction");
+
+        String menu2 = PageObject.switchToChildWindow();
+
+        PageObject.img_Button("Authorises a deal");
+
+    }
+
+
+
+    }
+

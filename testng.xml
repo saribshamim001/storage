@@ -7,13 +7,13 @@
     <test verbose="2" preserve-order="true" name="Retail Operations">
         <groups>
             <run>
-                <include name="IBGInputter"/>
+                <include name="Inputter"/>
             </run>
         </groups>
         <classes>
-            <class name="Test.Scripts.IBG.CDR_Cancellation_IBG">
+            <class name="Test.Scripts.Conventional.CDR_Issuance">
             <methods>
-                <include name="CDRCancellationIBG"/>
+                <include name="CDR_Issuance"/>
             </methods>
             </class>
         </classes>
