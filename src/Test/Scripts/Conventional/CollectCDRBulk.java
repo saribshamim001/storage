@@ -44,8 +44,30 @@ public class CollectCDRBulk extends BaseClass {
 
         PageObject.commitDeal("CDRBulkIssuance");
 
+    }
+
+    @Test(groups = {"Authorizer"})
+
+    public void CDRBulkIssuance_Auth() throws IOException, InterruptedException {
+
+        PageObject.menu_Dropdown("Manager Operation Menu");
+
+        PageObject.menu_Dropdown("Core Retail Menu");
+
+        PageObject.menu_Dropdown("Call Deposit Receipt- Authorizer Menu");
+
+        PageObject.menu_Dropdown("Call Deposit Receipt Instrument Authorization");
+
+        PageObject.menu_Link("Authorization Bulk CDR Instrument ");
+
+        PageObject.find_Button();
+
+        PageObject.form_Link("Authorize Transaction");
+
+        String menu2 = PageObject.switchToChildWindow();
+
+        PageObject.img_Button("Authorises a deal");
 
 
     }
-
 }

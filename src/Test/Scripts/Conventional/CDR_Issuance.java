@@ -58,6 +58,8 @@ public class CDR_Issuance extends BaseClass {
 
         //String menu1 = PageObject.switchToChildWindow();
 
+        PageObject.find_Button();
+
         PageObject.form_Link("Authorize Transaction");
 
         String menu2 = PageObject.switchToChildWindow();

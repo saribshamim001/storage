@@ -29,12 +29,35 @@ public class IssueCDRBulk extends BaseClass {
 
         Thread.sleep(2000);
 
-
-
-
-
         //PageObject.commitDeal("CDRBulkIssueInput");
 
 
     }
+
+    @Test(groups = {"Authorizer"})
+
+
+    public void CDRBulkIssue_Auth() throws IOException, InterruptedException {
+
+        PageObject.menu_Dropdown("Manager Operation Menu");
+
+        PageObject.menu_Dropdown("Core Retail Menu");
+
+        PageObject.menu_Dropdown("Call Deposit Receipt- Authorizer Menu");
+
+        PageObject.menu_Dropdown("Call Deposit Receipt Instrument Authorization");
+
+        PageObject.menu_Link("Authorization of Bulk CDR Issuance- Step-1 ");
+
+        String menu1 = PageObject.switchToChildWindow();
+
+        PageObject.find_Button();
+
+        PageObject.form_Link("Authorize Transaction");
+
+        String menu2 = PageObject.switchToChildWindow();
+        PageObject.img_Button("Authorises a deal");
+
+    }
+
 }

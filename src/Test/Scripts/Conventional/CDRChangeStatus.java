@@ -40,4 +40,28 @@ public class CDRChangeStatus extends BaseClass {
 
         //PageObject.commitDeal("CDRChngStatus");
     }
+
+       @Test(groups = {"Authorizer"})
+
+       public void CDRChangeStatus_Auth() throws IOException, InterruptedException {
+
+           PageObject.menu_Dropdown("Manager Operation Menu");
+           PageObject.menu_Dropdown("Core Retail Menu");
+
+           PageObject.menu_Dropdown("Call Deposit Receipt- Authorizer Menu");
+           PageObject.menu_Dropdown("Call Deposit Receipt Maintenance Authorize");
+
+           PageObject.menu_Link("Authorisation Change Status of Instrument ");
+
+           String menu1 = PageObject.switchToChildWindow();
+
+           PageObject.find_Button();
+
+           PageObject.form_Link("Authorize Transaction");
+
+           String menu2 = PageObject.switchToChildWindow();
+           PageObject.img_Button("Authorises a deal");
+
+
+       }
 }

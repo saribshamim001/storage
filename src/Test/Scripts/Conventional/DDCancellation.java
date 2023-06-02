@@ -45,9 +45,17 @@ public class DDCancellation extends BaseClass {
 
         PageObject.menu_Dropdown("Call Deposit Receipt Maintenance Authorize");
 
+        PageObject.menu_Link("Authorization CDR Cancellation Instrument ");
 
+        String menu1 = PageObject.switchToChildWindow();
 
+        PageObject.find_Button();
 
+        PageObject.form_Link("Authorize Transaction");
+
+        String menu2 = PageObject.switchToChildWindow();
+
+        PageObject.img_Button("Authorises a deal");
 
     }
 }
