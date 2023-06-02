@@ -160,6 +160,7 @@ public class BaseClass {
 
         PageObject.menu_Dropdown("Manager Operation Menu");
         PageObject.menu_Dropdown("Core Retail Menu");
+
     }
 
 

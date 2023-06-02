@@ -47,4 +47,23 @@ public class CDRInwardSameDay extends BaseClass {
         PageObject.commitDeal("CDRInwardSameDayCase");
 
     }
+
+    @Test(groups = {"Authorizer"})
+
+    public void  CDRInwardSame_Auth() throws IOException, InterruptedException {
+
+        PageObject.menu_Dropdown("Manager Operation Menu");
+        PageObject.menu_Dropdown("Core Retail Menu");
+        PageObject.menu_Dropdown("Call Deposit Receipt- Authorizer Menu");
+        PageObject.menu_Dropdown("Call Deposit Receipt Inward Clg Authorization");
+        PageObject.menu_Link("Authorization of Inward Clearing Sameday ");
+
+        PageObject.find_Button();
+
+        PageObject.form_Link("Authorize Transaction");
+
+        String menu2 = PageObject.switchToChildWindow();
+        PageObject.img_Button("Authorises a deal");
+
+    }
 }

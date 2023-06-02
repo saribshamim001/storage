@@ -31,4 +31,23 @@ public class DDCancellation extends BaseClass {
 
 
     }
+
+
+    @Test(groups = {"Authorizer"})
+
+    public void DDCancellation_Auth() throws IOException, InterruptedException {
+
+        PageObject.menu_Dropdown("Manager Operation Menu");
+
+        PageObject.menu_Dropdown("Core Retail Menu");
+
+        PageObject.menu_Dropdown("Call Deposit Receipt- Authorizer Menu");
+
+        PageObject.menu_Dropdown("Call Deposit Receipt Maintenance Authorize");
+
+
+
+
+
+    }
 }

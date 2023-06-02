@@ -43,4 +43,26 @@ public class CDRInwardClearingInCity extends BaseClass {
 
         PageObject.commitDeal("CDRInwardInterCityCase");
     }
+
+    @Test(groups = {"Authorizer"})
+
+    public void  CDRInwardInter_Auth() throws IOException, InterruptedException {
+
+        PageObject.menu_Dropdown("Manager Operation Menu");
+
+        PageObject.menu_Dropdown("Core Retail Menu");
+
+        PageObject.menu_Dropdown("Call Deposit Receipt- Authorizer Menu");
+
+        PageObject.menu_Dropdown("Call Deposit Receipt Inward Clg Authorization");
+
+        PageObject.menu_Link("Authorization of Inward Clearing Incity City ");
+
+        PageObject.find_Button();
+
+        PageObject.form_Link("Authorize Transaction");
+
+        String menu2 = PageObject.switchToChildWindow();
+        PageObject.img_Button("Authorises a deal");
+    }
 }

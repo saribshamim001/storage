@@ -22,6 +22,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+
 public class Customers extends BaseClass {
 
     public static String Txn;
@@ -99,7 +100,7 @@ public class Customers extends BaseClass {
         // CP
         PageObject.form_Tab("Contact Person");
         PageObject.textinput_Locator("fieldName:CP.NAME:1",column.get("CP_NAME"));
-       PageObject.textinput_Locator("fieldName:CP.TITLE:1",column.get("CP_TITLE"));
+        PageObject.textinput_Locator("fieldName:CP.TITLE:1",column.get("CP_TITLE"));
         PageObject.textinput_Locator("fieldName:CP.ADD:1",column.get("CP_ADD"));
         PageObject.textinput_Locator("fieldName:CP.ADD2:1",column.get("CP_ADD2"));
         PageObject.textinput_Locator("fieldName:CP.PH.OFF:1",column.get("CP_PH_OFF"));
@@ -344,53 +345,53 @@ public class Customers extends BaseClass {
 
         }
     }
-        public static void txnValidate() throws IOException {
-            WebElement Txn = driver.findElement(By.xpath("//table/tbody/tr/td[contains(text(),'Txn Complete:')]"));
-            Assert.assertTrue(Txn.isDisplayed(),"Transaction Un-Successful");
-            String Transaction = Txn.getText();
-            String[] first = Transaction.split(":");
-            String[] second = first[1].split(" ");
-            Customers.Txn = second[1];
-            System.out.println("Transaction Number is: "+Customers.Txn);
-        }
+    public static void txnValidate() throws IOException {
+        WebElement Txn = driver.findElement(By.xpath("//table/tbody/tr/td[contains(text(),'Txn Complete:')]"));
+        Assert.assertTrue(Txn.isDisplayed(),"Transaction Un-Successful");
+        String Transaction = Txn.getText();
+        String[] first = Transaction.split(":");
+        String[] second = first[1].split(" ");
+        Customers.Txn = second[1];
+        System.out.println("Transaction Number is: "+Customers.Txn);
+    }
 
-        public static void saveToDS(String testCaseName) throws IOException {
-            File file = new File(System.getProperty("user.dir") + "\\Data\\" +testCaseName+ ".xlsx");
-            XSSFWorkbook workbook;
-            Row row;
-            Cell cell;
-            int rowNum = 0;
+    public static void saveToDS(String testCaseName) throws IOException {
+        File file = new File(System.getProperty("user.dir") + "\\Data\\" +testCaseName+ ".xlsx");
+        XSSFWorkbook workbook;
+        Row row;
+        Cell cell;
+        int rowNum = 0;
 
-            if (file.exists()) {
-                FileInputStream fis = new FileInputStream(file);
-                workbook = new XSSFWorkbook(fis);
-                Sheet sheet = workbook.getSheetAt(0);
-                rowNum = sheet.getLastRowNum() + 1; // Start writing from the next row
-            } else {
-                workbook = new XSSFWorkbook();
-                Sheet sheet = workbook.createSheet();
-                row = sheet.createRow(rowNum++);
-                cell = row.createCell(0);
-                cell.setCellValue("TC");
-                cell = row.createCell(1);
-                cell.setCellValue("Customer_ID");
-                cell = row.createCell(2);
-                cell.setCellValue("PD");
-
-            }
-
+        if (file.exists()) {
+            FileInputStream fis = new FileInputStream(file);
+            workbook = new XSSFWorkbook(fis);
             Sheet sheet = workbook.getSheetAt(0);
+            rowNum = sheet.getLastRowNum() + 1; // Start writing from the next row
+        } else {
+            workbook = new XSSFWorkbook();
+            Sheet sheet = workbook.createSheet();
             row = sheet.createRow(rowNum++);
             cell = row.createCell(0);
-            cell.setCellValue(Customers.TC);
+            cell.setCellValue("TC");
             cell = row.createCell(1);
-            cell.setCellValue(Customers.Txn);
+            cell.setCellValue("Customer_ID");
             cell = row.createCell(2);
-            cell.setCellValue(Accounts.PD);
-
-            FileOutputStream fos = new FileOutputStream(file);
-            workbook.write(fos);
-            fos.close();
+            cell.setCellValue("PD");
 
         }
+
+        Sheet sheet = workbook.getSheetAt(0);
+        row = sheet.createRow(rowNum++);
+        cell = row.createCell(0);
+        cell.setCellValue(Customers.TC);
+        cell = row.createCell(1);
+        cell.setCellValue(Customers.Txn);
+        cell = row.createCell(2);
+        cell.setCellValue(Accounts.PD);
+
+        FileOutputStream fos = new FileOutputStream(file);
+        workbook.write(fos);
+        fos.close();
+
+    }
 }
