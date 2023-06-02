@@ -67,5 +67,5 @@ public class CDR_Status extends BaseClass {
 
 
     }
-        //Authorizer not found
+
 }

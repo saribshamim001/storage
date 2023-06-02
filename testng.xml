@@ -4,48 +4,35 @@
     <listeners>
         <listener class-name="Resources.Listeners"/>
     </listeners>
-    <test verbose="2" preserve-order="true" name="Retail Operations">
+    <test verbose="1" preserve-order="true" name="Retail Operations Inputter">
         <groups>
             <run>
                 <include name="Inputter"/>
             </run>
         </groups>
+
         <classes>
-            <class name="Test.Scripts.Conventional.CDR_Issuance">
+            <class name="Test.Scripts.Conventional.CDR_Status">
             <methods>
-                <include name="CDR_Issuance"/>
+                <include name="CDRStatusStop"/>
             </methods>
             </class>
         </classes>
     </test>
-<!--
-    <test verbose="2" preserve-order="true" name="Retail Operations Auth">
+    <test verbose="1" preserve-order="true" name="Retail Operations Authorizer">
         <groups>
             <run>
                 <include name="Authorizer"/>
             </run>
         </groups>
+
         <classes>
-            <class name="Test.Scripts.Conventional.CDR_Dealslip">
-            <methods>
-                <include name="authfTOnline"/>
-            </methods>
-            </class>
-        </classes>
-    </test>
-    <test verbose="2" preserve-order="true" name="Retail Operations View SLip">
-        <groups>
-            <run>
-                <include name="Inputter"/>
-            </run>
-        </groups>
-        <classes>
-            <class name="Test.Scripts.Conventional.CDR_Dealslip">
+            <class name="Test.Scripts.Conventional.CDR_Status">
                 <methods>
-                    <include name="viewCDRSlip"/>
+                    <include name="CDRStatusStop"/>
                 </methods>
             </class>
         </classes>
-    </test>-->
+    </test>
 
 </suite>
