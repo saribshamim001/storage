@@ -26,8 +26,9 @@ public class BulkFileUploading extends BaseClass {
         PageObject.img_Button("New Deal");
         PageObject.textinput_Locator("fieldName:DESCRIPTION","TEST FILE");
 
-        //iframe ID and File Path
-        PageObject.uploadFile("D:\\Excel Code.txt","fileUploadIframe");
+
+
+
 
     }
 }
