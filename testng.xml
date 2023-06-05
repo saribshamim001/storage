@@ -12,27 +12,27 @@
         </groups>
 
         <classes>
-            <class name="Test.Scripts.Conventional.CDR_Status">
+            <class name="Test.Scripts.Conventional.CDR_Issuance">
             <methods>
-                <include name="CDRStatusStop"/>
+                <include name="CDRIssuanceinput"/>
             </methods>
             </class>
         </classes>
     </test>
-    <test verbose="1" preserve-order="true" name="Retail Operations Authorizer">
-        <groups>
-            <run>
-                <include name="Authorizer"/>
-            </run>
-        </groups>
+<!--    <test verbose="1" preserve-order="true" name="Retail Operations Authorizer">-->
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="Authorizer"/>-->
+<!--            </run>-->
+<!--        </groups>-->
 
-        <classes>
-            <class name="Test.Scripts.Conventional.CDR_Status">
-                <methods>
-                    <include name="CDRStatusStop"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
+<!--        <classes>-->
+<!--            <class name="Test.Scripts.Conventional.CDR_Status">-->
+<!--                <methods>-->
+<!--                    <include name="CDRStatusStop"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>-->
 
 </suite>

@@ -1,7 +1,8 @@
-//package Test.Scripts;
+//package Test.Scripts.Conventional;
 //
 //import POM.PageObject;
 //import Test.General.BaseClass;
+////import Test.General.ExtraMethods;
 //import lombok.ToString;
 //import org.openqa.selenium.By;
 //import org.openqa.selenium.WebElement;
@@ -20,13 +21,14 @@
 //import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 //
 //
-//import static Test.General.ExtraMethods.*;
+////import static Test.General.ExtraMethods.*;
 //import POM.PageObject.*;
 //
 //import javax.sql.rowset.spi.TransactionalWriter;
 //
-//
 //public class TellerCash extends BaseClass {
+//
+//    String dateTodayGlobal = "20221231";
 //
 //    @Test(groups = "Inputter" , dataProvider = "cashDepoOnlineLCY")
 //    public void cashDepoOnlineLCY(Map<String, String> testData) throws InterruptedException, IOException {
@@ -83,7 +85,23 @@
 //        PageObject.textarea_Locator("fieldName:OTHER.REMARKS", Remarks);
 //        PageObject.textinput_Locator("fieldName:DATE.OF.BIRTH", DateOfBirth);
 //        PageObject.textinput_Locator("fieldName:FATHER.NAME", FatherName);
-//        commitDeal("cashDepoOnlineLCY");
+//        driver.findElement(By.xpath("//tr/td/a/img[@alt='Validate a deal']")).click();
+//
+//        int handleCount = driver.getWindowHandles().size();
+//        String handleIds = driver.getWindowHandles().toString();
+//        System.out.println(handleCount);
+//        System.out.println(handleIds);
+//        if (handleCount == 3) {
+//            System.out.println("IN IF CONDITION");
+//            String ChildPage2 = PageObject.switchToChildWindow();
+//            this.driver.close();
+//            Thread.sleep(3000);
+//            PageObject.switchToParentWindow(newPage);
+//            PageObject.switchFrame(2);
+//            PageObject.maximizeWindow();
+//        }
+//
+//        PageObject.commitDeal("cashDepoOnlineLCY");
 //    }
 //
 //    @DataProvider(name = "cashDepoOnlineLCY")
@@ -118,29 +136,42 @@
 //
 //        //VARIABLE FOR EXCEL DATA STORAGE
 //        String TxnNumber = testData.get("Transaction Number");
-////        TxnNumber = "TT22362301916404";
 //
 //        PageObject.menu_Dropdown("Teller");
 //        PageObject.menu_Dropdown("Teller Menu");
 //        PageObject.menu_Dropdown("Teller Cash");
 //        PageObject.menu_Link("LCY cash deposit - LCY A/c Online ");
 //
-//        /*PageObject.parentFrame();*/
-////        PageObject.switchFrame(1);
-//
 //        String ChildPage1 = PageObject.switchToChildWindow();
 //        PageObject.textinput_Locator("transactionId",TxnNumber);
 //        PageObject.img_Button("Perform an action on the contract");
-//        String ChildPage2 = PageObject.switchToChildWindow();
-//        String ChildPage3 = PageObject.switchToChildWindow();
-//        this.driver.close();
-//        PageObject.switchToParentWindow(ChildPage2);
+//        Thread.sleep(3000);
+//
+//        int handleCount = driver.getWindowHandles().size();
+//        String handleIds = driver.getWindowHandles().toString();
+//        System.out.println(handleCount);
+//        System.out.println(handleIds);
+//        if (handleCount == 3) {
+//            System.out.println("IN IF CONDITION");
+//            String ChildPage2 = PageObject.switchToChildWindow();
+//            driver.close();
+//            PageObject.switchToParentWindow(homePage);
+//            PageObject.switchToChildWindow();
+//            System.out.println("in childPage1");
+//            Thread.sleep(3000);
+//        }
 //        PageObject.maximizeWindow();
-////        PageObject.authorizeDeal();
-//        PageObject.img_Button("Authorises a deal");
-//        String ChildPage4 = PageObject.switchToChildWindow();
-//        this.driver.close();
-//        PageObject.switchToParentWindow(ChildPage1);
+//        PageObject.authorizeDeal();
+//        Thread.sleep(3000);
+//        if (handleCount == 3) {
+//            System.out.println("IN SECOND IF");
+//            String ChildPage3 = PageObject.switchToChildWindow();
+//            driver.close();
+//            Thread.sleep(3000);
+//            PageObject.switchToParentWindow(homePage);
+//            PageObject.switchToChildWindow();
+//            System.out.println("in childPage1");
+//        }
 //
 //    }
 //
@@ -231,13 +262,17 @@
 //            PageObject.textinput_Locator("fieldName:DATE.OF.BIRTH", DateOfBirth);
 //            PageObject.textinput_Locator("fieldName:FATHER.NAME", FatherName);
 //        }
-//        PageObject.commitDeal("cashDepoWithinBranchLCY");
 //
-////        driver.close();
-////        PageObject.switchToParentWindow(homePage);
-////        PageObject.parentFrame();
-////        PageObject.switchFrame(0);
-////        PageObject.signOff();
+//
+////        boolean captionError2 = driver.findElement(By.xpath("(//tr/td/span[@class='captionError'])[1]")).isDisplayed();
+////
+////        if (captionError2){
+////            WebElement captionError = driver.findElement(By.xpath("(//tr/td/span[@class='captionError'])[1]"));
+////            AssertionScreenshot("cashDepoWithinBranchLCY");
+////        }
+////        else {
+//            PageObject.commitDeal("cashDepoWithinBranchLCY");
+////        }
 //    }
 //
 //    @DataProvider(name = "cashDepoWithinBranchLCY")
@@ -273,15 +308,23 @@
 //
 //        //VARIABLE FOR EXCEL DATA STORAGE
 //        String TxnNumber = testData.get("Transaction Number");
-//
 //        PageObject.menu_Dropdown("Teller");
 //        PageObject.menu_Dropdown("Teller Menu");
 //        PageObject.menu_Dropdown("Teller Cash");
 //        PageObject.menu_Link("LCY cash deposit LCY A/c-(Within Branch) ");
-//        String ChildPage1 = PageObject.switchToChildWindow();
+//        homePage = PageObject.switchToChildWindow();
 //        PageObject.textinput_Locator("transactionId",TxnNumber);
+//        AssertionScreenshot("cashDepoWithinBranchLCY_Authorization");
 //        PageObject.img_Button("Perform an action on the contract");
 //        PageObject.img_Button("Authorises a deal");
+//
+//        int handlesCount = driver.getWindowHandles().size();
+//        if (handlesCount == 3) {
+//            String childPage = PageObject.switchToChildWindow();
+//            driver.close();
+//            PageObject.switchToParentWindow(childPage);
+//        }
+//
 //    }
 //
 //    @DataProvider(name = "cashDepoWithinBranchLCY_Authorization")
@@ -329,10 +372,12 @@
 //        String CnicValidity = testData.get("CnicValidity");
 //        String CnicType = testData.get("CnicType");
 //        String ChequeNumber = testData.get("ChequeNumber");
-//        String DateToday = "20221227";
+////        String DateToday = "20221227";
+//        String DateToday = dateTodayGlobal;
 //
 //        PageObject.menu_Dropdown("Head Teller Menu-Universal Teller-Conventiona");
 //        PageObject.menu_Dropdown("Teller");
+//        Thread.sleep(1000);
 //        PageObject.menu_Dropdown("Teller Menu");
 //        PageObject.menu_Dropdown("Teller Cash");
 //        PageObject.menu_Link("LCY Cash withdrawal - LCY A/c- Online ");
@@ -377,7 +422,16 @@
 //            PageObject.textinput_Locator("fieldName:DATE.OF.BIRTH", DateOfBirth);
 //            PageObject.textinput_Locator("fieldName:FATHER.NAME", FatherName);
 //        }
-//        PageObject.commitDeal("LCYCashWithdrawalOnline");
+//
+//        driver.findElement(By.xpath("//tr/td/a/img[@alt='Validate a deal']")).click();
+////        WebElement override = driver.findElement(By.xpath("(//tr/td/span[@class='captionError'])[1]"));
+//        if (driver.getPageSource().contains("captionError")){
+//            WebElement captionError = driver.findElement(By.xpath("(//tr/td/span[@class='captionError'])[1]"));
+//            AssertionScreenshot("LCYCashWithdrawalOnline");
+//        }
+//        else {
+//            PageObject.commitDeal("LCYCashWithdrawalOnline");
+//        }
 //
 //    }
 //
@@ -419,18 +473,17 @@
 //        PageObject.menu_Dropdown("Teller Cash");
 //        PageObject.menu_Link("LCY Cash withdrawal - LCY A/c- Online ");
 //
-//        String childPage = PageObject.switchToChildWindow();
-//
-////        PageObject.parentFrame();
-////        PageObject.switchFrame(2);
-//
+//        homePage = PageObject.switchToChildWindow();
+//        PageObject.maximizeWindow();
 //        PageObject.textinput_Locator("transactionId", TxnNumber);
 //        PageObject.img_Button("Perform an action on the contract");
 ////        refreshWindow(2);
 //        PageObject.img_Button("Authorises a deal");
 //
-//        String childPage2 = PageObject.switchToChildWindow();
+//        String childPage = PageObject.switchToChildWindow();
 //        driver.close();
+//        PageObject.switchToParentWindow(childPage);
+//
 //    }
 //
 //    @DataProvider(name = "LCYCashWithdrawalOnline_Authorization")
@@ -478,7 +531,7 @@
 //        String CnicValidity = testData.get("CnicValidity");
 //        String CnicType = testData.get("CnicType");
 //        String ChequeNumber = testData.get("ChequeNumber");
-//        String DateToday = "20221227";
+//        String DateToday = dateTodayGlobal;
 //
 //        PageObject.menu_Dropdown("Head Teller Menu-Universal Teller-Conventiona");
 //        PageObject.menu_Dropdown("Teller");
@@ -574,18 +627,18 @@
 //        PageObject.menu_Dropdown("Teller Cash");
 //        PageObject.menu_Link("LCY Cash withdrawal - LCY A/c-(Within Branch) ");
 //
-//        String childPage = PageObject.switchToChildWindow();
-//
-////        PageObject.parentFrame();
-////        PageObject.switchFrame(2);
+//        homePage = PageObject.switchToChildWindow();
 //
 //        PageObject.textinput_Locator("transactionId", TxnNumber);
 //        PageObject.img_Button("Perform an action on the contract");
-////        refreshWindow(2);
 //        PageObject.img_Button("Authorises a deal");
 //
-//        String childPage2 = PageObject.switchToChildWindow();
-//        driver.close();
+//        int handlesCount = driver.getWindowHandles().size();
+//        if (handlesCount == 3) {
+//            String childPage = PageObject.switchToChildWindow();
+//            driver.close();
+//            PageObject.switchToParentWindow(childPage);
+//        }
 //    }
 //
 //    @DataProvider(name = "LCYCashWithdrawalWithinBranch_Authorization")
@@ -633,7 +686,7 @@
 //        String CnicValidity = testData.get("CnicValidity");
 //        String CnicType = testData.get("CnicType");
 //        String ChequeNumber = testData.get("ChequeNumber");
-//        String DateToday = "20221227";
+//        String DateToday = dateTodayGlobal;
 //        String WithdrawCurrency = testData.get("WithdrawCurrency");
 //
 //        PageObject.menu_Dropdown("Head Teller Menu-Universal Teller-Conventiona");
@@ -689,6 +742,57 @@
 //    @DataProvider(name = "LCYCashWithdrawalFCYAccFCYCheque")
 //    public Object[][] readExcelData5() throws IOException {
 //        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\LCYCashWithdrawalFCYAccFCYCheque.xlsx";
+//        FileInputStream fis = new FileInputStream(FILE_PATH);
+//        Workbook workbook = new XSSFWorkbook(fis);
+//        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+//        int rowCount = sheet.getPhysicalNumberOfRows();
+//        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+//        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+//
+//        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+//            Row row = sheet.getRow(i);
+//            Map<String, String> map = new HashMap<String, String>();
+//            for (int j = 0; j < colCount; j++) {
+//                Cell cell = row.getCell(j);
+//                DataFormatter formatter = new DataFormatter();
+//                String value = formatter.formatCellValue(cell);
+//                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+//            }
+//            data[i - 1][0] = map;
+//        }
+//
+//        workbook.close();
+//        fis.close();
+//        return data;
+//    }
+//
+//    @Test(groups = "Authorizer" , dataProvider = "LCYCashWithdrawalFCYAccFCYCheque_Authorization")
+//    public void LCYCashWithdrawalFCYAccFCYCheque_Authorization(Map<String, String> testData) throws InterruptedException, IOException {
+//
+//        //VARIABLE FOR EXCEL DATA STORAGE
+//        String TxnNumber = testData.get("Transaction Number");
+//
+//        PageObject.menu_Dropdown("Teller");
+//        PageObject.menu_Dropdown("Teller Menu");
+//        PageObject.menu_Dropdown("Teller Cash");
+//        PageObject.menu_Link("LCY Cash withdrawal - FCY A/c (FCY Cheque) ");
+//
+//        homePage = PageObject.switchToChildWindow();
+//
+//        PageObject.textinput_Locator("transactionId", TxnNumber);
+//        PageObject.img_Button("Perform an action on the contract");
+//
+//        PageObject.img_Button("Authorises a deal");
+//
+//        String childPage = PageObject.switchToChildWindow();
+//        driver.close();
+//        PageObject.switchToParentWindow(childPage);
+//
+//    }
+//
+//    @DataProvider(name = "LCYCashWithdrawalFCYAccFCYCheque_Authorization")
+//    public Object[][] readExcelData5_A() throws IOException {
+//        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\LCYCashWithdrawalFCYAccFCYCheque.xlsx";
 //        FileInputStream fis = new FileInputStream(FILE_PATH);
 //        Workbook workbook = new XSSFWorkbook(fis);
 //        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
@@ -814,6 +918,57 @@
 //        return data;
 //    }
 //
+//    @Test(groups = "Authorizer" , dataProvider = "FCYCashDeposit_Authorization")
+//    public void FCYCashDeposit_Authorization(Map<String, String> testData) throws InterruptedException, IOException {
+//
+//        //VARIABLE FOR EXCEL DATA STORAGE
+//        String TxnNumber = testData.get("Transaction Number");
+//
+//        PageObject.menu_Dropdown("Teller");
+//        PageObject.menu_Dropdown("Teller Menu");
+//        PageObject.menu_Dropdown("Teller Cash");
+//        PageObject.menu_Link("FCY Cash deposit ");
+//
+//        homePage = PageObject.switchToChildWindow();
+//
+//        PageObject.textinput_Locator("transactionId", TxnNumber);
+//        PageObject.img_Button("Perform an action on the contract");
+//
+//        PageObject.img_Button("Authorises a deal");
+//
+//        String childPage = PageObject.switchToChildWindow();
+//        driver.close();
+//        PageObject.switchToParentWindow(childPage);
+//
+//    }
+//
+//    @DataProvider(name = "FCYCashDeposit_Authorization")
+//    public Object[][] readExcelData6_A() throws IOException {
+//        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\FCYCashDeposit.xlsx";
+//        FileInputStream fis = new FileInputStream(FILE_PATH);
+//        Workbook workbook = new XSSFWorkbook(fis);
+//        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+//        int rowCount = sheet.getPhysicalNumberOfRows();
+//        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+//        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+//
+//        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+//            Row row = sheet.getRow(i);
+//            Map<String, String> map = new HashMap<String, String>();
+//            for (int j = 0; j < colCount; j++) {
+//                Cell cell = row.getCell(j);
+//                DataFormatter formatter = new DataFormatter();
+//                String value = formatter.formatCellValue(cell);
+//                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+//            }
+//            data[i - 1][0] = map;
+//        }
+//
+//        workbook.close();
+//        fis.close();
+//        return data;
+//    }
+//
 //    /*______________________________________________________________________*/
 //
 //    @Test(groups = "Inputter" , dataProvider = "TellerTransactionsDoneToday")
@@ -836,6 +991,10 @@
 //
 //        PageObject.textinput_Locator("value:1:1:1",TellerID);
 //        PageObject.find_Button();
+//
+//        PageObject.maximizeWindow();
+//        AssertionScreenshot("TellerTransactionsDoneToday");
+//
 //        Thread.sleep(5000);
 //
 //        driver.close();
@@ -892,6 +1051,10 @@
 //
 //        PageObject.textinput_Locator("value:1:1:1",TellerID);
 //        PageObject.find_Button();
+//
+//        PageObject.maximizeWindow();
+//        AssertionScreenshot("TellerCreditTransactionsDoneToday");
+//
 //        Thread.sleep(5000);
 //
 //        driver.close();
@@ -943,6 +1106,10 @@
 //
 //        PageObject.textinput_Locator("value:1:1:1",TellerID);
 //        PageObject.find_Button();
+//
+//        PageObject.maximizeWindow();
+//        AssertionScreenshot("TellerDebitTransactionsDoneToday");
+//
 //        Thread.sleep(5000);
 //
 //        driver.close();
@@ -985,7 +1152,8 @@
 //        String AccountNumber = testData.get("AccountNumber");
 //        String ChequeNumber = testData.get("ChequeNumber");
 //        String Amount = testData.get("Amount");
-//        String DateToday = testData.get("DateToday");
+////        String DateToday = testData.get("DateToday");
+//        String DateToday = dateTodayGlobal;
 //        String CreditCardNumber = testData.get("CreditCardNumber");
 //        String IdType = testData.get("IdType");
 //        String CnicNumber = testData.get("CnicNumber");
@@ -1110,10 +1278,10 @@
 //        return data;
 //    }
 //
-//    /*______________________________________________________________________*/
+//    /*______________________________________________________________________*//*
 //
 ////    @Test(groups = "Inputter" , dataProvider = "DenominationSetupCash")
-//    @Test(groups = "Inputter")
+//    *//*@Test(groups = "Inputter")
 //    public void DenominationSetupCash(Map<String, String> testData) throws InterruptedException, IOException {
 //
 //        //VARIABLE FOR EXCEL DATA STORAGE
@@ -1202,7 +1370,7 @@
 //        }
 //        PageObject.commitDeal("DenominationSetupCash");
 //
-//        countCurrency(58418416);
+//        //countCurrency(58418416);
 //    }
 //
 //    public static void countCurrency (int amount)
@@ -1230,9 +1398,9 @@
 //
 //            }
 //        }
-//    }
+//    }/**/
 //
-//    @DataProvider(name = "DenominationSetupCash")
+//    /*@DataProvider(name = "DenominationSetupCash")
 //    public Object[][] readExcelData11() throws IOException {
 //        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\DenominationSetupCash.xlsx";
 //        FileInputStream fis = new FileInputStream(FILE_PATH);
@@ -1257,7 +1425,7 @@
 //        workbook.close();
 //        fis.close();
 //        return data;
-//    }
+//    }*/
 //
 //    @Test(groups = "Authorizer" , dataProvider = "DenominationSetupCash_Authorization")
 //    public void DenominationSetupCash_Authorization(Map<String, String> testData) throws InterruptedException, IOException {
@@ -1417,7 +1585,7 @@
 //        PageObject.textinput_Locator("value:1:1:1", TxnNumber);
 //        PageObject.find_Button();
 //
-//        driver.findElement(By.xpath("//tr/td/a[text()='Authorise Transaction']")).click();
+////        driver.findElement(By.xpath("//tr/td/a[text()='Authorise Transaction']")).click();
 //
 //        PageObject.img_Button("Authorises a deal");
 //
@@ -1452,13 +1620,15 @@
 //        return data;
 //    }
 //
+//    /*______________________________________________________________________*/
 //
 //    @Test(groups = "Inputter")
-//    public void DenominationSetupCash2() throws InterruptedException, IOException {
+//    public void DenominationSetupCash() throws InterruptedException, IOException {
 //
 //        //VARIABLE FOR EXCEL DATA STORAGE
-//        String CurrencyType = "PKR";
-//        int amount = 0;
+//        String CurrencyType = "USD";
+//        int amountPKR = 0;
+//        double amountUSD = 0;
 //
 //        PageObject.menu_Dropdown("Head Teller Menu-Universal Teller-Conventiona");
 //        PageObject.menu_Dropdown("Teller");
@@ -1533,16 +1703,16 @@
 //            String[] first = Transaction.split("-");
 ////            String[] second = first[1].split(" ");
 //            String denominationAmount = first[1];
-//            amount = Integer.parseInt(denominationAmount);
+//            amountPKR = Integer.parseInt(denominationAmount);
 //
 //            int[] notes = new int[]{5000, 1000, 500, 100, 75, 50, 20, 10, 5, 2, 1};
 //            int[] noteCounter = new int[11];
 //
 //            // count notes using Greedy approach
 //            for (int i = 0; i < 11; i++) {
-//                if (amount >= notes[i]) {
-//                    noteCounter[i] = amount / notes[i];
-//                    amount = amount % notes[i];
+//                if (amountPKR >= notes[i]) {
+//                    noteCounter[i] = amountPKR / notes[i];
+//                    amountPKR = amountPKR % notes[i];
 //                }
 //            }
 //
@@ -1581,6 +1751,123 @@
 //            PageObject.commitDeal("DenominationSetupCash");
 //
 //        }
+//        else if (CurrencyType.equalsIgnoreCase("USD")) {
+//            for (int number = 0; number <= 5; number++) {
+////                PageObject.img_Button("Expand Multi Value");
+//                driver.findElement(By.xpath("(//tr/td/a/img[@alt='Expand Multi Value'])[1]")).click();
+//            }
+//
+//            PageObject.textinput_Locator("fieldName:DENOM:1", "USD1");
+//            PageObject.textinput_Locator("fieldName:DENOM:1", "USD2");
+//            PageObject.textinput_Locator("fieldName:DENOM:1", "USD5");
+//            PageObject.textinput_Locator("fieldName:DENOM:1", "USD10");
+//            PageObject.textinput_Locator("fieldName:DENOM:1", "USD20");
+//            PageObject.textinput_Locator("fieldName:DENOM:1", "USD50");
+//            PageObject.textinput_Locator("fieldName:DENOM:1", "USD100");
+//
+//            for (int number = 0; number <= 5; number++) {
+////            PageObject.img_Button("Expand Multi Value");
+//                driver.findElement(By.xpath("(//tr/td/a/img[@alt='Expand Multi Value'])[last()]")).click();
+//            }
+//            PageObject.textinput_Locator("fieldName:DEN.COIN:1", "USD");
+//            PageObject.textinput_Locator("fieldName:DEN.COIN:1", "USD1");
+//            PageObject.textinput_Locator("fieldName:DEN.COIN:1", "USD10");
+//            PageObject.textinput_Locator("fieldName:DEN.COIN:1", "USD2");
+//            PageObject.textinput_Locator("fieldName:DEN.COIN:1", "USD25");
+//            PageObject.textinput_Locator("fieldName:DEN.COIN:1", "USD5");
+//            PageObject.textinput_Locator("fieldName:DEN.COIN:1", "USD50");
+//
+//            for (int number = 1; number <= 7; number++) {
+//                PageObject.textinput_Locator("fieldName:QUANTITY:" + number, Integer.toString(0));
+//            }
+//
+//            for (int number = 1; number <= 7; number++) {
+//                PageObject.textinput_Locator("fieldName:QUANT.COIN:" + number, Integer.toString(0));
+//            }
+//
+//            driver.findElement(By.xpath("//tr/td/a/img[@alt='Validate a deal']")).click();
+//            WebElement AmountExceed = driver.findElement(By.xpath("//table/tbody/tr/td/span[contains(text(),'Amount exceeds')]"));
+//            String Transaction = AmountExceed.getText();
+//            String[] first = Transaction.split("-");
+////            String[] second = first[1].split(" ");
+//            String denominationAmount = first[1];
+//            amountUSD = Integer.parseInt(denominationAmount);
+//
+//            double[] notes = new double[]{100, 50, 20, 10, 5, 2, 1, .50, 0.05, 0.25, 0.02, 0.10, 0.01, 1};
+//            int[] noteCounter = new int[14];
+//
+//            // count notes using Greedy approach
+//            for (int i = 0; i < 11; i++) {
+//                if (amountUSD >= notes[i]) {
+//                    double noteCountDoubleValue = amountUSD / notes[i];
+//                    noteCounter[i] = (int)noteCountDoubleValue;
+//                    amountUSD = amountUSD % notes[i];
+//                }
+//            }
+//
+//            // Print notes
+//            int note = 7;
+//            int coin = 7;
+//            for (int i = 0; i < 11; i++) {
+//                if (noteCounter[i] != 0) {
+////                    System.out.println(notes[i] + " : " + noteCounter[i]);
+//
+//                    String noteCount = Integer.toString(noteCounter[i]);
+//                    if (note > 0) {
+//                        PageObject.textinput_Locator("fieldName:QUANTITY:" + note, noteCount);
+//                        note--;
+//                    } else {
+//                        PageObject.textinput_Locator("fieldName:QUANT.COIN:" + coin, noteCount);
+//                        coin--;
+//                    }
+//
+//                } else {
+//                    System.out.println(notes[i] + " : " + noteCounter[i]);
+//
+//                    String noteCount = Integer.toString(noteCounter[i]);
+//                    if (note > 0) {
+//                        PageObject.textinput_Locator("fieldName:QUANTITY:" + note, noteCount);
+//                        note--;
+//                    } else {
+//                        PageObject.textinput_Locator("fieldName:QUANT.COIN:" + coin, noteCount);
+//                        coin--;
+//                    }
+//                }
+//            }
+//
+//            AssertionScreenshot("DenominationSetupCash");
+//
+//            PageObject.commitDeal("DenominationSetupCash");
+//
+//        }
+//
 //    }
+//    @DataProvider(name = "DenominationSetupCash")
+//    public Object[][] readExcelData11() throws IOException {
+//        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\DenominationSetupCash.xlsx";
+//        FileInputStream fis = new FileInputStream(FILE_PATH);
+//        Workbook workbook = new XSSFWorkbook(fis);
+//        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+//        int rowCount = sheet.getPhysicalNumberOfRows();
+//        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+//        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+//
+//        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+//            Row row = sheet.getRow(i);
+//            Map<String, String> map = new HashMap<String, String>();
+//            for (int j = 0; j < colCount; j++) {
+//                Cell cell = row.getCell(j);
+//                DataFormatter formatter = new DataFormatter();
+//                String value = formatter.formatCellValue(cell);
+//                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+//            }
+//            data[i - 1][0] = map;
+//        }
+//
+//        workbook.close();
+//        fis.close();
+//        return data;
+//    }
+//
 //    }
 //

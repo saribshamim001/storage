@@ -1,7 +1,8 @@
-package Test.Scripts.Conventional;
+package Test.Scripts.IBG;
 
 import POM.PageObject;
 import Test.General.BaseClass;
+import Test.Scripts.Conventional.Customers;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.testng.annotations.DataProvider;
@@ -21,19 +22,16 @@ public class Accounts extends BaseClass {
 
     public static String PD,CUSTOMER;
     public static String ACCOUNT_TITLE_1,ACCOUNT_TITLE_2,OTHER_OFFICER,REFEREE,JOINT_HOLDER,RELATION_CODE,
-            JOINT_NOTES,MULTI_ACCT,BAF_PRM_IMD,BAF_PRM_CRDNAME,BAF_PRM_PEN,BAF_PRM_DATETME,REMITTER_NAME,REMITTER_ID_NO,
-            RELATIONSHIP_BE,REMITTER_RESID,REMITTER_ID_TYP,CURRENCY;
-    public static String[] LCY_CURRENT_ACCOUNTS = { "1001", "1005", "1007", "1010", "1011", "1014", "1017", "1022",
-                                                    "1030", "1031", "1034", "1035", "1037", "1038", "1142", "1143",
-                                                    "1150", "1171", "1326" };
-    public static String[] LCY_SAVING_ACCOUNTS = { "6001", "6004", "6005", "6009", "6012", "6014", "6018", "6025" };
-    public static String[] FCY_CURRENT_ACCOUNTS = { "1003", "1033", "1036", "1040", "1142", "1143" };
-    public static String[] FCY_SAVING_ACCOUNTS = { "6003", "6019", "6030", "6035", "6039" };
-    public static String[] KIDS_ACCOUNT = { "6020" };
+            JOINT_NOTES,MULTI_ACCT,REMITTER_NAME,REMITTER_ID_NO,RELATIONSHIP_BE,REMITTER_RESID,REMITTER_ID_TYP,
+            CURRENCY;
+    public static String[] LCY_CURRENT_ACCOUNTS = { "1017", "1035", "1038", "1050", "1142", "1143", "1810" };
+    public static String[] LCY_SAVING_ACCOUNTS = { "6018", "6021", "6025", "6800", "6801", "6802", "6803", "6808", "6809"};
+    public static String[] FCY_CURRENT_ACCOUNTS = { "1040", "1142", "1880", "1881", "1882" }; //"1143"
+    public static String[] FCY_SAVING_ACCOUNTS = { "6039", "6850", "6851", "6852", "6860", "6861", "6862"};
 
     //		                         <<<<    CALLING DIFFERENT SCRIPTS    >>>>
 
-    @Test (groups = {"Inputter"}, dataProvider = "condition")
+    @Test(groups = {"IBGInputter"}, dataProvider = "condition")
     public void callAccountCreation(Map<String, String> column) throws InterruptedException, IOException {
 
         CUSTOMER = column.get("CUSTOMER");
@@ -56,7 +54,7 @@ public class Accounts extends BaseClass {
         REMITTER_ID_TYP = column.get("REMITTER_ID_TYP");
 
         for (String typeOfProduct : LCY_CURRENT_ACCOUNTS) {
-            if ( Accounts.PD.equals(typeOfProduct)) {
+            if (Accounts.PD.equals(typeOfProduct)) {
                 lcyCurrentAccount();
             }
         }
@@ -75,23 +73,18 @@ public class Accounts extends BaseClass {
                 fcySavingAccount();
             }
         }
-        for (String typeOfProduct : KIDS_ACCOUNT) {
-            if ( Accounts.PD.equals(typeOfProduct)) {
-                lcyKidsAccount();
-            }
-        }
 
     }
 
     public void lcyCurrentAccount() throws InterruptedException, IOException {
 //        System.out.println(customer.Txn);
 
-        PageObject.menu_Dropdown("Customer Relation Officer Menu");
-        PageObject.menu_Dropdown("Alfalah Customer Information");
+        PageObject.menu_Dropdown("Customer Relation Officer Menu- IBG");
+        PageObject.menu_Dropdown("Alfalah Customer & Account Information-IBG ");
         PageObject.menu_Dropdown("Branch Level Inputter");
         PageObject.menu_Dropdown("Alfalah Account Information");
         PageObject.menu_Dropdown("Local Currency Account Open");
-        PageObject.menu_Link("Current Account ");
+        PageObject.menu_Link("LCY Current Account IBG ");
 
         PageObject.parentFrame();
         PageObject.switchFrame(2);
@@ -105,22 +98,13 @@ public class Accounts extends BaseClass {
         PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.2:1",  ACCOUNT_TITLE_2);
         PageObject.textinput_Locator("fieldName:OTHER.OFFICER:1",  OTHER_OFFICER);
         PageObject.textinput_Locator("fieldName:REFEREE",  REFEREE);
+        PageObject.select_Locator("fieldName:MULTI.ACCT",  MULTI_ACCT);
         PageObject.radiobutton_Locator("radio:tab1:BAF.PEN.ACCT", 1);
         PageObject.textinput_Locator("fieldName:JOINT.HOLDER:1",  JOINT_HOLDER);
         PageObject.textinput_Locator("fieldName:RELATION.CODE:1",  RELATION_CODE);
         PageObject.textinput_Locator("fieldName:JOINT.NOTES:1:1", JOINT_NOTES);
-        PageObject.select_Locator("fieldName:MULTI.ACCT",  MULTI_ACCT);
 
         // TAB2
-        PageObject.form_Tab("PREMIER.DEBITCARD");
-
-        PageObject.select_Locator("fieldName:BAF.PRM.IMD", BAF_PRM_IMD);
-        PageObject.textinput_Locator("fieldName:BAF.PRM.CRDNAME", BAF_PRM_CRDNAME);
-        PageObject.radiobutton_Locator("radio:tab2:BAF.PRM.FMEMBR", 1);
-        PageObject.textinput_Locator("fieldName:BAF.PRM.PEN", BAF_PRM_PEN);
-        PageObject.textinput_Locator("fieldName:BAF.PRM.DATETME", BAF_PRM_DATETME);
-
-        // TAB3
         PageObject.form_Tab("Alfalah Assan Remittance");
 
         PageObject.textinput_Locator("fieldName:REMITTER.NAME:1", REMITTER_NAME);
@@ -131,17 +115,17 @@ public class Accounts extends BaseClass {
 
         commitDeal();
         txnValidate();
-        saveToDS2("LCY Current Accounts");
+        saveToDS2("LCY Current Accounts(IBG)");
     }
 
     public void lcySavingAccount() throws InterruptedException, IOException {
 
-        PageObject.menu_Dropdown("Customer Relation Officer Menu");
-        PageObject.menu_Dropdown("Alfalah Customer Information");
+        PageObject.menu_Dropdown("Customer Relation Officer Menu- IBG");
+        PageObject.menu_Dropdown("Alfalah Customer & Account Information-IBG ");
         PageObject.menu_Dropdown("Branch Level Inputter");
         PageObject.menu_Dropdown("Alfalah Account Information");
         PageObject.menu_Dropdown("Local Currency Account Open");
-        PageObject.menu_Link("Saving Account ");
+        PageObject.menu_Link("LCY Saving Account IBG ");
 
         PageObject.parentFrame();
         PageObject.switchFrame(2);
@@ -149,30 +133,20 @@ public class Accounts extends BaseClass {
         PageObject.img_Button("New Deal");
 
         PageObject.textinput_Locator("fieldName:CUSTOMER", CUSTOMER);
-        PageObject.click_Locator("fieldName:CATEGORY");
+//        PageObject.click_Locator("fieldName:CATEGORY");
         PageObject.textinput_Locator("fieldName:CATEGORY", PD);
         PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.1:1",  ACCOUNT_TITLE_1);
         PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.2:1",  ACCOUNT_TITLE_2);
         PageObject.textinput_Locator("fieldName:OTHER.OFFICER:1",  OTHER_OFFICER);
         PageObject.textinput_Locator("fieldName:REFEREE",  REFEREE);
+        PageObject.select_Locator("fieldName:MULTI.ACCT",  MULTI_ACCT);
         PageObject.radiobutton_Locator("radio:mainTab:BAF.PEN.ACCT", 1);
         PageObject.textinput_Locator("fieldName:JOINT.HOLDER:1",  JOINT_HOLDER);
         PageObject.textinput_Locator("fieldName:RELATION.CODE:1",  RELATION_CODE);
         PageObject.textinput_Locator("fieldName:JOINT.NOTES:1:1", JOINT_NOTES);
-        PageObject.select_Locator("fieldName:MULTI.ACCT",  MULTI_ACCT);
 
 
         // TAB2
-        PageObject.form_Tab("PREMIER.DEBITCARD");
-
-        PageObject.select_Locator("fieldName:BAF.PRM.IMD", BAF_PRM_IMD);
-        PageObject.textinput_Locator("fieldName:BAF.PRM.CRDNAME", BAF_PRM_CRDNAME);
-        PageObject.radiobutton_Locator("radio:tab1:BAF.PRM.FMEMBR", 1);
-        PageObject.textinput_Locator("fieldName:BAF.PRM.PEN", BAF_PRM_PEN);
-        PageObject.textinput_Locator("fieldName:BAF.PRM.DATETME", BAF_PRM_DATETME);
-
-
-        // TAB3
         PageObject.form_Tab("Alfalah Assan Remittance");
 
         PageObject.textinput_Locator("fieldName:REMITTER.NAME:1", REMITTER_NAME);
@@ -183,47 +157,17 @@ public class Accounts extends BaseClass {
 
         commitDeal();
         txnValidate();
-        saveToDS2("LCY Saving Accounts");
-    }
-
-    public void lcyKidsAccount() throws InterruptedException, IOException {
-
-        PageObject.menu_Dropdown("Customer Relation Officer Menu");
-        PageObject.menu_Dropdown("Alfalah Customer Information");
-        PageObject.menu_Dropdown("Branch Level Inputter");
-        PageObject.menu_Dropdown("Alfalah Account Information");
-        PageObject.menu_Dropdown("Local Currency Account Open");
-        PageObject.menu_Link("Alfalah SnaPack Kids Account ");
-
-        PageObject.parentFrame();
-        PageObject.switchFrame(2);
-
-        PageObject.img_Button("New Deal");
-
-        PageObject.textinput_Locator("fieldName:CUSTOMER", CUSTOMER);
-        PageObject.click_Locator("fieldName:ACCOUNT.TITLE.1:1");
-        PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.1:1",  ACCOUNT_TITLE_1);
-        PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.2:1",  ACCOUNT_TITLE_2);
-        PageObject.textinput_Locator("fieldName:OTHER.OFFICER:1",  OTHER_OFFICER);
-        PageObject.textinput_Locator("fieldName:JOINT.HOLDER:1",  JOINT_HOLDER);
-        PageObject.textinput_Locator("fieldName:RELATION.CODE:1",  RELATION_CODE);
-        PageObject.textinput_Locator("fieldName:JOINT.NOTES:1:1", JOINT_NOTES);
-
-        commitDeal();
-        txnValidate();
-        saveToDS2("LCY Kids Accounts");
-
+        saveToDS2("LCY Saving Accounts(IBG)");
     }
 
     public void fcyCurrentAccount() throws InterruptedException, IOException {
 
-        PageObject.menu_Dropdown("Customer Relation Officer Menu");
-        PageObject.menu_Dropdown("Alfalah Customer Information");
+        PageObject.menu_Dropdown("Customer Relation Officer Menu- IBG");
+        PageObject.menu_Dropdown("Alfalah Customer & Account Information-IBG ");
         PageObject.menu_Dropdown("Branch Level Inputter");
         PageObject.menu_Dropdown("Alfalah Account Information");
         PageObject.menu_Dropdown("Foreign Currency Account Open");
-//        PageObject.menu_Link("Current Account ");
-        PageObject.childmenu_Link("Current Account ",2);
+        PageObject.menu_Link("Current Account IBG ");
 
         PageObject.parentFrame();
         PageObject.switchFrame(2);
@@ -237,24 +181,24 @@ public class Accounts extends BaseClass {
         PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.2:1",  ACCOUNT_TITLE_2);
         PageObject.textinput_Locator("fieldName:OTHER.OFFICER:1",  OTHER_OFFICER);
         PageObject.textinput_Locator("fieldName:REFEREE",  REFEREE);
+        PageObject.select_Locator("fieldName:MULTI.ACCT",  MULTI_ACCT);
         PageObject.textinput_Locator("fieldName:JOINT.HOLDER:1",  JOINT_HOLDER);
         PageObject.textinput_Locator("fieldName:RELATION.CODE:1",  RELATION_CODE);
         PageObject.textinput_Locator("fieldName:JOINT.NOTES:1:1", JOINT_NOTES);
 
         commitDeal();
         txnValidate();
-        saveToDS2("FCY Current Accounts");
+        saveToDS2("FCY Current Accounts(IBG)");
     }
 
     public void fcySavingAccount() throws InterruptedException, IOException {
 
-        PageObject.menu_Dropdown("Customer Relation Officer Menu");
-        PageObject.menu_Dropdown("Alfalah Customer Information");
+        PageObject.menu_Dropdown("Customer Relation Officer Menu- IBG");
+        PageObject.menu_Dropdown("Alfalah Customer & Account Information-IBG ");
         PageObject.menu_Dropdown("Branch Level Inputter");
         PageObject.menu_Dropdown("Alfalah Account Information");
         PageObject.menu_Dropdown("Foreign Currency Account Open");
-//        PageObject.menu_Link("Saving Account ");
-        PageObject.childmenu_Link("Saving Account ",2);
+        PageObject.menu_Link("Saving Account IBG ");
 
         PageObject.parentFrame();
         PageObject.switchFrame(2);
@@ -268,22 +212,23 @@ public class Accounts extends BaseClass {
         PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.2:1",  ACCOUNT_TITLE_2);
         PageObject.textinput_Locator("fieldName:OTHER.OFFICER:1",  OTHER_OFFICER);
         PageObject.textinput_Locator("fieldName:REFEREE",  REFEREE);
+        PageObject.select_Locator("fieldName:MULTI.ACCT",  MULTI_ACCT);
         PageObject.textinput_Locator("fieldName:JOINT.HOLDER:1",  JOINT_HOLDER);
         PageObject.textinput_Locator("fieldName:RELATION.CODE:1",  RELATION_CODE);
         PageObject.textinput_Locator("fieldName:JOINT.NOTES:1:1", JOINT_NOTES);
 
         commitDeal();
         txnValidate();
-        saveToDS2("FCY Saving Accounts");
+        saveToDS2("FCY Saving Accounts(IBG)");
     }
 
 
-    @Test (groups = {"Authorizer"}, dataProvider = "auth")
+    @Test (groups = {"IbgAuthorizer"}, dataProvider = "auth")
     public void accountAuthorization(Map<String, String> column) throws InterruptedException, IOException {
 
         PageObject.menu_Dropdown("Customer Services");
         PageObject.menu_Dropdown("Alfalah Customer Information");
-        PageObject.menu_Dropdown("Branch Level Authorization");
+        PageObject.menu_Dropdown("Branch Level Authorization IBG");
         PageObject.menu_Dropdown("Authorization of CIF & ACCOUNT");
         PageObject.menu_Dropdown("Authorization of Account");
         PageObject.menu_Link("Authorization for Account- Branch Level ");
@@ -306,8 +251,8 @@ public class Accounts extends BaseClass {
 //                                 <<<      DATA PROVIDER      >>>
 
     @DataProvider(name = "condition")
-    public Object[][] indCustomer() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\Accounts.xlsx";
+    public Object[][] condition() throws IOException {
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\Accounts(IBG).xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet

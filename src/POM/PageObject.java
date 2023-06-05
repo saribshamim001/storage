@@ -76,15 +76,6 @@ public class PageObject extends BaseClass {
         driver.switchTo().frame(index);
     }
 
-    public  static void uploadFile(String filePath,String frameID){
-
-        WebElement fileFrame = driver.findElement(By.xpath("//iframe[@id='"+frameID+"']"));
-        driver.switchTo().frame(fileFrame);
-        driver.findElement(By.xpath("//input[@id='fileInput']")).sendKeys(filePath);
-        driver.findElement(By.xpath("//img[@title='Upload']")).click();
-
-    }
-
     public static void parentFrame(){
         driver.switchTo().parentFrame();
     }
@@ -139,8 +130,8 @@ public class PageObject extends BaseClass {
 
     public static void authorizeDeal () {
         driver.findElement(By.xpath("//tr/td/a/img[@alt='Authorises a deal']")).click();
-        if (driver.getPageSource().contains("Accept Overrides")){
-            WebElement override = driver.findElement(By.xpath("//tr/td/a[text()='Accept Overrides']"));
+        WebElement override = driver.findElement(By.xpath("//tr/td/a[text()='Accept Overrides']"));
+        if (override.isDisplayed()){
             override.click();
         }
     }

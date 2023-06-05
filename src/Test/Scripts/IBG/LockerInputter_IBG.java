@@ -20,9 +20,10 @@ public class LockerInputter_IBG extends BaseClass {
     String amendSingleTxn;
     String amendJointTxn;
 
-    @Test(groups = {"IBGInputter"})
+    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\assignLocker_IBG.xlsx";
+    @Test(groups = {"IBGInputter"}, dataProvider = "excelDataassignLocker_IBG")
 
-    public void assignLocker_IBG() throws IOException, InterruptedException {
+    public void assignLocker_IBG(Map<String, String> testData) throws IOException, InterruptedException {
 
         String AssignLocker = "13238663";
 
@@ -40,16 +41,16 @@ public class LockerInputter_IBG extends BaseClass {
 
         PageObject.form_Link("Joint");
 
-        PageObject.textinput_Locator("fieldName:KEY","9");
-        PageObject.textinput_Locator("fieldName:CUSTOMER", AssignLocker);
+        PageObject.textinput_Locator("fieldName:KEY",testData.get("KEY"));
+        PageObject.textinput_Locator("fieldName:CUSTOMER",testData.get( AssignLocker));
         PageObject.click_Locator("fieldName:CUST.ACCT");
 
         Thread.sleep(2000);
 
-        PageObject.textinput_Locator("fieldName:CUST.ACCT","5001372222");
-        PageObject.textinput_Locator("fieldName:JOINT.CNO:1","11745297");
-        PageObject.select_Locator("fieldName:OPEARTING.INST","Jointly");
-        PageObject.textinput_Locator("fieldName:OPEARTING.NAME:1", "Test");
+        PageObject.textinput_Locator("fieldName:CUST.ACCT",testData.get("CUST.ACCT"));
+        PageObject.textinput_Locator("fieldName:JOINT.CNO:1",testData.get("JOINT.CNO:1"));
+        PageObject.select_Locator("fieldName:OPEARTING.INST",testData.get("OPEARTING.INST"));
+        PageObject.textinput_Locator("fieldName:OPEARTING.NAME:1", testData.get("OPEARTING.NAME:1"));
         PageObject.radiobutton_Locator("radio:mainTab:CHARGES.WAIVE",2);
         PageObject.radiobutton_Locator("radio:mainTab:KEY.DEPOSIT",1);
         PageObject.radiobutton_Locator("radio:tab1:MANDATEE",2);
@@ -66,6 +67,33 @@ public class LockerInputter_IBG extends BaseClass {
         System.out.println(lockerTxn);
         saveAccNumToFile(AssignLocker);
 
+    }
+
+    @DataProvider(name = "excelDataassignLocker_IBG")
+    public Object[][] readExcelData1() throws IOException {
+
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
     }
 
     public static void saveAccNumToFile(String accNumber) throws IOException {
@@ -135,7 +163,7 @@ public class LockerInputter_IBG extends BaseClass {
 
     }
 
-    @DataProvider(name = "excelData")
+    @DataProvider(name = "excelDataassignLocker_IBGAuth")
     public Object[][] readExcelData() throws IOException {
         String FILE_PATH = System.getProperty("user.dir")+"\\Data\\Assign Locker IBG.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
@@ -163,10 +191,10 @@ public class LockerInputter_IBG extends BaseClass {
     }
 
 
+    String FILE_PATH1 = System.getProperty("user.dir")+"\\Excel Data\\amendmentLockerSingleIBG.xlsx";
+    @Test(groups = {"IBGInputter"}, dataProvider = "excelDataamendmentLockerSingleIBG")
 
-    @Test(groups = {"IBGInputter"})
-
-    public void amendmentLockerSingleIBG() throws IOException, InterruptedException {
+    public void amendmentLockerSingleIBG(Map<String, String> testData) throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown("Remittance Menu -Universal Teller- IBG");
 //        PageObject.menu_Dropdown("Remittance Menu");
@@ -180,23 +208,49 @@ public class LockerInputter_IBG extends BaseClass {
         String menu = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
 
-        PageObject.textinput_Locator("value:1:1:1","OR.0014.5561");
+        PageObject.textinput_Locator("value:1:1:1",testData.get("value:1:1:1"));
         PageObject.find_Button();
 
 
         PageObject.form_Link("Amendment Version");
 
-        PageObject.textinput_Locator("fieldName:KEY","3");
-        PageObject.select_Locator("fieldName:STATUS","ASSIGNED");
-        PageObject.textinput_Locator("fieldName:CUST.ACCT","1003160019"); //1000058935 5000077867
+        PageObject.textinput_Locator("fieldName:KEY",testData.get("KEY"));
+        PageObject.select_Locator("fieldName:STATUS",testData.get("STATUS"));
+        PageObject.textinput_Locator("fieldName:CUST.ACCT",testData.get("CUST.ACCT")); //1000058935 5000077867
         PageObject.radiobutton_Locator("radio:tab1:CHARGES.WAIVE",1);
-        PageObject.textinput_Locator("fieldName:BRK.REASON:1","Test11");
+        PageObject.textinput_Locator("fieldName:BRK.REASON:1",testData.get("BRK.REASON:1"));
 
         PageObject.commitDeal("Amendment of Locker Single IBG");
 
         amendSingleTxn = PageObject.getTxn();
         System.out.println(amendSingleTxn);
 //        saveAccNumToFile(amendmentLockerSingle);
+    }
+    @DataProvider(name = "excelDataamendmentLockerSingleIBG")
+    public Object[][] readExcelData2() throws IOException {
+
+        FileInputStream fis = new FileInputStream(FILE_PATH1);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
     }
 
     public static void saveAccNumToFile1(String accNumber) throws IOException {
@@ -293,10 +347,10 @@ public class LockerInputter_IBG extends BaseClass {
     }
 
 
+    String FILE_PATH2 = System.getProperty("user.dir")+"\\Excel Data\\amendmentLockerJointIBG.xlsx";
+    @Test(groups = {"IBGInputter"}, dataProvider = "excelDataamendmentLockerJointIBG")
 
-    @Test(groups = {"IBGInputter"})
-
-    public void amendmentLockerJointIBG() throws IOException, InterruptedException {
+    public void amendmentLockerJointIBG(Map<String, String> testData) throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown("Remittance Menu -Universal Teller- IBG");
 //        PageObject.menu_Dropdown("Remittance Menu");
@@ -310,23 +364,50 @@ public class LockerInputter_IBG extends BaseClass {
         String menu = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
 
-        PageObject.textinput_Locator("value:1:1:1","OR.0016.5561");
+        PageObject.textinput_Locator("value:1:1:1",testData.get("value:1:1:1"));
         PageObject.find_Button();
 
 
         PageObject.form_Link("Joint Amendment Version");
 
 
-        PageObject.textinput_Locator("fieldName:KEY","2");
-        PageObject.select_Locator("fieldName:STATUS","ASSIGNED");
-        PageObject.textinput_Locator("fieldName:CUST.ACCT","1007515120");
+        PageObject.textinput_Locator("fieldName:KEY",testData.get("KEY"));
+        PageObject.select_Locator("fieldName:STATUS",testData.get("STATUS"));
+        PageObject.textinput_Locator("fieldName:CUST.ACCT",testData.get("CUST.ACCT"));
         PageObject.radiobutton_Locator("radio:tab1:CHARGES.WAIVE",1);
-        PageObject.textinput_Locator("fieldName:BRK.REASON:1","Testing");
+        PageObject.textinput_Locator("fieldName:BRK.REASON:1",testData.get("BRK.REASON:1"));
 
         PageObject.commitDeal("AmendmentLockerJointIBG");
 
         amendJointTxn = PageObject.getTxn();
         System.out.println(amendJointTxn);
+    }
+
+    @DataProvider(name = "excelDataamendmentLockerJointIBG")
+    public Object[][] readExcelData3() throws IOException {
+
+        FileInputStream fis = new FileInputStream(FILE_PATH2);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
     }
 
     public static void saveAccNumToFile2(String accNumber) throws IOException {
