@@ -2,15 +2,22 @@ package Test.Scripts.Conventional;
 
 import POM.PageObject;
 import Test.General.BaseClass;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CDR_Issuance extends BaseClass {
 
-    @Test( groups = {"Inputter"})
+    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\CDRIssuanceinput.xlsx";
+    @Test( groups = {"Inputter"}, dataProvider = "excelDataCDRIssuanceinput")
 
-    public void CDRIssuanceinput() throws InterruptedException, IOException {
+    public void CDRIssuanceinput(Map<String, String> testData) throws InterruptedException, IOException {
 
         PageObject.menu_Dropdown("Remittance/Clearing Officer -Universal Teller");
         PageObject.menu_Dropdown("Remittance Menu");
@@ -26,23 +33,50 @@ public class CDR_Issuance extends BaseClass {
 
         PageObject.img_Button("New Deal");
 
-        PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","1000264788");
-        PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1","SARA");
-        PageObject.textinput_Locator("fieldName:CREDIT.AMOUNT","100");
+        PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO",testData.get("DEBIT.ACCT.NO"));
+        PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1",testData.get("BEN.CUSTOMER:1"));
+        PageObject.textinput_Locator("fieldName:CREDIT.AMOUNT",testData.get("CREDIT.AMOUNT"));
         PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE" , 4);
         //PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1","WAIVE");
 
         PageObject.form_Tab("Due Delligence");
 
-        PageObject.textinput_Locator("fieldName:DD.ADDRESS:1","D1-SAT");
-        PageObject.textinput_Locator("fieldName:ID.TYPE","ID-N");
-        PageObject.textinput_Locator("fieldName:ID.NUMBER","4220190909123");
-        PageObject.textinput_Locator("fieldName:CONTACT.NO:1","03338980967");
-        PageObject.select_Locator("fieldName:INS.ISS.PURPOSE", "Business Investment");
+        PageObject.textinput_Locator("fieldName:DD.ADDRESS:1",testData.get("DD.ADDRESS:1"));
+        PageObject.textinput_Locator("fieldName:ID.TYPE",testData.get("ID.TYPE"));
+        PageObject.textinput_Locator("fieldName:ID.NUMBER",testData.get("ID.NUMBER"));
+        PageObject.textinput_Locator("fieldName:CONTACT.NO:1",testData.get("CONTACT.NO:1"));
+        PageObject.select_Locator("fieldName:INS.ISS.PURPOSE", testData.get("INS.ISS.PURPOSE"));
 
-        PageObject.commitDeal("CDRBulkIssueInput");
+        PageObject.commitDeal("CDRIssuanceinput");
 
 
+    }
+    @DataProvider(name = "excelDataCDRIssuanceinput")
+    public Object[][] readExcelData1() throws IOException {
+
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        //rowCount-=2;
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
     }
 
     @Test(groups = {"Authorizer"})
