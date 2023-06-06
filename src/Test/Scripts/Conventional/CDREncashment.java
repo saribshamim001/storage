@@ -2,15 +2,23 @@ package Test.Scripts.Conventional;
 
 import POM.PageObject;
 import Test.General.BaseClass;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CDREncashment extends BaseClass {
 
-    @Test( groups = {"Inputter"})
+    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\ CDREncashmentinput.xlsx";
 
-    public void CDREncashmentTest() throws InterruptedException, IOException {
+    @Test( groups = {"Inputter"}, dataProvider = "excelDataCDREncashmentinput")
+
+    public void CDREncashmentTest(Map<String, String> testData) throws InterruptedException, IOException {
 
         PageObject.menu_Dropdown("Remittance/Clearing Officer -Universal Teller");
         PageObject.menu_Dropdown("Remittance Menu");
@@ -27,7 +35,7 @@ public class CDREncashment extends BaseClass {
 
         //PageObject.textinput_Locator("fieldName:CREDIT.THEIR.REF","1000");
 
-        PageObject.textinput_Locator("fieldName:CREDIT.ACCT.NO","1000140984");
+        PageObject.textinput_Locator("fieldName:CREDIT.ACCT.NO", testData.get("CREDIT.ACCT.NO"));
         PageObject.click_Locator("fieldName:CREDIT.THEIR.REF");
 
         String HomePage2 = PageObject.switchToChildWindow();
@@ -36,11 +44,39 @@ public class CDREncashment extends BaseClass {
 
         PageObject.switchToParentWindow(HomePage2);
         PageObject.switchFrame(2);
-        PageObject.textinput_Locator("fieldName:CREDIT.THEIR.REF","LDA0610297");
+        PageObject.textinput_Locator("fieldName:CREDIT.THEIR.REF", testData.get("CREDIT.THEIR.REF"));
 
         PageObject.commitDeal("CDREncashment");
         //String txn = PageObject.getTxn();
         //System.out.println("Txn is: "+txn);
+    }
+
+    @DataProvider(name = "excelDataCDREncashmentinput")
+    public Object[][] readExcelData1() throws IOException {
+
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        //rowCount-=2;
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
     }
 
     @Test(groups = {"Authorizer"})
@@ -65,5 +101,32 @@ public class CDREncashment extends BaseClass {
 
         String menu2 = PageObject.switchToChildWindow();
         PageObject.img_Button("Authorises a deal");
+    }
+
+    @DataProvider(name = "CDREncashmentinput")
+    public Object[][]  CDREncashmentinputinputData() throws IOException {
+        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\CDREncashmentinput.xlsx";
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
     }
 }
