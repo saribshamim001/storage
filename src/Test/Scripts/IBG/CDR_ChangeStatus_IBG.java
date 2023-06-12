@@ -99,7 +99,7 @@ public class CDR_ChangeStatus_IBG extends BaseClass {
     }
 
     @DataProvider(name = "CDRStatus")
-    public Object[][]  CDRRevalidationinputData() throws IOException {
+    public Object[][]  CDRStatusData() throws IOException {
         String FILE_PATH = System.getProperty("user.dir")+"\\Data\\CDRStatus.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
