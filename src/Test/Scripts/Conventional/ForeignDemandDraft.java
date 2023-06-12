@@ -91,13 +91,6 @@ public class ForeignDemandDraft extends BaseClass {
 
         PageObject.img_Button("Authorises a deal");
 
-
-
-
-
-
-
-
     }
     }
 
