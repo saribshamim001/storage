@@ -1,4 +1,16 @@
 package Test.Scripts.IBG;
 
-public class CDR_Encashment_IBG {
+import Test.General.BaseClass;
+import org.testng.annotations.Test;
+
+import java.io.IOException;
+
+public class CDR_Encashment_IBG extends BaseClass {
+
+    @Test(groups = {"IBGInputter"})
+
+    public void CDREncashmentIBG() throws IOException, InterruptedException {
+
+
+    }
 }
