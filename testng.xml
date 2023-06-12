@@ -7,19 +7,19 @@
     <test verbose="1" preserve-order="true" name="Retail Operations Inputter">
         <groups>
             <run>
-                <include name="Inputter"/>
+                <include name="IBGInputter"/>
             </run>
         </groups>
 
         <classes>
-            <class name="Test.Scripts.Conventional.CDR_Status">
+            <class name="Test.Scripts.IBG.CDR_Cancellation_IBG">
             <methods>
-                <include name="CDRStatusStop"/>
+                <include name="CDRCancellationIBG"/>
             </methods>
             </class>
         </classes>
     </test>
-    <test verbose="1" preserve-order="true" name="Retail Operations Authorizer">
+<!--    <test verbose="1" preserve-order="true" name="Retail Operations Authorizer">
         <groups>
             <run>
                 <include name="Authorizer"/>
@@ -33,6 +33,6 @@
                 </methods>
             </class>
         </classes>
-    </test>
+    </test>-->
 
 </suite>
