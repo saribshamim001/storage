@@ -59,13 +59,37 @@ public class ForeignDemandDraft extends BaseClass {
         PageObject.commitDeal("ForeignDemandDraftInput");
 
 
+    }
 
+    @Test(groups = {"Authorizer"})
 
+    public void ForeignDemandDraft_Auth() throws IOException, InterruptedException {
 
+        PageObject.menu_Dropdown("Manager Operation Menu");
 
+        PageObject.menu_Dropdown("Core Retail Menu");
 
+        PageObject.menu_Dropdown("Deposit/Payment/Zakat");
 
+        PageObject.menu_Dropdown("Funds Transfer");
 
+        PageObject.menu_Dropdown("Foreign Currency Remittances");
+
+        PageObject.menu_Dropdown("Outward Remittance");
+
+        PageObject.menu_Link("Foreign Demand Draft (MT110) ");
+
+        PageObject.parentFrame();
+
+        PageObject.switchFrame(2);
+
+        PageObject.textinput_Locator("transactionId","");
+
+        PageObject.img_Button("Perform an action on the contract");
+
+       // String menu2 = PageObject.switchToChildWindow();
+
+        PageObject.img_Button("Authorises a deal");
 
 
 
