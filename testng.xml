@@ -12,9 +12,9 @@
         </groups>
 
         <classes>
-            <class name="Test.Scripts.IBG.CDR_Cancellation_IBG">
+            <class name="Test.Scripts.IBG.CDR_Encashment_IBG">
             <methods>
-                <include name="CDRCancellationIBG"/>
+                <include name="CDREncashmentIBG"/>
             </methods>
             </class>
         </classes>
