@@ -2,6 +2,7 @@ package Test.General;
 
 import POM.PageObject;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -101,7 +102,7 @@ public class BaseClass {
     public void inputterLogin() {
 //        edgeConfig();
         chromeConfig();
-        PageObject.signIn("RETAIL888", "QWer1234");
+        PageObject.signIn("retail006", "QWer123456");
         //PageObject.signIn("SARA88", "QWer4321");
 
         PageObject.switchFrame(1);
@@ -112,6 +113,72 @@ public class BaseClass {
         homePage = PageObject.switchToChildWindow();
 
         PageObject.maximizeWindow();
+        PageObject.switchFrame(1);
+
+    }
+
+    @BeforeMethod(groups = {"InputterTDR"})
+
+    public void InputterTDR() throws InterruptedException {
+//        edgeConfig();
+        chromeConfig();
+        PageObject.signIn("AK2366601", "ADmin+258");
+
+        PageObject.switchFrame(1);
+
+        PageObject.menu_Dropdown("Centrlized Branch User Access Menu");
+        PageObject.menu_Link("Define Current Branch ");
+
+        homePage = PageObject.switchToChildWindow();
+
+        PageObject.textinput_Locator("transactionId","AK23666.01");
+        PageObject.img_Button("Edit a contract");
+
+
+        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003111040");
+        PageObject.img_Button("Commit the deal");
+        PageObject.img_Button("Commit the deal");
+
+
+        Thread.sleep(5000);
+        driver.close();
+
+        PageObject.switchToParentWindow(homePage);
+
+//        PageObject.maximizeWindow();
+        PageObject.switchFrame(1);
+
+    }
+
+    @BeforeMethod(groups = {"AuthorizerTDR"})
+
+    public void AuthorizerTDR() throws InterruptedException {
+//        edgeConfig();
+        chromeConfig();
+        PageObject.signIn("RB1965401", "ADmin+258");
+
+        PageObject.switchFrame(1);
+
+        PageObject.menu_Dropdown("Centrlized Branch User Access Menu");
+        PageObject.menu_Link("Define Current Branch ");
+
+        homePage = PageObject.switchToChildWindow();
+
+        PageObject.textinput_Locator("transactionId","RB19654.01");
+        PageObject.img_Button("Edit a contract");
+
+
+        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003111040");
+        PageObject.img_Button("Commit the deal");
+        PageObject.img_Button("Commit the deal");
+
+
+        Thread.sleep(5000);
+        driver.close();
+
+        PageObject.switchToParentWindow(homePage);
+
+//        PageObject.maximizeWindow();
         PageObject.switchFrame(1);
 
     }
@@ -175,6 +242,26 @@ public class BaseClass {
 //        PageObject.signOff();
 //
 //        this.driver.close();
+//    }
+
+
+//    @BeforeMethod(groups = {"PowerUser"})
+//    public void PowerUserLogin() {
+//        chromeConfig();
+//
+//        PageObject.signIn("talha01", "QWer1234");
+//
+//        homePage = driver.getWindowHandle();
+//
+//        PageObject.switchFrame(0);
+//
+//        driver.findElement(By.xpath("//div/div/form[@id='commandLineForm']")).clear();
+//        driver.findElement(By.xpath("//div/div/form[@id='commandLineForm']")).sendKeys("RECORD.LOCK");
+////        PageObject.textinput_Locator("commandValue","RECORD.LOCK");
+//        PageObject.click_Locator("Go");
+//
+//        PageObject.maximizeWindow();
+//        PageObject.switchFrame(0);
 //    }
 
 }

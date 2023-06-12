@@ -145,6 +145,11 @@ public class PageObject extends BaseClass {
         }
     }
 
+    public static void authorizeByTxn(String txn){
+        driver.findElement(By.xpath("//td[text()='"+txn+"']/following-sibling::td//a[text()='Authorise Deal']")).click();
+    }
+
+
     //Generate Random Numbers
 
     public static int idNumber() {
