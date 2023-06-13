@@ -1,11 +1,21 @@
 package testDefinitions;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.time.Duration;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import io.cucumber.java.en.*;
@@ -31,22 +41,40 @@ public class GoogleSearchTestCase {
 		driver.get("http://google.com");
 	}
 
-	@When("^Enter details (.*?)$")
-	public void enter_details(String searchItem) {
-		driver.findElement(By.xpath("//textarea[@id='APjFqb']")).sendKeys(searchItem);
+	@And("^Enter details with data (.*?)$")
+	public void enter_details(String path) throws IOException {
+		
+	    FileInputStream fis = new FileInputStream(path);
+	    
+	    Workbook workbook = WorkbookFactory.create(fis);
+	    Sheet sheet = workbook.getSheetAt(0);
+
+	    // Iterate over rows
+	    for (Row row : sheet) {
+	        // Get cell value from the first column
+	        Cell cell = row.getCell(0, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
+	        cell.setCellType(CellType.STRING);
+	        String searchItem = cell.getStringCellValue();
+	        System.out.println("The obtained value: "+searchItem);
+	        // Enter search item in the search field
+	        driver.findElement(By.name("q")).sendKeys(searchItem);
+
+	        // Click the search button or press Enter
+	        driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
+
+	        // Wait for search results to load
+	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	        wait.until(ExpectedConditions.titleContains(searchItem + " - Google Search"));
+
+	        // Clear the search field for the next iteration
+	        driver.findElement(By.name("q")).clear();
+	    }
+
+	    fis.close();
+	    workbook.close();
 	}
 
-	@When("Press Enter")
-	public void press_enter() {
-		driver.findElement(By.xpath("//textarea[@id='APjFqb']")).sendKeys(Keys.ENTER);
-	}
-
-	@Then("^Seach result must be displayed (.*?)$")
-	public void seach_result_must_be_displayed(String searchValue) {
-		String title = driver.getTitle();
-		Assert.assertEquals(title, searchValue+" - Google Search");
-		driver.quit();
-	}
+	
 
 
 }
