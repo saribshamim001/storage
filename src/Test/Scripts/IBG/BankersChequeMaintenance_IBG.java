@@ -16,7 +16,6 @@ public class BankersChequeMaintenance_IBG extends BaseClass {
         PageObject.childmenu_Dropdown("Cheque Maintenance",1);
         PageObject.childmenu_Link("Cheque Duplicate Issuance ", 1);
 
-
         PageObject.parentFrame();
         PageObject.switchFrame(2);
         String pgnameo = driver.getWindowHandle();

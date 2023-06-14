@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class BankersChequeIssuance_IBG extends BaseClass {
 
-    /*@Test(groups = {"Inputter"})
+    @Test(groups = {"Inputter"})
     public void BankersCheqSingleIssuanceAccountHolder () throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown("Remittance Menu -Universal Teller- IBG");
@@ -37,9 +37,9 @@ public class BankersChequeIssuance_IBG extends BaseClass {
         PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO", "1");
         PageObject.commitDeal("BankersCheqSingleIssuanceAccountHolder");
         PageObject.switchToChildWindow();
-    }*/
+    }
 
-    /*@Test(groups = {"Authorizer"})
+    @Test(groups = {"Authorizer"})
     public void BankersCheqSingleIssuanceAccountHolderAuth() throws InterruptedException, IOException {
 
         PageObject.childmenu_Dropdown("Cheque- Authorizer Menu", 1);
@@ -63,9 +63,9 @@ public class BankersChequeIssuance_IBG extends BaseClass {
         PageObject.switchToParentWindow(menu1);
         PageObject.switchToChildWindow();
 
-    }*/
+    }
 
-    /*@Test(groups = {"Inputter"})
+    @Test(groups = {"Inputter"})
     public void BankerChequeSingleIssuanceWalkinCust() throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown("Remittance Menu -Universal Teller- IBG");
@@ -98,9 +98,9 @@ public class BankersChequeIssuance_IBG extends BaseClass {
         PageObject.commitDeal("BankerChequeSingleIssuanceWalkinCust");
         PageObject.switchToChildWindow();
 
-    }*/
+    }
 
-    /*@Test(groups = {"Authorizer"})
+    @Test(groups = {"Authorizer"})
     public void BankerChequeSingleIssuanceWalkinCustAuth() throws InterruptedException, IOException {
 
         PageObject.childmenu_Dropdown("Cheque- Authorizer Menu", 1);
@@ -119,9 +119,30 @@ public class BankersChequeIssuance_IBG extends BaseClass {
         PageObject.switchToParentWindow(menu1);
         PageObject.switchToChildWindow();
 
-    }*/
+    }
 
-    /*@Test(groups = {"Authorizer"})
+    @Test(groups = {"Authorizer"})
+    public void BankerChequeSingleIssuanceWalkinCustAuthDelete() throws InterruptedException, IOException {
+
+        PageObject.childmenu_Dropdown("Cheque- Authorizer Menu", 1);
+        PageObject.childmenu_Dropdown("Cheq Instrument SingleAuthorization ", 1);
+        PageObject.childmenu_Link("Authorize Banker Chq Single-Walkin Customer ", 1);
+
+        String menu1 = PageObject.switchToChildWindow();
+        PageObject.maximizeWindow();
+
+        PageObject.textinput_Locator("value:3:1:1","100");
+        PageObject.textinput_Locator("value:2:1:1","BC");
+        PageObject.find_Button();
+        PageObject.form_Link("Delete a Transaction");
+        PageObject.switchToChildWindow();
+        PageObject.img_Button("Deletes a Deal");
+        PageObject.switchToParentWindow(menu1);
+        PageObject.switchToChildWindow();
+
+    }
+
+    @Test(groups = {"Authorizer"})
     public void AuthorizeCollectionBankerChqCustMulti() throws InterruptedException, IOException {
 
         PageObject.childmenu_Dropdown("Cheque- Authorizer Menu", 1);
@@ -143,9 +164,9 @@ public class BankersChequeIssuance_IBG extends BaseClass {
         PageObject.switchToParentWindow(menu1);
         PageObject.switchToChildWindow();
 
-    }*/
+    }
 
-    /*@Test(groups = {"Inputter"})
+    @Test(groups = {"Inputter"})
     public void BankerChequeSingleIssuanceVendorPayment() throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown("Remittance Menu -Universal Teller- IBG");
@@ -175,9 +196,9 @@ public class BankersChequeIssuance_IBG extends BaseClass {
         PageObject.commitDeal("BankerChequeSingleIssuanceVendorPayment");
         PageObject.switchToChildWindow();
 
-    }*/
+    }
 
-    /*@Test(groups = {"Inputter"})
+    @Test(groups = {"Inputter"})
     public void FundTrfCreditVendorPaytActSingleBulk() throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown("Remittance Menu -Universal Teller- IBG");
@@ -202,9 +223,9 @@ public class BankersChequeIssuance_IBG extends BaseClass {
         PageObject.commitDeal("FundTrfCreditVendorPaytActSingleBulk");
         PageObject.switchToChildWindow();
 
-    }*/
+    }
 
-    /*@Test(groups = {"Inputter"})
+    @Test(groups = {"Inputter"})
     public void CollectBankerChqAmtAcHolderBulkStep1 () throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown("Remittance Menu -Universal Teller- IBG");
@@ -228,9 +249,9 @@ public class BankersChequeIssuance_IBG extends BaseClass {
         PageObject.commitDeal("CollectBankerChqAmtAcHolderBulkStep1");
         PageObject.switchToChildWindow();
 
-    }*/
+    }
 
-    /*@Test(groups = {"Inputter"})
+    @Test(groups = {"Inputter"})
     public void IssuanceBankerChqAcHolderBulkStep2 () throws InterruptedException, IOException {
 
         PageObject.menu_Dropdown("Remittance Menu -Universal Teller- IBG");
@@ -250,9 +271,9 @@ public class BankersChequeIssuance_IBG extends BaseClass {
         PageObject.find_Button();
         Thread.sleep(2000);
 
-    }*/
+    }
 
-    /*@Test(groups = {"Inputter"})
+    @Test(groups = {"Inputter"})
     public void CollectBankerChqWCustSingleBulkStep1 () throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown("Remittance Menu -Universal Teller- IBG");
@@ -279,9 +300,9 @@ public class BankersChequeIssuance_IBG extends BaseClass {
         PageObject.commitDeal("CollectBankerChqWCustSingleBulkStep1");
         PageObject.switchToChildWindow();
 
-    }*/
+    }
 
-    /*@Test(groups = {"Inputter"})
+    @Test(groups = {"Inputter"})
     public void IssuanceBankerChqWalkingCustBulkStep2 () throws IOException {
 
         PageObject.menu_Dropdown("Remittance Menu -Universal Teller- IBG");
@@ -294,9 +315,9 @@ public class BankersChequeIssuance_IBG extends BaseClass {
         PageObject.switchFrame(2);
         String pgnameo = driver.getWindowHandle();
 
-    }*/
+    }
 
-    /*@Test(groups = {"Inputter"})
+    @Test(groups = {"Inputter"})
     public void CollectBankerChqAmtVendorBulkStep1 () throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown("Remittance Menu -Universal Teller- IBG");
@@ -317,9 +338,9 @@ public class BankersChequeIssuance_IBG extends BaseClass {
         PageObject.commitDeal("CollectBankerChqAmtVendorBulkStep1");
         PageObject.switchToChildWindow();
 
-    }*/
+    }
 
-    /*@Test(groups = {"Inputter"})
+    @Test(groups = {"Inputter"})
     public void IssuanceofBankerChqVendorBulkStep2 () throws IOException {
 
         PageObject.menu_Dropdown("Remittance Menu -Universal Teller- IBG");
@@ -332,6 +353,6 @@ public class BankersChequeIssuance_IBG extends BaseClass {
         PageObject.switchFrame(2);
         String pgnameo = driver.getWindowHandle();
 
-    }*/
+    }
 
 }
