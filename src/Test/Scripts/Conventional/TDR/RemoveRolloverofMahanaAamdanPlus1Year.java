@@ -14,18 +14,18 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RemoveRolloverofDeposits extends BaseClass {
+public class RemoveRolloverofMahanaAamdanPlus1Year extends BaseClass {
 
     String Txn;
 //    String FILE_PATH1 = System.getProperty("user.dir") + "\\Data\\RemoveRolloverofDeposits.xlsx";
 
     @Test(groups = {"InputterTDR"})
 
-    public void RemoveRolloverofDeposits() throws IOException, InterruptedException {
+    public void RemoveRolloverofMahanaAamdanPlus1Year() throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown(" Centralized TDR ");
         PageObject.menu_Dropdown("Remove Rollover ");
-        PageObject.menu_Link("Remove Rollover of Deposits ");
+        PageObject.menu_Link("Remove Rollover of Mahana Aamdan Plus 1 Year ");
 
         String menu = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
@@ -42,7 +42,7 @@ public class RemoveRolloverofDeposits extends BaseClass {
         PageObject.maximizeWindow();
 
 
-        PageObject.commitDeal("RemoveRolloverofDeposits");
+        PageObject.commitDeal("RemoveRolloverofMahanaAamdanPlus1Year");
 
 //        PageObject.authorizeByTxn(testData.get("Transaction Number"));
 
@@ -55,7 +55,7 @@ public class RemoveRolloverofDeposits extends BaseClass {
 
     }
 
-//    @DataProvider(name = "excelDataRemoveRolloverofDeposits")
+    //    @DataProvider(name = "excelDataRemoveRolloverofDeposits")
 //    public Object[][] readExcelData1() throws IOException {
 //
 //        FileInputStream fis = new FileInputStream(FILE_PATH1);
@@ -86,7 +86,7 @@ public class RemoveRolloverofDeposits extends BaseClass {
         String Txn = accNumber ;
         System.out.println("Acc Number is: "+Txn);
 
-        File file = new File(System.getProperty("user.dir") + "\\Data\\RemoveRolloverofDeposits.xlsx");
+        File file = new File(System.getProperty("user.dir") + "\\Data\\RemoveRolloverofMahanaAamdanPlus1Year.xlsx");
         XSSFWorkbook workbook;
         Row row;
         Cell cell;
@@ -116,11 +116,11 @@ public class RemoveRolloverofDeposits extends BaseClass {
 
     }
 
-    String FILE_PATH2 = System.getProperty("user.dir") + "\\Data\\RemoveRolloverofDeposits.xlsx";
+    String FILE_PATH2 = System.getProperty("user.dir") + "\\Data\\RemoveRolloverofMahanaAamdanPlus1Year.xlsx";
 
-    @Test(groups = {"AuthorizerTDR"}, dataProvider = "DataRemoveRolloverofDeposits")
+    @Test(groups = {"AuthorizerTDR"}, dataProvider = "DataRemoveRolloverofMahanaAamdanPlus1Year")
 
-    public void RemoveRolloverofDepositsAuth(Map<String, String> testData) throws IOException, InterruptedException {
+    public void RemoveRolloverofMahanaAamdanPlus1YearAuth(Map<String, String> testData) throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown(" Centralized TDR");
         PageObject.menu_Dropdown("Print Deal Slip");
@@ -140,7 +140,7 @@ public class RemoveRolloverofDeposits extends BaseClass {
         PageObject.img_Button("Authorises a deal");
     }
 
-    @DataProvider(name = "DataRemoveRolloverofDeposits")
+    @DataProvider(name = "DataRemoveRolloverofMahanaAamdanPlus1Year")
     public Object[][] readExcelData2() throws IOException {
 
         FileInputStream fis = new FileInputStream(FILE_PATH2);
@@ -167,5 +167,4 @@ public class RemoveRolloverofDeposits extends BaseClass {
         fis.close();
         return data;
     }
-
 }
