@@ -98,7 +98,7 @@ public class BaseClass {
         return System.getProperty("user.dir") + "\\"+ testCaseName+ "\\" + testCaseName + dft.format(date1) +".png";
     }
 
-    @BeforeMethod(groups = {"Inputter"})
+    /*@BeforeMethod(groups = {"Inputter"})
     public void inputterLogin() {
 //        edgeConfig();
         chromeConfig();
@@ -115,9 +115,9 @@ public class BaseClass {
         PageObject.maximizeWindow();
         PageObject.switchFrame(1);
 
-    }
+    }*/
 
-    @BeforeMethod(groups = {"InputterTDR"})
+    /*@BeforeMethod(groups = {"InputterTDR"})
 
     public void InputterTDR() throws InterruptedException {
 //        edgeConfig();
@@ -148,9 +148,9 @@ public class BaseClass {
 //        PageObject.maximizeWindow();
         PageObject.switchFrame(1);
 
-    }
+    }*/
 
-    @BeforeMethod(groups = {"AuthorizerTDR"})
+    /*@BeforeMethod(groups = {"AuthorizerTDR"})
 
     public void AuthorizerTDR() throws InterruptedException {
 //        edgeConfig();
@@ -181,12 +181,14 @@ public class BaseClass {
 //        PageObject.maximizeWindow();
         PageObject.switchFrame(1);
 
-    }
+    }*/
+
+
     @BeforeMethod(groups = {"IBGInputter"})
     public void inputterIbgLogin() {
         chromeConfig();
 
-        PageObject.signIn("retail001", "QWer1234");
+        PageObject.signIn("SS330075512", "");
 
         PageObject.switchFrame(1);
 
@@ -200,11 +202,11 @@ public class BaseClass {
 
     }
 
-    @BeforeMethod(groups = {"IBGAuthorizer"})
+    /*@BeforeMethod(groups = {"IBGAuthorizer"})
     public void authIbgLogin() {
         chromeConfig();
 
-        PageObject.signIn("retailauth001", "QWer1234");
+        PageObject.signIn("retailauth004", "QWer12345");
 
         homePage = driver.getWindowHandle();
 
@@ -212,10 +214,10 @@ public class BaseClass {
 
         PageObject.menu_Dropdown("IBG - Manager Operation Menu");
         PageObject.menu_Dropdown("Core Retail Menu");
-    }
+    }*/
 
 
-    @BeforeMethod(groups = {"Authorizer"})
+    /*@BeforeMethod(groups = {"Authorizer"})
     public void authorizerLogin() {
         chromeConfig();
 
@@ -228,7 +230,7 @@ public class BaseClass {
         PageObject.menu_Dropdown("Manager Operation Menu");
         PageObject.menu_Dropdown("Core Retail Menu");
 
-    }
+    }*/
 
 
 //    @AfterMethod(groups = {"Authorizer" , "Inputter", "IBGInputter", "IBGAuthorizer"})
@@ -242,7 +244,7 @@ public class BaseClass {
 //        PageObject.signOff();
 //
 //        this.driver.close();
-//    }
+
 
 
 //    @BeforeMethod(groups = {"PowerUser"})
