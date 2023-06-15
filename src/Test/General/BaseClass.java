@@ -117,6 +117,31 @@ public class BaseClass {
 
     }
 
+
+    @BeforeMethod(groups = {"CaoInputter"})
+    public void CaoInputterLogin() {
+//        edgeConfig();
+        chromeConfig();
+        PageObject.signIn("caouser001", "QWer1234");
+        PageObject.switchFrame(1);
+        PageObject.menu_Dropdown("Centrlized Branch User Access");
+        driver.findElement(By.xpath("(//a[text()='Define Current Branch '])[2]")).click();
+        homePage = PageObject.switchToChildWindow();
+        PageObject.textinput_Locator("transactionId","CAOUSER.001");
+        PageObject.img_Button("Edit a contract");
+        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003111030");
+        PageObject.img_Button("Commit the deal");
+        PageObject.img_Button("Commit the deal");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        driver.close();
+        PageObject.switchToParentWindow(homePage);
+        PageObject.switchFrame(1);
+    }
+
     @BeforeMethod(groups = {"InputterTDR"})
 
     public void InputterTDR() throws InterruptedException {
