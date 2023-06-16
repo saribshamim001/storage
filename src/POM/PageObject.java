@@ -226,6 +226,7 @@ public class PageObject extends BaseClass {
         }else{
             try {
                 WebElement acpOverride = driver.findElement(By.xpath("//tr/td/a[text()='Accept Overrides']"));
+                AssertionScreenshot(testCaseName);
                 acpOverride.click();
                 txnValidate(testCaseName);
             } catch (Exception e) {
