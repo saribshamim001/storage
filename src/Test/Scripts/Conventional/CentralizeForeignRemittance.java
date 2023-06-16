@@ -13,8 +13,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static Test.General.ExtraMethods.refreshWindow;
-
 public class CentralizeForeignRemittance extends BaseClass {
     @Test(groups = "CfrInputter", dataProvider = "CentralizeForeignRemittance")
     public void CentralizeForeignRemittance(Map<String, String> testData) throws InterruptedException, IOException {
@@ -69,7 +67,9 @@ public class CentralizeForeignRemittance extends BaseClass {
 
             String newPage = PageObject.switchToChildWindow();
             PageObject.switchFrame(2);
-            refreshWindow(2);
+//            refreshWindow(2);
+            String childPage = PageObject.switchToChildWindow();
+            PageObject.switchFrame(2);
 
             PageObject.textarea_Locator("fieldName:OTHER.REMARKS", Remarks);
             PageObject.textinput_Locator("fieldName:DATE.OF.BIRTH", DateOfBirth);

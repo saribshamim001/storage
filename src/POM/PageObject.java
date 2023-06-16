@@ -76,6 +76,12 @@ public class PageObject extends BaseClass {
         driver.switchTo().frame(index);
     }
 
+    public static void refreshWindow(int indexNumber)
+    {
+        String childPage = PageObject.switchToChildWindow();
+        PageObject.switchFrame(indexNumber);
+    }
+
     public  static void uploadFile(String filePath,String frameID){
 
         WebElement fileFrame = driver.findElement(By.xpath("//iframe[@id='"+frameID+"']"));
