@@ -4,35 +4,35 @@
     <listeners>
         <listener class-name="Resources.Listeners"/>
     </listeners>
-    <test verbose="1" preserve-order="true" name="Retail Operations Inputter">
+<!--    <test verbose="1" preserve-order="true" name="Retail Operations Inputter">-->
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="CaoInputter2"/>-->
+<!--            </run>-->
+<!--        </groups>-->
+
+<!--        <classes>-->
+<!--            <class name="Test.Scripts.Conventional.CentralizedStandingInstruction.OrderInputterMenu">-->
+<!--            <methods>-->
+<!--                <include name="STOReserved"/>-->
+<!--            </methods>-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>-->
+    <test verbose="1" preserve-order="true" name="Cao Authorizer">
         <groups>
             <run>
-                <include name="IBGInputter"/>
+                <include name="CaoAuthorizer"/>
             </run>
         </groups>
 
         <classes>
-            <class name="Test.Scripts.IBG.CDR_Report_IBG">
-            <methods>
-                <include name="CDRReportIBG"/>
-            </methods>
-            </class>
-        </classes>
-    </test>
-<!--    <test verbose="1" preserve-order="true" name="Retail Operations Authorizer">
-        <groups>
-            <run>
-                <include name="Authorizer"/>
-            </run>
-        </groups>
-
-        <classes>
-            <class name="Test.Scripts.Conventional.CDR_Status">
+            <class name="Test.Scripts.Conventional.CentralizedStandingInstruction.OrderInputterMenu">
                 <methods>
-                    <include name="CDRStatusStop"/>
+                    <include name="StandingOrderAuth"/>
                 </methods>
             </class>
         </classes>
-    </test>-->
+    </test>
 
 </suite>

@@ -76,6 +76,12 @@ public class PageObject extends BaseClass {
         driver.switchTo().frame(index);
     }
 
+    public static void refreshWindow(int indexNumber)
+    {
+        String childPage = PageObject.switchToChildWindow();
+        PageObject.switchFrame(indexNumber);
+    }
+
     public  static void uploadFile(String filePath,String frameID){
 
         WebElement fileFrame = driver.findElement(By.xpath("//iframe[@id='"+frameID+"']"));
@@ -226,6 +232,7 @@ public class PageObject extends BaseClass {
         }else{
             try {
                 WebElement acpOverride = driver.findElement(By.xpath("//tr/td/a[text()='Accept Overrides']"));
+                AssertionScreenshot(testCaseName);
                 acpOverride.click();
                 txnValidate(testCaseName);
             } catch (Exception e) {
