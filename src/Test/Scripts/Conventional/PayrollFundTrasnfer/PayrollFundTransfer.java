@@ -21,15 +21,20 @@ public class PayrollFundTransfer extends BaseClass {
         PageObject.click_Locator("fieldName:DEBIT.AMOUNT");
         PageObject.textinput_Locator("fieldName:DEBIT.AMOUNT","500");
         PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER","10102233");
-        PageObject.textinput_Locator("fieldName:CREDIT.ACCT.NO","1007587609");
+        PageObject.textinput_Locator("fieldName:CREDIT.ACCT.NO","1007558090");
         PageObject.click_Locator("fieldName:CREDIT.VALUE.DATE");
-        PageObject.textinput_Locator("fieldName:TREASURY.RATE","12");
-        PageObject.radiobutton_Locator("radio:tab1:AML.TYP.CUST",2);
+        PageObject.textinput_Locator("fieldName:CREDIT.VALUE.DATE","20230101");
+//        PageObject.textinput_Locator("fieldName:TREASURY.RATE","12");
+        PageObject.click_Locator("radio:tab1:AML.TYP.CUST");
+        PageObject.radiobutton_Locator("radio:tab1:AML.TYP.CUST",1);
         PageObject.textarea_Locator("fieldName:NAME.COND.TXN","abd");
         PageObject.textinput_Locator("fieldName:CNIC.NO","12345");
-        PageObject.img_Button("Validate a deal");
-        //asdasd
 
+        //asdasd
+        PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1","ABCLPC");
+        PageObject.textinput_Locator("fieldName:COMMISSION.AMT:1","1");
+        PageObject.img_Button("Validate a deal");
+        PageObject.img_Button("Commit the deal");
 
 
 
