@@ -41,6 +41,17 @@ public class PayrollFundTransfer extends BaseClass {
     }
 
 
+    @Test(groups = {"CaoInputter2"}, dataProvider = "OnlineAccountInformation")
+    public void OnlineAccountInformation(Map<String, String> testData) throws IOException {
 
+        PageObject.menu_Dropdown("Account Enquiries ");
+        PageObject.menu_Link("Online Account Statement ");
+        PageObject.switchToChildWindow();
+        driver.manage().window().maximize();
+        PageObject.textinput_Locator("value:1:1:1", testData.get("BookingDate"));
+        PageObject.textinput_Locator("value:2:1:1", testData.get("Account"));
+        PageObject.find_Button();
+
+    }
 
 }
