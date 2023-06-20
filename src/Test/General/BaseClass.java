@@ -117,19 +117,19 @@ public class BaseClass {
 
     }*/
 
-    /*@BeforeMethod(groups = {"CaoInputter2"})
+    @BeforeMethod(groups = {"CaoInputter2"})
     public void CaoInputterLogin2() {
 //        edgeConfig();
         chromeConfig();
-        PageObject.signIn("caouser004", "QWer1234");
+        PageObject.signIn("AB2375501", "QWer1234");
         PageObject.switchFrame(1);
-        PageObject.menu_Dropdown("Centrlized Branch User Access Menu");
+        PageObject.menu_Dropdown("Centrlized Branch User Access");
         PageObject.menu_Link("Define Current Branch ");
 
         homePage = PageObject.switchToChildWindow();
-        PageObject.textinput_Locator("transactionId","CAOUSER.004");
+        PageObject.textinput_Locator("transactionId","AB23755.01");
         PageObject.img_Button("Edit a contract");
-        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003111040");
+        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003111030");
         PageObject.img_Button("Commit the deal");
         PageObject.img_Button("Commit the deal");
         try {
@@ -140,7 +140,15 @@ public class BaseClass {
         driver.close();
         PageObject.switchToParentWindow(homePage);
         PageObject.switchFrame(1);
-    }*/
+    }
+
+    @BeforeMethod(groups = {"CaoAuthorizer"})
+    public void CaoAuthorizerLogin2() {
+//        edgeConfig();
+        chromeConfig();
+        PageObject.signIn("NK1988001", "123456");
+        PageObject.switchFrame(1);
+    }
 
     /*@BeforeMethod(groups = {"CaoInputter2Auth"})
     public void CaoInputterLogin2Auth() {
