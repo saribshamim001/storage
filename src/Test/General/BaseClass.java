@@ -171,15 +171,15 @@ public class BaseClass {
     public void caoAuthorizerLogin() {
 //        edgeConfig();
         chromeConfig();
-        PageObject.signIn("caoauth003", "QWer1234");
+        PageObject.signIn("NK1988001", "123456");
         PageObject.switchFrame(1);
         PageObject.menu_Dropdown("Centrlized Branch User Access Menu");
         PageObject.menu_Link("Define Current Branch ");
 
         homePage = PageObject.switchToChildWindow();
-        PageObject.textinput_Locator("transactionId","CAOAUTH.003");
+        PageObject.textinput_Locator("transactionId","NK19880.01");
         PageObject.img_Button("Edit a contract");
-        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1002711030");
+        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003111030");
         PageObject.img_Button("Commit the deal");
         PageObject.img_Button("Commit the deal");
         try {
