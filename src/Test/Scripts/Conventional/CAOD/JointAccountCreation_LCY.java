@@ -20,7 +20,7 @@ public class JointAccountCreation_LCY extends BaseClass {
     @Test(groups = {"CaoInputter"}, dataProvider = "inputterData")
     public void JointAccCreation_LCY(Map<String, String> testData) {
 
-        PageObject.menu_Dropdown("Conventional Account Open");
+        PageObject.menu_Dropdown("Conventional Account Open");//test
         PageObject.menu_Dropdown("Local Currency Account Open");
         PageObject.menu_Link("Current Account  ");
         String homePage = PageObject.switchToChildWindow();
