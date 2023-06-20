@@ -98,7 +98,7 @@ public class BaseClass {
         return System.getProperty("user.dir") + "\\"+ testCaseName+ "\\" + testCaseName + dft.format(date1) +".png";
     }
 
-    @BeforeMethod(groups = {"Inputter"})
+    /*@BeforeMethod(groups = {"Inputter"})
     public void inputterLogin() {
 //        edgeConfig();
         chromeConfig();
@@ -115,9 +115,9 @@ public class BaseClass {
         PageObject.maximizeWindow();
         PageObject.switchFrame(1);
 
-    }
+    }*/
 
-    @BeforeMethod(groups = {"CaoInputter2"})
+    /*@BeforeMethod(groups = {"CaoInputter2"})
     public void CaoInputterLogin2() {
 //        edgeConfig();
         chromeConfig();
@@ -140,9 +140,9 @@ public class BaseClass {
         driver.close();
         PageObject.switchToParentWindow(homePage);
         PageObject.switchFrame(1);
-    }
+    }*/
 
-    @BeforeMethod(groups = {"CaoInputter2Auth"})
+    /*@BeforeMethod(groups = {"CaoInputter2Auth"})
     public void CaoInputterLogin2Auth() {
 //        edgeConfig();
         chromeConfig();
@@ -165,10 +165,10 @@ public class BaseClass {
         driver.close();
         PageObject.switchToParentWindow(homePage);
         PageObject.switchFrame(1);
-    }
+    }*/
 
 
-    @BeforeMethod(groups = {"CaoInputter"})
+    /*@BeforeMethod(groups = {"CaoInputter"})
     public void CaoInputterLogin() {
 //        edgeConfig();
         chromeConfig();
@@ -190,9 +190,9 @@ public class BaseClass {
         driver.close();
         PageObject.switchToParentWindow(homePage);
         PageObject.switchFrame(1);
-    }
+    }*/
 
-    @BeforeMethod(groups = {"InputterTDR"})
+    /*@BeforeMethod(groups = {"InputterTDR"})
 
     public void InputterTDR() throws InterruptedException {
 //        edgeConfig();
@@ -256,8 +256,77 @@ public class BaseClass {
 //        PageObject.maximizeWindow();
         PageObject.switchFrame(1);
 
+    }*/
+
+
+    @BeforeMethod(groups = {"InputterTDR_IBG"})
+
+    public void InputterTDR_IBG() throws InterruptedException {
+//        edgeConfig();
+        chromeConfig();
+        PageObject.signIn("AK2366602", "QWer12345");
+
+        PageObject.switchFrame(1);
+
+        PageObject.menu_Dropdown("Centrlized Branch User Access Menu");
+        PageObject.menu_Link("Define Current Branch ");
+
+        homePage = PageObject.switchToChildWindow();
+
+        PageObject.textinput_Locator("transactionId","AK23666.02");
+        PageObject.img_Button("Edit a contract");
+
+
+        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","2550111030");
+        PageObject.img_Button("Commit the deal");
+        PageObject.img_Button("Commit the deal");
+
+
+        Thread.sleep(5000);
+        driver.close();
+
+        PageObject.switchToParentWindow(homePage);
+
+//        PageObject.maximizeWindow();
+        PageObject.switchFrame(1);
+
     }
-    @BeforeMethod(groups = {"IBGInputter"})
+
+    /*@BeforeMethod(groups = {"AuthorizerTDR_IBG"})
+
+    public void AuthorizerTDR_IBG() throws InterruptedException {
+//        edgeConfig();
+        chromeConfig();
+        PageObject.signIn("RB1965401", "ADmin+258");
+
+        PageObject.switchFrame(1);
+
+        PageObject.menu_Dropdown("Centrlized Branch User Access Menu");
+        PageObject.menu_Link("Define Current Branch ");
+
+        homePage = PageObject.switchToChildWindow();
+
+        PageObject.textinput_Locator("transactionId","RB19654.01");
+        PageObject.img_Button("Edit a contract");
+
+
+        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003111040");
+        PageObject.img_Button("Commit the deal");
+        PageObject.img_Button("Commit the deal");
+
+
+        Thread.sleep(5000);
+        driver.close();
+
+        PageObject.switchToParentWindow(homePage);
+
+//        PageObject.maximizeWindow();
+        PageObject.switchFrame(1);
+
+    }*/
+
+
+    /*@BeforeMethod(groups = {"IBGInputter"})
     public void inputterIbgLogin() {
         chromeConfig();
 
@@ -273,9 +342,9 @@ public class BaseClass {
         PageObject.maximizeWindow();
         PageObject.switchFrame(1);
 
-    }
+    }*/
 
-    @BeforeMethod(groups = {"IBGAuthorizer"})
+    /*@BeforeMethod(groups = {"IBGAuthorizer"})
     public void authIbgLogin() {
         chromeConfig();
 
@@ -287,10 +356,10 @@ public class BaseClass {
 
         PageObject.menu_Dropdown("IBG - Manager Operation Menu");
         PageObject.menu_Dropdown("Core Retail Menu");
-    }
+    }*/
 
 
-    @BeforeMethod(groups = {"Authorizer"})
+    /*@BeforeMethod(groups = {"Authorizer"})
     public void authorizerLogin() {
         chromeConfig();
 
@@ -303,7 +372,7 @@ public class BaseClass {
         PageObject.menu_Dropdown("Manager Operation Menu");
         PageObject.menu_Dropdown("Core Retail Menu");
 
-    }
+    }*/
 
 
 //    @AfterMethod(groups = {"Authorizer" , "Inputter", "IBGInputter", "IBGAuthorizer"})
