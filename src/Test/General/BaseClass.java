@@ -98,7 +98,7 @@ public class BaseClass {
         return System.getProperty("user.dir") + "\\"+ testCaseName+ "\\" + testCaseName + dft.format(date1) +".png";
     }
 
-    /*@BeforeMethod(groups = {"Inputter"})
+    @BeforeMethod(groups = {"Inputter"})
     public void inputterLogin() {
 //        edgeConfig();
         chromeConfig();
@@ -115,9 +115,9 @@ public class BaseClass {
         PageObject.maximizeWindow();
         PageObject.switchFrame(1);
 
-    }*/
+    }
 
-    /*@BeforeMethod(groups = {"CaoInputter2"})
+    @BeforeMethod(groups = {"CaoInputter2"})
     public void CaoInputterLogin2() {
 //        edgeConfig();
         chromeConfig();
@@ -140,9 +140,9 @@ public class BaseClass {
         driver.close();
         PageObject.switchToParentWindow(homePage);
         PageObject.switchFrame(1);
-    }*/
+    }
 
-    /*@BeforeMethod(groups = {"CaoInputter2Auth"})
+    @BeforeMethod(groups = {"CaoInputter2Auth"})
     public void CaoInputterLogin2Auth() {
 //        edgeConfig();
         chromeConfig();
@@ -165,11 +165,11 @@ public class BaseClass {
         driver.close();
         PageObject.switchToParentWindow(homePage);
         PageObject.switchFrame(1);
-    }*/
+    }
 
-
-    /*@BeforeMethod(groups = {"CaoInputter"})
+    @BeforeMethod(groups = {"CaoInputter"})
     public void CaoInputterLogin() {
+
 //        edgeConfig();
         chromeConfig();
         PageObject.signIn("caouser001", "QWer1234");
@@ -190,9 +190,9 @@ public class BaseClass {
         driver.close();
         PageObject.switchToParentWindow(homePage);
         PageObject.switchFrame(1);
-    }*/
+    }
 
-    /*@BeforeMethod(groups = {"InputterTDR"})
+    @BeforeMethod(groups = {"InputterTDR"})
 
     public void InputterTDR() throws InterruptedException {
 //        edgeConfig();
@@ -256,7 +256,7 @@ public class BaseClass {
 //        PageObject.maximizeWindow();
         PageObject.switchFrame(1);
 
-    }*/
+    }
 
 
     @BeforeMethod(groups = {"InputterTDR_IBG"})
@@ -292,7 +292,7 @@ public class BaseClass {
 
     }
 
-    /*@BeforeMethod(groups = {"AuthorizerTDR_IBG"})
+    @BeforeMethod(groups = {"AuthorizerTDR_IBG"})
 
     public void AuthorizerTDR_IBG() throws InterruptedException {
 //        edgeConfig();
@@ -323,10 +323,10 @@ public class BaseClass {
 //        PageObject.maximizeWindow();
         PageObject.switchFrame(1);
 
-    }*/
+    }
 
 
-    /*@BeforeMethod(groups = {"IBGInputter"})
+    @BeforeMethod(groups = {"IBGInputter"})
     public void inputterIbgLogin() {
         chromeConfig();
 
@@ -342,9 +342,9 @@ public class BaseClass {
         PageObject.maximizeWindow();
         PageObject.switchFrame(1);
 
-    }*/
+    }
 
-    /*@BeforeMethod(groups = {"IBGAuthorizer"})
+    @BeforeMethod(groups = {"IBGAuthorizer"})
     public void authIbgLogin() {
         chromeConfig();
 
@@ -356,10 +356,10 @@ public class BaseClass {
 
         PageObject.menu_Dropdown("IBG - Manager Operation Menu");
         PageObject.menu_Dropdown("Core Retail Menu");
-    }*/
+    }
 
 
-    /*@BeforeMethod(groups = {"Authorizer"})
+    @BeforeMethod(groups = {"Authorizer"})
     public void authorizerLogin() {
         chromeConfig();
 
@@ -372,7 +372,7 @@ public class BaseClass {
         PageObject.menu_Dropdown("Manager Operation Menu");
         PageObject.menu_Dropdown("Core Retail Menu");
 
-    }*/
+    }
 
 
 //    @AfterMethod(groups = {"Authorizer" , "Inputter", "IBGInputter", "IBGAuthorizer"})
@@ -389,24 +389,24 @@ public class BaseClass {
 //    }
 
 
-//    @BeforeMethod(groups = {"PowerUser"})
-//    public void PowerUserLogin() {
-//        chromeConfig();
-//
-//        PageObject.signIn("talha01", "QWer1234");
-//
-//        homePage = driver.getWindowHandle();
-//
-//        PageObject.switchFrame(0);
-//
-//        driver.findElement(By.xpath("//div/div/form[@id='commandLineForm']")).clear();
-//        driver.findElement(By.xpath("//div/div/form[@id='commandLineForm']")).sendKeys("RECORD.LOCK");
-////        PageObject.textinput_Locator("commandValue","RECORD.LOCK");
-//        PageObject.click_Locator("Go");
-//
-//        PageObject.maximizeWindow();
-//        PageObject.switchFrame(0);
-//    }
+    @BeforeMethod(groups = {"PowerUser"})
+    public void PowerUserLogin() {
+        chromeConfig();
+
+        PageObject.signIn("talha01", "QWer1234");
+
+        homePage = driver.getWindowHandle();
+
+        PageObject.switchFrame(0);
+
+        driver.findElement(By.xpath("//div/div/form[@id='commandLineForm']")).clear();
+        driver.findElement(By.xpath("//div/div/form[@id='commandLineForm']")).sendKeys("RECORD.LOCK");
+//        PageObject.textinput_Locator("commandValue","RECORD.LOCK");
+        PageObject.click_Locator("Go");
+
+        PageObject.maximizeWindow();
+        PageObject.switchFrame(0);
+    }
 
 }
 
