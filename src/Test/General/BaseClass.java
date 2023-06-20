@@ -253,7 +253,7 @@ public class BaseClass {
         homePage = PageObject.switchToChildWindow();
         PageObject.textinput_Locator("transactionId","CAOUSER.004");
         PageObject.img_Button("Edit a contract");
-        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1002711030");
+        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003111040");
         PageObject.img_Button("Commit the deal");
         PageObject.img_Button("Commit the deal");
         try {
@@ -266,8 +266,33 @@ public class BaseClass {
         PageObject.switchFrame(1);
     }
 
-    @BeforeMethod(groups = {"CaoInputter2Auth"})
+    @BeforeMethod(groups = {"CaoAuthorizer2"})
     public void CaoInputterLogin2Auth() {
+//        edgeConfig();
+        chromeConfig();
+        PageObject.signIn("caoauth003", "QWer1234");
+        PageObject.switchFrame(1);
+        PageObject.menu_Dropdown("Centrlized Branch User Access Menu");
+        PageObject.menu_Link("Define Current Branch ");
+
+        homePage = PageObject.switchToChildWindow();
+        PageObject.textinput_Locator("transactionId","CAOAUTH.003");
+        PageObject.img_Button("Edit a contract");
+        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003111040");
+        PageObject.img_Button("Commit the deal");
+        PageObject.img_Button("Commit the deal");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        driver.close();
+        PageObject.switchToParentWindow(homePage);
+        PageObject.switchFrame(1);
+    }
+
+    @BeforeMethod(groups = {"CaoAuthorizer"})
+    public void caoAuthorizerLogin() {
 //        edgeConfig();
         chromeConfig();
         PageObject.signIn("caoauth003", "QWer1234");
@@ -291,7 +316,6 @@ public class BaseClass {
         PageObject.switchFrame(1);
     }
 
-
     @BeforeMethod(groups = {"CaoInputter"})
     public void CaoInputterLogin() {
 //        edgeConfig();
@@ -303,7 +327,7 @@ public class BaseClass {
         homePage = PageObject.switchToChildWindow();
         PageObject.textinput_Locator("transactionId","CAOUSER.001");
         PageObject.img_Button("Edit a contract");
-        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003111030");
+        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","100311100");
         PageObject.img_Button("Commit the deal");
         PageObject.img_Button("Commit the deal");
         try {
