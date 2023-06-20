@@ -393,7 +393,7 @@ public class BaseClass {
     public void PowerUserLogin() {
         chromeConfig();
 
-        PageObject.signIn("talha01", "QWer1234");
+        PageObject.signIn("talha01", "QWer1234");//
 
         homePage = driver.getWindowHandle();
 
