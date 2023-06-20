@@ -32,7 +32,7 @@ public class CentralizedForiegnRemittance extends BaseClass {
         String form = PageObject.switchToChildWindow();
         driver.close();
         PageObject.switchToParentWindow(form);
-        //
+
         PageObject.textinput_Locator("fieldName:CREDIT.AMOUNT",testData.get("FTTAmount"));
         PageObject.textinput_Locator("fieldName:CREDIT.VALUE.DATE",testData.get("ValueDate"));
         PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO",testData.get("DebitAccount"));
