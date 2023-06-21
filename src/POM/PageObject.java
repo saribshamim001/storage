@@ -156,7 +156,7 @@ public class PageObject extends BaseClass {
     }
 
     public static void authorizeByTxn(String txn){
-        driver.findElement(By.xpath("//td[text()='"+txn+"']/following-sibling::td//a[text()='Authorise Deal']")).click();
+        driver.findElement(By.xpath("//td[text()='"+txn+"']/following-sibling::td//a[text()='Authorises a deal']")).click();
     }
 
 
