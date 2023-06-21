@@ -28,4 +28,25 @@ public class BankersChequeReport_IBG extends BaseClass {
 
     }
 
+    @Test(groups = {"Authorizer"})
+    public void ListOfBankersChequeInstrument () throws InterruptedException, IOException {
+
+        PageObject.childmenu_Dropdown("Cheque- Authorizer Menu", 1);
+        PageObject.childmenu_Dropdown("Cheque Report  ", 1);
+        PageObject.childmenu_Link("Cheque Instrument  ", 1);
+
+        PageObject.parentFrame();
+        PageObject.switchFrame(2);
+        String pgnameo = driver.getWindowHandle();
+
+        String menu1 = PageObject.switchToChildWindow();
+        PageObject.maximizeWindow();
+
+
+        PageObject.img_Button("Selection Screen");
+        //PageObject.textinput_Locator("value:1:1:1","CHG2300300040");
+        PageObject.find_Button();
+
+    }
+
 }
