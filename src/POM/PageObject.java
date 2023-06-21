@@ -1,7 +1,6 @@
 package POM;
 
 import Test.General.BaseClass;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -52,6 +51,7 @@ public class PageObject extends BaseClass {
     public static void imgchild_Button (String alt_Value , Integer index) {
         driver.findElement(By.xpath("(//tr/td/a/img[@alt='"+alt_Value+"'])["+index+"]")).click();
     }
+
 
     public static void find_Button () {
         driver.findElement(By.xpath("//tr/td/a[@alt='Run Selection']")).click();
@@ -135,6 +135,10 @@ public class PageObject extends BaseClass {
         driver.findElement(By.xpath("(//ul/li/a[contains(text(),'"+text_Value+"')])["+index+"]")).click();
     }
 
+    public static void childmenuLink(String text_Value , Integer index) {
+        driver.findElement(By.xpath("(//tr/td/a[contains(text(),'"+text_Value+"')])["+index+"]")).click();
+    }
+
     public static void form_Link(String text_Value) {
         driver.findElement(By.xpath("//table/tbody/tr/td/a[text()='"+text_Value+"']")).click();
     }
@@ -175,8 +179,9 @@ public class PageObject extends BaseClass {
         return homePage;
     }
 
-    public static void switchToParentWindow(String window){
+    public static String switchToParentWindow(String window){
         driver.switchTo().window(window);
+        return window;
     }
 
     public static void maximizeWindow(){
