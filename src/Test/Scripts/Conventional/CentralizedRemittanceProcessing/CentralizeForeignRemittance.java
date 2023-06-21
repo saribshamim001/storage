@@ -1,4 +1,4 @@
-package Test.Scripts.Conventional;
+package Test.Scripts.Conventional.CentralizedRemittanceProcessing;
 
 import POM.PageObject;
 import Test.General.BaseClass;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CentralizeForeignRemittance extends BaseClass {
-    @Test(groups = "CfrInputter", dataProvider = "CentralizeForeignRemittance")
+    @Test(groups = "IBG_CfrInputter", dataProvider = "CentralizeForeignRemittance")
     public void CentralizeForeignRemittance(Map<String, String> testData) throws InterruptedException, IOException {
 
         //VARIABLE FOR EXCEL DATA STORAGE
@@ -32,7 +32,7 @@ public class CentralizeForeignRemittance extends BaseClass {
         String DateOfBirth = testData.get("DateOfBirth");
         String FatherName = testData.get("FatherName");
 
-        PageObject.switchFrame(1);
+//        PageObject.switchFrame(1);
 
         PageObject.menu_Dropdown("Centralized Foreign Remittance Menu");
         PageObject.menu_Link("Account to Account Transfer ");
@@ -108,13 +108,13 @@ public class CentralizeForeignRemittance extends BaseClass {
         return data;
     }
 
-    @Test(groups = "CfrAuthorizer", dataProvider = "CentralizeForeignRemittance_Authorization")
+    @Test(groups = "IBG_CfrAuthorizer", dataProvider = "CentralizeForeignRemittance_Authorization")
     public void CentralizeForeignRemittance_Authorization(Map<String, String> testData) throws InterruptedException, IOException {
 
         //VARIABLE FOR EXCEL DATA STORAGE
         String TxnNumber = testData.get("Transaction Number");
 
-        PageObject.switchFrame(1);
+//        PageObject.switchFrame(1);
         PageObject.menu_Dropdown("Centralized Foreign Remittance Menu ( AUTH )");
         PageObject.menu_Link("Account to Account Transfer ");
 
@@ -155,13 +155,13 @@ public class CentralizeForeignRemittance extends BaseClass {
 
     /*_______________________________________________________________________________________________________________________________*/
 
-    @Test(groups = "CfrInputter", dataProvider = "CentralizeForeignRemittanceReversal")
+    @Test(groups = "IBG_CfrInputter", dataProvider = "CentralizeForeignRemittanceReversal")
     public void CentralizeForeignRemittanceReversal(Map<String, String> testData) throws InterruptedException, IOException {
 
         //VARIABLE FOR EXCEL DATA STORAGE
         String TransactionNumber = testData.get("Transaction Number");
 
-        PageObject.switchFrame(1);
+//        PageObject.switchFrame(1);
 
         PageObject.menu_Dropdown("Centralized Foreign Remittance Menu");
         PageObject.menu_Link("Funds Transfer General ");
@@ -203,13 +203,13 @@ public class CentralizeForeignRemittance extends BaseClass {
         return data;
     }
 
-    @Test(groups = "CfrAuthorizer", dataProvider = "CentralizeForeignRemittance_Authorization")
+    @Test(groups = "IBG_CfrAuthorizer", dataProvider = "CentralizeForeignRemittance_Authorization")
     public void CentralizeForeignRemittanceReversal_Authorization(Map<String, String> testData) throws InterruptedException, IOException {
 
         //VARIABLE FOR EXCEL DATA STORAGE
         String TxnNumber = testData.get("Transaction Number");
 
-        PageObject.switchFrame(1);
+//        PageObject.switchFrame(1);
         PageObject.menu_Dropdown("Centralized Foreign Remittance Menu ( AUTH )");
         PageObject.menu_Link("Remittance Reversal Auth  ");
 

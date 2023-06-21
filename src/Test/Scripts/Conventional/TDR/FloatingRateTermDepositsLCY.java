@@ -159,12 +159,20 @@ public class FloatingRateTermDepositsLCY extends BaseClass {
         PageObject.maximizeWindow();
 
 
+        PageObject.switchFrame(0);
         PageObject.textinput_Locator("value:1:1:1",testData.get("Transaction Number"));
         PageObject.find_Button();
 
 
-        PageObject.authorizeByTxn(testData.get("Transaction Number"));
+        String menu1 = PageObject.switchToChildWindow();
+        PageObject.maximizeWindow();
+        PageObject.switchFrame(0);
 
+        PageObject.img_Button("Select Drilldown");
+//        PageObject.authorizeByTxn(testData.get("Transaction Number"));
+
+        String menu2 = PageObject.switchToChildWindow();
+        PageObject.switchFrame(1);
         PageObject.img_Button("Authorises a deal");
     }
 
