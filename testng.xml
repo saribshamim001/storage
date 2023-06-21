@@ -7,29 +7,29 @@
 <!--    <test verbose="1" preserve-order="true" name="Retail Operations Inputter">-->
 <!--        <groups>-->
 <!--            <run>-->
-<!--                <include name="CaoInputter2"/>-->
+<!--                <include name="InputterTDR"/>-->
 <!--            </run>-->
 <!--        </groups>-->
 
 <!--        <classes>-->
-<!--            <class name="Test.Scripts.Conventional.CentralizedStandingInstruction.OrderInputterMenu">-->
+<!--            <class name="Test.Scripts.Conventional.TDR.FloatingRateTermDepositsLCY">-->
 <!--            <methods>-->
-<!--                <include name="STOReserved"/>-->
+<!--                <include name="FloatingRateTermDepositsLCY"/>-->
 <!--            </methods>-->
 <!--            </class>-->
 <!--        </classes>-->
 <!--    </test>-->
-    <test verbose="1" preserve-order="true" name="Cao Authorizer">
+    <test verbose="1" preserve-order="true" name="Retail Operations Authorizer">
         <groups>
             <run>
-                <include name="CaoAuthorizer"/>
+                <include name="AuthorizerTDR"/>
             </run>
         </groups>
 
         <classes>
-            <class name="Test.Scripts.Conventional.CentralizedStandingInstruction.OrderInputterMenu">
+            <class name="Test.Scripts.Conventional.TDR.FloatingRateTermDepositsLCY">
                 <methods>
-                    <include name="StandingOrderAuth"/>
+                    <include name="FloatingRateTermDepositsLCYAuth"/>
                 </methods>
             </class>
         </classes>

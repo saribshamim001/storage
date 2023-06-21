@@ -414,7 +414,7 @@ public class BaseClass {
         PageObject.img_Button("Commit the deal");
 
 
-        Thread.sleep(5000);
+        Thread.sleep(2000);
         driver.close();
 
         PageObject.switchToParentWindow(homePage);
