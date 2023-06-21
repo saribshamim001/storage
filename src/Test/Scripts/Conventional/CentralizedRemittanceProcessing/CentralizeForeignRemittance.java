@@ -1,4 +1,4 @@
-package Test.Scripts.Conventional;
+package Test.Scripts.Conventional.CentralizedRemittanceProcessing;
 
 import POM.PageObject;
 import Test.General.BaseClass;

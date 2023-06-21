@@ -266,6 +266,56 @@ public class BaseClass {
         PageObject.switchFrame(1);
     }
 
+    @BeforeMethod(groups = {"CaoAuthorizer3"})
+    public void CaoInputterLogin3Auth() {
+//        edgeConfig();
+        chromeConfig();
+        PageObject.signIn("caoauth002", "QWer1234");
+        PageObject.switchFrame(1);
+        PageObject.menu_Dropdown("Centrlized Branch User Access Menu");
+        PageObject.menu_Link("Define Current Branch ");
+
+        homePage = PageObject.switchToChildWindow();
+        PageObject.textinput_Locator("transactionId","CAOAUTH.003");
+        PageObject.img_Button("Edit a contract");
+        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003114045");
+        PageObject.img_Button("Commit the deal");
+        PageObject.img_Button("Commit the deal");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        driver.close();
+        PageObject.switchToParentWindow(homePage);
+        PageObject.switchFrame(1);
+    }
+
+    @BeforeMethod(groups = {"CaoAuthorizer4"})
+    public void CaoInputterLogin4Auth() {
+//        edgeConfig();
+        chromeConfig();
+        PageObject.signIn("caoauth002", "QWer1234");
+        PageObject.switchFrame(1);
+        PageObject.menu_Dropdown("Centrlized Branch User Access");
+        PageObject.childmenu_Link("Define Current Branch ",2);
+
+        homePage = PageObject.switchToChildWindow();
+        PageObject.textinput_Locator("transactionId","CAOAUTH.002");
+        PageObject.img_Button("Edit a contract");
+        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003114045");
+        PageObject.img_Button("Commit the deal");
+        PageObject.img_Button("Commit the deal");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        driver.close();
+        PageObject.switchToParentWindow(homePage);
+        PageObject.switchFrame(1);
+    }
+
     @BeforeMethod(groups = {"CaoAuthorizer2"})
     public void CaoInputterLogin2Auth() {
 //        edgeConfig();
@@ -327,11 +377,12 @@ public class BaseClass {
         homePage = PageObject.switchToChildWindow();
         PageObject.textinput_Locator("transactionId","CAOUSER.001");
         PageObject.img_Button("Edit a contract");
-        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","100311100");
+//        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","100311100");
+        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003114045");
         PageObject.img_Button("Commit the deal");
         PageObject.img_Button("Commit the deal");
         try {
-            Thread.sleep(5000);
+            Thread.sleep(10);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
