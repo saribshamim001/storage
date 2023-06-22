@@ -36,7 +36,7 @@ public class AmendentAlfalahFloatingRateTDR extends BaseClass {
         String menu1 = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
 
-        PageObject.childmenuLink("Amend Term Deposit",1);
+        PageObject.childmenu_Link("Amend Term Deposit",1);
 
         PageObject.textinput_Locator("fieldName:REST.PERIOD.LD","TDRFRLCY1Z");
 

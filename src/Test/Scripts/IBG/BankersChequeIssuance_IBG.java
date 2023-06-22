@@ -134,9 +134,9 @@ public class BankersChequeIssuance_IBG extends BaseClass {
         PageObject.textinput_Locator("value:3:1:1","100");
         PageObject.textinput_Locator("value:2:1:1","BC");
         PageObject.find_Button();
-        PageObject.form_Link("Delete a Transaction");
+        PageObject.form_Link("Authorise a Transaction");
         PageObject.switchToChildWindow();
-        PageObject.img_Button("Deletes a Deal");
+        PageObject.img_Button("Authorises a deal");
         PageObject.switchToParentWindow(menu1);
         PageObject.switchToChildWindow();
 
