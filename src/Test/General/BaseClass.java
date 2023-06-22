@@ -50,7 +50,7 @@ public class BaseClass {
 
         action = new Actions(driver);
 
-        driver.get("http://172.24.157.27:9080/R22SIT2/servlet/BrowserLoginServlet");
+        driver.get("http://172.24.157.27:9080/R22SIT2/servlet/BrowserServlet");
         //driver.get("http://172.21.81.59:9080/R13UAT1/servlet/BrowserServlet");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.manage().window().maximize();
@@ -69,7 +69,7 @@ public class BaseClass {
 
         action = new Actions(driver);
 
-        driver.get("http://172.24.157.27:9080/R22SIT2/servlet/BrowserLoginServlet");
+        driver.get("http://172.24.157.27:9080/R22SIT2/servlet/BrowserServlet");
         //driver.get("http://172.21.81.59:9080/R13UAT1/servlet/BrowserServlet");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.manage().window().maximize();
