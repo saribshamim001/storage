@@ -4,6 +4,7 @@ import POM.PageObject;
 import Test.General.BaseClass;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -88,6 +89,20 @@ public class CentralizedForiegnRemittance extends BaseClass {
 
     }
 
+    @Test(groups = {"CaoAuthorizer"},dataProvider = "CFRVostroAuth")
+    public void CFRVostroAuth(Map<String, String> testData) throws IOException{
+
+        PageObject.menu_Dropdown("Centralized Foreign Remittance Menu ( AUTH )");
+        PageObject.menu_Dropdown("Inward Remittance");
+        //PageObject.childmenu_Dropdown("Inward Remittance thru",1);
+        driver.findElement(By.xpath("//*[@id=\'pane_\']/ul[2]/li/ul/li[5]/ul/li[1]/a")).click();
+        PageObject.switchToChildWindow();
+        driver.manage().window().maximize();
+        PageObject.textinput_Locator("transactionId",testData.get("Transaction Number"));
+        PageObject.img_Button("Perform an action on the contract");
+        PageObject.img_Button("Authorises a deal");
+
+    }
 
 
 
@@ -151,6 +166,34 @@ public class CentralizedForiegnRemittance extends BaseClass {
     public Object[][] readExcelData3() throws IOException {
 
         String FILE_PATH = System.getProperty("user.dir") + "\\Data\\CFRNastoInputter.xlsx";
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+        workbook.close();
+        fis.close();
+        return data;
+
+    }
+
+    @DataProvider(name = "CFRVostroAuth")
+    public Object[][] readExcelData4() throws IOException {
+
+        String FILE_PATH = System.getProperty("user.dir") + "\\Data\\CFRVostroInputter.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
