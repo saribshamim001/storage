@@ -316,6 +316,31 @@ public class BaseClass {
         PageObject.switchFrame(1);
     }
 
+    @BeforeMethod(groups = {"CaoAuthorizer5"})
+    public void CaoInputterLogin5Auth() {
+//        edgeConfig();
+        chromeConfig();
+        PageObject.signIn("caoauth004", "QWer1234");
+        PageObject.switchFrame(1);
+        PageObject.menu_Dropdown("Centrlized Branch User Access");
+        PageObject.childmenu_Link("Define Current Branch ",2);
+
+        homePage = PageObject.switchToChildWindow();
+        PageObject.textinput_Locator("transactionId","CAOAUTH.004");
+        PageObject.img_Button("Edit a contract");
+        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003114045");
+        PageObject.img_Button("Commit the deal");
+        PageObject.img_Button("Commit the deal");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        driver.close();
+        PageObject.switchToParentWindow(homePage);
+        PageObject.switchFrame(1);
+    }
+
     @BeforeMethod(groups = {"CaoAuthorizer2"})
     public void CaoInputterLogin2Auth() {
 //        edgeConfig();
@@ -364,6 +389,31 @@ public class BaseClass {
 //        driver.close();
 //        PageObject.switchToParentWindow(homePage);
 //        PageObject.switchFrame(1);
+    }
+
+    @BeforeMethod(groups = {"CaoInputterIBG"})
+    public void CaoInputterLoginIBG() {
+//        edgeConfig();
+        chromeConfig();
+        PageObject.signIn("caouser008", "QWer1234");
+        PageObject.switchFrame(1);
+        PageObject.menu_Dropdown("Centrlized Branch User Access");
+        driver.findElement(By.xpath("(//a[text()='Define Current Branch '])[2]")).click();
+        homePage = PageObject.switchToChildWindow();
+        PageObject.textinput_Locator("transactionId","CAOUSER.008");
+        PageObject.img_Button("Edit a contract");
+//        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","100311100");
+        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003114045");
+        PageObject.img_Button("Commit the deal");
+        PageObject.img_Button("Commit the deal");
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        driver.close();
+        PageObject.switchToParentWindow(homePage);
+        PageObject.switchFrame(1);
     }
 
     @BeforeMethod(groups = {"CaoInputter"})

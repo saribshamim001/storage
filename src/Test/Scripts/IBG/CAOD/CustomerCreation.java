@@ -1,4 +1,4 @@
-package Test.Scripts.Conventional.CAOD;
+package Test.Scripts.IBG.CAOD;
 
 import POM.PageObject;
 import Test.General.BaseClass;
@@ -16,7 +16,7 @@ public class CustomerCreation extends BaseClass {
 
     public static String txn;
 
-    @Test(groups = {"CaoInputter"}, dataProvider = "customerCreation" )
+    @Test(groups = {"CaoInputterIBG"}, dataProvider = "customerCreation" )
     public void customerCreation(Map<String, String> testData) throws IOException {
 
     String CustomerSegment = testData.get("CustomerSegment");
@@ -97,13 +97,13 @@ public class CustomerCreation extends BaseClass {
     PageObject.select_Locator("fieldName:SEDING.FACTS:1","Not Applicable");
     PageObject.textarea_Locator("fieldName:FURTHER.DETAILS","Testing");
 
-    PageObject.commitDeal("CaoCustomerCreation");
+    PageObject.commitDeal("IbgCaoCustomerCreation");
 
     }
 
     @DataProvider(name = "customerCreation")
     public Object[][] readExcelData() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir") + "\\Excel Data\\CaoCustomerCreation.xlsx";
+        String FILE_PATH = System.getProperty("user.dir") + "\\Excel Data\\IbgCaoCustomerCreation.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
@@ -128,54 +128,7 @@ public class CustomerCreation extends BaseClass {
         return data;
     }
 
-    @Test(groups = {"CaoInputter"}, dataProvider = "customerUpdation" )
-    public void customerUpdation(Map<String, String> testData) throws IOException {
-
-        PageObject.menu_Dropdown("Alfalah Customer Information at CAO");
-        PageObject.menu_Dropdown("Customer Opening");
-        PageObject.menu_Link("Individual/Sole/Proprietorship/Minor  ");
-
-        //   PageObject.select_Locator("fieldName:CUST.SEGMENT","MASS");
-        String homePage=PageObject.switchToChildWindow();
-        PageObject.img_Button("Return to application screen");
-        PageObject.textinput_Locator("transactionId",testData.get("txn"));
-        //PageObject.commitDeal("CaoCustomerUpdation");
-        PageObject.img_Button("Edit a contract");
-        PageObject.textinput_Locator("fieldName:MB.FATH.HUS.NAM",testData.get("FatherName"));
-        PageObject.textinput_Locator("fieldName:CUST.OFF.PHONE:1",testData.get("cellPhone"));
-        PageObject.commitDeal("CaoUpdatingCustomer");
-    }
-
-
-    @DataProvider(name = "customerUpdation")
-    public Object[][] readExcelDataForUpdation() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir") + "\\Excel Data\\corporateCustomerCreation.xlsx";
-        FileInputStream fis = new FileInputStream(FILE_PATH);
-        Workbook workbook = new XSSFWorkbook(fis);
-        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
-        int rowCount = sheet.getPhysicalNumberOfRows();
-        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
-        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
-
-        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
-            Row row = sheet.getRow(i);
-            Map<String, String> map = new HashMap<String, String>();
-            for (int j = 0; j < colCount; j++) {
-                Cell cell = row.getCell(j);
-                DataFormatter formatter = new DataFormatter();
-                String value = formatter.formatCellValue(cell);
-                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
-            }
-            data[i - 1][0] = map;
-        }
-
-        workbook.close();
-        fis.close();
-        return data;
-    }
-
-
-    @Test(groups = {"CaoAuthorizer4"}, dataProvider = "customerCreation_Authorization" )
+    @Test(groups = {"CaoAuthorizer5"}, dataProvider = "customerCreation_Authorization" )
     public void customerCreation_Authorization(Map<String, String> testData) throws IOException {
 
         String TransactionNumber = testData.get("Transaction Number");
@@ -204,7 +157,7 @@ public class CustomerCreation extends BaseClass {
 
     @DataProvider(name = "customerCreation_Authorization")
     public Object[][] readExcelData_A() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir") + "\\Data\\CaoCustomerCreation.xlsx";
+        String FILE_PATH = System.getProperty("user.dir") + "\\Data\\IbgCaoCustomerCreation.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
@@ -231,7 +184,7 @@ public class CustomerCreation extends BaseClass {
 
     /*__________________________________________________________________________________________________*/
 
-    @Test(groups = {"CaoInputter"}, dataProvider = "corporateCustomerCreation" )
+    @Test(groups = {"CaoInputterIBG"}, dataProvider = "corporateCustomerCreation" )
     public void corporateCustomerCreation(Map<String, String> testData) throws IOException {
 
         String EntityType = testData.get("EntityType");
@@ -303,13 +256,13 @@ public class CustomerCreation extends BaseClass {
         PageObject.select_Locator("fieldName:SEDING.FACTS:1","Not Applicable");
         PageObject.textarea_Locator("fieldName:FURTHER.DETAILS","Testing");
 
-        PageObject.commitDeal("corporateCustomerCreation");
+        PageObject.commitDeal("IbgCorporateCustomerCreation");
 
     }
 
     @DataProvider(name = "corporateCustomerCreation")
     public Object[][] readExcelData_2() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir") + "\\Excel Data\\corporateCustomerCreation.xlsx";
+        String FILE_PATH = System.getProperty("user.dir") + "\\Excel Data\\IbgCorporateCustomerCreation.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
@@ -334,7 +287,7 @@ public class CustomerCreation extends BaseClass {
         return data;
     }
 
-    @Test(groups = {"CaoAuthorizer4"}, dataProvider = "corporateCustomerCreation_Authorization" )
+    @Test(groups = {"CaoAuthorizer5"}, dataProvider = "corporateCustomerCreation_Authorization" )
     public void corporateCustomerCreation_Authorization(Map<String, String> testData) throws IOException {
 
         String TransactionNumber = testData.get("Transaction Number");
@@ -363,7 +316,7 @@ public class CustomerCreation extends BaseClass {
 
     @DataProvider(name = "corporateCustomerCreation_Authorization")
     public Object[][] readExcelData_2A() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir") + "\\Data\\corporateCustomerCreation.xlsx";
+        String FILE_PATH = System.getProperty("user.dir") + "\\Data\\IbgCorporateCustomerCreation.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
