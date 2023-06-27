@@ -29,6 +29,16 @@ public class MahanaAamdanDeposits1YearSeniorCustomer extends BaseClass {
         PageObject.img_Button("Validate a deal");
 
     }
+
+    @Test(groups = {"AuthorizerTDR"})
+    public void MahanaAamdanDepositAuth() throws IOException{
+
+        PageObject.menu_Dropdown(" Centralized TDR");
+        PageObject.menu_Dropdown("Authorization Of Mahana Aamdan Deposits");
+        PageObject.menu_Link("Authorization of Mahana Aamdan Deposits 1 Y ");
+        PageObject.switchToChildWindow();
+        driver.manage().window().maximize();
+    }
     @DataProvider(name = "MahanaAamdanDepositInputter")
     public Object[][] readExcelData1() throws IOException {
 
