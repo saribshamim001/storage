@@ -78,7 +78,7 @@ public class CentralizeForeignRemittance extends BaseClass {
 
 
 
-        PageObject.commitDeal("CentralizeForeignRemittance");
+        PageObject.commitDeal("IbgCentralizeForeignRemittance");
     }
 
     @DataProvider(name = "CentralizeForeignRemittance")
@@ -86,7 +86,7 @@ public class CentralizeForeignRemittance extends BaseClass {
         String FILE_PATH = System.getProperty("user.dir") + "\\Excel Data\\CFR_AccountToAccount.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
-        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        Sheet sheet = workbook.getSheet("CFR_Ibg"); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
@@ -129,7 +129,7 @@ public class CentralizeForeignRemittance extends BaseClass {
 
     @DataProvider(name = "CentralizeForeignRemittance_Authorization")
     public Object[][] readExcelData_A() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir") + "\\Data\\CentralizeForeignRemittance.xlsx";
+        String FILE_PATH = System.getProperty("user.dir") + "\\Data\\IbgCentralizeForeignRemittance.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
@@ -180,10 +180,10 @@ public class CentralizeForeignRemittance extends BaseClass {
 
     @DataProvider(name = "CentralizeForeignRemittanceReversal")
     public Object[][] readExcelData1() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir") + "\\Data\\CentralizeForeignRemittance.xlsx";
+        String FILE_PATH = System.getProperty("user.dir") + "\\Data\\IbgCentralizeForeignRemittance.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
-        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        Sheet sheet = workbook.getSheet(""); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap

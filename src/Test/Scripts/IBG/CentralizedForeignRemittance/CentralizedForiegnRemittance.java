@@ -49,7 +49,7 @@ public class CentralizedForiegnRemittance extends BaseClass {
         PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1",testData.get("CommissionType"));
 
         PageObject.textinput_Locator("fieldName:SWIFT.BIC",testData.get("BICCODE"));
-        PageObject.commitDeal("CFRNastoInputter");
+        PageObject.commitDeal("IbgCFRNastoInputter");
 
     }
 
@@ -99,7 +99,7 @@ public class CentralizedForiegnRemittance extends BaseClass {
         String FILE_PATH = System.getProperty("user.dir") + "\\Excel Data\\CentralizedForiegnRemittance.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
-        Sheet sheet = workbook.getSheet("CFRNostroInputter"); // Assuming data is in the first sheet
+        Sheet sheet = workbook.getSheet("IBGCFRNostroInputter"); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
@@ -152,7 +152,7 @@ public class CentralizedForiegnRemittance extends BaseClass {
     @DataProvider(name = "CFRNostroAuth")
     public Object[][] readExcelData3() throws IOException {
 
-        String FILE_PATH = System.getProperty("user.dir") + "\\Data\\CFRNastoInputter.xlsx";
+        String FILE_PATH = System.getProperty("user.dir") + "\\Data\\IbgCFRNastoInputter.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet

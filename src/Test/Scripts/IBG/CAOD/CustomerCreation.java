@@ -16,6 +16,7 @@ public class CustomerCreation extends BaseClass {
 
     public static String txn;
 
+    //@Test(groups = {"CaoInputterIBG"}, dataProvider = "customerCreation" )
     @Test(groups = {"CaoInputterIBG"}, dataProvider = "customerCreation" )
     public void customerCreation(Map<String, String> testData) throws IOException {
 
@@ -128,7 +129,9 @@ public class CustomerCreation extends BaseClass {
         return data;
     }
 
-    @Test(groups = {"CaoAuthorizer5"}, dataProvider = "customerCreation_Authorization" )
+
+    //CaoAuthorizer5
+    @Test(groups = {"CaoAuthorizerIbg"}, dataProvider = "customerCreation_Authorization" )
     public void customerCreation_Authorization(Map<String, String> testData) throws IOException {
 
         String TransactionNumber = testData.get("Transaction Number");
@@ -184,6 +187,7 @@ public class CustomerCreation extends BaseClass {
 
     /*__________________________________________________________________________________________________*/
 
+    //CaoInputterIBG
     @Test(groups = {"CaoInputterIBG"}, dataProvider = "corporateCustomerCreation" )
     public void corporateCustomerCreation(Map<String, String> testData) throws IOException {
 
@@ -287,7 +291,9 @@ public class CustomerCreation extends BaseClass {
         return data;
     }
 
-    @Test(groups = {"CaoAuthorizer5"}, dataProvider = "corporateCustomerCreation_Authorization" )
+
+    //CaoAuthorizer5
+    @Test(groups = {"CaoAuthorizerIbg"}, dataProvider = "corporateCustomerCreation_Authorization" )
     public void corporateCustomerCreation_Authorization(Map<String, String> testData) throws IOException {
 
         String TransactionNumber = testData.get("Transaction Number");
