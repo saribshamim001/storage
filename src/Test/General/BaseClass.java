@@ -78,7 +78,7 @@ public class BaseClass {
         File file = new File(System.getProperty("user.dir") + "\\Reports\\" + testCaseName + ".png");
 //        File file = new File("C:\\Users\\xcelliti2\\IdeaProjects\\Retail Ops\\Reports\\" +testCaseName+ ".png");
         FileUtils.copyFile(path, file);
-        return System.getProperty("user.dir") + "\\Reports\\" + testCaseName + ".png";
+        return System.getProperty("user.dir") + "\\Reports\\" + testCaseName + " " + PageObject.idNumber() +".png";
     }
 
     public static String AssertionScreenshot(String testCaseName) throws IOException {
@@ -334,18 +334,18 @@ public class BaseClass {
     public void CaoInputterLoginIBG() {
 //        edgeConfig();
         chromeConfig();
-        PageObject.signIn("AB2375501", "QWer1234");
+        PageObject.signIn("caouser004", "QWer1234");
         PageObject.switchFrame(0);
         driver.findElement(By.xpath("//a[text()='Tools']")).click();
         String mainPage = PageObject.switchToChildWindow();
         driver.findElement(By.xpath("//img[@alt='My Companies']")).click();
-        driver.findElement(By.xpath("//img[text()='BANK ALFALAH LTD - IBG ']")).click();
+        driver.findElement(By.xpath("//*[text()='BANK ALFALAH LTD - IBG ']")).click();
         PageObject.switchToChildWindow();
         PageObject.switchFrame(1);
-        PageObject.menu_Dropdown("Centrlized Branch User Access");
-        driver.findElement(By.xpath("(//a[text()='Define Current Branch '])[2]")).click();
+        PageObject.menu_Dropdown("Centrlized Branch User Access Menu");
+        driver.findElement(By.xpath("//*[text()='Define Current Branch ']")).click();
         homePage = PageObject.switchToChildWindow();
-        PageObject.textinput_Locator("transactionId","AB23755.01");
+        PageObject.textinput_Locator("transactionId","CAOUSER.004");
         PageObject.img_Button("Edit a contract");
 //        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","100311100");
         PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1556111040");
@@ -379,7 +379,7 @@ public class BaseClass {
     public void CaoInputterLogin() {
 //        edgeConfig();
         chromeConfig();
-        PageObject.signIn("caouser002", "QWer1234");
+        PageObject.signIn("caouser001", "QWer1234");
         PageObject.switchFrame(1);
         PageObject.menu_Dropdown("Centrlized Branch User Access");
         driver.findElement(By.xpath("(//a[text()='Define Current Branch '])[2]")).click();

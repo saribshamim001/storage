@@ -43,10 +43,10 @@ public class PayrollFundTransfer extends BaseClass {
         //asdasd
         PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1",testData.get("CommisionType"));
         //PageObject.textinput_Locator("fieldName:COMMISSION.AMT:1","1");
-        PageObject.img_Button("Validate a deal");
-        PageObject.img_Button("Commit the deal");
+//        PageObject.img_Button("Validate a deal");
+//        PageObject.img_Button("Commit the deal");
 
-
+        PageObject.commitDeal("IbgPayrollFT");
     }
 
 
