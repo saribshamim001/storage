@@ -2,10 +2,7 @@ package Test.General;
 
 import POM.PageObject;
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -14,9 +11,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
@@ -50,7 +45,7 @@ public class BaseClass {
 
         action = new Actions(driver);
 
-        driver.get("http://172.24.157.27:9080/R22SIT2/servlet/BrowserLoginServlet");
+        driver.get("http://172.24.157.27:9080/R22SIT2/servlet/BrowserServlet");
         //driver.get("http://172.21.81.59:9080/R13UAT1/servlet/BrowserServlet");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.manage().window().maximize();
@@ -69,7 +64,7 @@ public class BaseClass {
 
         action = new Actions(driver);
 
-        driver.get("http://172.24.157.27:9080/R22SIT2/servlet/BrowserLoginServlet");
+        driver.get("http://172.24.157.27:9080/R22SIT2/servlet/BrowserServlet");
         //driver.get("http://172.21.81.59:9080/R13UAT1/servlet/BrowserServlet");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.manage().window().maximize();
@@ -83,7 +78,7 @@ public class BaseClass {
         File file = new File(System.getProperty("user.dir") + "\\Reports\\" + testCaseName + ".png");
 //        File file = new File("C:\\Users\\xcelliti2\\IdeaProjects\\Retail Ops\\Reports\\" +testCaseName+ ".png");
         FileUtils.copyFile(path, file);
-        return System.getProperty("user.dir") + "\\Reports\\" + testCaseName + ".png";
+        return System.getProperty("user.dir") + "\\Reports\\" + testCaseName + " " + PageObject.idNumber() +".png";
     }
 
     public static String AssertionScreenshot(String testCaseName) throws IOException {
@@ -137,27 +132,7 @@ public class BaseClass {
 
         PageObject.switchFrame(1);
 
-        /*PageObject.menu_Dropdown("Centrlized Branch User Access");
-        PageObject.menu_Link("Define Current Branch ");
 
-        homePage = PageObject.switchToChildWindow();
-
-        PageObject.textinput_Locator("transactionId","CFR.02");
-        PageObject.img_Button("Edit a contract");
-
-
-        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1001911540");
-        PageObject.img_Button("Commit the deal");
-        PageObject.img_Button("Commit the deal");
-
-
-        Thread.sleep(5000);
-        driver.close();
-
-        PageObject.switchToParentWindow(homePage);
-
-//        PageObject.maximizeWindow();
-        PageObject.switchFrame(1);*/
     }
 
     @BeforeMethod(groups = {"IBG_CfrInputter"})
@@ -199,27 +174,7 @@ public class BaseClass {
 
         PageObject.switchFrame(1);
 
-        /*PageObject.menu_Dropdown("Centrlized Branch User Access");
-        PageObject.menu_Link("Define Current Branch ");
 
-        homePage = PageObject.switchToChildWindow();
-
-        PageObject.textinput_Locator("transactionId","CFR.02");
-        PageObject.img_Button("Edit a contract");
-
-
-        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1001911540");
-        PageObject.img_Button("Commit the deal");
-        PageObject.img_Button("Commit the deal");
-
-
-        Thread.sleep(5000);
-        driver.close();
-
-        PageObject.switchToParentWindow(homePage);
-
-//        PageObject.maximizeWindow();
-        PageObject.switchFrame(1);*/
     }
 
     @BeforeMethod(groups = {"Inputter"})
@@ -245,13 +200,13 @@ public class BaseClass {
     public void CaoInputterLogin2() {
 //        edgeConfig();
         chromeConfig();
-        PageObject.signIn("caouser004", "QWer1234");
+        PageObject.signIn("AB2375501", "QWer1234");
         PageObject.switchFrame(1);
-        PageObject.menu_Dropdown("Centrlized Branch User Access Menu");
+        PageObject.menu_Dropdown("Centrlized Branch User Access");
         PageObject.menu_Link("Define Current Branch ");
 
         homePage = PageObject.switchToChildWindow();
-        PageObject.textinput_Locator("transactionId","CAOUSER.004");
+        PageObject.textinput_Locator("transactionId","AB23755.01");
         PageObject.img_Button("Edit a contract");
         PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003111040");
         PageObject.img_Button("Commit the deal");
@@ -303,6 +258,31 @@ public class BaseClass {
         homePage = PageObject.switchToChildWindow();
         PageObject.textinput_Locator("transactionId","CAOAUTH.002");
         PageObject.img_Button("Edit a contract");
+        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003111040");
+        PageObject.img_Button("Commit the deal");
+        PageObject.img_Button("Commit the deal");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        driver.close();
+        PageObject.switchToParentWindow(homePage);
+        PageObject.switchFrame(1);
+    }
+
+    @BeforeMethod(groups = {"CaoAuthorizer5"})
+    public void CaoInputterLogin5Auth() {
+//        edgeConfig();
+        chromeConfig();
+        PageObject.signIn("caoauth004", "QWer1234");
+        PageObject.switchFrame(1);
+        PageObject.menu_Dropdown("Centrlized Branch User Access");
+        PageObject.childmenu_Link("Define Current Branch ",2);
+
+        homePage = PageObject.switchToChildWindow();
+        PageObject.textinput_Locator("transactionId","CAOAUTH.004");
+        PageObject.img_Button("Edit a contract");
         PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003114045");
         PageObject.img_Button("Commit the deal");
         PageObject.img_Button("Commit the deal");
@@ -345,19 +325,33 @@ public class BaseClass {
     public void caoAuthorizerLogin() {
 //        edgeConfig();
         chromeConfig();
-        PageObject.signIn("caoauth003", "QWer1234");
+        PageObject.signIn("NK1988001", "123456");
+        PageObject.switchFrame(1);
+
+    }
+
+    @BeforeMethod(groups = {"CaoInputterIBG"})
+    public void CaoInputterLoginIBG() {
+//        edgeConfig();
+        chromeConfig();
+        PageObject.signIn("caouser004", "QWer1234");
+        PageObject.switchFrame(0);
+        driver.findElement(By.xpath("//a[text()='Tools']")).click();
+        String mainPage = PageObject.switchToChildWindow();
+        driver.findElement(By.xpath("//img[@alt='My Companies']")).click();
+        driver.findElement(By.xpath("//*[text()='BANK ALFALAH LTD - IBG ']")).click();
+        PageObject.switchToChildWindow();
         PageObject.switchFrame(1);
         PageObject.menu_Dropdown("Centrlized Branch User Access Menu");
-        PageObject.menu_Link("Define Current Branch ");
-
+        driver.findElement(By.xpath("//*[text()='Define Current Branch ']")).click();
         homePage = PageObject.switchToChildWindow();
-        PageObject.textinput_Locator("transactionId","CAOAUTH.003");
+        PageObject.textinput_Locator("transactionId","CAOUSER.004");
         PageObject.img_Button("Edit a contract");
-        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1002711030");
-        PageObject.img_Button("Commit the deal");
-        PageObject.img_Button("Commit the deal");
+//        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","100311100");
+        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1556111040");
+        driver.findElement(By.xpath("//input[@id='fieldName:CURRENT.BRANCH']")).sendKeys(Keys.ENTER);
         try {
-            Thread.sleep(5000);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -365,6 +359,21 @@ public class BaseClass {
         PageObject.switchToParentWindow(homePage);
         PageObject.switchFrame(1);
     }
+
+    @BeforeMethod(groups = {"CaoAuthorizerIbg"})
+    public void CaoIbgAuthLogin() {
+//        edgeConfig();
+        chromeConfig();
+        PageObject.signIn("caoauth002", "QWer1234");
+        PageObject.switchFrame(0);
+        driver.findElement(By.xpath("//a[text()='Tools']")).click();
+        String mainPage = PageObject.switchToChildWindow();
+        driver.findElement(By.xpath("//img[@alt='My Companies']")).click();
+        driver.findElement(By.xpath("//img[text()='BANK ALFALAH LTD - IBG ']")).click();
+        PageObject.switchToChildWindow();
+        PageObject.switchFrame(1);
+    }
+
 
     @BeforeMethod(groups = {"CaoInputter"})
     public void CaoInputterLogin() {
@@ -375,10 +384,10 @@ public class BaseClass {
         PageObject.menu_Dropdown("Centrlized Branch User Access");
         driver.findElement(By.xpath("(//a[text()='Define Current Branch '])[2]")).click();
         homePage = PageObject.switchToChildWindow();
-        PageObject.textinput_Locator("transactionId","CAOUSER.001");
+        PageObject.textinput_Locator("transactionId","CAOUSER.002");
         PageObject.img_Button("Edit a contract");
-//        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","100311100");
-        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003114045");
+        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003111030");
+//        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003114045");
         PageObject.img_Button("Commit the deal");
         PageObject.img_Button("Commit the deal");
         try {

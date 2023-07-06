@@ -22,14 +22,14 @@
     <test verbose="1" preserve-order="true" name="Retail Operations Authorizer">
         <groups>
             <run>
-                <include name="AuthorizerTDR"/>
+                <include name="CaoAuthorizer4"/>
             </run>
         </groups>
 
         <classes>
-            <class name="Test.Scripts.Conventional.TDR.FloatingRateTermDepositsLCY">
+            <class name="Test.Scripts.Conventional.CAOD.JointAccountCreation">
                 <methods>
-                    <include name="FloatingRateTermDepositsLCYAuth"/>
+                    <include name="LCCurrentAuthorizer"/>
                 </methods>
             </class>
         </classes>
