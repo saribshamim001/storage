@@ -33,7 +33,7 @@ public class CentralizedClearing extends BaseClass {
         PageObject.switchToParentWindow(form);
         PageObject.textinput_Locator("fieldName:BANK.SORT.CODE:1",testData.get("BankCode"));
         PageObject.textinput_Locator("fieldName:CL.RET.CODE:1",testData.get("ReturnCode"));
-        PageObject.commitDeal("CCSameDayInputter");
+        PageObject.commitDeal("IbgCCSameDayInputter");
 
     }
 
@@ -71,7 +71,7 @@ public class CentralizedClearing extends BaseClass {
         PageObject.switchToParentWindow(form);
         PageObject.textinput_Locator("fieldName:BANK.SORT.CODE:1",testData.get("BankCode"));
         PageObject.textinput_Locator("fieldName:CL.RET.CODE:1",testData.get("ReturnCode"));
-        PageObject.commitDeal("CCNormalDayInputter");
+        PageObject.commitDeal("IbgCCNormalDayInputter");
 
     }
 
@@ -94,7 +94,7 @@ public class CentralizedClearing extends BaseClass {
         String FILE_PATH = System.getProperty("user.dir") + "\\Excel Data\\CentralizedClearing.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
-        Sheet sheet = workbook.getSheet("CCSameDayInputter"); // Assuming data is in the first sheet
+        Sheet sheet = workbook.getSheet("IbgCCSameDayInputter"); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
@@ -119,7 +119,7 @@ public class CentralizedClearing extends BaseClass {
     @DataProvider(name = "CCSameDayAuth")
     public Object[][] readExcelData2() throws IOException {
 
-        String FILE_PATH = System.getProperty("user.dir") + "\\Data\\CCSameDayInputter.xlsx";
+        String FILE_PATH = System.getProperty("user.dir") + "\\Data\\IbgCCSameDayInputter.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
@@ -149,8 +149,8 @@ public class CentralizedClearing extends BaseClass {
 
         String FILE_PATH = System.getProperty("user.dir") + "\\Excel Data\\CentralizedClearing.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
-        Workbook workbook = new XSSFWorkbook(fis);
-        Sheet sheet = workbook.getSheet("CCNormalDayInputter"); // Assuming data is in the first sheet
+        Workbook workbook = new XSSFWorkbook(fis);//IbgCCNormalDayInputter
+        Sheet sheet = workbook.getSheet("IbgCCNormalDayInputter"); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
@@ -174,7 +174,7 @@ public class CentralizedClearing extends BaseClass {
     @DataProvider(name = "CCNormalDayAuth")
     public Object[][] readExcelData4() throws IOException {
 
-        String FILE_PATH = System.getProperty("user.dir") + "\\Data\\CCNormalDayInputter.xlsx";
+        String FILE_PATH = System.getProperty("user.dir") + "\\Data\\IbgCCNormalDayInputter.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet

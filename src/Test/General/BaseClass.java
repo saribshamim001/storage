@@ -75,10 +75,10 @@ public class BaseClass {
 
         TakesScreenshot sc = (TakesScreenshot) driver;
         File path = sc.getScreenshotAs(OutputType.FILE);
-        File file = new File(System.getProperty("user.dir") + "\\Reports\\" + testCaseName + ".png");
+        File file = new File(System.getProperty("user.dir") + "\\Reports\\" + testCaseName + " " + PageObject.idNumber() +".png");
 //        File file = new File("C:\\Users\\xcelliti2\\IdeaProjects\\Retail Ops\\Reports\\" +testCaseName+ ".png");
         FileUtils.copyFile(path, file);
-        return System.getProperty("user.dir") + "\\Reports\\" + testCaseName + ".png";
+        return System.getProperty("user.dir") + "\\Reports\\" + testCaseName + " " + PageObject.idNumber() +".png";
     }
 
     public static String AssertionScreenshot(String testCaseName) throws IOException {
@@ -92,6 +92,140 @@ public class BaseClass {
         FileUtils.copyFile(path, file);
         return System.getProperty("user.dir") + "\\"+ testCaseName+ "\\" + testCaseName + dft.format(date1) +".png";
     }
+
+    @BeforeMethod(groups = {"InputterTDR"})
+
+    public void InputterTDR() throws InterruptedException {
+//        edgeConfig();
+        chromeConfig();
+        PageObject.signIn("AK2366601", "ADmin+258");
+
+        PageObject.switchFrame(1);
+
+        PageObject.menu_Dropdown("Centrlized Branch User Access Menu");
+        PageObject.menu_Link("Define Current Branch ");
+
+        homePage = PageObject.switchToChildWindow();
+
+        PageObject.textinput_Locator("transactionId","AK23666.01");
+        PageObject.img_Button("Edit a contract");
+
+
+        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003111040");
+        PageObject.img_Button("Commit the deal");
+        PageObject.img_Button("Commit the deal");
+
+
+        Thread.sleep(2000);
+        driver.close();
+
+        PageObject.switchToParentWindow(homePage);
+
+//        PageObject.maximizeWindow();
+        PageObject.switchFrame(1);
+
+    }
+
+    @BeforeMethod(groups = {"AuthorizerTDR"})
+
+    public void AuthorizerTDR() throws InterruptedException {
+//        edgeConfig();
+        chromeConfig();
+        PageObject.signIn("RB1965401", "ADmin+258");
+
+        PageObject.switchFrame(1);
+
+        PageObject.menu_Dropdown("Centrlized Branch User Access Menu");
+        PageObject.menu_Link("Define Current Branch ");
+
+        homePage = PageObject.switchToChildWindow();
+
+        PageObject.textinput_Locator("transactionId","RB19654.01");
+        PageObject.img_Button("Edit a contract");
+
+
+        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003111040");
+        PageObject.img_Button("Commit the deal");
+        PageObject.img_Button("Commit the deal");
+
+
+        Thread.sleep(5000);
+        driver.close();
+
+        PageObject.switchToParentWindow(homePage);
+
+//        PageObject.maximizeWindow();
+        PageObject.switchFrame(1);
+
+    }
+
+    @BeforeMethod(groups = {"InputterTDR_IBG"})
+
+    public void InputterTDR_IBG() throws InterruptedException {
+//        edgeConfig();
+        chromeConfig();
+        PageObject.signIn("AK2366602", "QWer12345");
+
+        PageObject.switchFrame(1);
+
+        PageObject.menu_Dropdown("Centrlized Branch User Access Menu");
+        PageObject.menu_Link("Define Current Branch ");
+
+        homePage = PageObject.switchToChildWindow();
+
+        PageObject.textinput_Locator("transactionId","AK23666.02");
+        PageObject.img_Button("Edit a contract");
+
+
+        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","2550111030");
+        PageObject.img_Button("Commit the deal");
+        PageObject.img_Button("Commit the deal");
+
+
+        Thread.sleep(5000);
+        driver.close();
+
+        PageObject.switchToParentWindow(homePage);
+
+//        PageObject.maximizeWindow();
+        PageObject.switchFrame(1);
+
+    }
+
+    @BeforeMethod(groups = {"AuthorizerTDR_IBG"})
+
+    public void AuthorizerTDR_IBG() throws InterruptedException {
+//        edgeConfig();
+        chromeConfig();
+//        PageObject.signIn("RB1965401", "ADmin+258");
+        PageObject.signIn("RB1965402", "QWer1234");
+
+        PageObject.switchFrame(1);
+
+        PageObject.menu_Dropdown("Centrlized Branch User Access Menu");
+        PageObject.menu_Link("Define Current Branch ");
+
+        homePage = PageObject.switchToChildWindow();
+
+        PageObject.textinput_Locator("transactionId","RB19654.01");
+        PageObject.img_Button("Edit a contract");
+
+
+        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003111040");
+        PageObject.img_Button("Commit the deal");
+        PageObject.img_Button("Commit the deal");
+
+
+        Thread.sleep(5000);
+        driver.close();
+
+        PageObject.switchToParentWindow(homePage);
+
+//        PageObject.maximizeWindow();
+        PageObject.switchFrame(1);
+
+    }
+
 
     @BeforeMethod(groups = {"CfrInputter"})
     public void CfrInputter() throws InterruptedException {
@@ -196,10 +330,11 @@ public class BaseClass {
 
     }
 
-    @BeforeMethod(groups = {"CaoInputter2"})
+    @BeforeMethod(groups = {"CaoInputter"})
     public void CaoInputterLogin2() {
 //        edgeConfig();
         chromeConfig();
+        //
         PageObject.signIn("AB2375501", "QWer1234");
         PageObject.switchFrame(1);
         PageObject.menu_Dropdown("Centrlized Branch User Access");
@@ -207,106 +342,6 @@ public class BaseClass {
 
         homePage = PageObject.switchToChildWindow();
         PageObject.textinput_Locator("transactionId","AB23755.01");
-        PageObject.img_Button("Edit a contract");
-        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003111040");
-        PageObject.img_Button("Commit the deal");
-        PageObject.img_Button("Commit the deal");
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        driver.close();
-        PageObject.switchToParentWindow(homePage);
-        PageObject.switchFrame(1);
-    }
-
-    @BeforeMethod(groups = {"CaoAuthorizer3"})
-    public void CaoInputterLogin3Auth() {
-//        edgeConfig();
-        chromeConfig();
-        PageObject.signIn("caoauth002", "QWer1234");
-        PageObject.switchFrame(1);
-        PageObject.menu_Dropdown("Centrlized Branch User Access Menu");
-        PageObject.menu_Link("Define Current Branch ");
-
-        homePage = PageObject.switchToChildWindow();
-        PageObject.textinput_Locator("transactionId","CAOAUTH.003");
-        PageObject.img_Button("Edit a contract");
-        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003114045");
-        PageObject.img_Button("Commit the deal");
-        PageObject.img_Button("Commit the deal");
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        driver.close();
-        PageObject.switchToParentWindow(homePage);
-        PageObject.switchFrame(1);
-    }
-
-    @BeforeMethod(groups = {"CaoAuthorizer4"})
-    public void CaoInputterLogin4Auth() {
-//        edgeConfig();
-        chromeConfig();
-        PageObject.signIn("caoauth002", "QWer1234");
-        PageObject.switchFrame(1);
-        PageObject.menu_Dropdown("Centrlized Branch User Access");
-        PageObject.childmenu_Link("Define Current Branch ",2);
-
-        homePage = PageObject.switchToChildWindow();
-        PageObject.textinput_Locator("transactionId","CAOAUTH.002");
-        PageObject.img_Button("Edit a contract");
-        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003111040");
-        PageObject.img_Button("Commit the deal");
-        PageObject.img_Button("Commit the deal");
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        driver.close();
-        PageObject.switchToParentWindow(homePage);
-        PageObject.switchFrame(1);
-    }
-
-    @BeforeMethod(groups = {"CaoAuthorizer5"})
-    public void CaoInputterLogin5Auth() {
-//        edgeConfig();
-        chromeConfig();
-        PageObject.signIn("caoauth004", "QWer1234");
-        PageObject.switchFrame(1);
-        PageObject.menu_Dropdown("Centrlized Branch User Access");
-        PageObject.childmenu_Link("Define Current Branch ",2);
-
-        homePage = PageObject.switchToChildWindow();
-        PageObject.textinput_Locator("transactionId","CAOAUTH.004");
-        PageObject.img_Button("Edit a contract");
-        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003114045");
-        PageObject.img_Button("Commit the deal");
-        PageObject.img_Button("Commit the deal");
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        driver.close();
-        PageObject.switchToParentWindow(homePage);
-        PageObject.switchFrame(1);
-    }
-
-    @BeforeMethod(groups = {"CaoAuthorizer2"})
-    public void CaoInputterLogin2Auth() {
-//        edgeConfig();
-        chromeConfig();
-        PageObject.signIn("caoauth003", "QWer1234");
-        PageObject.switchFrame(1);
-        PageObject.menu_Dropdown("Centrlized Branch User Access Menu");
-        PageObject.menu_Link("Define Current Branch ");
-
-        homePage = PageObject.switchToChildWindow();
-        PageObject.textinput_Locator("transactionId","CAOAUTH.003");
         PageObject.img_Button("Edit a contract");
         PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003111040");
         PageObject.img_Button("Commit the deal");
@@ -334,18 +369,18 @@ public class BaseClass {
     public void CaoInputterLoginIBG() {
 //        edgeConfig();
         chromeConfig();
-        PageObject.signIn("AB2375501", "QWer1234");
+        PageObject.signIn("caouser004", "QWer1234");
         PageObject.switchFrame(0);
         driver.findElement(By.xpath("//a[text()='Tools']")).click();
         String mainPage = PageObject.switchToChildWindow();
         driver.findElement(By.xpath("//img[@alt='My Companies']")).click();
-        driver.findElement(By.xpath("//img[text()='BANK ALFALAH LTD - IBG ']")).click();
+        driver.findElement(By.xpath("//*[text()='BANK ALFALAH LTD - IBG ']")).click();
         PageObject.switchToChildWindow();
         PageObject.switchFrame(1);
-        PageObject.menu_Dropdown("Centrlized Branch User Access");
-        driver.findElement(By.xpath("(//a[text()='Define Current Branch '])[2]")).click();
+        PageObject.menu_Dropdown("Centrlized Branch User Access Menu");
+        driver.findElement(By.xpath("//*[text()='Define Current Branch ']")).click();
         homePage = PageObject.switchToChildWindow();
-        PageObject.textinput_Locator("transactionId","AB23755.01");
+        PageObject.textinput_Locator("transactionId","CAOUSER.004");
         PageObject.img_Button("Edit a contract");
 //        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","100311100");
         PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1556111040");
@@ -375,96 +410,6 @@ public class BaseClass {
     }
 
 
-    @BeforeMethod(groups = {"CaoInputter"})
-    public void CaoInputterLogin() {
-//        edgeConfig();
-        chromeConfig();
-        PageObject.signIn("caouser002", "QWer1234");
-        PageObject.switchFrame(1);
-        PageObject.menu_Dropdown("Centrlized Branch User Access");
-        driver.findElement(By.xpath("(//a[text()='Define Current Branch '])[2]")).click();
-        homePage = PageObject.switchToChildWindow();
-        PageObject.textinput_Locator("transactionId","CAOUSER.002");
-        PageObject.img_Button("Edit a contract");
-        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003111030");
-//        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003114045");
-        PageObject.img_Button("Commit the deal");
-        PageObject.img_Button("Commit the deal");
-        try {
-            Thread.sleep(10);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        driver.close();
-        PageObject.switchToParentWindow(homePage);
-        PageObject.switchFrame(1);
-    }
-
-    @BeforeMethod(groups = {"InputterTDR"})
-
-    public void InputterTDR() throws InterruptedException {
-//        edgeConfig();
-        chromeConfig();
-        PageObject.signIn("AK2366601", "ADmin+258");
-
-        PageObject.switchFrame(1);
-
-        PageObject.menu_Dropdown("Centrlized Branch User Access Menu");
-        PageObject.menu_Link("Define Current Branch ");
-
-        homePage = PageObject.switchToChildWindow();
-
-        PageObject.textinput_Locator("transactionId","AK23666.01");
-        PageObject.img_Button("Edit a contract");
-
-
-        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003111040");
-        PageObject.img_Button("Commit the deal");
-        PageObject.img_Button("Commit the deal");
-
-
-        Thread.sleep(2000);
-        driver.close();
-
-        PageObject.switchToParentWindow(homePage);
-
-//        PageObject.maximizeWindow();
-        PageObject.switchFrame(1);
-
-    }
-
-    @BeforeMethod(groups = {"AuthorizerTDR"})
-
-    public void AuthorizerTDR() throws InterruptedException {
-//        edgeConfig();
-        chromeConfig();
-        PageObject.signIn("RB1965401", "ADmin+258");
-
-        PageObject.switchFrame(1);
-
-        PageObject.menu_Dropdown("Centrlized Branch User Access Menu");
-        PageObject.menu_Link("Define Current Branch ");
-
-        homePage = PageObject.switchToChildWindow();
-
-        PageObject.textinput_Locator("transactionId","RB19654.01");
-        PageObject.img_Button("Edit a contract");
-
-
-        PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003111040");
-        PageObject.img_Button("Commit the deal");
-        PageObject.img_Button("Commit the deal");
-
-
-        Thread.sleep(5000);
-        driver.close();
-
-        PageObject.switchToParentWindow(homePage);
-
-//        PageObject.maximizeWindow();
-        PageObject.switchFrame(1);
-
-    }
     @BeforeMethod(groups = {"IBGInputter"})
     public void inputterIbgLogin() {
         chromeConfig();
