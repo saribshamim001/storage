@@ -17,8 +17,8 @@ import java.util.Map;
 
 public class JointAccountCreation extends BaseClass {
 
-    @Test(groups = {"CaoInputter"}, dataProvider = "inputterData")
-    public void JointAccCreation_LCY(Map<String, String> testData) {
+        @Test(groups = {"CaoInputter"}, dataProvider = "inputterData")
+    public void JointAccCreation_LCY_Current(Map<String, String> testData) {
 
         PageObject.menu_Dropdown("Conventional Account Open");//test
         PageObject.menu_Dropdown("Local Currency Account Open");
@@ -132,7 +132,7 @@ public class JointAccountCreation extends BaseClass {
     }
 
     @Test(groups = {"CaoInputter"},dataProvider = "inputterData3")
-    public void JointAccCreation_FCY_Current(Map<String, String> testData) {
+    public void JointAccCreation_FCY_Current(Map<String, String> testData)  {
 //
         PageObject.menu_Dropdown("Conventional Account Open");//test
         PageObject.menu_Dropdown("Foriegn Currency Account Open");
@@ -192,6 +192,35 @@ public class JointAccountCreation extends BaseClass {
         //
     }
 
+    @Test(groups = {"CaoInputter"},dataProvider = "inputterData3")
+    public void JointAccCreation_FCY_Saving(Map<String, String> testData){
+
+        PageObject.menu_Dropdown("Conventional Account Open");
+        PageObject.menu_Dropdown("Foriegn Currency Account Open");
+        driver.findElement(By.xpath("(//*[text()='Saving Account  ']'])[1]")).click();
+        String homePage = PageObject.switchToChildWindow();
+        driver.manage().window().maximize();
+        PageObject.textinput_Locator("fieldName:CUSTOMER","10000001");
+        PageObject.click_Locator("fieldName:CATEGORY");
+        PageObject.textinput_Locator("fieldName:CATEGORY","6003");
+        PageObject.click_Locator("fieldName:CURRENCY");
+        PageObject.textinput_Locator("fieldName:CURRENCY","USD");
+        PageObject.textinput_Locator("fieldName:AOR","20230720");
+        PageObject.radiobutton_Locator("radio:tab1:BIO.VERISYS",1);
+        PageObject.textinput_Locator("radio:tab1:BIO.VERISYS","1");
+        PageObject.textinput_Locator("fieldName:SBP.SECTOR.ID","0-");
+        PageObject.textinput_Locator("fieldName:SBP.SSECTOR.ID","0-12");
+        PageObject.textinput_Locator("fieldName:SBP.SEGMENT.ID","0-12-030000");
+        PageObject.textinput_Locator("fieldName:ACCOUNT.OFFICER","1");
+
+        try {
+            PageObject.commitDeal("JointAccCreation_FCY_Saving");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
     @Test(groups={"CaoInputter"},dataProvider = "LCCurrentAccAmendmentData")
     public void LCCurrentAccAmendment(Map<String, String> testData) throws IOException {
 
@@ -222,83 +251,6 @@ public class JointAccountCreation extends BaseClass {
 
     }
 
-    @Test(groups={"CaoInputter"},dataProvider = "LCSavingAccountInputter")
-    public void LCSavingAccountInputter(Map<String, String> testData) throws IOException {
-
-        PageObject.menu_Dropdown("Conventional Account Open");
-        PageObject.menu_Dropdown("Local Currency Account Open");
-        PageObject.menu_Link("Saving Account - Royal Profit  ");
-        PageObject.switchToChildWindow();
-        driver.manage().window().maximize();
-        PageObject.img_Button("Return to application screen");
-        Alert alert = driver.switchTo().alert();
-        alert.accept();
-
-        PageObject.textinput_Locator("transactionId",testData.get("ID"));
-        PageObject.img_Button("Edit a contract");
-        PageObject.textinput_Locator("fieldName:PURPOSE",testData.get("Purpose of Bank Account"));
-        PageObject.commitDeal("LCSavingAccountInputter");
-        //PageObject.img_Button("Commit the deal");
-
-    }
-
-    @Test(groups={"CaoInputter"},dataProvider = "LCCurrentInputter")
-    public void LCCurrentInputter(Map<String, String> testData) throws IOException {
-
-        PageObject.menu_Dropdown("Conventional Account Open");
-        PageObject.menu_Dropdown("Local Currency Account Open");
-        PageObject.menu_Link("Saving Account - Royal Profit  ");
-        PageObject.switchToChildWindow();
-        driver.manage().window().maximize();
-        PageObject.img_Button("Return to application screen");
-        Alert alert = driver.switchTo().alert();
-        alert.accept();
-
-        PageObject.textinput_Locator("transactionId",testData.get("ID"));
-        PageObject.img_Button("Edit a contract");
-        PageObject.textinput_Locator("fieldName:PURPOSE",testData.get("ID"));
-        PageObject.commitDeal("LCCurrentAccountInputter");
-        //PageObject.img_Button("Commit the deal");
-
-    }
-
-    @Test(groups={"CaoAuthorizer4"},dataProvider = "LCSavingAccountAuthorizer")
-    public void LCSavingAccountAuthorizer(Map<String, String> testData) throws IOException{
-
-        PageObject.menu_Dropdown("Conv Account Authorization ");
-        //PageObject. childmenu_Link("List Of Unauthorised A/Cs  ",6);
-        driver.findElement(By.xpath("//*[@id=\'pane_\']/ul[5]/li/ul/li/a")).click();
-        PageObject.switchToChildWindow();
-        driver.manage().window().maximize();
-        PageObject.switchFrame(1);
-        PageObject.switchFrame(0);
-        PageObject.textinput_Locator("value:1:1:1",testData.get("Transaction Number"));
-        PageObject.find_Button();
-        PageObject.form_Link("VER A @ID");
-        driver.switchTo().parentFrame();
-        PageObject.switchFrame(1);
-        PageObject.img_Button("Authorises a deal");
-
-    }
-
-    @Test(groups={"CaoAuthorizer4"},dataProvider = "LCCurrentAuthorizer")
-    public void LCCurrentAuthorizer(Map<String, String> testData) throws IOException{
-
-        PageObject.menu_Dropdown("Conv Account Authorization ");
-        //PageObject. childmenu_Link("List Of Unauthorised A/Cs  ",6);
-        driver.findElement(By.xpath("//*[@id=\'pane_\']/ul[5]/li/ul/li/a")).click();
-        PageObject.switchToChildWindow();
-        driver.manage().window().maximize();
-        PageObject.switchFrame(1);
-        PageObject.switchFrame(0);
-        PageObject.textinput_Locator("value:1:1:1",testData.get("Transaction Number"));
-        PageObject.find_Button();
-        PageObject.form_Link("VER A @ID");
-        driver.switchTo().parentFrame();
-        PageObject.switchFrame(1);
-        PageObject.img_Button("Authorises a deal");
-
-    }
 
 
     @DataProvider(name = "LCCurrentAccAmendmentData")
@@ -517,111 +469,6 @@ public class JointAccountCreation extends BaseClass {
         return data;
     }
 
-    @DataProvider(name = "LCCurrentInputter")
-    public Object[][] LCCurrentInputter() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\COAD_AccCreation.xlsx";
-        FileInputStream fis = new FileInputStream(FILE_PATH);
-        Workbook workbook = new XSSFWorkbook(fis);
-        Sheet sheet = workbook.getSheet("LCCurrentInputter"); // Assuming data is in the first sheet
-        int rowCount = sheet.getPhysicalNumberOfRows();
-        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
-        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 
-        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
-            Row row = sheet.getRow(i);
-            Map<String, String> map = new HashMap<String, String>();
-            for (int j = 0; j < colCount; j++) {
-                Cell cell = row.getCell(j);
-                DataFormatter formatter = new DataFormatter();
-                String value = formatter.formatCellValue(cell);
-                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
-            }
-            data[i - 1][0] = map;
-        }
-
-        workbook.close();
-        fis.close();
-        return data;
-    }
-
-    @DataProvider(name = "LCSavingAccountInputter")
-    public Object[][] LCSavingAccountInputter() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\COAD_AccCreation.xlsx";
-        FileInputStream fis = new FileInputStream(FILE_PATH);
-        Workbook workbook = new XSSFWorkbook(fis);
-        Sheet sheet = workbook.getSheet("LCSavingAccountInputter"); // Assuming data is in the first sheet
-        int rowCount = sheet.getPhysicalNumberOfRows();
-        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
-        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
-
-        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
-            Row row = sheet.getRow(i);
-            Map<String, String> map = new HashMap<String, String>();
-            for (int j = 0; j < colCount; j++) {
-                Cell cell = row.getCell(j);
-                DataFormatter formatter = new DataFormatter();
-                String value = formatter.formatCellValue(cell);
-                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
-            }
-            data[i - 1][0] = map;
-        }
-
-        workbook.close();
-        fis.close();
-        return data;
-    }
-    @DataProvider(name = "LCSavingAccountAuthorizer")
-    public Object[][] LCSavingAccountAuthorizer() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\LCSavingAccountInputter.xlsx";
-        FileInputStream fis = new FileInputStream(FILE_PATH);
-        Workbook workbook = new XSSFWorkbook(fis);
-        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
-        int rowCount = sheet.getPhysicalNumberOfRows();
-        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
-        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
-
-        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
-            Row row = sheet.getRow(i);
-            Map<String, String> map = new HashMap<String, String>();
-            for (int j = 0; j < colCount; j++) {
-                Cell cell = row.getCell(j);
-                DataFormatter formatter = new DataFormatter();
-                String value = formatter.formatCellValue(cell);
-                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
-            }
-            data[i - 1][0] = map;
-        }
-
-        workbook.close();
-        fis.close();
-        return data;
-    }
-
-    @DataProvider(name = "LCCurrentAuthorizer")
-    public Object[][] LCCurrentAuthorizer() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\LCCurrentAccountInputter.xlsx";
-        FileInputStream fis = new FileInputStream(FILE_PATH);
-        Workbook workbook = new XSSFWorkbook(fis);
-        Sheet sheet = workbook.getSheet("LCCurrentAuthorizer"); // Assuming data is in the first sheet
-        int rowCount = sheet.getPhysicalNumberOfRows();
-        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
-        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
-
-        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
-            Row row = sheet.getRow(i);
-            Map<String, String> map = new HashMap<String, String>();
-            for (int j = 0; j < colCount; j++) {
-                Cell cell = row.getCell(j);
-                DataFormatter formatter = new DataFormatter();
-                String value = formatter.formatCellValue(cell);
-                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
-            }
-            data[i - 1][0] = map;
-        }
-
-        workbook.close();
-        fis.close();
-        return data;
-    }
 
 }
