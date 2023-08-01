@@ -16,6 +16,7 @@ public class CustomerCreation extends BaseClass {
 
     public static String txn;
 
+    //@Test(groups = {"CaoInputterIBG"}, dataProvider = "customerCreation" )
     @Test(groups = {"CaoInputterIBG"}, dataProvider = "customerCreation" )
     public void customerCreation(Map<String, String> testData) throws IOException {
 
@@ -128,7 +129,11 @@ public class CustomerCreation extends BaseClass {
         return data;
     }
 
-    @Test(groups = {"CaoAuthorizer5"}, dataProvider = "customerCreation_Authorization" )
+
+
+
+    //CaoAuthorizer5
+    @Test(groups = {"CaoAuthorizerIbg"}, dataProvider = "customerCreation_Authorization" )
     public void customerCreation_Authorization(Map<String, String> testData) throws IOException {
 
         String TransactionNumber = testData.get("Transaction Number");
@@ -184,6 +189,7 @@ public class CustomerCreation extends BaseClass {
 
     /*__________________________________________________________________________________________________*/
 
+    //CaoInputterIBG
     @Test(groups = {"CaoInputterIBG"}, dataProvider = "corporateCustomerCreation" )
     public void corporateCustomerCreation(Map<String, String> testData) throws IOException {
 
@@ -287,7 +293,9 @@ public class CustomerCreation extends BaseClass {
         return data;
     }
 
-    @Test(groups = {"CaoAuthorizer5"}, dataProvider = "corporateCustomerCreation_Authorization" )
+
+    //CaoAuthorizer5
+    @Test(groups = {"CaoAuthorizerIbg"}, dataProvider = "corporateCustomerCreation_Authorization" )
     public void corporateCustomerCreation_Authorization(Map<String, String> testData) throws IOException {
 
         String TransactionNumber = testData.get("Transaction Number");
@@ -339,6 +347,24 @@ public class CustomerCreation extends BaseClass {
         workbook.close();
         fis.close();
         return data;
+    }
+
+    @Test(groups = {"CaoInputter"}, dataProvider = "customerUpdation" )
+    public void customerUpdation(Map<String, String> testData) throws IOException {
+
+        PageObject.menu_Dropdown("Alfalah Customer Information at CAO");
+        PageObject.menu_Dropdown("Customer Opening");
+        PageObject.menu_Link("Individual/Sole/Proprietorship/Minor  ");
+
+        //   PageObject.select_Locator("fieldName:CUST.SEGMENT","MASS");
+        String homePage=PageObject.switchToChildWindow();
+        PageObject.img_Button("Return to application screen");
+        PageObject.textinput_Locator("transactionId",testData.get("txn"));
+        //PageObject.commitDeal("CaoCustomerUpdation");
+        PageObject.img_Button("Edit a contract");
+        PageObject.textinput_Locator("fieldName:MB.FATH.HUS.NAM",testData.get("FatherName"));
+        PageObject.textinput_Locator("fieldName:CUST.OFF.PHONE:1",testData.get("cellPhone"));
+        PageObject.commitDeal("CaoUpdatingCustomer");
     }
 
 }

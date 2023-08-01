@@ -1,3 +1,4 @@
+/*
 package Test.Scripts.Conventional.TDR;
 
 import POM.PageObject;
@@ -119,3 +120,4 @@ public class AmendentAlfalahFloatingRateTDR extends BaseClass {
 
 
 }
+*/

@@ -24,8 +24,8 @@ public class MahanaAamdanDeposits1YearSeniorCustomer extends BaseClass {
         driver.manage().window().maximize();
         PageObject.img_Button("New Deal");
         PageObject.switchToChildWindow();
-        PageObject.textinput_Locator("fieldName:CUSTOMER.ID","1298454");
-        PageObject.textinput_Locator("fieldName:PRINCIPAL","10");
+        PageObject.textinput_Locator("fieldName:CUSTOMER.ID",testData.get("Customer"));
+        PageObject.textinput_Locator("fieldName:PRINCIPAL",testData.get("Principal"));
         PageObject.img_Button("Validate a deal");
 
     }
