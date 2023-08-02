@@ -27,9 +27,9 @@
         </groups>
 
         <classes>
-            <class name="Test.Scripts.Conventional.CDR_Status">
+            <class name="Test.Scripts.Conventional.CDRInwardClearing">
                 <methods>
-                    <include name="CDRStatusStop"/>
+                    <include name="CDRInwardClearingNormal"/>
                 </methods>
             </class>
         </classes>
