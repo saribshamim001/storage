@@ -14,9 +14,9 @@ import java.util.Map;
 
 public class CollectCDRBulk extends BaseClass {
 
-    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\ CDRCollectBulk.xlsx";
+    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\CDRCollectBulk.xlsx";
 
-    @Test( groups = {"Inputter"},  dataProvider = "excelCDRCollectBulk")
+    @Test( groups = {"Inputter"},  dataProvider = "excelDataCDRCollectBulk")
 
     public void CDRBulkIssuance(Map<String, String> testData) throws InterruptedException, IOException {
 

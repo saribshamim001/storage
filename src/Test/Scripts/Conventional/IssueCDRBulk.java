@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class IssueCDRBulk extends BaseClass {
 
-    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\ CDRIssueBulk.xlsx";
+    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\CDRIssueBulk.xlsx";
 
     @Test(groups = {"Inputter"}, dataProvider = "excelDataCDRIssueBulk")
 
@@ -31,13 +31,13 @@ public class IssueCDRBulk extends BaseClass {
         PageObject.menu_Link("Issuance CDR- A/c Holder Bulk- Step-2 ");
 
         PageObject.switchToChildWindow();
-        PageObject.textinput_Locator("value:1:1:1", testData.get("value:1:1:1"));
+        PageObject.textinput_Locator("value:2:1:1", testData.get("value:1:1:1"));
 
         PageObject.find_Button();
 
         Thread.sleep(2000);
 
-        //PageObject.commitDeal("CDRBulkIssueInput");
+        PageObject.commitDeal("CDRBulkIssueInput");
 
 
     }

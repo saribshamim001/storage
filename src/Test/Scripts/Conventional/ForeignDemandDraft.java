@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class ForeignDemandDraft extends BaseClass {
 
-    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\ ForeignDD.xlsx";
+    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\ForeignDD.xlsx";
     @Test(groups = {"Inputter"}, dataProvider = "excelDataForeignDD")
 
     public void ForeignDemandDraftInput(Map<String, String> testData) throws InterruptedException, IOException {
