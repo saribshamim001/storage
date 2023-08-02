@@ -49,8 +49,8 @@ public class AccountStatement extends BaseClass {
         PageObject.menu_Dropdown("Customer Relation Officer Menu");
         PageObject.menu_Dropdown("Account");
         PageObject.childmenu_Dropdown("Account Statement Printing" , 1);
-        PageObject.childmenu_Dropdown("Account Statement Print " , 1);
-
+//        PageObject.childmenu_Dropdown("Account Statement Print " , 1);
+        driver.findElement(By.xpath("(//a[text()='Account Statement Print '])[1]")).click();
         PageObject.parentFrame();
         PageObject.switchFrame(2);
 
@@ -71,7 +71,8 @@ public class AccountStatement extends BaseClass {
         PageObject.menu_Dropdown("Customer Relation Officer Menu");
         PageObject.menu_Dropdown("Account");
         PageObject.childmenu_Dropdown("Account Statement" , 1);
-        PageObject.childmenu_Dropdown("Account Statement- Utility Bill Accounts " , 1);
+//      PageObject.childmenu_Dropdown("Account Statement- Utility Bill Accounts " , 1);
+        driver.findElement(By.xpath("(//a[text()='Account Statement- Utility Bill Accounts '])[1]")).click();
 
         String menu1 = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
@@ -87,8 +88,8 @@ public class AccountStatement extends BaseClass {
         PageObject.menu_Dropdown("Customer Relation Officer Menu");
         PageObject.menu_Dropdown("Account");
         PageObject.childmenu_Dropdown("Account Statement" , 1);
-        PageObject.childmenu_Dropdown("Online Statement " , 1);
-
+//        PageObject.childmenu_Dropdown("Online Statement " , 1);
+        driver.findElement(By.xpath("(//a[text()='Online Statement '])[1]")).click();
         String menu1 = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
 

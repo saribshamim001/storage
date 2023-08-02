@@ -15,8 +15,7 @@ import java.util.Map;
 public class CDR_Issuance extends BaseClass {
 
     String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\CDRIssuanceinput.xlsx";
-
-    @Test( groups = {"Inputter"}, dataProvider = "excelDataCDRIssuance")
+    @Test( groups = {"Inputter"}, dataProvider = "excelDataCDRIssuanceinput")
 
     public void CDRIssuanceinput(Map<String, String> testData) throws InterruptedException, IOException {
 
@@ -43,7 +42,7 @@ public class CDR_Issuance extends BaseClass {
         PageObject.form_Tab("Due Delligence");
 
         PageObject.textinput_Locator("fieldName:DD.ADDRESS:1",testData.get("DD.ADDRESS:1"));
-        PageObject.textinput_Locator("fieldName:ID.TYPE",testData.get("ID-N"));
+        PageObject.textinput_Locator("fieldName:ID.TYPE",testData.get("ID.TYPE"));
         PageObject.textinput_Locator("fieldName:ID.NUMBER",testData.get("ID.NUMBER"));
         PageObject.textinput_Locator("fieldName:CONTACT.NO:1",testData.get("CONTACT.NO:1"));
         PageObject.select_Locator("fieldName:INS.ISS.PURPOSE", testData.get("INS.ISS.PURPOSE"));
@@ -52,7 +51,6 @@ public class CDR_Issuance extends BaseClass {
 
 
     }
-
     @DataProvider(name = "excelDataCDRIssuanceinput")
     public Object[][] readExcelData1() throws IOException {
 
@@ -60,6 +58,7 @@ public class CDR_Issuance extends BaseClass {
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
+        //rowCount-=2;
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 
@@ -79,7 +78,6 @@ public class CDR_Issuance extends BaseClass {
         fis.close();
         return data;
     }
-
 
     @Test(groups = {"Authorizer"})
 
@@ -104,9 +102,9 @@ public class CDR_Issuance extends BaseClass {
 
     }
 
-    @DataProvider(name = "amendLockerJData")
-    public Object[][] amendLockerJData() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\AmendmentLockerJoint.xlsx";
+    @DataProvider(name = " CDRIssuanceinput")
+    public Object[][]  CDRIssuanceinputData() throws IOException {
+        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\CDRIssuanceinput.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
@@ -130,6 +128,7 @@ public class CDR_Issuance extends BaseClass {
         fis.close();
         return data;
     }
+
 
     }
 

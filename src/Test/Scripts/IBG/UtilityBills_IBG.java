@@ -33,7 +33,6 @@ public class UtilityBills_IBG extends BaseClass {
         PageObject.commitDeal("UtilityBillsAgainstCash");
         String txn = PageObject.getTxn();
         System.out.println(txn);
-        driver.close();
     }
 
     @Test(groups = {"Inputter"})
@@ -66,7 +65,6 @@ public class UtilityBills_IBG extends BaseClass {
         PageObject.commitDeal("UtilityBillsAgainstAccount");
         String txn = PageObject.getTxn();
         System.out.println(txn);
-        driver.close();
     }
 
 
@@ -103,7 +101,6 @@ public class UtilityBills_IBG extends BaseClass {
         PageObject.commitDeal("MultiUtilityBillsAgainstAccount");
         String txn = PageObject.getTxn();
         System.out.println(txn);
-        driver.close();
 
     }
 }

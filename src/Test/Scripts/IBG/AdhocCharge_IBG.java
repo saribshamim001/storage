@@ -43,11 +43,10 @@ public class AdhocCharge_IBG extends BaseClass {
         PageObject.commitDeal("AdhocChargeFixedRate");
         String txn = PageObject.getTxn();
         System.out.println(txn);
-        driver.close();
     }
 
 
-    /*@Test(groups = {"Inputter"})
+    @Test(groups = {"Inputter"})
     public void AdhocChargeChangeableRate() throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown("Teller Menu - Universal Teller -IBG");
@@ -80,7 +79,6 @@ public class AdhocCharge_IBG extends BaseClass {
         PageObject.commitDeal("AdhocChargeChangeableRate");
         String txn = PageObject.getTxn();
         System.out.println(txn);
-        driver.close();
     }
 
     @Test(groups = {"Inputter"})
@@ -103,5 +101,5 @@ public class AdhocCharge_IBG extends BaseClass {
 
         PageObject.switchToChildWindow();
         PageObject.find_Button();
-    }*/
+    }
 }

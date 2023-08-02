@@ -2,15 +2,23 @@ package Test.Scripts.Conventional;
 
 import POM.PageObject;
 import Test.General.BaseClass;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CDRInwardClearing extends BaseClass {
 
-    @Test( groups = {"Inputter"})
+    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\ CDRInwardClearing.xlsx";
 
-    public void CDRInwardClearingNormal() throws InterruptedException, IOException {
+    @Test( groups = {"Inputter"}, dataProvider = "excelDataCDRInwardClearing")
+
+    public void CDRInwardClearingNormal(Map<String, String> testData) throws InterruptedException, IOException {
 
         PageObject.menu_Dropdown("Remittance/Clearing Officer -Universal Teller");
         PageObject.menu_Dropdown("Remittance Menu");
@@ -28,9 +36,9 @@ public class CDRInwardClearing extends BaseClass {
         PageObject.img_Button("New Deal");
 
         //PageObject.textinput_Locator("fieldName:CREDIT.AMOUNT","1000");
-        PageObject.textinput_Locator("fieldName:CL.NO.MV","1");
+        PageObject.textinput_Locator("fieldName:CL.NO.MV", testData.get("CL.NO.MV"));
         PageObject.click_Locator("fieldName:CL.CHEQUE.NO:1");
-        PageObject.textinput_Locator("fieldName:CL.CHEQUE.NO:1","123456789");
+        PageObject.textinput_Locator("fieldName:CL.CHEQUE.NO:1", testData.get("CL.CHEQUE.NO:1"));
         PageObject.click_Locator("fieldName:BANK.SORT.CODE:1");
 
         String HomePage2 = PageObject.switchToChildWindow();
@@ -44,10 +52,38 @@ public class CDRInwardClearing extends BaseClass {
         PageObject.switchToParentWindow(HomePage2);
         PageObject.switchFrame(2);
 
-        PageObject.textinput_Locator("fieldName:BANK.SORT.CODE:1","010");
+        PageObject.textinput_Locator("fieldName:BANK.SORT.CODE:1", testData.get("BANK.SORT.CODE:1"));
 
         PageObject.commitDeal("CDRInwardClearingNormal");
 
+    }
+
+    @DataProvider(name = "excelDataCDRInwardClearing")
+    public Object[][] readExcelData1() throws IOException {
+
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        //rowCount-=2;
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
     }
 
     @Test(groups = {"Authorizer"})
@@ -71,8 +107,32 @@ public class CDRInwardClearing extends BaseClass {
         String menu2 = PageObject.switchToChildWindow();
         PageObject.img_Button("Authorises a deal");
 
+    }
 
+    @DataProvider(name = "CDRInwardClearing")
+    public Object[][]  CDRInwardClearinginputData() throws IOException {
+        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\CDRInwardClearing.xlsx";
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
 
+        workbook.close();
+        fis.close();
+        return data;
     }
 }

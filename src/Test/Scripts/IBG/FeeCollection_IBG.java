@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class FeeCollection_IBG extends BaseClass {
 
-     @Test(groups = {"Inputter"})
+    @Test(groups = {"Inputter"})
     public void FeeCollectionAgainstAccount_IBG() throws IOException {
 
         PageObject.menu_Dropdown("Teller Menu - Universal Teller -IBG");
@@ -38,7 +38,6 @@ public class FeeCollection_IBG extends BaseClass {
         PageObject.commitDeal("Fee Collection");
         String txn = PageObject.getTxn();
         System.out.println(txn);
-        driver.close();
 
     }
 
@@ -66,7 +65,6 @@ public class FeeCollection_IBG extends BaseClass {
         PageObject.commitDeal("Fee Collection");
         String txn = PageObject.getTxn();
         System.out.println(txn);
-        driver.close();
 
     }
 
@@ -101,12 +99,11 @@ public class FeeCollection_IBG extends BaseClass {
         PageObject.switchFrame(2);
         PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER", "6200021458");
         PageObject.textinput_Locator("fieldName:A.CHEQUE.DATE", "20221220");
-        //PageObject.commitDeal("Multi Fee Collection");
-        driver.close();
+
     }
 
 
-     @Test(groups = {"Inputter"})
+    @Test(groups = {"Inputter"})
     public void FeeCollectionReport_IBG() throws IOException {
 
         PageObject.menu_Dropdown("Teller Menu - Universal Teller -IBG");

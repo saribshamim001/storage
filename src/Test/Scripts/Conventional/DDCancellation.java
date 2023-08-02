@@ -2,15 +2,23 @@ package Test.Scripts.Conventional;
 
 import POM.PageObject;
 import Test.General.BaseClass;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DDCancellation extends BaseClass {
 
-    @Test( groups = {"Inputter"})
+    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\CDRCancellation.xlsx";
 
-    public void DemandDraftCancellation() throws InterruptedException, IOException {
+    @Test( groups = {"Inputter"}, dataProvider = "excelDataCDRCancellation")
+
+    public void DemandDraftCancellation(Map<String, String> testData) throws InterruptedException, IOException {
 
         PageObject.menu_Dropdown("Remittance/Clearing Officer -Universal Teller");
         PageObject.menu_Dropdown("Remittance Menu");
@@ -25,13 +33,40 @@ public class DDCancellation extends BaseClass {
 
         PageObject.img_Button("New Deal");
 
-        PageObject.textinput_Locator("fieldName:CREDIT.THEIR.REF","LDA0610554");
+        PageObject.textinput_Locator("fieldName:CREDIT.THEIR.REF", testData.get("CREDIT.THEIR.REF"));
 
         //PageObject.commitDeal("DemandDraftCancellation");
 
 
     }
 
+    @DataProvider(name = "excelDataCDRCancellation")
+    public Object[][] readExcelData1() throws IOException {
+
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        //rowCount-=2;
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
+    }
 
     @Test(groups = {"Authorizer"})
 
@@ -57,5 +92,32 @@ public class DDCancellation extends BaseClass {
 
         PageObject.img_Button("Authorises a deal");
 
+    }
+
+    @DataProvider(name = "CDRCancellation")
+    public Object[][]  CDRCancellationinputData() throws IOException {
+        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\CDRCancellation.xlsx";
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
     }
 }
