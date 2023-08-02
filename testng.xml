@@ -19,17 +19,17 @@
 <!--            </class>-->
 <!--        </classes>-->
 <!--    </test>-->
-    <test verbose="1" preserve-order="true" name="Retail Operations Authorizer">
+    <test verbose="1" preserve-order="true" name="Retail Operations inputter">
         <groups>
             <run>
-                <include name="CaoAuthorizer4"/>
+                <include name="Inputter"/>
             </run>
         </groups>
 
         <classes>
-            <class name="Test.Scripts.Conventional.CAOD.JointAccountCreation">
+            <class name="Test.Scripts.Conventional.CDR_Status">
                 <methods>
-                    <include name="LCCurrentAuthorizer"/>
+                    <include name="CDRStatusStop"/>
                 </methods>
             </class>
         </classes>
