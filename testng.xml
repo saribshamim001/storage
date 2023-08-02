@@ -27,9 +27,9 @@
         </groups>
 
         <classes>
-            <class name="Test.Scripts.Conventional.CDRInwardClearing">
+            <class name="Test.Scripts.Conventional.CDRReport">
                 <methods>
-                    <include name="CDRInwardClearingNormal"/>
+                    <include name="CDRReportEnquiry"/>
                 </methods>
             </class>
         </classes>
