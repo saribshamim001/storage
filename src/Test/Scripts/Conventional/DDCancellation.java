@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class DDCancellation extends BaseClass {
 
-    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\ CDRCancellation.xlsx";
+    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\CDRCancellation.xlsx";
 
     @Test( groups = {"Inputter"}, dataProvider = "excelDataCDRCancellation")
 

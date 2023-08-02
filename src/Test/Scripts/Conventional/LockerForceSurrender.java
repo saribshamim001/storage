@@ -2,6 +2,7 @@ package Test.Scripts.Conventional;
 
 import POM.PageObject;
 import Test.General.BaseClass;
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -25,21 +26,24 @@ public class LockerForceSurrender extends BaseClass {
         String menu = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
 
+
+        driver.findElement(By.xpath("//img[@alt='Selection Screen']")).click();
+
         PageObject.find_Button();
 
-        PageObject.form_Link("Locker Surrender");
+        //PageObject.form_Link("Locker Surrender");
 
         PageObject.textinput_Locator("fieldName:BRK.REASON:1", "Test");
 
         PageObject.commitDeal("ForceSurrender");
 
-        String menu1 = PageObject.switchToChildWindow();
-        PageObject.maximizeWindow();
-
-        PageObject.img_Button("Commit the deal");
-
-        forceTxn = PageObject.getTxn();
-        System.out.println(forceTxn);
+//        String menu1 = PageObject.switchToChildWindow();
+//        PageObject.maximizeWindow();
+//
+//        PageObject.img_Button("Commit the deal");
+//
+//        forceTxn = PageObject.getTxn();
+//        System.out.println(forceTxn);
 
     }
 
