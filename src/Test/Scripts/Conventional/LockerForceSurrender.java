@@ -31,9 +31,9 @@ public class LockerForceSurrender extends BaseClass {
 
         PageObject.find_Button();
 
-        //PageObject.form_Link("Locker Surrender");
+        PageObject.form_Link("Locker Surrender");
 
-        PageObject.textinput_Locator("fieldName:BRK.REASON:1", "Test");
+        PageObject.textinput_Locator("fieldName:BRK.REASON:1", "Testing");
 
         PageObject.commitDeal("ForceSurrender");
 

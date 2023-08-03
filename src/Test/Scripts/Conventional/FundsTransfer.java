@@ -52,10 +52,10 @@ public class FundsTransfer extends BaseClass {
         PageObject.switchFrame(2);
 
         if (CustomerTypeString=="1")
-        PageObject.radiobutton_Locator("radio:mainTab:AML.TYP.CUST",1);
+        PageObject.radiobutton_Locator("radio:tab1:AML.TYP.CUST",1);
 
         else{
-            PageObject.radiobutton_Locator("radio:mainTab:AML.TYP.CUST",2);
+                PageObject.radiobutton_Locator("radio:tab1:AML.TYP.CUST",2);
             PageObject.textarea_Locator("fieldName:NAME.COND.TXN",testData.get("Name"));
             PageObject.textinput_Locator("fieldName:ID.TYPE",testData.get("ID type"));
             PageObject.textinput_Locator("fieldName:ID.NUMBER",testData.get("ID Num"));
@@ -63,7 +63,7 @@ public class FundsTransfer extends BaseClass {
 
         }
 
-        PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE",Integer.parseInt(testData.get("CommisionCode")));
+        PageObject.radiobutton_Locator("radio:tab1:COMMISSION.CODE",Integer.parseInt(testData.get("CommisionCode")));
 
         PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER",testData.get("chequeNum"));
         PageObject.textinput_Locator("fieldName:DEBIT.VALUE.DATE",testData.get("date"));
@@ -106,8 +106,8 @@ public class FundsTransfer extends BaseClass {
         PageObject.parentFrame();
         PageObject.switchFrame(2);
 
-        PageObject.radiobutton_Locator("radio:mainTab:AML.TYP.CUST",1);
-        PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE",1);
+        PageObject.radiobutton_Locator("radio:tab1:AML.TYP.CUST",1);
+        PageObject.radiobutton_Locator("radio:tab1:COMMISSION.CODE",1);
         PageObject.textinput_Locator("fieldName:DEBIT.VALUE.DATE",testData.get("date"));
         PageObject.textinput_Locator("fieldName:CREDIT.VALUE.DATE",testData.get("date"));
 /*
@@ -225,6 +225,7 @@ public class FundsTransfer extends BaseClass {
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
+//        rowCount=2;
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 
@@ -252,6 +253,7 @@ public class FundsTransfer extends BaseClass {
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(1); // ftOnlineSheet
         int rowCount = sheet.getPhysicalNumberOfRows();
+//        rowCount=2;
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 

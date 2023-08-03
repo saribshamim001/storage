@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class CDREncashment extends BaseClass {
 
-    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\ CDREncashmentinput.xlsx";
+    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\CDREncashmentinput.xlsx";
 
     @Test( groups = {"Inputter"}, dataProvider = "excelDataCDREncashmentinput")
 
