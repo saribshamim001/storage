@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class CDRInwardSameDay extends BaseClass {
 
-    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\ CDRInwardClearingSameDay.xlsx";
+    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\CDRInwardClearingSameDay.xlsx";
 
     @Test( groups = {"Inputter"}, dataProvider = "excelDataCDRInwardClearingSameDay")
 
