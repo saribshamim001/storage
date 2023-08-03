@@ -35,6 +35,7 @@ public class ForeignDemandDraft extends BaseClass {
 
 
         PageObject.textinput_Locator("fieldName:CREDIT.CURRENCY", testData.get("CREDIT.CURRENCY"));
+        PageObject.textinput_Locator("fieldName:CREDIT.ACCT.NO",testData.get("CREDIT.ACCT.NO"));
         PageObject.textinput_Locator("fieldName:INSTRUMENT.TYPE:1", testData.get("INSTRUMENT.TYPE:1"));
         Thread.sleep(3000);
 
@@ -44,6 +45,7 @@ public class ForeignDemandDraft extends BaseClass {
         PageObject.click_Locator("fieldName:DEBIT.ACCT.NO");
         PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO", testData.get("DEBIT.ACCT.NO"));
         PageObject.click_Locator("fieldName:DEBIT.ACCT.NO");
+        PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER",testData.get("CHEQUE.NUMBER"));
 
 
         PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1", testData.get("BEN.CUSTOMER:1"));
@@ -54,8 +56,10 @@ public class ForeignDemandDraft extends BaseClass {
         PageObject.switchToParentWindow(HomePage2);
         PageObject.switchFrame(2);
         PageObject.radiobutton_Locator("radio:tab1:COMMISSION.CODE",4);
+        PageObject.radiobutton_Locator("radio:tab1:COMMISSION.CODE",3);
 
         PageObject.radiobutton_Locator("radio:tab1:REMITTANCE.TYPE",3);
+        PageObject.radiobutton_Locator("radio:tab1:REMITTANCE.TYPE",1);
 
 
         PageObject.form_Tab("MT110 Details");
