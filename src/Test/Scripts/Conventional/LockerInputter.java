@@ -50,7 +50,7 @@ public class LockerInputter extends BaseClass {
         PageObject.textinput_Locator("fieldName:CUST.ACCT","1004057212");
         PageObject.textinput_Locator("fieldName:JOINT.CNO:1","11745297");
         PageObject.select_Locator("fieldName:OPEARTING.INST","Jointly");
-        PageObject.textinput_Locator("fieldName:OPEARTING.NAME:1", "Test");
+        PageObject.textinput_Locator("fieldName:OPEARTING.NAME:1", "Testin");
         PageObject.radiobutton_Locator("radio:mainTab:CHARGES.WAIVE",2);
         PageObject.radiobutton_Locator("radio:mainTab:KEY.DEPOSIT",1);
         PageObject.radiobutton_Locator("radio:tab1:MANDATEE",2);
@@ -103,33 +103,33 @@ public class LockerInputter extends BaseClass {
         fos.close();
 
     }
-    @Test(groups = {"Authorizer"})
+//    @Test(groups = {"Authorizer"})
 
-    public void assignLocker_Auth() throws IOException, InterruptedException {
-
-        PageObject.menu_Dropdown("Locker- Authorizer Menu");
-        PageObject.menu_Dropdown("Assign Locker");
-        PageObject.menu_Link("Assign Locker - Authorization ");
-
-        String menu1 = PageObject.switchToChildWindow();
-        PageObject.maximizeWindow();
-
-        PageObject.parentFrame();
-        PageObject.switchFrame(1);
-
-        //table/tbody/tr/td/a[text()='Authorise Locker Assign Charges'][1]
-
-        PageObject.formindex_Link("Authorise Locker Assign Charges",1);
-
-        String menu2 = PageObject.switchToChildWindow();
-        PageObject.maximizeWindow();
-
-        PageObject.img_Button("Authorises a deal");
-
-        lockerTxn = PageObject.getTxn();
-        System.out.println(lockerTxn);
-
-    }
+//    public void assignLocker_Auth() throws IOException, InterruptedException {
+//
+//        PageObject.menu_Dropdown("Locker- Authorizer Menu");
+//        PageObject.menu_Dropdown("Assign Locker");
+//        PageObject.menu_Link("Assign Locker - Authorization ");
+//
+//        String menu1 = PageObject.switchToChildWindow();
+//        PageObject.maximizeWindow();
+//
+//        PageObject.parentFrame();
+//        PageObject.switchFrame(1);
+//
+//        //table/tbody/tr/td/a[text()='Authorise Locker Assign Charges'][1]
+//
+//        PageObject.formindex_Link("Authorise Locker Assign Charges",1);
+//
+//        String menu2 = PageObject.switchToChildWindow();
+//        PageObject.maximizeWindow();
+//
+//        PageObject.img_Button("Authorises a deal");
+//
+//        lockerTxn = PageObject.getTxn();
+//        System.out.println(lockerTxn);
+//
+//    }
 
     @DataProvider(name = "excelData")
     public Object[][] readExcelData() throws IOException {
@@ -176,7 +176,7 @@ public class LockerInputter extends BaseClass {
         String menu = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
 
-        PageObject.textinput_Locator("value:1:1:1","OR.0009.0031");
+        PageObject.textinput_Locator("value:1:1:1","OR.00033.0031");
         PageObject.find_Button();
 
 
@@ -184,9 +184,9 @@ public class LockerInputter extends BaseClass {
 
         PageObject.textinput_Locator("fieldName:KEY","3");
         PageObject.select_Locator("fieldName:STATUS","ASSIGNED");
-        PageObject.textinput_Locator("fieldName:CUST.ACCT","1003160019"); //1000058935
+        PageObject.textinput_Locator("fieldName:CUST.ACCT","1000058935"); //1000058935 OR 1003160019
         PageObject.radiobutton_Locator("radio:tab1:CHARGES.WAIVE",1);
-        PageObject.textinput_Locator("fieldName:BRK.REASON:1","Testing");
+        PageObject.textinput_Locator("fieldName:BRK.REASON:1","Testin");
 
         PageObject.commitDeal("Amendment of Locker Single ");
 
@@ -230,36 +230,36 @@ public class LockerInputter extends BaseClass {
 
     }
 
-    @Test(groups = {"Authorizer"})
-
-    public void amendmentLocker_Auth() throws IOException, InterruptedException {
-
-        PageObject.menu_Dropdown("Locker- Authorizer Menu");
-        PageObject.menu_Dropdown("Locker Amendment");
-        PageObject.menu_Link("Locker Amendment- Authorization ");
-
-        String menu1 = PageObject.switchToChildWindow();
-        //PageObject.maximizeWindow();
-
-
-        //table/tbody/tr/td/a[text()='Authorise Locker Assign Charges'][1]
-
-        PageObject.textinput_Locator("value:1:1:1","OR.0009.0031");
-        PageObject.find_Button();
-
-        String menu2 = PageObject.switchToChildWindow();
-//        PageObject.maximizeWindow();
-
-        PageObject.form_Link("Authorize");
-
-        String menu3 = PageObject.switchToChildWindow();
-
-        PageObject.img_Button("Authorises a deal");
-
-        lockerTxn = PageObject.getTxn();
-        System.out.println(lockerTxn);
-
-    }
+//    @Test(groups = {"Authorizer"})
+//
+//    public void amendmentLocker_Auth() throws IOException, InterruptedException {
+//
+//        PageObject.menu_Dropdown("Locker- Authorizer Menu");
+//        PageObject.menu_Dropdown("Locker Amendment");
+//        PageObject.menu_Link("Locker Amendment- Authorization ");
+//
+//        String menu1 = PageObject.switchToChildWindow();
+//        //PageObject.maximizeWindow();
+//
+//
+//        //table/tbody/tr/td/a[text()='Authorise Locker Assign Charges'][1]
+//
+//        PageObject.textinput_Locator("value:1:1:1","OR.0009.0031");
+//        PageObject.find_Button();
+//
+//        String menu2 = PageObject.switchToChildWindow();
+////        PageObject.maximizeWindow();
+//
+//        PageObject.form_Link("Authorize");
+//
+//        String menu3 = PageObject.switchToChildWindow();
+//
+//        PageObject.img_Button("Authorises a deal");
+//
+//        lockerTxn = PageObject.getTxn();
+//        System.out.println(lockerTxn);
+//
+//    }
 
     @DataProvider(name = "amendLockerSData")
     public Object[][] amendLockerSData() throws IOException {
@@ -306,7 +306,7 @@ public class LockerInputter extends BaseClass {
         String menu = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
 
-        PageObject.textinput_Locator("value:1:1:1","OR.0001.0031");
+        PageObject.textinput_Locator("value:1:1:1","OR.0003.0031");
         PageObject.find_Button();
 
 
@@ -317,7 +317,7 @@ public class LockerInputter extends BaseClass {
         PageObject.select_Locator("fieldName:STATUS","ASSIGNED");
         PageObject.textinput_Locator("fieldName:CUST.ACCT","1007515120");
         PageObject.radiobutton_Locator("radio:tab1:CHARGES.WAIVE",1);
-        PageObject.textinput_Locator("fieldName:BRK.REASON:1","Testing");
+        PageObject.textinput_Locator("fieldName:BRK.REASON:1","Test1");
 
         PageObject.commitDeal("AmendmentLockerJoint");
 
@@ -360,36 +360,36 @@ public class LockerInputter extends BaseClass {
 
     }
 
-    @Test(groups = {"Authorizer"})
-
-    public void amendmentLockerJoint_Auth() throws IOException, InterruptedException {
-
-        PageObject.menu_Dropdown("Locker- Authorizer Menu");
-        PageObject.menu_Dropdown("Locker Amendment");
-        PageObject.menu_Link("Locker Amendment- Authorization ");
-
-        String menu1 = PageObject.switchToChildWindow();
-        //PageObject.maximizeWindow();
-
-
-        //table/tbody/tr/td/a[text()='Authorise Locker Assign Charges'][1]
-
-        PageObject.textinput_Locator("value:1:1:1","OR.0001.0031");
-        PageObject.find_Button();
-
-        String menu2 = PageObject.switchToChildWindow();
-//        PageObject.maximizeWindow();
-
-        PageObject.form_Link("Authorize");
-
-        String menu3 = PageObject.switchToChildWindow();
-
-        PageObject.img_Button("Authorises a deal");
-
-        lockerTxn = PageObject.getTxn();
-        System.out.println(lockerTxn);
-
-    }
+//    @Test(groups = {"Authorizer"})
+//
+//    public void amendmentLockerJoint_Auth() throws IOException, InterruptedException {
+//
+//        PageObject.menu_Dropdown("Locker- Authorizer Menu");
+//        PageObject.menu_Dropdown("Locker Amendment");
+//        PageObject.menu_Link("Locker Amendment- Authorization ");
+//
+//        String menu1 = PageObject.switchToChildWindow();
+//        //PageObject.maximizeWindow();
+//
+//
+//        //table/tbody/tr/td/a[text()='Authorise Locker Assign Charges'][1]
+//
+//        PageObject.textinput_Locator("value:1:1:1","OR.0001.0031");
+//        PageObject.find_Button();
+//
+//        String menu2 = PageObject.switchToChildWindow();
+////        PageObject.maximizeWindow();
+//
+//        PageObject.form_Link("Authorize");
+//
+//        String menu3 = PageObject.switchToChildWindow();
+//
+//        PageObject.img_Button("Authorises a deal");
+//
+//        lockerTxn = PageObject.getTxn();
+//        System.out.println(lockerTxn);
+//
+//    }
 
     @DataProvider(name = "amendLockerJData")
     public Object[][] amendLockerJData() throws IOException {

@@ -45,7 +45,7 @@ public class PostRestrictionMarking extends BaseClass {
 
         PageObject.textinput_Locator("fieldName:POSTING.RESTRICT:1","42");
         PageObject.textinput_Locator("fieldName:POST.RESTR:1","42");
-        PageObject.textinput_Locator("fieldName:POSTING.DATE:1","20221228");
+        PageObject.textinput_Locator("fieldName:POSTING.DATE:1","20230617");
         PageObject.select_Locator("fieldName:POSTING.REASON:1","Account Blocked by FBR"); //Account Blocked By Court OR Blocked by CD - SS Unit
 
         PageObject.commitDeal("Posting Restrict Marking ");
