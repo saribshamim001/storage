@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +21,12 @@ public class Accounts extends BaseClass {
 //    Customers customer = new Customers();
 
     public static String PD,CUSTOMER;
+
+    static int index = 0;
+
+    public static ArrayList<String> customerTxn = new ArrayList<>();
+    public static ArrayList<String> customerPD = new ArrayList<>();
+
     public static String ACCOUNT_TITLE_1,ACCOUNT_TITLE_2,OTHER_OFFICER,REFEREE,JOINT_HOLDER,RELATION_CODE,
             JOINT_NOTES,MULTI_ACCT,BAF_PRM_IMD,BAF_PRM_CRDNAME,BAF_PRM_PEN,BAF_PRM_DATETME,REMITTER_NAME,REMITTER_ID_NO,
             RELATIONSHIP_BE,REMITTER_RESID,REMITTER_ID_TYP,CURRENCY;
@@ -36,9 +43,16 @@ public class Accounts extends BaseClass {
     @Test (groups = {"Inputter"}, dataProvider = "condition")
     public void callAccountCreation(Map<String, String> column) throws InterruptedException, IOException {
 
-        CUSTOMER = column.get("CUSTOMER");
-        Accounts.PD = column.get("CATEGORY");
-        TC = column.get("TC");
+        //require from Customer Script !
+//        CUSTOMER = column.get("Customer_ID");
+//        Accounts.PD = column.get("PD");
+
+        CUSTOMER = customerTxn.get(index);
+        Accounts.PD = customerPD.get(index);
+        index++;
+        System.out.println("The customer is:  "+CUSTOMER+"  and the acc: "+Accounts.PD);
+
+        TC = column.get("TC-Account Creation");
 
         CURRENCY = column.get("CURRENCY");
         ACCOUNT_TITLE_1 = column.get("ACCOUNT_TITLE_1");
@@ -316,7 +330,7 @@ public class Accounts extends BaseClass {
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
-        rowCount=2;
+        rowCount=6;
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 

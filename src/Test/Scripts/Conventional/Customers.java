@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.poi.ss.usermodel.Cell;
@@ -26,8 +27,11 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class Customers extends BaseClass {
 
     public static String Txn;
+
     public static String SECTOR;
     public static String TC;
+
+    public static File  file;
 
 
 
@@ -47,7 +51,10 @@ public class Customers extends BaseClass {
 
         TC = column.get("TC");
         PageObject.textinput_Locator("fieldName:CRP.TYPE",column.get("CRP_TYPE"));
+
         PageObject.click_Locator("fieldName:TARGET");
+
+
         PageObject.textinput_Locator("fieldName:TARGET",column.get("TARGET"));
         //driver.findElement(By.xpath("//input[@id='fieldName:TARGET']")).sendKeys(column.get("TARGET"));
         PageObject.click_Locator("fieldName:ID.NUMBER:1");
@@ -107,6 +114,7 @@ public class Customers extends BaseClass {
         PageObject.textinput_Locator("fieldName:CRP.CHANNEL:1",column.get("CRP.CHANNEL:1"));
         PageObject.textinput_Locator("fieldName:CUS.CATEG:1",column.get("CUS_CATEG"));
         Accounts.PD = column.get("CUS_CATEG");
+        Accounts.customerPD.add(column.get("CUS_CATEG"));
 //        PageObject.textinput_Locator("fieldName:CRP.CHANNEL:1",column.get("CRP_CHANNEL"));
         PageObject.textinput_Locator("fieldName:EXP.GEO.INT:1",column.get("EXP_GEO_INT"));
         PageObject.textinput_Locator("fieldName:EXP.GEO.LOCAL:1",column.get("EXP_GEO_LOCAL"));
@@ -146,6 +154,7 @@ public class Customers extends BaseClass {
         txnValidate();
         saveToDS("Individual Customers");
         saveToDS("UnAuth_Customers");
+        //saveToDS("Accounts");
 
     }
 
@@ -166,13 +175,13 @@ public class Customers extends BaseClass {
 
         TC = column.get("TC");
 
-        PageObject.textinput_Locator("fieldName:SECTOR",column.get("SECTOR"));
-        SECTOR = column.get("SECTOR");
-        PageObject.select_Locator("fieldName:CUST.SEGMENT",column.get("CUST_SEGMENT"));
-        PageObject.radiobutton_Locator("radio:mainTab:SME.TYPE",1);
-        PageObject.textinput_Locator("fieldName:ID.TYPE:1",column.get("ID_TYPE"));
-        PageObject.textinput_Locator("fieldName:ID.NUMBER:1","42309978" + PageObject.idNumber());
-        PageObject.click_Locator("fieldName:ID.VAL.DT:1");
+//        PageObject.textinput_Locator("fieldName:SECTOR",column.get("SECTOR"));
+//        SECTOR = column.get("SECTOR");
+//        PageObject.select_Locator("fieldName:CUST.SEGMENT",column.get("CUST_SEGMENT"));
+//        PageObject.radiobutton_Locator("radio:mainTab:SME.TYPE",1);
+//        PageObject.textinput_Locator("fieldName:ID.TYPE:1",column.get("ID_TYPE"));
+//        PageObject.textinput_Locator("fieldName:ID.NUMBER:1","42309978" + PageObject.idNumber());
+//        PageObject.click_Locator("fieldName:ID.VAL.DT:1");
         PageObject.textinput_Locator("fieldName:ID.VAL.DT:1",column.get("ID_VAL_DT"));
         PageObject.textinput_Locator("fieldName:NAME.1:1",column.get("NAME_1"));
         PageObject.textinput_Locator("fieldName:NAME.2:1","COMPANY");
@@ -191,7 +200,7 @@ public class Customers extends BaseClass {
         PageObject.radiobutton_Locator("radio:mainTab:TRADE.CRP",1);
 
         // CRP
-        PageObject.textinput_Locator("fieldName:CRP.TYPE",column.get("CRP_TYPE"));
+        //PageObject.textinput_Locator("fieldName:CRP.TYPE",column.get("CRP_TYPE"));
         PageObject.textinput_Locator("fieldName:INCM.LEVELSRC",column.get("INCM_LEVELSRC"));
         PageObject.textinput_Locator("fieldName:CUS.CATEG:1",column.get("CUS_CATEG"));
         Accounts.PD = column.get("CUS_CATEG");
@@ -263,6 +272,7 @@ public class Customers extends BaseClass {
         PageObject.form_Link("Authorise a Customer");
         PageObject.authorizeDeal();
         txnValidate();
+
         saveToDS("CUSTOMERS");
     }
 
@@ -281,7 +291,7 @@ public class Customers extends BaseClass {
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
-//        rowCount=2;
+        rowCount=6;
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 
@@ -387,10 +397,20 @@ public class Customers extends BaseClass {
         String[] second = first[1].split(" ");
         Customers.Txn = second[1];
         System.out.println("Transaction Number is: "+Customers.Txn);
+        Accounts.customerTxn.add(second[1]);
     }
 
     public static void saveToDS(String testCaseName) throws IOException {
-        File file = new File(System.getProperty("user.dir") + "\\Data\\" +testCaseName+ ".xlsx");
+
+        if (testCaseName.equalsIgnoreCase("Accounts")){
+            file = new File(System.getProperty("user.dir") + "\\Excel Data\\" +testCaseName+ ".xlsx");
+            System.out.println("writting to file of accounts");
+        }
+
+        else {
+            file = new File(System.getProperty("user.dir") + "\\Data\\" +testCaseName+ ".xlsx");
+            System.out.println("writting to file of customers");
+        }
         XSSFWorkbook workbook;
         Row row;
         Cell cell;
