@@ -142,9 +142,9 @@ public class Create_Term_Deposits_LCY extends BaseClass {
         PageObject.find_Button();
 
 
-        PageObject.authorizeByTxn(testData.get("Transaction Number"));
-
-        PageObject.img_Button("Authorises a deal");
+       //PageObject.authorizeByTxn(testData.get("Transaction Number"));
+        PageObject.menu_Link("Authorise Deal");
+//        PageObject.img_Button("Authorises a deal");
     }
 
     @DataProvider(name = "DataCreate_Term_Deposits_LCY")
