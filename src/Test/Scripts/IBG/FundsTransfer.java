@@ -135,7 +135,7 @@ public class FundsTransfer extends BaseClass {
         PageObject.menu_Dropdown("Payments/Zakat");
         PageObject.menu_Dropdown("Funds Transfer");
 
-        PageObject.menu_Link("Funds Transfer General ");
+        PageObject.menu_Link("Account to Account Transfer ");
 
         String HomePage2 = driver.getWindowHandle();
         PageObject.switchToChildWindow();
@@ -157,7 +157,7 @@ public class FundsTransfer extends BaseClass {
         PageObject.menu_Dropdown("Payments/Zakat");
         PageObject.menu_Dropdown("Funds Transfer");
 
-        PageObject.menu_Link("Account to Account Transfer ");
+        PageObject.menu_Link("Account to Account Transfer- Online ");
 
         String HomePage2 = driver.getWindowHandle();
         PageObject.switchToChildWindow();

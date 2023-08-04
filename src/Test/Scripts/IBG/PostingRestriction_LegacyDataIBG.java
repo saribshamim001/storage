@@ -17,10 +17,11 @@ import java.util.Map;
 public class PostingRestriction_LegacyDataIBG extends BaseClass {
 
     String txn;
+    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\PostingRestrictRemoval_LegacyDa.xlsx";
 
-    @Test(groups = {"IBGInputter"})
+    @Test(groups = {"IBGInputter"}, dataProvider = "excelDataPostingRestrictRemoval_LegacyDa")
 
-    public void PostingRestrictRemoval_LegacyDataIBG() throws IOException, InterruptedException {
+    public void PostingRestrictRemoval_LegacyDataIBG(Map<String, String> testData) throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown("Customer Relation Officer Menu- IBG");
 
@@ -34,11 +35,11 @@ public class PostingRestriction_LegacyDataIBG extends BaseClass {
         PageObject.parentFrame();
         PageObject.switchFrame(2);
 
-        PageObject.textinput_Locator("transactionId","5000000140");
+        PageObject.textinput_Locator("transactionId",testData.get("transactionId"));
         PageObject.img_Button("Edit a contract");
 
-        PageObject.textinput_Locator("fieldName:POSTING.RESTRICT:1","28");
-        PageObject.textinput_Locator("fieldName:REASON", "Test");
+        PageObject.textinput_Locator("fieldName:POSTING.RESTRICT:1",testData.get("POSTING.RESTRICT:1"));
+        PageObject.textinput_Locator("fieldName:REASON", testData.get("REASON"));
 
         PageObject.commitDeal("PostingRestrictRemoval_LegacyData");
 
@@ -80,6 +81,33 @@ public class PostingRestriction_LegacyDataIBG extends BaseClass {
         workbook.write(fos);
         fos.close();
 
+    }
+
+    @DataProvider(name = "excelDataPostingRestrictRemoval_LegacyDa")
+    public Object[][] readExcelData1() throws IOException {
+
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
     }
     @Test(groups = {"IBGAuthorizer"})
 
