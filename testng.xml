@@ -7,14 +7,14 @@
     <test verbose="1" preserve-order="true" name="Retail Operations Inputter">
         <groups>
             <run>
-                <include name="Inputter"/>
+                <include name="InputterTDR"/>
             </run>
         </groups>
 
         <classes>
-            <class name="Test.Scripts.Conventional.PostingRestrictRemoval_LegacyData">
+            <class name="Test.Scripts.Conventional.TDR.AmendmentForTermDepositsRack">
             <methods>
-                <include name="PostingRestrictRemoval_LegacyData"/>
+                <include name="AmendmentForTermDepositsRack"/>
             </methods>
             </class>
         </classes>
