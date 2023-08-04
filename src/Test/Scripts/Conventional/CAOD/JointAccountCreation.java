@@ -35,10 +35,12 @@ public class JointAccountCreation extends BaseClass {
         PageObject.textinput_Locator("fieldName:SBP.SEGMENT.ID",testData.get("sbpSegment"));
         PageObject.textinput_Locator("fieldName:JOINT.HOLDER:1",testData.get("Jholder"));
         PageObject.textinput_Locator("fieldName:RELATION.CODE:1",testData.get("RelationCode"));
-        PageObject.textinput_Locator("fieldName:PURPOSE",testData.get("Purpose"));
+//        PageObject.textinput_Locator("fieldName:PURPOSE",testData.get("Purpose"));
 //        PageObject.textinput_Locator("",testData.get("Purpose"));
+            PageObject.form_Tab("kyc Details");
         PageObject.textinput_Locator("fieldName:KYC.NO.TRANS",testData.get("ExpectedNumOfTxn"));//30
-        PageObject.radiobutton_Locator("radio:tab1:UNSCLISTST",Integer.parseInt(testData.get("AC Screen list")));
+        PageObject.radiobutton_Locator("radio:tab2:UNSCLISTST",1);
+        PageObject.textinput_Locator("fieldName:PURPOSE",testData.get("Purpose"));
         PageObject.select_Locator("fieldName:KYC.ATO",testData.get("TurnoverA"));
         PageObject.select_Locator("fieldName:MONTH.TOVER.RG",testData.get("TurnoverM"));
         PageObject.textinput_Locator("fieldName:NO.TRANS.DR",testData.get("debitTxnNum"));
@@ -197,7 +199,8 @@ public class JointAccountCreation extends BaseClass {
 
         PageObject.menu_Dropdown("Conventional Account Open");
         PageObject.menu_Dropdown("Foriegn Currency Account Open");
-        driver.findElement(By.xpath("(//*[text()='Saving Account  ']'])[1]")).click();
+        PageObject.childmenu_Link("Saving Account  ",1);
+//        driver.findElement(By.xpath("(//*[text()='Saving Account  ']'])[1]")).click();
         String homePage = PageObject.switchToChildWindow();
         driver.manage().window().maximize();
         PageObject.textinput_Locator("fieldName:CUSTOMER","10000001");
@@ -207,7 +210,8 @@ public class JointAccountCreation extends BaseClass {
         PageObject.textinput_Locator("fieldName:CURRENCY","USD");
         PageObject.textinput_Locator("fieldName:AOR","20230720");
         PageObject.radiobutton_Locator("radio:tab1:BIO.VERISYS",1);
-        PageObject.textinput_Locator("radio:tab1:BIO.VERISYS","1");
+        PageObject.radiobutton_Locator("radio:tab1:BIO.VERISYS",1);
+        PageObject.textinput_Locator("fieldName:SBP.COMPANY","1");
         PageObject.textinput_Locator("fieldName:SBP.SECTOR.ID","0-");
         PageObject.textinput_Locator("fieldName:SBP.SSECTOR.ID","0-12");
         PageObject.textinput_Locator("fieldName:SBP.SEGMENT.ID","0-12-030000");

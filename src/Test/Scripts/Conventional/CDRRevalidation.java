@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CDRRevalidation extends BaseClass {
-    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\ CDRRevalidation.xlsx";
+    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\CDRRevalidation.xlsx";
     @Test( groups = {"Inputter"}, dataProvider = "excelDataCDRRevalidation")
 
     public void CDRRevalidate(Map<String, String> testData) throws InterruptedException, IOException {

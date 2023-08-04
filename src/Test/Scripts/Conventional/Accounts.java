@@ -63,10 +63,6 @@ public class Accounts extends BaseClass {
         RELATION_CODE = column.get("RELATION_CODE");
         JOINT_NOTES = column.get("JOINT_NOTES");
         MULTI_ACCT = column.get("MULTI_ACCT");
-        BAF_PRM_IMD = column.get("BAF_PRM_IMD");
-        BAF_PRM_CRDNAME = column.get("BAF_PRM_CRDNAME");
-        BAF_PRM_PEN = column.get("BAF_PRM_PEN");
-        BAF_PRM_DATETME = column.get("BAF_PRM_DATETME");
         REMITTER_NAME = column.get("REMITTER_NAME");
         REMITTER_ID_NO = column.get("REMITTER_ID_NO");
         RELATIONSHIP_BE = column.get("RELATIONSHIP_BE");

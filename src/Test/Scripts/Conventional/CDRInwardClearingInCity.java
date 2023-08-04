@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class CDRInwardClearingInCity extends BaseClass {
 
-    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\ CDRInwardClearingInCity.xlsx";
+    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\CDRInwardClearingInCity.xlsx";
 
     @Test( groups = {"Inputter"}, dataProvider = "excelDataCDRInwardClearingInCity")
 

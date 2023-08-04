@@ -43,6 +43,16 @@ public class FloatingRateTermDepositsLCY extends BaseClass {
 
         PageObject.textinput_Locator("fieldName:AMOUNT:1",testData.get("AMOUNT:1"));
 
+        PageObject.textinput_Locator("","");
+        PageObject.textinput_Locator("","");
+        PageObject.textinput_Locator("","");
+        PageObject.textinput_Locator("","");
+        PageObject.textinput_Locator("","");
+        PageObject.textinput_Locator("","");
+        PageObject.textinput_Locator("","");
+        PageObject.textinput_Locator("","");
+        PageObject.textinput_Locator("","");
+
         PageObject.click_Locator("fieldName:DRAWDOWN.ACCOUNT");
 
 //        String menu2 = PageObject.switchToChildWindow();

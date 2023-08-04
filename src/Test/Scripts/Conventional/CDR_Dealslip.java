@@ -48,8 +48,10 @@ public class CDR_Dealslip extends BaseClass {
         PageObject.textinput_Locator("fieldName:CREDIT.AMOUNT","1000");
         PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1","SARA");
 
-        PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE" , 4 );//(//input[@id='radio:mainTab:COMMISSION.CODE'])[4]
+        //PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE" , 4 );//(//input[@id='radio:mainTab:COMMISSION.CODE'])[4]
+        PageObject.radiobutton_Locator("radio:tab1:COMMISSION.CODE" , 4 );
         //PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1","WAIVE");
+
 
         PageObject.form_Tab("Due Delligence");
 
@@ -122,7 +124,8 @@ public class CDR_Dealslip extends BaseClass {
         PageObject.textinput_Locator("transactionId", testData.get("Transaction Number"));
         PageObject.img_Button("Perform an action on the contract");
 
-        PageObject.img_Button("Prints the deal slip");
+        //PageObject.img_Button("Prints the deal slip");
+        //
     }
 
     @DataProvider(name = "excelDataAuthCDRDealSlip")

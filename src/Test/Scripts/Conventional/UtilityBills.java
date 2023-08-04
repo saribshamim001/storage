@@ -29,7 +29,7 @@ public class UtilityBills extends BaseClass {
         String pgname = driver.getWindowHandle();
 
         PageObject.img_Button("New Deal");
-        PageObject.textinput_Locator("fieldName:BILL.TYPE","1.0155");
+        PageObject.textinput_Locator("fieldName:BILL.TYPE","1.0031");
         PageObject.click_Locator("fieldName:DEBIT.ACCT.NO");
         PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","1006593695");
         PageObject.click_Locator("fieldName:CHEQUE.NUMBER");
@@ -46,7 +46,7 @@ public class UtilityBills extends BaseClass {
         PageObject.commitDeal("UtilityBillsAgainstAccount");
         String txn = PageObject.getTxn();
         System.out.println(txn);
-        driver.close();
+//        driver.close();
     }
 
 

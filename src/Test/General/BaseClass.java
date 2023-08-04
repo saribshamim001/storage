@@ -99,7 +99,7 @@ public class BaseClass {
     public void InputterTDR() throws InterruptedException {
 //        edgeConfig();
         chromeConfig();
-        PageObject.signIn("AK2366601", "ADmin+258");
+        PageObject.signIn("AK2366601", "");
 
         PageObject.switchFrame(1);
 
@@ -316,7 +316,7 @@ public class BaseClass {
     public void inputterLogin() {
 //        edgeConfig();
         chromeConfig();
-        PageObject.signIn("retail006", "QWer1234");
+        PageObject.signIn("caouser002","");
         //PageObject.signIn("SARA88", "QWer4321");
 
         PageObject.switchFrame(1);
