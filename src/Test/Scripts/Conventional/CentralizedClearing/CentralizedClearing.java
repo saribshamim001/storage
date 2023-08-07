@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class CentralizedClearing extends BaseClass {
 
-    @Test(groups = {"CaoInputterCentralized"},dataProvider = "CCSameDayInputter")
+        @Test(groups = {"CaoInputterCentralized"},dataProvider = "CCSameDayInputter")
     public void CCSameDayInputter(Map<String, String> testData) throws IOException {
 
         PageObject.menu_Dropdown("Inward Sameday Image Based Clearing- Input");

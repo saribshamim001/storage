@@ -259,10 +259,10 @@ public class JointAccountCreation extends BaseClass {
 
     @DataProvider(name = "LCCurrentAccAmendmentData")
     public Object[][] LCCurrentAccAmendment() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\Cao_AccountAmendment.xlsx";
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\COAD_AccCreation.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
-        Sheet sheet = workbook.getSheet("Current"); // Assuming data is in the first sheet
+        Sheet sheet = workbook.getSheet("LCSavingAccountInputter"); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
@@ -286,7 +286,7 @@ public class JointAccountCreation extends BaseClass {
 
     @DataProvider(name = "LCSavingAccAmendmentData")
     public Object[][] LCSavingAccAmendment() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\Cao_AccountAmendment.xlsx";
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\COAD_AccCreation.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheet("Saving"); // Assuming data is in the first sheet

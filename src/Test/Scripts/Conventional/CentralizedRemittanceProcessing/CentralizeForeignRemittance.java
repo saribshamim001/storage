@@ -57,7 +57,7 @@ public class CentralizeForeignRemittance extends BaseClass {
         this.driver.close();
         PageObject.switchToParentWindow(CreditAccountDetails);
 
-        PageObject.radiobutton_Locator("radio:mainTab:AML.TYP.CUST", CustomerType);
+        PageObject.radiobutton_Locator("radio:tab1:AML.TYP.CUST", CustomerType);
         if (CustomerTypeString.equalsIgnoreCase("2")) {
 
             PageObject.textarea_Locator("fieldName:NAME.COND.TXN", CustomerName);
