@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.poi.ss.usermodel.Cell;
@@ -26,8 +27,11 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class Customers extends BaseClass {
 
     public static String Txn;
+
     public static String SECTOR;
     public static String TC;
+
+    public static File  file;
 
 
 
@@ -46,19 +50,33 @@ public class Customers extends BaseClass {
         PageObject.img_Button("New Deal");
 
         TC = column.get("TC");
+        PageObject.textinput_Locator("fieldName:CRP.TYPE",column.get("CRP_TYPE"));
 
-        PageObject.textinput_Locator("fieldName:SECTOR",column.get("SECTOR"));
-        SECTOR = column.get("SECTOR");
-        PageObject.select_Locator("fieldName:CUST.SEGMENT",column.get("CUST_SEGMENT"));
-        PageObject.radiobutton_Locator("radio:mainTab:SME.TYPE",1);
-        PageObject.textinput_Locator("fieldName:ID.TYPE:1",column.get("ID_TYPE"));
-        String ID_TYPE= column.get("ID_TYPE");
-        if (ID_TYPE.equalsIgnoreCase("ID-SPR")) {
-            PageObject.textinput_Locator("fieldName:ID.NUMBER:1","EB344078" + PageObject.idNumber());
-        }
-        else  {
-            PageObject.textinput_Locator("fieldName:ID.NUMBER:1","42344078" + PageObject.idNumber());
-        }
+        PageObject.click_Locator("fieldName:TARGET");
+
+
+        PageObject.textinput_Locator("fieldName:TARGET",column.get("TARGET"));
+        //driver.findElement(By.xpath("//input[@id='fieldName:TARGET']")).sendKeys(column.get("TARGET"));
+        PageObject.click_Locator("fieldName:ID.NUMBER:1");
+        PageObject.textinput_Locator("fieldName:SBP.INDUSTRY",column.get("SBP.INDUSTRY"));
+        PageObject.textinput_Locator("fieldName:ID.NUMBER:1",column.get("ID.NUMBER:1"));
+        PageObject.click_Locator("fieldName:ID.VAL.DT:1");
+
+        //PageObject.textinput_Locator("fieldName:ID.VAL.DT:1",column.get("ID.VAL.DT:1"));
+        PageObject.radiobutton_Locator("radio:mainTab:CUS.PEP",2);
+
+//        PageObject.textinput_Locator("fieldName:SECTOR",column.get("SECTOR"));
+//        SECTOR = column.get("SECTOR");
+//        PageObject.select_Locator("fieldName:CUST.SEGMENT",column.get("CUST_SEGMENT"));
+//        PageObject.radiobutton_Locator("radio:mainTab:SME.TYPE",1);
+//        PageObject.textinput_Locator("fieldName:ID.TYPE:1",column.get("ID_TYPE"));
+//        String ID_TYPE= column.get("ID_TYPE");
+//        if (ID_TYPE.equalsIgnoreCase("ID-SPR")) {
+//            PageObject.textinput_Locator("fieldName:ID.NUMBER:1","EB344078" + PageObject.idNumber());
+//        }
+//        else  {
+//            PageObject.textinput_Locator("fieldName:ID.NUMBER:1","42344078" + PageObject.idNumber());
+//        }
         PageObject.click_Locator("fieldName:ID.VAL.DT:1");
         PageObject.textinput_Locator("fieldName:ID.VAL.DT:1",column.get("ID_VAL_DT"));
         PageObject.textinput_Locator("fieldName:NAME.1:1",column.get("NAME_1"));
@@ -68,12 +86,16 @@ public class Customers extends BaseClass {
         PageObject.select_Locator("fieldName:A.ADDRESS.TYPE",column.get("ADDRESS_TYPE"));
         PageObject.textarea_Locator("fieldName:ADD.H",column.get("ADD_H"));
         PageObject.textinput_Locator("fieldName:STREET:1",column.get("STREET"));
+
         PageObject.textinput_Locator("fieldName:TOWN.COUNTRY:1",column.get("TOWN_COUNTRY"));
+
         PageObject.textinput_Locator("fieldName:SBP.IND.PARENT",column.get("SBP_IND_PARENT"));
-        PageObject.textinput_Locator("fieldName:SBP.INDUSTRY",column.get("SBP_INDUSTRY"));
-        PageObject.textinput_Locator("fieldName:TARGET",column.get("TARGET"));
-        PageObject.textinput_Locator("fieldName:NATIONALITY",column.get("NATIONALITY"));
-        PageObject.textinput_Locator("fieldName:RESIDENCE",column.get("RESIDENCE"));
+        PageObject.click_Locator("fieldName:TOWN.COUNTRY:1");
+
+//        PageObject.textinput_Locator("fieldName:SBP.INDUSTRY",column.get("SBP_INDUSTRY"));
+//        PageObject.textinput_Locator("fieldName:TARGET",column.get("TARGET"));
+//        PageObject.textinput_Locator("fieldName:NATIONALITY",column.get("NATIONALITY"));
+//        PageObject.textinput_Locator("fieldName:RESIDENCE",column.get("RESIDENCE"));
         PageObject.textinput_Locator("fieldName:DATE.OF.BIRT.LC",column.get("DATE_OF_BIRT_LC"));
         PageObject.textinput_Locator("fieldName:BIRTH.INCORP.DATE",column.get("BIRTH_INCORP_DATE"));
         PageObject.select_Locator("fieldName:ASAN.ACCOUNT",column.get("ASAN_ACCOUNT"));
@@ -86,33 +108,53 @@ public class Customers extends BaseClass {
         PageObject.radiobutton_Locator("radio:mainTab:TRADE.CRP",1);
 
         // CRP
-        PageObject.textinput_Locator("fieldName:CRP.TYPE",column.get("CRP_TYPE"));
+//        PageObject.textinput_Locator("fieldName:CRP.TYPE",column.get("CRP_TYPE"));
+        PageObject.click_Locator("fieldName:CUS.CATEG:1");
         PageObject.textinput_Locator("fieldName:INCM.LEVELSRC",column.get("INCM_LEVELSRC"));
+        PageObject.textinput_Locator("fieldName:CRP.CHANNEL:1",column.get("CRP.CHANNEL:1"));
         PageObject.textinput_Locator("fieldName:CUS.CATEG:1",column.get("CUS_CATEG"));
         Accounts.PD = column.get("CUS_CATEG");
-        PageObject.textinput_Locator("fieldName:CRP.CHANNEL:1",column.get("CRP_CHANNEL"));
+        Accounts.customerPD.add(column.get("CUS_CATEG"));
+//        PageObject.textinput_Locator("fieldName:CRP.CHANNEL:1",column.get("CRP_CHANNEL"));
         PageObject.textinput_Locator("fieldName:EXP.GEO.INT:1",column.get("EXP_GEO_INT"));
         PageObject.textinput_Locator("fieldName:EXP.GEO.LOCAL:1",column.get("EXP_GEO_LOCAL"));
         PageObject.textinput_Locator("fieldName:CREDIT.TURNOVER:1",column.get("CREDIT_TURNOVER"));
         PageObject.select_Locator("fieldName:SEDING.FACTS:1",column.get("SEDING_FACTS"));
         PageObject.textarea_Locator("fieldName:FURTHER.DETAILS",column.get("SEDING_SCORE"));
+//        Thread.sleep(10000);
 
-        // CP
-        PageObject.form_Tab("Contact Person");
-        PageObject.textinput_Locator("fieldName:CP.NAME:1",column.get("CP_NAME"));
-        PageObject.textinput_Locator("fieldName:CP.TITLE:1",column.get("CP_TITLE"));
-        PageObject.textinput_Locator("fieldName:CP.ADD:1",column.get("CP_ADD"));
-        PageObject.textinput_Locator("fieldName:CP.ADD2:1",column.get("CP_ADD2"));
-        PageObject.textinput_Locator("fieldName:CP.PH.OFF:1",column.get("CP_PH_OFF"));
-        PageObject.textinput_Locator("fieldName:CP.FAX.NO:1",column.get("CP_FAX_NO"));
-        PageObject.textinput_Locator("fieldName:CP.CELL.NO:1",column.get("CP_CELL_NO"));
-        PageObject.textinput_Locator("fieldName:CP.PH.RES:1",column.get("CP_PH_RES"));
-        PageObject.textinput_Locator("fieldName:CP.EMAIL:1",column.get("CP_EMAIL"));
+        //Extra
+//        PageObject.textinput_Locator("fieldName:SBP.IND.PARENT",column.get("SBP_IND_PARENT"));
+//        PageObject.click_Locator("fieldName:TARGET");
+//        PageObject.textinput_Locator("fieldName:ID.TYPE:1",column.get("ID_TYPE"));
+//        PageObject.textinput_Locator("fieldName:SBP.INDUSTRY",column.get("SBP_INDUSTRY"));
+//        PageObject.click_Locator("fieldName:TARGET");
+//        PageObject.textinput_Locator("fieldName:TARGET",column.get("TARGET"));
+//        PageObject.click_Locator("fieldName:ID.VAL.DT:1");
+//        PageObject.textinput_Locator("fieldName:ID.VAL.DT:1",column.get("ID_VAL_DT"));
+////        PageObject.textinput_Locator("fieldName:DELIVERY.WDRAW:1",column.get("ID_VAL_DT"));
+//
+        PageObject.textinput_Locator("fieldName:DELIVERY.WDRAW:1",column.get("DELIVERY.WDRAW"));
 
+
+//
+//        // CP
+//        PageObject.form_Tab("Contact Person");
+//        PageObject.textinput_Locator("fieldName:CP.NAME:1",column.get("CP_NAME"));
+//        PageObject.textinput_Locator("fieldName:CP.TITLE:1",column.get("CP_TITLE"));
+//        PageObject.textinput_Locator("fieldName:CP.ADD:1",column.get("CP_ADD"));
+//        PageObject.textinput_Locator("fieldName:CP.ADD2:1",column.get("CP_ADD2"));
+//        PageObject.textinput_Locator("fieldName:CP.PH.OFF:1",column.get("CP_PH_OFF"));
+//        PageObject.textinput_Locator("fieldName:CP.FAX.NO:1",column.get("CP_FAX_NO"));
+//        PageObject.textinput_Locator("fieldName:CP.CELL.NO:1",column.get("CP_CELL_NO"));
+//        PageObject.textinput_Locator("fieldName:CP.PH.RES:1",column.get("CP_PH_RES"));
+//        PageObject.textinput_Locator("fieldName:CP.EMAIL:1",column.get("CP_EMAIL"));
+//
         commitDeal();
         txnValidate();
         saveToDS("Individual Customers");
         saveToDS("UnAuth_Customers");
+        //saveToDS("Accounts");
 
     }
 
@@ -133,13 +175,13 @@ public class Customers extends BaseClass {
 
         TC = column.get("TC");
 
-        PageObject.textinput_Locator("fieldName:SECTOR",column.get("SECTOR"));
-        SECTOR = column.get("SECTOR");
-        PageObject.select_Locator("fieldName:CUST.SEGMENT",column.get("CUST_SEGMENT"));
-        PageObject.radiobutton_Locator("radio:mainTab:SME.TYPE",1);
-        PageObject.textinput_Locator("fieldName:ID.TYPE:1",column.get("ID_TYPE"));
-        PageObject.textinput_Locator("fieldName:ID.NUMBER:1","42309978" + PageObject.idNumber());
-        PageObject.click_Locator("fieldName:ID.VAL.DT:1");
+//        PageObject.textinput_Locator("fieldName:SECTOR",column.get("SECTOR"));
+//        SECTOR = column.get("SECTOR");
+//        PageObject.select_Locator("fieldName:CUST.SEGMENT",column.get("CUST_SEGMENT"));
+//        PageObject.radiobutton_Locator("radio:mainTab:SME.TYPE",1);
+//        PageObject.textinput_Locator("fieldName:ID.TYPE:1",column.get("ID_TYPE"));
+//        PageObject.textinput_Locator("fieldName:ID.NUMBER:1","42309978" + PageObject.idNumber());
+//        PageObject.click_Locator("fieldName:ID.VAL.DT:1");
         PageObject.textinput_Locator("fieldName:ID.VAL.DT:1",column.get("ID_VAL_DT"));
         PageObject.textinput_Locator("fieldName:NAME.1:1",column.get("NAME_1"));
         PageObject.textinput_Locator("fieldName:NAME.2:1","COMPANY");
@@ -158,7 +200,7 @@ public class Customers extends BaseClass {
         PageObject.radiobutton_Locator("radio:mainTab:TRADE.CRP",1);
 
         // CRP
-        PageObject.textinput_Locator("fieldName:CRP.TYPE",column.get("CRP_TYPE"));
+        //PageObject.textinput_Locator("fieldName:CRP.TYPE",column.get("CRP_TYPE"));
         PageObject.textinput_Locator("fieldName:INCM.LEVELSRC",column.get("INCM_LEVELSRC"));
         PageObject.textinput_Locator("fieldName:CUS.CATEG:1",column.get("CUS_CATEG"));
         Accounts.PD = column.get("CUS_CATEG");
@@ -230,6 +272,7 @@ public class Customers extends BaseClass {
         PageObject.form_Link("Authorise a Customer");
         PageObject.authorizeDeal();
         txnValidate();
+
         saveToDS("CUSTOMERS");
     }
 
@@ -248,6 +291,7 @@ public class Customers extends BaseClass {
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
+        rowCount=6;
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 
@@ -353,10 +397,20 @@ public class Customers extends BaseClass {
         String[] second = first[1].split(" ");
         Customers.Txn = second[1];
         System.out.println("Transaction Number is: "+Customers.Txn);
+        Accounts.customerTxn.add(second[1]);
     }
 
     public static void saveToDS(String testCaseName) throws IOException {
-        File file = new File(System.getProperty("user.dir") + "\\Data\\" +testCaseName+ ".xlsx");
+
+        if (testCaseName.equalsIgnoreCase("Accounts")){
+            file = new File(System.getProperty("user.dir") + "\\Excel Data\\" +testCaseName+ ".xlsx");
+            System.out.println("writting to file of accounts");
+        }
+
+        else {
+            file = new File(System.getProperty("user.dir") + "\\Data\\" +testCaseName+ ".xlsx");
+            System.out.println("writting to file of customers");
+        }
         XSSFWorkbook workbook;
         Row row;
         Cell cell;

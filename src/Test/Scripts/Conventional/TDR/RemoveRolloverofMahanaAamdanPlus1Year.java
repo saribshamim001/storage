@@ -4,6 +4,7 @@ import POM.PageObject;
 import Test.General.BaseClass;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -32,7 +33,8 @@ public class RemoveRolloverofMahanaAamdanPlus1Year extends BaseClass {
 
         PageObject.find_Button();
 
-        PageObject.childmenu_Link("Remove Rollover",1);
+//        PageObject.childmenu_Link("Remove Rollover",1);
+        driver.findElement(By.xpath("//*[@id=\"r1\"]/td[9]/a")).click();
         PageObject.click_Locator("CheckBox:fieldName:REMOVE.ROLLOVER");
 
         Thread.sleep(2000);
