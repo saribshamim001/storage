@@ -45,7 +45,7 @@ public class CDR_Status extends BaseClass {
 
         Thread.sleep(2000);
 
-        PageObject.commitDeal("CDRStatusStop");
+        PageObject.img_Button("Commit the deal");
 
 
 }

@@ -7,14 +7,14 @@
     <test verbose="1" preserve-order="true" name="Retail Operations Inputter">
         <groups>
             <run>
-                <include name="InputterTDR"/>
+                <include name="Inputter"/>
             </run>
         </groups>
 
         <classes>
-            <class name="Test.Scripts.Conventional.TDR.AmendmentForTermDepositsRack">
+            <class name="Test.Scripts.Conventional.CDR_Status">
             <methods>
-                <include name="AmendmentForTermDepositsRack"/>
+                <include name="CDRStatusStop"/>
             </methods>
             </class>
         </classes>
