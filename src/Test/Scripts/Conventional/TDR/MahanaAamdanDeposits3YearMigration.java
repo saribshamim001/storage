@@ -25,8 +25,8 @@ public class MahanaAamdanDeposits3YearMigration extends BaseClass {
         PageObject.img_Button("New Deal");
         PageObject.switchToChildWindow();
         driver.manage().window().maximize();
-        PageObject.textinput_Locator("fieldName:FTD.TYPE",testData.get("FTTCurrency"));
-        PageObject.textinput_Locator("fieldName:CUST.REMARKS:1",testData.get("FTTCurrency"));
+        PageObject.textinput_Locator("fieldName:FTD.TYPE",testData.get("Product Category"));
+        PageObject.textinput_Locator("fieldName:CUST.REMARKS:1",testData.get("Remarks"));
         PageObject.img_Button("Validate a deal");
 
     }

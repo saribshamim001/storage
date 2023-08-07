@@ -22,9 +22,11 @@ public class MahanaAamdanDepositsRegularCustomer extends BaseClass {
         PageObject.menu_Link("Mahana Aamdan Deposits - Regular Customer ");
         PageObject.switchToChildWindow();
         driver.manage().window().maximize();
+        PageObject.textinput_Locator("fieldName:PRINCIPAL",testData.get("PRINCIPAL"));
         PageObject.textinput_Locator("fieldName:CUSTOMER.ID",testData.get("Customer"));
         PageObject.textinput_Locator("fieldName:FTD.TYPE",testData.get("DepositTerm"));
         PageObject.click_Locator("fieldName:PRINCIPAL");
+        PageObject.commitDeal("MahanaAamdanDepositInputter");
     }
 
     @Test(groups = {"AuthorizerTDR"})

@@ -52,10 +52,10 @@ public class TermDepositsOddDaysLCY extends BaseClass {
 
         PageObject.textinput_Locator("fieldName:PRINCIPAL",testData.get("PRINCIPAL"));
 //        PageObject.click_Locator("fieldName:INTEREST.RATE");
-        PageObject.textinput_Locator("fieldName:INTEREST.RATE",testData.get("INTEREST.RATE"));
+                PageObject.textinput_Locator("fieldName:INTEREST.RATE",testData.get("INTEREST.RATE"));
 
         PageObject.form_Tab("Rollover Info");
-        PageObject.radiobutton_Locator("radio:tab2:AUTO.ROLLOVER",Integer.parseInt(testData.get("AUTO.ROLLOVER")));
+        PageObject.radiobutton_Locator("radio:tab3:AUTO.ROLLOVER",Integer.parseInt(testData.get("AUTO.ROLLOVER")));
 
         PageObject.commitDeal("TermDepositsOddDaysLCY");
 

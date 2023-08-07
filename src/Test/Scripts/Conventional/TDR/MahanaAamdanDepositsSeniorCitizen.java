@@ -22,9 +22,13 @@ public class MahanaAamdanDepositsSeniorCitizen extends BaseClass {
         PageObject.menu_Link("Mahana Aamdan Deposits - Senior Citizen ");
         PageObject.switchToChildWindow();
         driver.manage().window().maximize();
+
         PageObject.textinput_Locator("fieldName:CUSTOMER.ID",testData.get("Customer"));
         PageObject.textinput_Locator("fieldName:FTD.TYPE",testData.get("DepositTerm"));
+
         PageObject.click_Locator("fieldName:PRINCIPAL");
+        PageObject.textinput_Locator("fieldName:PRINCIPAL",testData.get("PRINCIPAL"));
+        PageObject.commitDeal("MahanaAamdanDepositInputter");
     }
 
     @Test(groups = {"AuthorizerTDR"})

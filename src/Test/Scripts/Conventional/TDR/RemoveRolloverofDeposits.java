@@ -4,6 +4,7 @@ import POM.PageObject;
 import Test.General.BaseClass;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -24,7 +25,7 @@ public class RemoveRolloverofDeposits extends BaseClass {
     public void RemoveRolloverofDeposits() throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown(" Centralized TDR ");
-        PageObject.menu_Dropdown("Remove Rollover ");
+            PageObject.menu_Dropdown("Remove Rollover ");
         PageObject.menu_Link("Remove Rollover of Deposits ");
 
         String menu = PageObject.switchToChildWindow();
@@ -32,7 +33,8 @@ public class RemoveRolloverofDeposits extends BaseClass {
 
         PageObject.find_Button();
 
-        PageObject.childmenu_Link("Remove Rollover",1);
+//        PageObject.childmenu_Link("Remove Rollover",1);
+        driver.findElement(By.xpath("//*[@id=\"r1\"]/td[7]/a")).click();
         PageObject.click_Locator("CheckBox:fieldName:REMOVE.ROLLOVER");
 
         Thread.sleep(2000);

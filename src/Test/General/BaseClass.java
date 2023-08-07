@@ -316,7 +316,7 @@ public class BaseClass {
     public void inputterLogin() {
 //        edgeConfig();
         chromeConfig();
-        PageObject.signIn("caouser002","");
+        PageObject.signIn("retail006","QWer1234");
         //PageObject.signIn("SARA88", "QWer4321");
 
         PageObject.switchFrame(1);
@@ -336,10 +336,10 @@ public class BaseClass {
 //        edgeConfig();
         chromeConfig();
         //
-        PageObject.signIn("AB2375501", "QWer1234");
+        PageObject.signIn("AB2375501", "QWer12345"); //jk881201 aa2749301 AA2749301 JK881201 AB2375501
         PageObject.switchFrame(1);
         PageObject.menu_Dropdown("Centrlized Branch User Access");
-        PageObject.menu_Link("Define Current Branch ");
+        PageObject.childmenu_Link("Define Current Branch ",1);
 
         homePage = PageObject.switchToChildWindow();
         PageObject.textinput_Locator("transactionId","AB23755.01");
