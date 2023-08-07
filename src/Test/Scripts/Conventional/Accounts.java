@@ -50,7 +50,7 @@ public class Accounts extends BaseClass {
         CUSTOMER = customerTxn.get(index);
         Accounts.PD = customerPD.get(index);
         index++;
-        System.out.println("The customer is:  "+CUSTOMER+"  and the acc: "+Accounts.PD);
+        System.out.println("The customer is:  "+CUSTOMER+"  and the acc product: "+Accounts.PD);
 
         TC = column.get("TC-Account Creation");
 
@@ -170,6 +170,10 @@ public class Accounts extends BaseClass {
         PageObject.textinput_Locator("fieldName:OTHER.OFFICER:1",  OTHER_OFFICER);
         PageObject.textinput_Locator("fieldName:REFEREE",  REFEREE);
         PageObject.radiobutton_Locator("radio:mainTab:BAF.PEN.ACCT", 1);
+
+    //Non mandatory fields:
+
+        /*
         PageObject.textinput_Locator("fieldName:JOINT.HOLDER:1",  JOINT_HOLDER);
         PageObject.textinput_Locator("fieldName:RELATION.CODE:1",  RELATION_CODE);
         PageObject.textinput_Locator("fieldName:JOINT.NOTES:1:1", JOINT_NOTES);
@@ -194,7 +198,7 @@ public class Accounts extends BaseClass {
         PageObject.textinput_Locator("fieldName:RELATIONSHIP.BE:1", RELATIONSHIP_BE);
         PageObject.textinput_Locator("fieldName:REMITTER.RESID:1", REMITTER_RESID);
         PageObject.textinput_Locator("fieldName:REMITTER.ID.TYP:1", REMITTER_ID_TYP);
-
+*/
         commitDeal();
         txnValidate();
         saveToDS2("LCY Saving Accounts");
@@ -326,7 +330,7 @@ public class Accounts extends BaseClass {
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
-        rowCount=6;
+        rowCount=11;
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 
