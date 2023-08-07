@@ -51,6 +51,17 @@ public class Customers extends BaseClass {
 
         TC = column.get("TC");
         PageObject.textinput_Locator("fieldName:CRP.TYPE",column.get("CRP_TYPE"));
+        //if crp type == 6, then fieldName:SRC.FUNDS must have this value: '801', TARGET:80, SPB industry2:60000001200, fieldName:INCM.LEVELSRC should be empty, Txn: 17704641
+        //if crp type == 9, then fieldName:SRC.FUNDS must have this value: '802', TARGET:38, SPB industry2:60000001100, SoleProperTierName must be empty , fieldName:INCM.LEVELSRC should be empty, Txn: 17704648
+        //if crp type == 10, superseedingfactor must be equal to 'Not Applicable', TARGET:8, SPB industry1:41960000000, SPB industry2:41960000000, fieldName:INCM.LEVELSRC should be empty, Txn: 17704649
+        //if crp type == 3, TARGET:76, SPB industry2:60000001200, fieldName:INCM.LEVELSRC should be empty, Txn: 17704642
+        //if crp type == 7, TARGET:85, SPB industry2:60000000600, fieldName:INCM.LEVELSRC should be empty, Txn: 17704645
+        //if crp type == 2, TARGET:16, SPB industry2:60000000600, fieldName:INCM.LEVELSRC should be empty, Txn: 17704646
+        //if crp type == 8, remove solePropertierName, Txn: 17704647
+
+
+
+
 
         PageObject.click_Locator("fieldName:TARGET");
 
@@ -291,7 +302,7 @@ public class Customers extends BaseClass {
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
-        rowCount=6;
+//        rowCount=6;
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 
