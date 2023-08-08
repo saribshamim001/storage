@@ -187,6 +187,7 @@ public class Customers extends BaseClass {
         txnValidate();
         saveToDS("Individual Customers");
         saveToDS("UnAuth_Customers");
+        Accounts.customerTxn.add(PageObject.getTxn());
         //saveToDS("Accounts");
 
     }
@@ -311,10 +312,6 @@ public class Customers extends BaseClass {
 
 
 
-
-
-
-
 //                                 <<<      DATA PROVIDER      >>>
 
     @DataProvider(name = "indCustomer")
@@ -429,8 +426,8 @@ public class Customers extends BaseClass {
         String[] first = Transaction.split(":");
         String[] second = first[1].split(" ");
         Customers.Txn = second[1];
-        System.out.println("Acc Number is: "+Customers.Txn);
-        Accounts.customerTxn.add(second[1]);
+        System.out.println("Customer Number is: "+Customers.Txn);
+
     }
 
     public static void saveToDS(String testCaseName) throws IOException {

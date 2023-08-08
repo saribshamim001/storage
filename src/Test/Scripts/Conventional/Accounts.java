@@ -4,6 +4,9 @@ import POM.PageObject;
 import Test.General.BaseClass;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.devtools.v85.page.Page;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -22,7 +25,8 @@ public class Accounts extends BaseClass {
 
     public static String PD,CUSTOMER;
 
-    static int index = 0;
+    static int Customerindex = 0;
+    static int PDindex = 0;
 
     public static ArrayList<String> customerTxn = new ArrayList<>();
     public static ArrayList<String> customerPD = new ArrayList<>();
@@ -43,16 +47,37 @@ public class Accounts extends BaseClass {
     @Test (groups = {"Inputter"}, dataProvider = "condition")
     public void callAccountCreation(Map<String, String> column) throws InterruptedException, IOException {
 
+//        System.out.println("Printing ");
+//        Object[][] data =  getTxnAndPD();
+//
+//        for (int row = 0; row < data.length; row++) {
+//            // Iterate through each column in the current row
+//            for (int col = 0; col < data[row].length; col++) {
+//                System.out.print(data[row][col] + " ");
+//            }
+//            System.out.println(); // Move to the next line after each row
+//        }
+
         //require from Customer Script !
 //        CUSTOMER = column.get("Customer_ID");
 //        Accounts.PD = column.get("PD");
+        System.out.println("the array size:  "+customerTxn.size());
+        for (int i=0;i<customerTxn.size();i++){
+            System.out.println("the customer is:    "+customerTxn.get(i));
+        }
 
-        CUSTOMER = customerTxn.get(index);
-        Accounts.PD = customerPD.get(index);
-        index++;
-        System.out.println("The customer is:  "+CUSTOMER+"  and the acc product: "+Accounts.PD);
+        System.out.println("Before increment, Index of customer and PD: "+Customerindex +" "+PDindex);
+        CUSTOMER = customerTxn.get(Customerindex++);
+        Accounts.PD = customerPD.get(PDindex++);
+        System.out.println("After increment, Index of customer and PD: "+Customerindex +" "+PDindex);
+
+//        index=index+1;
 
         TC = column.get("TC-Account Creation");
+
+        WebElement element = driver.findElement(By.xpath("//[@id='disabled_DEBIT.ACCT.NO']"));
+        String debitAcc = element.getText();
+
 
         CURRENCY = column.get("CURRENCY");
         ACCOUNT_TITLE_1 = column.get("ACCOUNT_TITLE_1");
@@ -119,29 +144,32 @@ public class Accounts extends BaseClass {
         PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.2:1",  ACCOUNT_TITLE_2);
         PageObject.textinput_Locator("fieldName:OTHER.OFFICER:1",  OTHER_OFFICER);
         PageObject.textinput_Locator("fieldName:REFEREE",  REFEREE);
+
         PageObject.radiobutton_Locator("radio:tab1:BAF.PEN.ACCT", 1);
-        PageObject.textinput_Locator("fieldName:JOINT.HOLDER:1",  JOINT_HOLDER);
-        PageObject.textinput_Locator("fieldName:RELATION.CODE:1",  RELATION_CODE);
-        PageObject.textinput_Locator("fieldName:JOINT.NOTES:1:1", JOINT_NOTES);
-        PageObject.select_Locator("fieldName:MULTI.ACCT",  MULTI_ACCT);
+        //Non mandatory fields:
+
+//        PageObject.textinput_Locator("fieldName:JOINT.HOLDER:1",  JOINT_HOLDER);
+//        PageObject.textinput_Locator("fieldName:RELATION.CODE:1",  RELATION_CODE);
+//        PageObject.textinput_Locator("fieldName:JOINT.NOTES:1:1", JOINT_NOTES);
+//        PageObject.select_Locator("fieldName:MULTI.ACCT",  MULTI_ACCT);
 
         // TAB2
-        PageObject.form_Tab("PREMIER.DEBITCARD");
-
-        PageObject.select_Locator("fieldName:BAF.PRM.IMD", BAF_PRM_IMD);
-        PageObject.textinput_Locator("fieldName:BAF.PRM.CRDNAME", BAF_PRM_CRDNAME);
-        PageObject.radiobutton_Locator("radio:tab2:BAF.PRM.FMEMBR", 1);
-        PageObject.textinput_Locator("fieldName:BAF.PRM.PEN", BAF_PRM_PEN);
-        PageObject.textinput_Locator("fieldName:BAF.PRM.DATETME", BAF_PRM_DATETME);
-
-        // TAB3
-        PageObject.form_Tab("Alfalah Assan Remittance");
-
-        PageObject.textinput_Locator("fieldName:REMITTER.NAME:1", REMITTER_NAME);
-        PageObject.textinput_Locator("fieldName:REMITTER.ID.NO:1", REMITTER_ID_NO);
-        PageObject.textinput_Locator("fieldName:RELATIONSHIP.BE:1", RELATIONSHIP_BE);
-        PageObject.textinput_Locator("fieldName:REMITTER.RESID:1", REMITTER_RESID);
-        PageObject.textinput_Locator("fieldName:REMITTER.ID.TYP:1", REMITTER_ID_TYP);
+//        PageObject.form_Tab("PREMIER.DEBITCARD");
+//
+//        PageObject.select_Locator("fieldName:BAF.PRM.IMD", BAF_PRM_IMD);
+//        PageObject.textinput_Locator("fieldName:BAF.PRM.CRDNAME", BAF_PRM_CRDNAME);
+//        PageObject.radiobutton_Locator("radio:tab2:BAF.PRM.FMEMBR", 1);
+//        PageObject.textinput_Locator("fieldName:BAF.PRM.PEN", BAF_PRM_PEN);
+//        PageObject.textinput_Locator("fieldName:BAF.PRM.DATETME", BAF_PRM_DATETME);
+//
+//        // TAB3
+//        PageObject.form_Tab("Alfalah Assan Remittance");
+//
+//        PageObject.textinput_Locator("fieldName:REMITTER.NAME:1", REMITTER_NAME);
+//        PageObject.textinput_Locator("fieldName:REMITTER.ID.NO:1", REMITTER_ID_NO);
+//        PageObject.textinput_Locator("fieldName:RELATIONSHIP.BE:1", RELATIONSHIP_BE);
+//        PageObject.textinput_Locator("fieldName:REMITTER.RESID:1", REMITTER_RESID);
+//        PageObject.textinput_Locator("fieldName:REMITTER.ID.TYP:1", REMITTER_ID_TYP);
 
         commitDeal();
         txnValidate();
@@ -220,16 +248,26 @@ public class Accounts extends BaseClass {
 
         PageObject.textinput_Locator("fieldName:CUSTOMER", CUSTOMER);
         PageObject.click_Locator("fieldName:ACCOUNT.TITLE.1:1");
-        PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.1:1",  ACCOUNT_TITLE_1);
-        PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.2:1",  ACCOUNT_TITLE_2);
-        PageObject.textinput_Locator("fieldName:OTHER.OFFICER:1",  OTHER_OFFICER);
-        PageObject.textinput_Locator("fieldName:JOINT.HOLDER:1",  JOINT_HOLDER);
-        PageObject.textinput_Locator("fieldName:RELATION.CODE:1",  RELATION_CODE);
-        PageObject.textinput_Locator("fieldName:JOINT.NOTES:1:1", JOINT_NOTES);
+        PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.1:1",  ACCOUNT_TITLE_1);Thread.sleep(2000);
+        PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.2:1",  ACCOUNT_TITLE_2);Thread.sleep(2000);
+        PageObject.click_Locator("fieldName:OTHER.OFFICER:1");
+        PageObject.textinput_Locator("fieldName:OTHER.OFFICER:1",  OTHER_OFFICER);Thread.sleep(2000);
+//      PageObject.textinput_Locator("fieldName:JOINT.HOLDER:1",  JOINT_HOLDER);
+//        PageObject.textinput_Locator("fieldName:RELATION.CODE:1",  RELATION_CODE);
+//        PageObject.textinput_Locator("fieldName:JOINT.NOTES:1:1", JOINT_NOTES);
+        driver.findElement(By.xpath("//tr/td/a/img[@alt='Commit the deal']")).click();
+        try {
+            WebElement acpOverride = driver.findElement(By.xpath("//tr/td/a[text()='Accept Overrides']"));
+            acpOverride.click();
+        } catch (Exception e) {
+            System.out.println("No warnings !");
+            Thread.sleep(6000);
+            PageObject.click_Locator("fieldName:OTHER.OFFICER:1");
+            PageObject.textinput_Locator("fieldName:OTHER.OFFICER:1",  OTHER_OFFICER);Thread.sleep(2000);
+            commitDeal();
+            saveToDS2("LCY Kids Accounts");
+        }
 
-        commitDeal();
-        txnValidate();
-        saveToDS2("LCY Kids Accounts");
 
     }
 
@@ -255,9 +293,9 @@ public class Accounts extends BaseClass {
         PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.2:1",  ACCOUNT_TITLE_2);
         PageObject.textinput_Locator("fieldName:OTHER.OFFICER:1",  OTHER_OFFICER);
         PageObject.textinput_Locator("fieldName:REFEREE",  REFEREE);
-        PageObject.textinput_Locator("fieldName:JOINT.HOLDER:1",  JOINT_HOLDER);
-        PageObject.textinput_Locator("fieldName:RELATION.CODE:1",  RELATION_CODE);
-        PageObject.textinput_Locator("fieldName:JOINT.NOTES:1:1", JOINT_NOTES);
+//        PageObject.textinput_Locator("fieldName:JOINT.HOLDER:1",  JOINT_HOLDER);
+//        PageObject.textinput_Locator("fieldName:RELATION.CODE:1",  RELATION_CODE);
+//        PageObject.textinput_Locator("fieldName:JOINT.NOTES:1:1", JOINT_NOTES);
 
         commitDeal();
         txnValidate();
@@ -286,9 +324,9 @@ public class Accounts extends BaseClass {
         PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.2:1",  ACCOUNT_TITLE_2);
         PageObject.textinput_Locator("fieldName:OTHER.OFFICER:1",  OTHER_OFFICER);
         PageObject.textinput_Locator("fieldName:REFEREE",  REFEREE);
-        PageObject.textinput_Locator("fieldName:JOINT.HOLDER:1",  JOINT_HOLDER);
-        PageObject.textinput_Locator("fieldName:RELATION.CODE:1",  RELATION_CODE);
-        PageObject.textinput_Locator("fieldName:JOINT.NOTES:1:1", JOINT_NOTES);
+//        PageObject.textinput_Locator("fieldName:JOINT.HOLDER:1",  JOINT_HOLDER);
+//        PageObject.textinput_Locator("fieldName:RELATION.CODE:1",  RELATION_CODE);
+//        PageObject.textinput_Locator("fieldName:JOINT.NOTES:1:1", JOINT_NOTES);
 
         commitDeal();
         txnValidate();
@@ -309,6 +347,7 @@ public class Accounts extends BaseClass {
 
         homePage = PageObject.switchToChildWindow();
 
+//        PageObject.textinput_Locator("value:1:1:1",variableName);
         PageObject.textinput_Locator("value:1:1:1",column.get("Account_ID"));
         PageObject.click_Locator("defaultButton");
         PageObject.form_Link("Authorise");
@@ -319,6 +358,33 @@ public class Accounts extends BaseClass {
 
 
 
+
+    public Object[][] getTxnAndPD() throws IOException {
+        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\UnAuth_Customers.xlsx";
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+//        rowCount=6;
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
+    }
 
 
 //                                 <<<      DATA PROVIDER      >>>
