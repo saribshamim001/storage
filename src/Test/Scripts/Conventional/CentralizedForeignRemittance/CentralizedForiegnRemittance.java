@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class CentralizedForiegnRemittance extends BaseClass {
 
-    @Test(groups = {"CaoInputter2"},dataProvider = "CFRNostroInputter")
+    @Test(groups = {"CaoClearInputter"},dataProvider = "CFRNostroInputter")
     public void CFRNostroInputter(Map<String, String> testData) throws IOException{
 
         PageObject.menu_Dropdown("Centralized Foreign Remittance Menu");
@@ -54,7 +54,7 @@ public class CentralizedForiegnRemittance extends BaseClass {
 
     }
 
-    @Test(groups = {"CaoInputter2"},dataProvider = "CFRVostroInputter")
+    @Test(groups = {"CaoClearInputter"},dataProvider = "CFRVostroInputter")
             public void CFRVostroInputter(Map<String, String> testData) throws IOException{
         PageObject.menu_Dropdown("Centralized Foreign Remittance Menu");
         PageObject.menu_Dropdown("Inward Remittance");
@@ -63,7 +63,7 @@ public class CentralizedForiegnRemittance extends BaseClass {
         driver.manage().window().maximize();
         PageObject.img_Button("New Deal");
         PageObject.switchToChildWindow();
-        PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","");
+        PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO",testData.get("DebitAccount"));
         PageObject.click_Locator("fieldName:DEBIT.AMOUNT");
         PageObject.textinput_Locator("fieldName:DEBIT.AMOUNT",testData.get("DebitAmount"));
         PageObject.textinput_Locator("fieldName:DEBIT.VALUE.DATE",testData.get("DebitValueDate"));
@@ -72,7 +72,7 @@ public class CentralizedForiegnRemittance extends BaseClass {
         PageObject.click_Locator("fieldName:CREDIT.VALUE.DATE");
         PageObject.textinput_Locator("fieldName:CREDIT.VALUE.DATE",testData.get("CreditValueDate"));
         PageObject.textinput_Locator("fieldName:CREDIT.THEIR.REF",testData.get("CreditNarrative"));
-       // PageObject.commitDeal("CFRVostroInputter");
+        PageObject.commitDeal("CFRVostroInputter");
 
     }
     @Test(groups = {"CaoAuthorizer"},dataProvider = "CFRNostroAuth")

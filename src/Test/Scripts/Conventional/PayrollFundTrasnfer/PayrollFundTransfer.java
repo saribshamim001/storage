@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class PayrollFundTransfer extends BaseClass {
 
-    @Test(groups = {"CaoInputter2"},dataProvider = "PayrollFundTransfer")
+    @Test(groups = {"CaoInputter"},dataProvider = "PayrollFundTransfer")
     public void PayrollFundTransfer(Map<String, String> testData) throws IOException{
 
         PageObject.menu_Dropdown("Funds Transfer Menu");
