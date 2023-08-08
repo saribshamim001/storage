@@ -233,8 +233,11 @@ public class JointAccountCreation extends BaseClass {
         PageObject.menu_Link("Current Account  ");
         PageObject.switchToChildWindow();
         driver.manage().window().maximize();
-        PageObject.textinput_Locator("transactionId",testData.get("Account Num"));
+        PageObject.img_Button("Return to application screen");
+        driver.switchTo().alert().accept();
+        PageObject.textinput_Locator("transactionId",testData.get("ID"));
         PageObject.img_Button("Edit a contract");
+        PageObject.form_Tab("kyc Details");
         PageObject.textinput_Locator("fieldName:PURPOSE",testData.get("Purpose of Bank Account"));
         PageObject.commitDeal("LCCurrentAccAmendmentTxn");
 
@@ -248,8 +251,11 @@ public class JointAccountCreation extends BaseClass {
         PageObject.menu_Link("Saving Account - Royal Profit  ");
         PageObject.switchToChildWindow();
         driver.manage().window().maximize();
-        PageObject.textinput_Locator("transactionId",testData.get("Account Num"));
+        PageObject.img_Button("Return to application screen");
+        driver.switchTo().alert().accept();
+        PageObject.textinput_Locator("transactionId",testData.get("ID"));
         PageObject.img_Button("Edit a contract");
+        PageObject.form_Tab("kyc Details");
         PageObject.textinput_Locator("fieldName:PURPOSE",testData.get("Purpose of Bank Account"));
         PageObject.commitDeal("LCSavingAccAmendmentTxn");
 
@@ -262,7 +268,7 @@ public class JointAccountCreation extends BaseClass {
         String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\COAD_AccCreation.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
-        Sheet sheet = workbook.getSheet("LCSavingAccountInputter"); // Assuming data is in the first sheet
+        Sheet sheet = workbook.getSheet("LCCurrentInputter"); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
@@ -289,7 +295,7 @@ public class JointAccountCreation extends BaseClass {
         String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\COAD_AccCreation.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
-        Sheet sheet = workbook.getSheet("Saving"); // Assuming data is in the first sheet
+        Sheet sheet = workbook.getSheet("LCSavingAccountInputter"); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
