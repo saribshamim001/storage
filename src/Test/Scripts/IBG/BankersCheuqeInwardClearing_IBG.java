@@ -2,13 +2,19 @@ package Test.Scripts.IBG;
 
 import POM.PageObject;
 import Test.General.BaseClass;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BankersCheuqeInwardClearing_IBG extends BaseClass {
-    @Test(groups = {"Inputter"})
-    public void InwardClearingNormalBankersCheque() throws IOException, InterruptedException {
+    @Test(groups = {"inputterIBG"},dataProvider = "InwardClearingNormalBankersCheque")
+    public void InwardClearingNormalBankersCheque(Map<String, String> testData) throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown("Remittance Menu -Universal Teller- IBG");
         PageObject.childmenu_Dropdown("Cheque- Inputter Menu", 1);
@@ -20,9 +26,9 @@ public class BankersCheuqeInwardClearing_IBG extends BaseClass {
         String pgnameo = driver.getWindowHandle();
 
         PageObject.img_Button("New Deal");
-        PageObject.textinput_Locator("fieldName:CL.CHEQUE.NO:1", "ISFK0012078");
-        PageObject.textinput_Locator("fieldName:BANK.SORT.CODE:1", "001");
-        PageObject.textinput_Locator("fieldName:CL.NO.MV", "1");
+        PageObject.textinput_Locator("fieldName:CL.CHEQUE.NO:1", testData.get("CL.CHEQUE.NO:1"));//ISFK0012078
+        PageObject.textinput_Locator("fieldName:BANK.SORT.CODE:1", testData.get("BANK.SORT.CODE:1"));
+        PageObject.textinput_Locator("fieldName:CL.NO.MV", testData.get("CL.NO.MV"));
         PageObject.switchToChildWindow();
         //driver.close();
         PageObject.switchToParentWindow(pgnameo);
@@ -31,6 +37,37 @@ public class BankersCheuqeInwardClearing_IBG extends BaseClass {
 
     }
 
+    String FILE_PATH = "";
+    @DataProvider(name = "InwardClearingNormalBankersCheque")
+    public Object[][] dataMethod() throws IOException {
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\BankersCheuqeInwardClearing_IBG.xlsx";
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+//        rowCount=6;
+        System.out.println("Row found:  "+rowCount);
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        System.out.println("Col found:  "+colCount);
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                System.out.println("the value:  "+value);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
+    }
     @Test(groups = {"Authorizer"})
     public void AuthorizationofNormalClearingBC() throws InterruptedException, IOException {
 
@@ -83,8 +120,8 @@ public class BankersCheuqeInwardClearing_IBG extends BaseClass {
 
     }
 
-    @Test(groups = {"Inputter"})
-    public void InwardClearingIntercityBankersCheque() throws IOException, InterruptedException {
+    @Test(groups = {"inputterIBG"},dataProvider = "InwardClearingIntercityBankersCheque")
+    public void InwardClearingIntercityBankersCheque(Map<String, String> testData) throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown("Remittance Menu -Universal Teller- IBG");
         PageObject.childmenu_Dropdown("Cheque- Inputter Menu", 1);
@@ -96,9 +133,9 @@ public class BankersCheuqeInwardClearing_IBG extends BaseClass {
         String pgnameo = driver.getWindowHandle();
 
         PageObject.img_Button("New Deal");
-        PageObject.textinput_Locator("fieldName:CL.CHEQUE.NO:1", "ISFK0012079");
-        PageObject.textinput_Locator("fieldName:BANK.SORT.CODE:1", "001");
-        PageObject.textinput_Locator("fieldName:CL.NO.MV", "1");
+        PageObject.textinput_Locator("fieldName:CL.CHEQUE.NO:1", testData.get("CL.CHEQUE.NO:1"));//ISFK0012079
+        PageObject.textinput_Locator("fieldName:BANK.SORT.CODE:1", testData.get("BANK.SORT.CODE:1"));//001
+        PageObject.textinput_Locator("fieldName:CL.NO.MV", testData.get("CL.NO.MV"));
         PageObject.switchToChildWindow();
         //driver.close();
         PageObject.switchToParentWindow(pgnameo);
@@ -106,6 +143,36 @@ public class BankersCheuqeInwardClearing_IBG extends BaseClass {
         PageObject.commitDeal("InwardClearingIntercityBankersCheque");
     }
 
+    @DataProvider(name = "InwardClearingIntercityBankersCheque")
+    public Object[][] dataMethod1() throws IOException {
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\BankersCheuqeInwardClearing_IBG.xlsx";
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(1); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+//        rowCount=6;
+        System.out.println("Row found:  "+rowCount);
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        System.out.println("Col found:  "+colCount);
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                System.out.println("the value:  "+value);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
+    }
     @Test(groups = {"Authorizer"})
     public void AuthorizationOfIntercityClearingBC() throws InterruptedException, IOException {
 
@@ -158,8 +225,8 @@ public class BankersCheuqeInwardClearing_IBG extends BaseClass {
 
     }
 
-    @Test(groups = {"Inputter"})
-    public void InwardClearingSameDayBankersCheque() throws IOException, InterruptedException {
+    @Test(groups = {"inputterIBG"},dataProvider = "InwardClearingSameDayBankersCheque")
+    public void InwardClearingSameDayBankersCheque(Map<String, String> testData) throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown("Remittance Menu -Universal Teller- IBG");
         PageObject.childmenu_Dropdown("Cheque- Inputter Menu", 1);
@@ -171,9 +238,9 @@ public class BankersCheuqeInwardClearing_IBG extends BaseClass {
         String pgnameo = driver.getWindowHandle();
 
         PageObject.img_Button("New Deal");
-        PageObject.textinput_Locator("fieldName:CL.CHEQUE.NO:1", "ISFK0012076");
-        PageObject.textinput_Locator("fieldName:BANK.SORT.CODE:1", "001");
-        PageObject.textinput_Locator("fieldName:CL.NO.MV", "1");
+        PageObject.textinput_Locator("fieldName:CL.CHEQUE.NO:1",testData.get("CL.CHEQUE.NO:1"));//ISFK0012076
+        PageObject.textinput_Locator("fieldName:BANK.SORT.CODE:1", testData.get("BANK.SORT.CODE:1"));//001
+        PageObject.textinput_Locator("fieldName:CL.NO.MV", testData.get("CL.NO.MV"));//1
         PageObject.switchToChildWindow();
         //driver.close();
         PageObject.switchToParentWindow(pgnameo);
@@ -182,6 +249,36 @@ public class BankersCheuqeInwardClearing_IBG extends BaseClass {
 
     }
 
+    @DataProvider(name = "InwardClearingSameDayBankersCheque")
+    public Object[][] dataMethod2() throws IOException {
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\BankersCheuqeInwardClearing_IBG.xlsx";
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(2); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+//        rowCount=6;
+        System.out.println("Row found:  "+rowCount);
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        System.out.println("Col found:  "+colCount);
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                System.out.println("the value:  "+value);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
+    }
     @Test(groups = {"Authorizer"})
     public void AuthorizationOfSameDayClearingBC() throws InterruptedException, IOException {
 
