@@ -204,19 +204,32 @@ public class JointAccountCreation extends BaseClass {
 //        driver.findElement(By.xpath("(//*[text()='Saving Account  ']'])[1]")).click();
         String homePage = PageObject.switchToChildWindow();
         driver.manage().window().maximize();
-        PageObject.textinput_Locator("fieldName:CUSTOMER","10000001");
+        PageObject.textinput_Locator("fieldName:CUSTOMER",testData.get("Cid"));
+        PageObject.textinput_Locator("fieldName:CURRENCY",testData.get("Currency"));
         PageObject.click_Locator("fieldName:CATEGORY");
-        PageObject.textinput_Locator("fieldName:CATEGORY","6003");
-        PageObject.click_Locator("fieldName:CURRENCY");
-        PageObject.textinput_Locator("fieldName:CURRENCY","USD");
-        PageObject.textinput_Locator("fieldName:AOR","20230720");
-        PageObject.radiobutton_Locator("radio:tab1:BIO.VERISYS",1);
-        PageObject.radiobutton_Locator("radio:tab1:BIO.VERISYS",1);
-        PageObject.textinput_Locator("fieldName:SBP.COMPANY","1");
-        PageObject.textinput_Locator("fieldName:SBP.SECTOR.ID","0-");
-        PageObject.textinput_Locator("fieldName:SBP.SSECTOR.ID","0-12");
-        PageObject.textinput_Locator("fieldName:SBP.SEGMENT.ID","0-12-030000");
-        PageObject.textinput_Locator("fieldName:ACCOUNT.OFFICER","1");
+        PageObject.textinput_Locator("fieldName:CATEGORY",testData.get("CategoryProduct"));
+        PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.1:1",testData.get("Acc name"));
+        PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.2:1",testData.get("Acc name2"));
+        PageObject.textinput_Locator("fieldName:AOR",testData.get("SignOffData"));
+        PageObject.radiobutton_Locator("radio:tab1:BIO.VERISYS",Integer.parseInt(testData.get("BioVersion")));
+        PageObject.textinput_Locator("fieldName:SBP.COMPANY",testData.get("sbpCompany"));
+        PageObject.textinput_Locator("fieldName:SBP.SECTOR.ID",testData.get("sbpSector"));
+        PageObject.textinput_Locator("fieldName:SBP.SSECTOR.ID",testData.get("sbpSubSector"));
+        PageObject.textinput_Locator("fieldName:SBP.SEGMENT.ID",testData.get("sbpSegment"));
+        //PageObject.textinput_Locator("fieldName:SBP.SSEGMENT.ID",testData.get("sbpSubSegment"));
+        PageObject.textinput_Locator("fieldName:JOINT.HOLDER:1",testData.get("Jholder"));
+        PageObject.textinput_Locator("fieldName:RELATION.CODE:1",testData.get("RelationCode"));
+
+
+        PageObject.form_Tab("kyc Details");
+        PageObject.textinput_Locator("fieldName:PURPOSE",testData.get("Purpose"));
+//        PageObject.textinput_Locator("",testData.get("Purpose"));
+        PageObject.textinput_Locator("fieldName:KYC.NO.TRANS",testData.get("ExpectedNumOfTxn"));//30
+        PageObject.radiobutton_Locator("radio:tab2:UNSCLISTST",Integer.parseInt(testData.get("AC Screen list")));
+        PageObject.select_Locator("fieldName:KYC.ATO",testData.get("TurnoverA"));
+        PageObject.select_Locator("fieldName:MONTH.TOVER.RG",testData.get("TurnoverM"));
+        PageObject.textinput_Locator("fieldName:NO.TRANS.DR",testData.get("debitTxnNum"));
+        PageObject.select_Locator("fieldName:MONTH.TOVER.DR",testData.get("TurnoverDebitMonth"));
 
         try {
             PageObject.commitDeal("JointAccCreation_FCY_Saving");
@@ -246,7 +259,7 @@ public class JointAccountCreation extends BaseClass {
 
     @Test(groups={"CaoInputter"},dataProvider = "LCSavingAccAmendmentData")
     public void LCSavingAccAmendment(Map<String, String> testData) throws IOException {
-
+//1008617134
         PageObject.menu_Dropdown("Conventional Account Open");
         PageObject.menu_Dropdown("Local Currency Account Open");
         PageObject.menu_Link("Saving Account - Royal Profit  ");
