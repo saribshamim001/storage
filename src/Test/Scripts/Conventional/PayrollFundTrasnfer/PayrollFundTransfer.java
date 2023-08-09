@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class PayrollFundTransfer extends BaseClass {
 
-    @Test(groups = {"CaoInputter2"},dataProvider = "PayrollFundTransfer")
+    @Test(groups = {"CaoStandingInputter"},dataProvider = "PayrollFundTransfer")
     public void PayrollFundTransfer(Map<String, String> testData) throws IOException{
 
         PageObject.menu_Dropdown("Funds Transfer Menu");
@@ -42,8 +42,9 @@ public class PayrollFundTransfer extends BaseClass {
         //asdasd
         PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1",testData.get("CommisionType"));
         //PageObject.textinput_Locator("fieldName:COMMISSION.AMT:1","1");
-        PageObject.img_Button("Validate a deal");
-        PageObject.img_Button("Commit the deal");
+//        PageObject.img_Button("Validate a deal");
+//        PageObject.img_Button("Commit the deal");
+        PageObject.commitDeal("PayrollFundTransfer");
 
 
     }
@@ -52,7 +53,7 @@ public class PayrollFundTransfer extends BaseClass {
 
 
 
-    @Test(groups = {"CaoInputter2"},dataProvider = "AccountBalanceInformation")
+    @Test(groups = {"CaoStandingInputter"},dataProvider = "AccountBalanceInformation")
     public void AccountBalanceInformation(Map<String, String> testData) throws IOException {
 
         PageObject.menu_Dropdown("Account Enquiries ");
@@ -66,14 +67,14 @@ public class PayrollFundTransfer extends BaseClass {
 
 
 
-    @Test(groups = {"CaoAuthorizer2"},dataProvider = "PayrollFundTransferAuth")
+    @Test(groups = {"CaoStandingAuthorizer"},dataProvider = "PayrollFundTransferAuth")
     public void PayrollFundTransferAuth(Map<String, String> testData) throws IOException{
 
         PageObject.menu_Dropdown("Funds Transfer Authorization");
         PageObject.menu_Link("Funds Transfer Authorization ");
         PageObject.switchToChildWindow();
         driver.manage().window().maximize();
-        PageObject.textinput_Locator("value:1:1:1",testData.get("ID"));
+//        PageObject.textinput_Locator("value:1:1:1",testData.get("ID"));
         PageObject.click_Locator("defaultButton");
         PageObject.switchToChildWindow();
         driver.manage().window().maximize();

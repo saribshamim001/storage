@@ -15,13 +15,13 @@ import java.util.Map;
 
 public class CentralizedClearing extends BaseClass {
 
-    @Test(groups = {"CaoInputterCentralized"},dataProvider = "CCSameDayInputter")
+        @Test(groups = {"CaoInputterCentralized"},dataProvider = "CCSameDayInputter")
     public void CCSameDayInputter(Map<String, String> testData) throws IOException {
 
         PageObject.menu_Dropdown("Inward Sameday Image Based Clearing- Input");
         PageObject.menu_Dropdown("Inward Clearing - Instrument Manual");
-       // PageObject.menu_Link("Inward Clearing Sameday- Banker's Cheque ");
-        driver.findElement(By.xpath("//*[@id=\'pane_\']/ul[9]/li/ul/li[4]/ul/li[2]/a")).click();
+        PageObject.childmenu_Link("Inward Clearing Sameday- Banker",1);
+//        driver.findElement(By.xpath("//*[@id=\'pane_\']/ul[9]/li/ul/li[4]/ul/li[2]/a")).click();
         PageObject.switchToChildWindow();
         driver.manage().window().maximize();
         PageObject.img_Button("New Deal");
@@ -53,8 +53,8 @@ public class CentralizedClearing extends BaseClass {
 
         PageObject.menu_Dropdown("Inward Normal Image Based Clearing- Input");
         PageObject.menu_Dropdown("Inward Normal Clearing - Instrument Manual");
-        // PageObject.menu_Link("Inward Clearing Sameday- Banker's Cheque ");
-        driver.findElement(By.xpath("//*[@id=\'pane_\']/ul[10]/li/ul/li[4]/ul/li[2]/a")).click();
+        PageObject.childmenu_Link("Inward Clearing Normal- Banker",2);
+//        driver.findElement(By.xpath("//*[@id=\'pane_\']/ul[10]/li/ul/li[4]/ul/li[2]/a")).click();
         PageObject.switchToChildWindow();
         driver.manage().window().maximize();
         PageObject.img_Button("New Deal");

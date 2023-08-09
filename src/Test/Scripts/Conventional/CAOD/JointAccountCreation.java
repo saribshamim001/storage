@@ -134,7 +134,7 @@ public class JointAccountCreation extends BaseClass {
     }
 
     @Test(groups = {"CaoInputter"},dataProvider = "inputterData3")
-    public void JointAccCreation_FCY_Current(Map<String, String> testData)  {
+    public void JointAccCreation_FCY_Current(Map<String, String> testData) throws IOException  {
 //
         PageObject.menu_Dropdown("Conventional Account Open");//test
         PageObject.menu_Dropdown("Foriegn Currency Account Open");
@@ -164,16 +164,17 @@ public class JointAccountCreation extends BaseClass {
         PageObject.select_Locator("fieldName:MONTH.TOVER.RG",testData.get("TurnoverM"));
         PageObject.textinput_Locator("fieldName:NO.TRANS.DR",testData.get("debitTxnNum"));
         PageObject.select_Locator("fieldName:MONTH.TOVER.DR",testData.get("TurnoverDebitMonth"));
+        PageObject.commitDeal("CAO_JointAccCreation_FCY_CurrentAccountTxn");
         //Txn:
-        try {
-            PageObject.commitDeal("CAO_JointAccCreation_FCY_CurrentAccountTxn");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            PageObject.commitDeal("CAO_JointAccCreation_FCY_CurrentAccountTxn");
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
 
-    @Test(groups={"CaoInputter2Auth"},dataProvider = "authData3")
+    @Test(groups={"CaoAuthorizer1"},dataProvider = "authData3")
     public void authAccCreationFCY_Current(Map<String, String> testData){
         //
         PageObject.menu_Dropdown("Conv Account Authorization ");
@@ -194,7 +195,7 @@ public class JointAccountCreation extends BaseClass {
         //
     }
 
-    @Test(groups = {"CaoInputter"},dataProvider = "inputterData3")
+    @Test(groups = {"CaoInputter"},dataProvider = "inputterData4")
     public void JointAccCreation_FCY_Saving(Map<String, String> testData){
 
         PageObject.menu_Dropdown("Conventional Account Open");
@@ -233,8 +234,11 @@ public class JointAccountCreation extends BaseClass {
         PageObject.menu_Link("Current Account  ");
         PageObject.switchToChildWindow();
         driver.manage().window().maximize();
-        PageObject.textinput_Locator("transactionId",testData.get("Account Num"));
+        PageObject.img_Button("Return to application screen");
+        driver.switchTo().alert().accept();
+        PageObject.textinput_Locator("transactionId",testData.get("ID"));
         PageObject.img_Button("Edit a contract");
+        PageObject.form_Tab("kyc Details");
         PageObject.textinput_Locator("fieldName:PURPOSE",testData.get("Purpose of Bank Account"));
         PageObject.commitDeal("LCCurrentAccAmendmentTxn");
 
@@ -248,8 +252,11 @@ public class JointAccountCreation extends BaseClass {
         PageObject.menu_Link("Saving Account - Royal Profit  ");
         PageObject.switchToChildWindow();
         driver.manage().window().maximize();
-        PageObject.textinput_Locator("transactionId",testData.get("Account Num"));
+        PageObject.img_Button("Return to application screen");
+        driver.switchTo().alert().accept();
+        PageObject.textinput_Locator("transactionId",testData.get("ID"));
         PageObject.img_Button("Edit a contract");
+        PageObject.form_Tab("kyc Details");
         PageObject.textinput_Locator("fieldName:PURPOSE",testData.get("Purpose of Bank Account"));
         PageObject.commitDeal("LCSavingAccAmendmentTxn");
 
@@ -259,10 +266,10 @@ public class JointAccountCreation extends BaseClass {
 
     @DataProvider(name = "LCCurrentAccAmendmentData")
     public Object[][] LCCurrentAccAmendment() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\Cao_AccountAmendment.xlsx";
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\COAD_AccCreation.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
-        Sheet sheet = workbook.getSheet("Current"); // Assuming data is in the first sheet
+        Sheet sheet = workbook.getSheet("LCCurrentInputter"); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
@@ -286,10 +293,10 @@ public class JointAccountCreation extends BaseClass {
 
     @DataProvider(name = "LCSavingAccAmendmentData")
     public Object[][] LCSavingAccAmendment() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\Cao_AccountAmendment.xlsx";
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\COAD_AccCreation.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
-        Sheet sheet = workbook.getSheet("Saving"); // Assuming data is in the first sheet
+        Sheet sheet = workbook.getSheet("LCSavingAccountInputter"); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
@@ -371,6 +378,35 @@ public class JointAccountCreation extends BaseClass {
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(2); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
+    }
+
+
+
+    @DataProvider(name = "inputterData4")
+    public Object[][] JointAccCreation_FCYData_Saving() throws IOException {
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\COAD_AccCreation.xlsx";
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(3); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap

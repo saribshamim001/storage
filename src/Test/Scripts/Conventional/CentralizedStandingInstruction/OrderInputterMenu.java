@@ -17,7 +17,7 @@ public class OrderInputterMenu extends BaseClass {
     public static String txn;
     String FILE_PATH = System.getProperty("user.dir") + "\\Excel Data\\OrderInputterMenu.xlsx";
 
-    @Test(groups = {"CaoInputter2"},dataProvider = "StandingOrderINP")
+    @Test(groups = {"CaoStandingInputter"},dataProvider = "StandingOrderINP")
     public void StandingOrderINP(Map<String, String> testData) throws IOException {
 
         PageObject.menu_Dropdown("Standing Order- Inputter Menu");
@@ -31,7 +31,7 @@ public class OrderInputterMenu extends BaseClass {
         PageObject.textinput_Locator("fieldName:CPTY.ACCT.NO", testData.get("DebitAccount"));
         PageObject.textinput_Locator("fieldName:PAYMENT.DETAILS:1", testData.get("Payment"));
         PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1", testData.get("CommisionType"));
-//        PageObject.img_Button("Commit the deal");
+        PageObject.img_Button("Commit the deal");
 
 
     }
@@ -49,7 +49,7 @@ public class OrderInputterMenu extends BaseClass {
         PageObject.textinput_Locator("fieldName:CPTY.ACCT.NO", testData.get("DebitAccount"));
         PageObject.textinput_Locator("fieldName:PAYMENT.DETAILS:1", testData.get("Payment"));
         PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1", testData.get("CommisionType"));
-//        PageObject.img_Button("Commit the deal");
+        PageObject.img_Button("Commit the deal");
 
 
     }
@@ -69,7 +69,7 @@ public class OrderInputterMenu extends BaseClass {
     }
 
 
-    @Test(groups = {"CaoInputter2"},dataProvider = "STOReversed")
+    @Test(groups = {"CaoStandingInputter"},dataProvider = "STOReversed")
     public void STOReversed(Map<String, String> testData) throws IOException{
 
         PageObject.menu_Dropdown("Standing Order- Inputter Menu");
@@ -80,9 +80,12 @@ public class OrderInputterMenu extends BaseClass {
         PageObject.textinput_Locator("value:1:1:1", testData.get("IdValue"));
         PageObject.find_Button();
 
+        PageObject.switchToChildWindow();
+        PageObject.form_Link("View Record");
+
     }
 
-    @Test(groups = {"CaoInputter2"},dataProvider = "AccountBalanceInformation")
+    @Test(groups = {"CaoStandingInputter"},dataProvider = "AccountBalanceInformation")
     public void AccountBalanceInformation(Map<String, String> testData) throws IOException {
 
         PageObject.menu_Dropdown("Account Enquiries ");
@@ -98,7 +101,7 @@ public class OrderInputterMenu extends BaseClass {
 
 
 
-    @Test(groups = {"CaoInputter2"}, dataProvider = "OnlineAccountInformation")
+    @Test(groups = {"CaoStandingInputter"}, dataProvider = "OnlineAccountInformation")
     public void OnlineAccountInformation(Map<String, String> testData) throws IOException {
 
         PageObject.menu_Dropdown("Account Enquiries ");
