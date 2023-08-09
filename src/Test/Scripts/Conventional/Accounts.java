@@ -24,6 +24,7 @@ public class Accounts extends BaseClass {
 //    Customers customer = new Customers();
 
     public static String PD,CUSTOMER;
+    public static File  file;
 
     static int Customerindex = 0;
     static int PDindex = 0;
@@ -75,8 +76,8 @@ public class Accounts extends BaseClass {
 
         TC = column.get("TC-Account Creation");
 
-        WebElement element = driver.findElement(By.xpath("//[@id='disabled_DEBIT.ACCT.NO']"));
-        String debitAcc = element.getText();
+//        WebElement element = driver.findElement(By.xpath("//[@id='disabled_DEBIT.ACCT.NO']"));
+//        String debitAcc = element.getText();
 
 
         CURRENCY = column.get("CURRENCY");
@@ -119,6 +120,40 @@ public class Accounts extends BaseClass {
                 lcyKidsAccount();
             }
         }
+
+    }
+
+    public static void saveToDS(String testCaseName, String txnOfAcc) throws IOException {
+
+        file = new File(System.getProperty("user.dir") + "\\Excel Data\\" +testCaseName+ ".xlsx");
+        System.out.println("writting to file of accounts");
+
+        XSSFWorkbook workbook;
+        Row row;
+        Cell cell;
+        int rowNum = 0;
+
+        if (file.exists()) {
+            FileInputStream fis = new FileInputStream(file);
+            workbook = new XSSFWorkbook(fis);
+            Sheet sheet = workbook.getSheetAt(0);
+            rowNum = sheet.getLastRowNum() + 1; // Start writing from the next row
+        } else {
+            workbook = new XSSFWorkbook();
+            Sheet sheet = workbook.createSheet();
+            row = sheet.createRow(rowNum++);
+            cell = row.createCell(0);
+            cell.setCellValue("Account Number");
+        }
+
+        Sheet sheet = workbook.getSheetAt(0);
+        row = sheet.createRow(rowNum++);
+        cell = row.createCell(0);
+        cell.setCellValue(txnOfAcc);
+
+        FileOutputStream fos = new FileOutputStream(file);
+        workbook.write(fos);
+        fos.close();
 
     }
 
@@ -174,6 +209,7 @@ public class Accounts extends BaseClass {
         commitDeal();
         txnValidate();
         saveToDS2("LCY Current Accounts");
+        saveToDS("unAuthAccounts",PageObject.getTxn());
     }
 
     public void lcySavingAccount() throws InterruptedException, IOException {
@@ -230,6 +266,7 @@ public class Accounts extends BaseClass {
         commitDeal();
         txnValidate();
         saveToDS2("LCY Saving Accounts");
+        saveToDS("unAuthAccounts",PageObject.getTxn());
     }
 
     public void lcyKidsAccount() throws InterruptedException, IOException {
@@ -266,6 +303,7 @@ public class Accounts extends BaseClass {
             PageObject.textinput_Locator("fieldName:OTHER.OFFICER:1",  OTHER_OFFICER);Thread.sleep(2000);
             commitDeal();
             saveToDS2("LCY Kids Accounts");
+            saveToDS("unAuthAccounts",PageObject.getTxn());
         }
 
 
@@ -300,6 +338,7 @@ public class Accounts extends BaseClass {
         commitDeal();
         txnValidate();
         saveToDS2("FCY Current Accounts");
+        saveToDS("unAuthAccounts",PageObject.getTxn());
     }
 
     public void fcySavingAccount() throws InterruptedException, IOException {
@@ -331,6 +370,7 @@ public class Accounts extends BaseClass {
         commitDeal();
         txnValidate();
         saveToDS2("FCY Saving Accounts");
+        saveToDS("unAuthAccounts",PageObject.getTxn());
     }
 
 
@@ -348,7 +388,7 @@ public class Accounts extends BaseClass {
         homePage = PageObject.switchToChildWindow();
 
 //        PageObject.textinput_Locator("value:1:1:1",variableName);
-        PageObject.textinput_Locator("value:1:1:1",column.get("Account_ID"));
+        PageObject.textinput_Locator("value:1:1:1",column.get("Account Number"));
         PageObject.click_Locator("defaultButton");
         PageObject.form_Link("Authorise");
         PageObject.authorizeDeal();
@@ -396,7 +436,7 @@ public class Accounts extends BaseClass {
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
-        rowCount=11;
+        rowCount=2;
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 
@@ -419,7 +459,7 @@ public class Accounts extends BaseClass {
 
     @DataProvider(name = "auth")
     public Object[][] auth() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\.xlsx";
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\unAuthAccounts.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
