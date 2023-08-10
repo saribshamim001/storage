@@ -144,7 +144,7 @@ public class Customers extends BaseClass {
 
         }
 
-        PageObject.textinput_Locator("fieldName:CRP.CHANNEL:1",column.get("CRP.CHANNEL:1"));
+//        PageObject.textinput_Locator("fieldName:CRP.CHANNEL:1",column.get("CRP.CHANNEL:1"));
         PageObject.textinput_Locator("fieldName:CUS.CATEG:1",column.get("CUS_CATEG"));
         Accounts.PD = column.get("CUS_CATEG");
         Accounts.customerPD.add(column.get("CUS_CATEG"));
@@ -192,6 +192,7 @@ public class Customers extends BaseClass {
 
     }
 
+    //******************** Corporate Customer **************************//
 
     @Test  (groups = {"Inputter"}, dataProvider = "corpCustomer")
     public void corporateCustomer(Map<String, String> column) throws InterruptedException, IOException {
@@ -216,7 +217,35 @@ public class Customers extends BaseClass {
 //        PageObject.textinput_Locator("fieldName:ID.TYPE:1",column.get("ID_TYPE"));
 //        PageObject.textinput_Locator("fieldName:ID.NUMBER:1","42309978" + PageObject.idNumber());
 //        PageObject.click_Locator("fieldName:ID.VAL.DT:1");
+
+        PageObject.textinput_Locator("fieldName:CRP.TYPE",column.get("CRP_TYPE"));
+
+        //PageObject.textinput_Locator("fieldName:TARGET",column.get("TARGET"));
+        PageObject.click_Locator("fieldName:NAME.1:1");
+        PageObject.textinput_Locator("fieldName:TARGET",column.get("TARGET"));
+        PageObject.click_Locator("fieldName:NAME.1:1");
+        PageObject.textinput_Locator("fieldName:SBP.IND.PARENT",column.get("SBP_IND_PARENT"));
+        PageObject.click_Locator("fieldName:SBP.INDUSTRY");
+        PageObject.textinput_Locator("fieldName:SBP.INDUSTRY",column.get("SBP_INDUSTRY"));
+//        PageObject.radiobutton_Locator("radio:mainTab:TRADE.CRP",1);
+        PageObject.click_Locator("fieldName:NAME.1:1");
+
+//        driver.findElement(By.xpath("//*[@id=\"radio:mainTab:CUS.PEP\"]")).click();
+//        PageObject.click_Locator("fieldName:NAME.1:1");
+        PageObject.radiobutton_Locator("radio:mainTab:CUS.PEP",2);
+
+        PageObject.textinput_Locator("fieldName:ID.TYPE:1",column.get("ID_TYPE"));
+        PageObject.click_Locator("fieldName:NAME.1:1");
+        PageObject.textinput_Locator("fieldName:ID.NUMBER:1",column.get("ID_NUMBER"));
+        PageObject.click_Locator("fieldName:NAME.1:1");
         PageObject.textinput_Locator("fieldName:ID.VAL.DT:1",column.get("ID_VAL_DT"));
+
+        //add the fields...
+
+
+
+//        PageObject.radiobutton_Locator("radio:mainTab:TRADE.CRP",1);
+
         PageObject.textinput_Locator("fieldName:NAME.1:1",column.get("NAME_1"));
         PageObject.textinput_Locator("fieldName:NAME.2:1","COMPANY");
 //        PageObject.textinput_Locator("fieldName:SOLE.NAME","SOLE_NAME");
@@ -225,9 +254,9 @@ public class Customers extends BaseClass {
         PageObject.textarea_Locator("fieldName:ADD.H",column.get("ADD_H"));
         PageObject.textinput_Locator("fieldName:STREET:1",column.get("STREET"));
         PageObject.textinput_Locator("fieldName:TOWN.COUNTRY:1",column.get("TOWN_COUNTRY"));
-        PageObject.textinput_Locator("fieldName:SBP.IND.PARENT",column.get("SBP_IND_PARENT"));
-        PageObject.textinput_Locator("fieldName:SBP.INDUSTRY",column.get("SBP_INDUSTRY"));
-        PageObject.textinput_Locator("fieldName:TARGET",column.get("TARGET"));
+//        PageObject.click_Locator("fieldName:SBP.IND.PARENT");
+        PageObject.radiobutton_Locator("radio:mainTab:CUS.PEP",1);
+
         PageObject.textinput_Locator("fieldName:NATIONALITY",column.get("NATIONALITY"));
         PageObject.textinput_Locator("fieldName:RESIDENCE",column.get("RESIDENCE"));
         PageObject.textinput_Locator("fieldName:BIRTH.INCORP.DATE",column.get("BIRTH_INCORP_DATE"));
@@ -235,10 +264,12 @@ public class Customers extends BaseClass {
 
         // CRP
         //PageObject.textinput_Locator("fieldName:CRP.TYPE",column.get("CRP_TYPE"));
-        PageObject.textinput_Locator("fieldName:INCM.LEVELSRC",column.get("INCM_LEVELSRC"));
+        //PageObject.textinput_Locator("fieldName:INCM.LEVELSRC",column.get("INCM_LEVELSRC"));
         PageObject.textinput_Locator("fieldName:CUS.CATEG:1",column.get("CUS_CATEG"));
         Accounts.PD = column.get("CUS_CATEG");
+        Accounts.customerPD.add(column.get("CUS_CATEG"));
         PageObject.textinput_Locator("fieldName:CRP.CHANNEL:1",column.get("CRP_CHANNEL"));
+        PageObject.textinput_Locator("fieldName:DELIVERY.WDRAW:1",column.get("DELIVERY.WDRAW"));
         PageObject.textinput_Locator("fieldName:EXP.GEO.INT:1",column.get("EXP_GEO_INT"));
         PageObject.textinput_Locator("fieldName:EXP.GEO.LOCAL:1",column.get("EXP_GEO_LOCAL"));
         PageObject.textinput_Locator("fieldName:CREDIT.TURNOVER:1",column.get("CREDIT_TURNOVER"));
@@ -276,12 +307,19 @@ public class Customers extends BaseClass {
         PageObject.textinput_Locator("fieldName:P.PROVINCE:1","");
         PageObject.textinput_Locator("fieldName:P.CUST.GENDER:1","");
 */
+
+        PageObject.img_Button("Validate a deal");
+
+//        PageObject.img_Button("Validate a deal");
+//
         commitDeal();
         txnValidate();
         saveToDS("Corporate Customers");
         saveToDS("UnAuth_Customers");
-
+        Accounts.customerTxn.add(PageObject.getTxn());
     }
+
+
 
 
     @Test  (groups = {"Authorizer"}, dataProvider = "auth")
@@ -349,6 +387,7 @@ public class Customers extends BaseClass {
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
+        rowCount=2;
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 
