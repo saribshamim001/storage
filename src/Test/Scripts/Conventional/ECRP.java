@@ -23,7 +23,7 @@ public class ECRP extends BaseClass  {
 
     static String incomeSourceLevel;
 
-    @Test (groups = {"caoInputter"}, dataProvider = "TestData")
+    @Test (groups = {"CaoInputterECRP"}, dataProvider = "TestData")
     public void ECRP(Map<String, String> column) throws InterruptedException, IOException {
 
         Customers.Txn = column.get("Customer_ID");

@@ -38,6 +38,7 @@ public class Accounts extends BaseClass {
     public static String[] LCY_CURRENT_ACCOUNTS = { "1001", "1005", "1007", "1010", "1011", "1014", "1017", "1022",
                                                     "1030", "1031", "1034", "1035", "1037", "1038", "1142", "1143",
                                                     "1150", "1171", "1326" };
+    //CurrentAcc,
     public static String[] LCY_SAVING_ACCOUNTS = { "6001", "6004", "6005", "6009", "6012", "6014", "6018", "6025" };
     public static String[] FCY_CURRENT_ACCOUNTS = { "1003", "1033", "1036", "1040", "1142", "1143" };
     public static String[] FCY_SAVING_ACCOUNTS = { "6003", "6019", "6030", "6035", "6039" };
@@ -48,31 +49,22 @@ public class Accounts extends BaseClass {
     @Test (groups = {"Inputter"}, dataProvider = "condition")
     public void callAccountCreation(Map<String, String> column) throws InterruptedException, IOException {
 
-//        System.out.println("Printing ");
-//        Object[][] data =  getTxnAndPD();
-//
-//        for (int row = 0; row < data.length; row++) {
-//            // Iterate through each column in the current row
-//            for (int col = 0; col < data[row].length; col++) {
-//                System.out.print(data[row][col] + " ");
-//            }
-//            System.out.println(); // Move to the next line after each row
-//        }
+//        Getting the data
+        if (Customerindex==0)
+        getTxnAndPD();
 
         //require from Customer Script !
 //        CUSTOMER = column.get("Customer_ID");
-//        Accounts.PD = column.get("PD");
-        System.out.println("the array size:  "+customerTxn.size());
-        for (int i=0;i<customerTxn.size();i++){
-            System.out.println("the customer is:    "+customerTxn.get(i));
-        }
+//        Accounts.PD = column.get("CATEGORY");
 
+//        System.out.println("the array size:  "+customerTxn.size());
+//
+        System.out.println("Customer is:  "+customerTxn+" and the Category:  "+customerPD);
+//
         System.out.println("Before increment, Index of customer and PD: "+Customerindex +" "+PDindex);
         CUSTOMER = customerTxn.get(Customerindex++);
         Accounts.PD = customerPD.get(PDindex++);
         System.out.println("After increment, Index of customer and PD: "+Customerindex +" "+PDindex);
-
-//        index=index+1;
 
         TC = column.get("TC-Account Creation");
 
@@ -399,31 +391,58 @@ public class Accounts extends BaseClass {
 
 
 
-    public Object[][] getTxnAndPD() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\UnAuth_Customers.xlsx";
-        FileInputStream fis = new FileInputStream(FILE_PATH);
-        Workbook workbook = new XSSFWorkbook(fis);
-        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
-        int rowCount = sheet.getPhysicalNumberOfRows();
-//        rowCount=6;
-        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
-        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+    public void getTxnAndPD() throws IOException {
 
-        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
-            Row row = sheet.getRow(i);
-            Map<String, String> map = new HashMap<String, String>();
-            for (int j = 0; j < colCount; j++) {
-                Cell cell = row.getCell(j);
-                DataFormatter formatter = new DataFormatter();
-                String value = formatter.formatCellValue(cell);
-                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+
+
+        String excelFilePath = System.getProperty("user.dir")+"\\Data\\UnAuth_Customers.xlsx";
+
+        try (FileInputStream inputStream = new FileInputStream(excelFilePath);
+             Workbook workbook = new XSSFWorkbook(inputStream)) {
+
+            Sheet sheet = workbook.getSheetAt(0); // Assuming you want to read from the first sheet
+
+            int columnIdIndex = -1;
+            int pdIndex = -1;
+
+            // Find the column indexes for "Column_ID" and "PD"
+            Row headerRow = sheet.getRow(0);
+            for (Cell cell : headerRow) {
+                String cellValue = cell.getStringCellValue();
+                if (cellValue.equalsIgnoreCase("Customer_ID")) {
+                    columnIdIndex = cell.getColumnIndex();
+                } else if (cellValue.equalsIgnoreCase("PD")) {
+                    pdIndex = cell.getColumnIndex();
+                }
             }
-            data[i - 1][0] = map;
+
+            if (columnIdIndex == -1 || pdIndex == -1) {
+                System.out.println("Columns not found in the Excel sheet.");
+                return;
+            }
+
+            // Read data from the specified columns
+            for (int rowIndex = 1; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
+                Row row = sheet.getRow(rowIndex);
+                String Customer_ID = row.getCell(columnIdIndex).getStringCellValue();
+                String pd = row.getCell(pdIndex).getStringCellValue();
+                System.out.println("Customer_ID: " + Customer_ID + ", PD: " + pd);
+                customerTxn.add(Customer_ID);
+                customerPD.add(pd);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        workbook.close();
-        fis.close();
-        return data;
+
+        System.out.println("the result:  ");
+
+                System.out.println("the array size:  "+customerTxn.size());
+        for (int i=0;i<customerTxn.size();i++){
+            System.out.println("the customer is:    "+customerTxn.get(i)+" and pd: "+customerPD.get(i));
+        }
+
     }
 
 
@@ -436,7 +455,8 @@ public class Accounts extends BaseClass {
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
-        rowCount=2;
+        rowCount=6
+        ;
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 
@@ -459,7 +479,7 @@ public class Accounts extends BaseClass {
 
     @DataProvider(name = "auth")
     public Object[][] auth() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\unAuthAccounts.xlsx";
+        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\unAuthAccounts.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
