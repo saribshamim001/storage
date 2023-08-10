@@ -69,7 +69,7 @@ public class CentralizedClearing extends BaseClass {
 
     }
 
-    @Test(groups = {"CaoAuthorizerCentralized"},dataProvider = "CCSameDayAuth")
+    @Test(groups = {"CaoAuthorizer1"},dataProvider = "CCSameDayAuth")
     public void CCNormalDayAuth(Map<String, String> testData) throws IOException{
 
         PageObject.menu_Dropdown("Inward Sameday Image Based Clearing- Auth");

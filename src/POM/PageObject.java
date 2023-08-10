@@ -131,6 +131,10 @@ public class PageObject extends BaseClass {
         driver.findElement(By.xpath("//ul/li/a[text()='"+text_Value+"']")).click();
     }
 
+    public static void authformLink(String text_Value) {
+        driver.findElement(By.xpath("//tr/td/a/b[text()='"+text_Value+"']")).click();
+    }
+
     public static void childmenu_Link(String text_Value , Integer index) {
         driver.findElement(By.xpath("(//ul/li/a[contains(text(),'"+text_Value+"')])["+index+"]")).click();
     }
@@ -263,6 +267,10 @@ public class PageObject extends BaseClass {
     //This method is for user SignOff
     public static void signOff() {
         driver.findElement(By.xpath("//tr/td/a[@alt='Sign off']")).click();
+    }
+
+    public static void tools() {
+        driver.findElement(By.xpath("//tr/td/a[@alt='Tools']")).click();
     }
 
 }

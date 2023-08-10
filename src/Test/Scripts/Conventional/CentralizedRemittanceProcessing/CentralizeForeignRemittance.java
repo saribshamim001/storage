@@ -167,8 +167,15 @@ public class CentralizeForeignRemittance extends BaseClass {
         PageObject.menu_Link("Funds Transfer General ");
 
         String NewDealPage = PageObject.switchToChildWindow();
+//        PageObject.img_Button("Selection Criteria");
 
+//        PageObject.switchToChildWindow();
+//        PageObject.textinput_Locator("value:1:1:1",TransactionNumber);
+//        PageObject.find_Button();
         PageObject.textinput_Locator("transactionId",TransactionNumber);
+        PageObject.switchToChildWindow();
+
+//        PageObject.authformLink(TransactionNumber);
 
         PageObject.img_Button("Perform an action on the contract");
 
@@ -203,7 +210,7 @@ public class CentralizeForeignRemittance extends BaseClass {
         return data;
     }
 
-    @Test(groups = "IBG_CfrAuthorizer", dataProvider = "CentralizeForeignRemittance_Authorization")
+    @Test(groups = "IBG_CfrAuthorizer", dataProvider = "CentralizeForeignRemittanceReversal_Authorization")
     public void CentralizeForeignRemittanceReversal_Authorization(Map<String, String> testData) throws InterruptedException, IOException {
 
         //VARIABLE FOR EXCEL DATA STORAGE

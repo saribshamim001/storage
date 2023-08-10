@@ -107,7 +107,7 @@ public class Banker_Cheque extends BaseClass{
         PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1",testData.get("AMOUNT.LOCAL"));
         PageObject.textinput_Locator("fieldName:NO.OF.INST",testData.get("NO.OF.INST"));
         PageObject.select_Locator("fieldName:INS.ISS.PURPOSE","Custom Duty/Import Duty");
-        String Trans = PageObject.commitDeal("WalkInCusStp1");
+//        String Trans = PageObject.commitDeal("WalkInCusStp1");
 
         Thread.sleep(9000);
 
@@ -120,7 +120,7 @@ public class Banker_Cheque extends BaseClass{
         driver.switchTo().parentFrame();
         PageObject.switchFrame(2);
         PageObject.img_Button("New Deal");
-        PageObject.textinput_Locator("fieldName:INST.NUMBER",Trans);
+//        PageObject.textinput_Locator("fieldName:INST.NUMBER",Trans);
         PageObject.img_Button("Validate a deal");
         PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1",testData.get("BEN.CUSTOMER"));
         WebElement element = driver.findElement(By.xpath("//span[@id='disabled_DEBIT.ACCT.NO']"));
