@@ -161,7 +161,7 @@ public class CustomerCreation extends BaseClass {
     }
 
     @DataProvider(name = "customerCreation_Authorization")
-    public Object[][] readExcelData_A() throws IOException {
+    public Object[][] customerCreation_Authorization() throws IOException {
         String FILE_PATH = System.getProperty("user.dir") + "\\Data\\IbgCaoCustomerCreation.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
