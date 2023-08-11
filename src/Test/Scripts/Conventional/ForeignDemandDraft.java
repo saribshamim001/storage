@@ -32,7 +32,7 @@ public class ForeignDemandDraft extends BaseClass {
         PageObject.switchFrame(2);
 
         PageObject.img_Button("New Deal");
-
+        //1000264788
 
         PageObject.textinput_Locator("fieldName:CREDIT.CURRENCY", testData.get("CREDIT.CURRENCY"));
         PageObject.textinput_Locator("fieldName:CREDIT.ACCT.NO",testData.get("CREDIT.ACCT.NO"));
