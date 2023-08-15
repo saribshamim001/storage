@@ -94,7 +94,7 @@ public class CentralizedClearing extends BaseClass {
         String FILE_PATH = System.getProperty("user.dir") + "\\Excel Data\\CentralizedClearing.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
-        Sheet sheet = workbook.getSheet("IbgCCSameDayInputter"); // Assuming data is in the first sheet
+        Sheet sheet = workbook.getSheet("CCSameDayInputter"); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
@@ -150,7 +150,7 @@ public class CentralizedClearing extends BaseClass {
         String FILE_PATH = System.getProperty("user.dir") + "\\Excel Data\\CentralizedClearing.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);//IbgCCNormalDayInputter
-        Sheet sheet = workbook.getSheet("IbgCCNormalDayInputter"); // Assuming data is in the first sheet
+        Sheet sheet = workbook.getSheet("CCNormalDayInputter"); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
