@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class BankersChequeEncashment_IBG extends BaseClass {
 
-    @Test(groups = {"inputterIBG"},dataProvider = "BC_EncashmentIBG")
+    @Test(groups = {"SS328565505"},dataProvider = "BC_EncashmentIBG")
     public void BankersChequeEncashmentInwardRemittance (Map<String, String> testData) throws IOException, InterruptedException  {
 
 
@@ -29,8 +29,11 @@ public class BankersChequeEncashment_IBG extends BaseClass {
 
         PageObject.img_Button("New Deal");
         Thread.sleep(5000);
+        PageObject.click_Locator("fieldName:CREDIT.THEIR.REF");
         PageObject.textinput_Locator("fieldName:CREDIT.THEIR.REF",testData.get("CREDIT.THEIR.REF")); //2
-        PageObject.switchToChildWindow();
+        PageObject.click_Locator("fieldName:CREDIT.ACCT.NO");
+        PageObject.textinput_Locator("fieldName:CREDIT.ACCT.NO",testData.get("CREDIT.ACCT.NO"));
+        PageObject.commitDeal("BankersChequeEncashment_IBG");
     }
 
     String FILE_PATH = "";

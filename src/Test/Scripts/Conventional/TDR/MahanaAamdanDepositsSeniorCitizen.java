@@ -28,17 +28,22 @@ public class MahanaAamdanDepositsSeniorCitizen extends BaseClass {
 
         PageObject.click_Locator("fieldName:PRINCIPAL");
         PageObject.textinput_Locator("fieldName:PRINCIPAL",testData.get("PRINCIPAL"));
-        PageObject.commitDeal("MahanaAamdanDepositInputter");
+        PageObject.commitDeal("MahanaAamdanDepositInputterSenior");
     }
 
-    @Test(groups = {"AuthorizerTDR"})
-    public void MahanaAamdanDepositsAuth() throws IOException {
+    @Test(groups = {"AuthorizerTDR"},dataProvider = "MahanaAamdanDepositInputter")
+    public void MahanaAamdanDepositsAuth(Map<String, String> testData) throws IOException {
 
         PageObject.menu_Dropdown(" Centralized TDR");
         PageObject.menu_Dropdown("Authorization Of Mahana Aamdan Deposits");
         PageObject.menu_Link("Authorization of Mahana Aamdan Deposits 3 Y ");
         PageObject.switchToChildWindow();
         driver.manage().window().maximize();
+        PageObject.textinput_Locator("value:1:1:1",testData.get("Customer"));
+        PageObject.find_Button();
+        PageObject.form_Link("Authorise Deal");
+        PageObject.switchToChildWindow();
+        PageObject.authorizeDeal();
 
     }
 
@@ -70,33 +75,33 @@ public class MahanaAamdanDepositsSeniorCitizen extends BaseClass {
 
     }
 
-    @DataProvider(name = "MahanaAamdanDepositsAuth")
-    public Object[][] readExcelData2() throws IOException {
-
-        String FILE_PATH = System.getProperty("user.dir") + "\\Excel Data\\MahanaAamdanDepositsRegularCustomer.xlsx";
-        FileInputStream fis = new FileInputStream(FILE_PATH);
-        Workbook workbook = new XSSFWorkbook(fis);
-        Sheet sheet = workbook.getSheet("MahanaAamdanDepositsAuth"); // Assuming data is in the first sheet
-        int rowCount = sheet.getPhysicalNumberOfRows();
-        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
-        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
-
-        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
-            Row row = sheet.getRow(i);
-            Map<String, String> map = new HashMap<String, String>();
-            for (int j = 0; j < colCount; j++) {
-                Cell cell = row.getCell(j);
-                DataFormatter formatter = new DataFormatter();
-                String value = formatter.formatCellValue(cell);
-                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
-            }
-            data[i - 1][0] = map;
-        }
-        workbook.close();
-        fis.close();
-        return data;
-
-    }
+    //    @DataProvider(name = "MahanaAamdanDepositsAuth")
+    //    public Object[][] readExcelData2() throws IOException {
+    //
+    //        String FILE_PATH = System.getProperty("user.dir") + "\\Excel Data\\MahanaAamdanDepositsSeniorCitizen.xlsx";
+    //        FileInputStream fis = new FileInputStream(FILE_PATH);
+    //        Workbook workbook = new XSSFWorkbook(fis);
+    //        Sheet sheet = workbook.getSheet("MahanaAamdanDepositInputter"); // Assuming data is in the first sheet
+    //        int rowCount = sheet.getPhysicalNumberOfRows();
+    //        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+    //        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+    //
+    //        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+    //            Row row = sheet.getRow(i);
+    //            Map<String, String> map = new HashMap<String, String>();
+    //            for (int j = 0; j < colCount; j++) {
+    //                Cell cell = row.getCell(j);
+    //                DataFormatter formatter = new DataFormatter();
+    //                String value = formatter.formatCellValue(cell);
+    //                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+    //            }
+    //            data[i - 1][0] = map;
+    //        }
+    //        workbook.close();
+    //        fis.close();
+    //        return data;
+    //
+    //    }
 
 
 }

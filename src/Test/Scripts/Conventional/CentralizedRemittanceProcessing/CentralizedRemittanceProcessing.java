@@ -13,9 +13,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CentralizeForeignRemittance extends BaseClass {
-    @Test(groups = "IBG_CfrInputter", dataProvider = "CentralizeForeignRemittance")
-    public void CentralizeForeignRemittance(Map<String, String> testData) throws InterruptedException, IOException {
+            public class CentralizedRemittanceProcessing extends BaseClass {
+    @Test(groups = "CfrInputter", dataProvider = "CentralizeForeignRemittance")
+        public void CentralizeForeignRemittance(Map<String, String> testData) throws InterruptedException, IOException {
 
         //VARIABLE FOR EXCEL DATA STORAGE
         String DebitAccount = testData.get("DebitAccount");
@@ -108,7 +108,7 @@ public class CentralizeForeignRemittance extends BaseClass {
         return data;
     }
 
-    @Test(groups = "IBG_CfrAuthorizer", dataProvider = "CentralizeForeignRemittance_Authorization")
+    @Test(groups = "CfrAuthorizer", dataProvider = "CentralizeForeignRemittance_Authorization")
     public void CentralizeForeignRemittance_Authorization(Map<String, String> testData) throws InterruptedException, IOException {
 
         //VARIABLE FOR EXCEL DATA STORAGE
@@ -155,7 +155,7 @@ public class CentralizeForeignRemittance extends BaseClass {
 
     /*_______________________________________________________________________________________________________________________________*/
 
-    @Test(groups = "IBG_CfrInputter", dataProvider = "CentralizeForeignRemittanceReversal")
+    @Test(groups = "CfrInputter", dataProvider = "CentralizeForeignRemittanceReversal")
     public void CentralizeForeignRemittanceReversal(Map<String, String> testData) throws InterruptedException, IOException {
 
         //VARIABLE FOR EXCEL DATA STORAGE
@@ -164,22 +164,23 @@ public class CentralizeForeignRemittance extends BaseClass {
 //        PageObject.switchFrame(1);
 
         PageObject.menu_Dropdown("Centralized Foreign Remittance Menu");
-        PageObject.menu_Link("Funds Transfer General ");
-
+        PageObject.menu_Link("Account to Account Transfer ");
+//        Thread.sleep(5000);
         String NewDealPage = PageObject.switchToChildWindow();
 //        PageObject.img_Button("Selection Criteria");
 
 //        PageObject.switchToChildWindow();
 //        PageObject.textinput_Locator("value:1:1:1",TransactionNumber);
 //        PageObject.find_Button();
-        PageObject.textinput_Locator("transactionId",TransactionNumber);
+        PageObject.textinput_Locator("transactionId",testData.get("Transaction Number"));
         PageObject.switchToChildWindow();
 
 //        PageObject.authformLink(TransactionNumber);
-
+//        Thread.sleep(5000);
         PageObject.img_Button("Perform an action on the contract");
 
-        PageObject.img_Button("Reverses a deal from the live file");
+            //PageObject.img_Button("Authorises a deal");
+            PageObject.img_Button("Reverses a deal from the live file");
 
     }
 
@@ -210,7 +211,7 @@ public class CentralizeForeignRemittance extends BaseClass {
         return data;
     }
 
-    @Test(groups = "IBG_CfrAuthorizer", dataProvider = "CentralizeForeignRemittanceReversal_Authorization")
+    @Test(groups = "CfrAuthorizer", dataProvider = "CentralizeForeignRemittanceReversal_Authorization")
     public void CentralizeForeignRemittanceReversal_Authorization(Map<String, String> testData) throws InterruptedException, IOException {
 
         //VARIABLE FOR EXCEL DATA STORAGE
@@ -223,7 +224,7 @@ public class CentralizeForeignRemittance extends BaseClass {
         String ChildPage1 = PageObject.switchToChildWindow();
         PageObject.textinput_Locator("transactionId", TxnNumber);
         PageObject.img_Button("Perform an action on the contract");
-//        Thread.sleep(3000);
+        Thread.sleep(3000);
         PageObject.authorizeDeal();
 
     }

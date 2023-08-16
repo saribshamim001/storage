@@ -15,7 +15,7 @@ import java.util.Map;
 public class MahanaAamdanDeposits3YearMigration extends BaseClass {
 
     @Test(groups = {"InputterTDR"},dataProvider = "MAD3YPremature")
-    public void MAD3YPremature(Map<String, String> testData) throws IOException{
+            public void MAD3YPremature(Map<String, String> testData) throws IOException{
 
         PageObject.menu_Dropdown(" Centralized TDR ");
         PageObject.menu_Dropdown("Mahana Aamdan Deposits 3 Year- Migration");
@@ -75,7 +75,7 @@ public class MahanaAamdanDeposits3YearMigration extends BaseClass {
     }
 
     @DataProvider(name = "MAD3YPremature")
-    public Object[][] readExcelData1() throws IOException {
+    public Object[][]   readExcelData1() throws IOException {
 
         String FILE_PATH = System.getProperty("user.dir") + "\\Excel Data\\MahanaAamdanDeposits3YearMigration.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
