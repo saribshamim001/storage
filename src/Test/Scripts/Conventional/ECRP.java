@@ -23,7 +23,7 @@ public class ECRP extends BaseClass  {
 
     static String incomeSourceLevel;
 
-    @Test (groups = {"caoInputter"}, dataProvider = "TestData")
+    @Test (groups = {"CaoInputterECRP"}, dataProvider = "TestData")
     public void ECRP(Map<String, String> column) throws InterruptedException, IOException {
 
         Customers.Txn = column.get("Customer_ID");
@@ -199,6 +199,7 @@ public class ECRP extends BaseClass  {
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
+        rowCount=2;
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 

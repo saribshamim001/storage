@@ -75,7 +75,7 @@ public class StockManagement extends BaseClass {
         PageObject.parentFrame();
         PageObject.switchFrame(2);
         //PageObject.textinput_Locator("transactionId","BC.123456");
-        driver.findElement(By.xpath("(//input[@id='transactionId'])[2]")).sendKeys(testData.get("TID"));
+        driver.findElement(By.xpath("(//input[@id='transactionId'])[2]")).sendKeys(testData.get("Transaction Number"));
         PageObject.img_Button("Edit a contract");
         PageObject.textinput_Locator("fieldName:FROM.SERIAL.NO:1",testData.get("Serial NumS"));
         PageObject.click_Locator("fieldName:TO.SERIAL.NO:1");

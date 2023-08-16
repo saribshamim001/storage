@@ -147,7 +147,7 @@ public class Customers extends BaseClass {
 //        PageObject.textinput_Locator("fieldName:CRP.CHANNEL:1",column.get("CRP.CHANNEL:1"));
         PageObject.textinput_Locator("fieldName:CUS.CATEG:1",column.get("CUS_CATEG"));
         Accounts.PD = column.get("CUS_CATEG");
-        Accounts.customerPD.add(column.get("CUS_CATEG"));
+        //Accounts.customerPD.add(column.get("CUS_CATEG"));
 //        PageObject.textinput_Locator("fieldName:CRP.CHANNEL:1",column.get("CRP_CHANNEL"));
         PageObject.textinput_Locator("fieldName:EXP.GEO.INT:1",column.get("EXP_GEO_INT"));
         PageObject.textinput_Locator("fieldName:EXP.GEO.LOCAL:1",column.get("EXP_GEO_LOCAL"));
@@ -267,7 +267,7 @@ public class Customers extends BaseClass {
         //PageObject.textinput_Locator("fieldName:INCM.LEVELSRC",column.get("INCM_LEVELSRC"));
         PageObject.textinput_Locator("fieldName:CUS.CATEG:1",column.get("CUS_CATEG"));
         Accounts.PD = column.get("CUS_CATEG");
-        Accounts.customerPD.add(column.get("CUS_CATEG"));
+//        Accounts.customerPD.add(column.get("CUS_CATEG"));
         PageObject.textinput_Locator("fieldName:CRP.CHANNEL:1",column.get("CRP_CHANNEL"));
         PageObject.textinput_Locator("fieldName:DELIVERY.WDRAW:1",column.get("DELIVERY.WDRAW"));
         PageObject.textinput_Locator("fieldName:EXP.GEO.INT:1",column.get("EXP_GEO_INT"));
@@ -316,7 +316,7 @@ public class Customers extends BaseClass {
         txnValidate();
         saveToDS("Corporate Customers");
         saveToDS("UnAuth_Customers");
-        Accounts.customerTxn.add(PageObject.getTxn());
+        //Accounts.customerTxn.add(PageObject.getTxn());
     }
 
 
@@ -387,7 +387,7 @@ public class Customers extends BaseClass {
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
-        rowCount=2;
+        rowCount=6;
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 

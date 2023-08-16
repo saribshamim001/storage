@@ -33,11 +33,13 @@ public class StopPayment extends BaseClass {
         PageObject.textinput_Locator("fieldName:FIRST.CHEQUE.NO:1",testData.get("Cheque Num S"));
         PageObject.textinput_Locator("fieldName:LAST.CHEQUE.NO:1",testData.get("Cheque Num E"));
         PageObject.select_Locator("fieldName:WAIVE.CHARGE:1",testData.get("Waive"));
-        PageObject.commitDeal("stopPaymentChequeBook");
+        PageObject.textinput_Locator("fieldName:BENEFICIARY:1",testData.get("Beneficiary"));
+        PageObject.textinput_Locator("fieldName:LAST.CHEQUE.NO:1",testData.get("Remarks"));
+//        PageObject.commitDeal("stopPaymentChequeBook");
 
         //2 times
-        String txn = PageObject.getTxn();
-        System.out.println("Txn is:  "+txn);
+//        String txn = PageObject.getTxn();
+//        System.out.println("Txn is:  "+txn);
 
 
 //        String txn = PageObject.getTxn();
@@ -108,7 +110,7 @@ public class StopPayment extends BaseClass {
 
     @DataProvider(name = "excelDataAuthStopPayment")
     public Object[][] readExcelData4() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\stopPaymentCheque.xlsx";
+        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\stopPaymentOfCheque.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
