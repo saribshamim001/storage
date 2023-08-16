@@ -124,7 +124,7 @@ public class Create_Term_Deposits_LCY extends BaseClass {
 
     }
 
-    String FILE_PATH2 = System.getProperty("user.dir") + "\\Data\\Create_Term_Deposits_LCY.xlsx";
+    String      FILE_PATH2 = System.getProperty("user.dir") + "\\Data\\Create_Term_Deposits_LCY.xlsx";
 
     @Test(groups = {"AuthorizerTDR"}, dataProvider = "DataCreate_Term_Deposits_LCY")
 
@@ -138,19 +138,17 @@ public class Create_Term_Deposits_LCY extends BaseClass {
         PageObject.maximizeWindow();
 
 
-        PageObject.textinput_Locator("value:1:1:1",testData.get("Transaction Number"));
+        PageObject.textinput_Locator("value:1:1:1",testData.get("CUSTOMER.ID"));
         PageObject.find_Button();
-
-
-       //PageObject.authorizeByTxn(testData.get("Transaction Number"));
-        PageObject.menu_Link("Authorise Deal");
-//        PageObject.img_Button("Authorises a deal");
+        PageObject.form_Link("Authorise Deal");
+        PageObject.switchToChildWindow();
+        PageObject.authorizeDeal();
     }
 
     @DataProvider(name = "DataCreate_Term_Deposits_LCY")
     public Object[][] readExcelData2() throws IOException {
 
-        FileInputStream fis = new FileInputStream(FILE_PATH2);
+        FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
