@@ -139,9 +139,9 @@ public class PageObject extends BaseClass {
         driver.findElement(By.xpath("(//ul/li/a[contains(text(),'"+text_Value+"')])["+index+"]")).click();
     }
 
-    public static void childmenuLink(String text_Value , Integer index) {
-        driver.findElement(By.xpath("(//tr/td/a[contains(text(),'"+text_Value+"')])["+index+"]")).click();
-    }
+//    public static void childmenuLink(String text_Value , Integer index) {
+//        driver.findElement(By.xpath("(//tr/td/a[contains(text(),'"+text_Value+"')])["+index+"]")).click();
+//    }
 
     public static void form_Link(String text_Value) {
         driver.findElement(By.xpath("//table/tbody/tr/td/a[text()='"+text_Value+"']")).click();
@@ -192,7 +192,7 @@ public class PageObject extends BaseClass {
         driver.manage().window().maximize();
     }
 
-    public static void txnValidate(String testCaseName) throws IOException {
+    public static String txnValidate(String testCaseName) throws IOException {
        WebElement Txn = driver.findElement(By.xpath("//table/tbody/tr/td[contains(text(),'Txn Complete:')]"));
        Assert.assertTrue(Txn.isDisplayed(),"Transaction Un-Successful");
 
@@ -230,26 +230,29 @@ public class PageObject extends BaseClass {
         workbook.write(fos);
         fos.close();
 
+        return TxnNum;
+
     }
 
     // Commit Deal For Inputter
-    public static void commitDeal (String testCaseName) throws IOException {
+    public static String commitDeal (String testCaseName) throws IOException {
+        String valueOfTxn="";
         driver.findElement(By.xpath("//tr/td/a/img[@alt='Validate a deal']")).click();
         driver.findElement(By.xpath("//tr/td/a/img[@alt='Commit the deal']")).click();
         if (driver.getPageSource().contains("Txn Complete:")){
-            txnValidate(testCaseName);
+            valueOfTxn=txnValidate(testCaseName);
         }else{
             try {
                 WebElement acpOverride = driver.findElement(By.xpath("//tr/td/a[text()='Accept Overrides']"));
                 AssertionScreenshot(testCaseName);
                 acpOverride.click();
-                txnValidate(testCaseName);
+                valueOfTxn=txnValidate(testCaseName);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
 
         }
-
+        return valueOfTxn;
     }
 
     // Get Txn Number to pass further for Authorization

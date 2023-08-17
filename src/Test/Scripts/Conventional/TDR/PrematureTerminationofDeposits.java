@@ -22,22 +22,32 @@ public class PrematureTerminationofDeposits extends BaseClass {
     PageObject.menu_Link("Premature Termination of Deposits ");
     PageObject.switchToChildWindow();
     driver.manage().window().maximize();
-    PageObject.textinput_Locator("value:1:1:1",testData.get("ID"));
+    PageObject.textinput_Locator("value:1:1:1",testData.get("Deal"));
     PageObject.find_Button();
+    PageObject.form_Link("Early Terminate Deal");
+        PageObject.switchToChildWindow();
+        PageObject.textinput_Locator("fieldName:CUST.REMARKS:1",testData.get("REMARKS:1"));
+        PageObject.textinput_Locator("fieldName:INT.SCHEDULE",testData.get("INT.SCHEDULE"));
+        PageObject.commitDeal("PTDInputter");
 
     }
 
 
     @Test(groups = {"InputterTDR"},dataProvider = "PTDInputterSpecial")
-    public void PTDInputterSpecial(Map<String, String> testData) throws IOException{
+    public void PTDInputterSpecial(Map<String, String> testData) throws IOException {
 
         PageObject.menu_Dropdown(" Centralized TDR ");
         PageObject.menu_Dropdown("Premature Termination of Deposits");
         PageObject.menu_Link("Premature Termination for Deposit(Special RT) ");
         PageObject.switchToChildWindow();
         driver.manage().window().maximize();
-        PageObject.textinput_Locator("value:1:1:1",testData.get("ID"));
+        PageObject.textinput_Locator("value:1:1:1",testData.get("Deal"));
         PageObject.find_Button();
+        PageObject.form_Link("Early Terminate Deal");
+        PageObject.switchToChildWindow();
+        PageObject.textinput_Locator("fieldName:CUST.REMARKS:1",testData.get("REMARKS:1"));
+        //PageObject.textinput_Locator("fieldName:INT.SCHEDULE",testData.get("INT.SCHEDULE"));
+        PageObject.commitDeal("PTDInputter");
 
     }
 
@@ -85,8 +95,11 @@ public class PrematureTerminationofDeposits extends BaseClass {
         PageObject.menu_Link("Authorization of Premature Termination ");
         PageObject.switchToChildWindow();
         driver.manage().window().maximize();
-        PageObject.textinput_Locator("value:1:1:1",testData.get("ID"));
+        PageObject.textinput_Locator("value:1:1:1",testData.get("Customer"));
         PageObject.find_Button();
+        PageObject.formindex_Link("Authorise Premature Deal",5);
+        PageObject.authorizeDeal();
+
 
     }
 

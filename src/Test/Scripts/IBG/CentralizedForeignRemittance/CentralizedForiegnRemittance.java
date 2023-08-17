@@ -99,7 +99,7 @@ public class CentralizedForiegnRemittance extends BaseClass {
         String FILE_PATH = System.getProperty("user.dir") + "\\Excel Data\\CentralizedForiegnRemittance.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
-        Sheet sheet = workbook.getSheet("IBGCFRNostroInputter"); // Assuming data is in the first sheet
+        Sheet sheet = workbook.getSheet("CFRNostroInputter"); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap

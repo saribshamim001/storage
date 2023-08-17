@@ -23,7 +23,7 @@ public class FloatingRateTermDepositsLCY extends BaseClass {
 
     @Test(groups = {"InputterTDR"}, dataProvider = "excelDataFloatingRateTermDepositsLCY")
 
-    public void FloatingRateTermDepositsLCY(Map<String, String> testData) throws IOException, InterruptedException {
+    public void FloatingRateTermDepositsLCY(Map<String, String> testData) throws IOException, InterruptedException  {
 
         PageObject.menu_Dropdown(" Centralized TDR ");
         PageObject.menu_Dropdown("Alfalah Floating Rate Term Deposits LCY");
@@ -43,15 +43,12 @@ public class FloatingRateTermDepositsLCY extends BaseClass {
 
         PageObject.textinput_Locator("fieldName:AMOUNT:1",testData.get("AMOUNT:1"));
 
-        PageObject.textinput_Locator("","");
-        PageObject.textinput_Locator("","");
-        PageObject.textinput_Locator("","");
-        PageObject.textinput_Locator("","");
-        PageObject.textinput_Locator("","");
-        PageObject.textinput_Locator("","");
-        PageObject.textinput_Locator("","");
-        PageObject.textinput_Locator("","");
-        PageObject.textinput_Locator("","");
+        driver.findElement(By.xpath("///*[@id=\"fieldName:DRAWDOWN.ACCOUNT\"        ]")).sendKeys("1004057212");
+        PageObject.textinput_Locator("fieldName:PRIN.LIQ.ACCT","PRIN.LIQ.ACCT");
+        PageObject.textinput_Locator("fieldName:INT.LIQ.ACCT","INT.LIQ.ACCT");
+        PageObject.select_Locator("fieldName:LD.PP.TERM","MONTHLY");
+        PageObject.radiobutton_Locator("radio:tab1:ZAKAT.EXEMP.LD",1);
+        PageObject.radiobutton_Locator("radio:tab1:PROFIT.EXEMP.LD",1);
 
         PageObject.click_Locator("fieldName:DRAWDOWN.ACCOUNT");
 

@@ -99,7 +99,7 @@ public class BaseClass {
     public void InputterTDR() throws InterruptedException {
 //        edgeConfig();
         chromeConfig();
-        PageObject.signIn("AK2366601", "");
+            PageObject.signIn("AK2366601", "");
 
         PageObject.switchFrame(1);
 
@@ -132,7 +132,7 @@ public class BaseClass {
     public void AuthorizerTDR() throws InterruptedException {
 //        edgeConfig();
         chromeConfig();
-        PageObject.signIn("RB1965401", "ADmin+258");
+        PageObject.signIn("RB1965401", "");
 
         PageObject.switchFrame(1);
 
@@ -165,7 +165,7 @@ public class BaseClass {
     public void InputterTDR_IBG() throws InterruptedException {
 //        edgeConfig();
         chromeConfig();
-        PageObject.signIn("AK2366602", "QWer12345");
+            PageObject.signIn("AK2366602", "QWer12345");
 
         PageObject.switchFrame(1);
 
@@ -273,7 +273,7 @@ public class BaseClass {
     @BeforeMethod(groups = {"IBG_CfrInputter"})
     public void IBG_CfrInputter() throws InterruptedException {
         chromeConfig();
-        PageObject.signIn("cfr03", "QWer1234");
+        PageObject.signIn("cfr03", "");
 
         PageObject.switchFrame(1);
 
@@ -316,7 +316,7 @@ public class BaseClass {
     public void inputterLogin() {
 //        edgeConfig();
         chromeConfig();
-        PageObject.signIn("retail006","QWer1234");
+        PageObject.signIn("HN14336290", "QWer1234");
         //PageObject.signIn("SARA88", "QWer4321");
 
         PageObject.switchFrame(1);
@@ -330,16 +330,110 @@ public class BaseClass {
         PageObject.switchFrame(1);
 
     }
+//************************* Saperate before method () for each Cao class (transaction). ****************************** //
+    @BeforeMethod(groups = {"inputterIBG"})
+    public void inputterIBG() {
+//        edgeConfig();
+        chromeConfig();
+        PageObject.signIn("retail003", "QWer1234");
+        //PageObject.signIn("SARA88", "QWer4321");
+
+        PageObject.switchFrame(1);
+
+        PageObject.menu_Dropdown("CSO - IBG");
+        PageObject.menu_Link("CSO - IBG ");
+
+        homePage = PageObject.switchToChildWindow();
+
+        PageObject.maximizeWindow();
+        PageObject.switchFrame(1);
+
+    }
+
+    @BeforeMethod(groups = {"SS328565505"})
+    public void SS328565505() {
+//        edgeConfig();
+        chromeConfig();
+        PageObject.signIn("SS328565505", "QWer1234");
+        //PageObject.signIn("SARA88", "QWer4321");
+
+        PageObject.switchFrame(1);
+
+        PageObject.menu_Dropdown("CSO - IBG");
+        PageObject.menu_Link("CSO - IBG ");
+
+        homePage = PageObject.switchToChildWindow();
+
+        PageObject.maximizeWindow();
+        PageObject.switchFrame(1);
+
+    }
+    @BeforeMethod(groups = {"authorizerIBG"})
+    public void authorizerIBG() {
+//        edgeConfig();
+        chromeConfig();
+        PageObject.signIn("retailauth005", "QWer1234");
+        //PageObject.signIn("SARA88", "QWer4321");
+
+        PageObject.switchFrame(1);
+
+        PageObject.menu_Dropdown("IBG - Manager Operation Menu");
+        PageObject.menu_Dropdown("Core Retail Menu");
+
+        homePage = PageObject.switchToChildWindow();
+
+        PageObject.maximizeWindow();
+        PageObject.switchFrame(1);
+
+    }
+
+    @BeforeMethod(groups = {"MH214215505"})
+    public void MH214215505() {
+//        edgeConfig();
+        chromeConfig();
+        PageObject.signIn("MH214215505", "QWer12345");
+        //PageObject.signIn("SARA88", "QWer4321");
+
+        PageObject.switchFrame(1);
+
+        PageObject.menu_Dropdown("Branch Manager IBG ");
+       // PageObject.menu_Dropdown("Core Retail Menu");
+
+        homePage = PageObject.switchToChildWindow();
+
+        PageObject.maximizeWindow();
+        PageObject.switchFrame(1);
+
+    }
+
+    @BeforeMethod(groups = {"authorizer"})
+    public void authorizer() {
+//        edgeConfig();
+        chromeConfig();
+        PageObject.signIn("retailauth007", "QWer1234");
+        //PageObject.signIn("SARA88", "QWer4321");
+
+        PageObject.switchFrame(1);
+
+//        PageObject.menu_Dropdown("CSO - Conventional");
+//        PageObject.menu_Link("CSO - Conventional ");
+//
+//        homePage = PageObject.switchToChildWindow();
+//
+//        PageObject.maximizeWindow();
+//        PageObject.switchFrame(1);
+
+    }
 
     @BeforeMethod(groups = {"CaoInputter"})
     public void CaoInputterLogin2() {
 //        edgeConfig();
         chromeConfig();
         //
-        PageObject.signIn("AB2375501", "QWer12345"); //jk881201 aa2749301 AA2749301 JK881201 AB2375501
+        PageObject.signIn("AB2375501", "");
         PageObject.switchFrame(1);
         PageObject.menu_Dropdown("Centrlized Branch User Access");
-        PageObject.childmenu_Link("Define Current Branch ",1);
+        PageObject.menu_Link("Define Current Branch ");
 
         homePage = PageObject.switchToChildWindow();
         PageObject.textinput_Locator("transactionId","AB23755.01");

@@ -17,38 +17,46 @@ import java.util.Map;
 
 public class BankersChequeIssuance_IBG extends BaseClass {
 
+    String DebitAcc = "";
+
     @Test(groups = {"inputterIBG"},dataProvider = "BankersCheqSingleIssuanceAccountHolder")
     public void BankersCheqSingleIssuanceAccountHolder (Map<String, String> testData) throws IOException, InterruptedException {
 
+        this.DebitAcc = testData.get("DEBIT.ACCT.NO");
         PageObject.menu_Dropdown("Remittance Menu -Universal Teller- IBG");
         PageObject.childmenu_Dropdown("Cheque- Inputter Menu", 1);
         PageObject.childmenu_Dropdown("Cheque Issuance", 1);
         PageObject.childmenu_Dropdown("Cheq Single Issuance Menu", 1);
         PageObject.childmenu_Link("Banker Cheque Single Issuance- Account Holder ", 1);
 
+
         PageObject.parentFrame();
         PageObject.switchFrame(2);
         String pgnameo = driver.getWindowHandle();
 
         PageObject.img_Button("New Deal");
-        PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1", testData.get("BEN.CUSTOMER:1"));//Waqas Nadeem Khan
+        PageObject.textinput_Locator("fieldName:CREDIT.AMOUNT", testData.get("CREDIT.AMOUNT"));//6
+        PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO", testData.get("DEBIT.ACCT.NO"));
+        PageObject.click_Locator("fieldName:BEN.CUSTOMER:1");//1
+        PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1", testData.get("BEN.CUSTOMER"));//Waqas Nadeem Khan
         PageObject.form_Tab("Due Delligence");
-        PageObject.textinput_Locator("fieldName:DD.ADDRESS:1", testData.get("DD.ADDRESS:1"));//123 Building
+        PageObject.textinput_Locator("fieldName:DD.ADDRESS:1", testData.get("DD.ADDRESS"));//123 Building
         PageObject.textinput_Locator("fieldName:ID.TYPE", testData.get("ID.TYPE"));//ID-N
         PageObject.textinput_Locator("fieldName:ID.NUMBER", testData.get("ID.NUMBER"));//4222222222222
-        PageObject.textinput_Locator("fieldName:CONTACT.NO:1", testData.get("CONTACT.NO:1"));//03333333333
+        PageObject.textinput_Locator("fieldName:CONTACT.NO:1", testData.get("CONTACT.NO"));//03333333333
         PageObject.select_Locator("fieldName:INS.ISS.PURPOSE","Clearing/Forwarding Charges");
         PageObject.form_Tab("Issue Instrument (Local Currency)");
-        PageObject.textinput_Locator("fieldName:CREDIT.AMOUNT", testData.get("CREDIT.AMOUNT"));//6
-        PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO", testData.get("DEBIT.ACCT.NO"));//1
         PageObject.commitDeal("BankersCheqSingleIssuanceAccountHolder");
         PageObject.switchToChildWindow();
     }
 
+
+
     String FILE_PATH = "";
     @DataProvider(name = "BankersCheqSingleIssuanceAccountHolder")
     public Object[][] dataMethod() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\BankersChequeIssuance_IBG.xlsx";
+//        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\BankersChequeIssuance_IBG.xlsx";
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\BC_Conv.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
@@ -76,7 +84,7 @@ public class BankersChequeIssuance_IBG extends BaseClass {
         fis.close();
         return data;
     }
-    @Test(groups = {"Authorizer"})
+    @Test(groups = {"authorizerIBG"})
     public void BankersCheqSingleIssuanceAccountHolderAuth() throws InterruptedException, IOException {
 
         PageObject.childmenu_Dropdown("Cheque- Authorizer Menu", 1);
@@ -88,7 +96,7 @@ public class BankersChequeIssuance_IBG extends BaseClass {
         PageObject.switchFrame(0);
 
         PageObject.img_Button("Selection Screen");
-        PageObject.textinput_Locator("value:2:1:1","1");
+        PageObject.textinput_Locator("value:2:1:1",DebitAcc);
         PageObject.find_Button();
         PageObject.form_Link("Authorise a Transaction");
         PageObject.parentFrame();
@@ -100,6 +108,38 @@ public class BankersChequeIssuance_IBG extends BaseClass {
         PageObject.switchToParentWindow(menu1);
         PageObject.switchToChildWindow();
 
+    }
+
+    @DataProvider(name = "BankersCheqSingleIssuanceAccountHolderAuth")
+    public Object[][] dataMethod1() throws IOException {
+//        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\BankersChequeIssuance_IBG.xlsx";
+        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\BankersCheqSingleIssuanceAccountHolder.xlsx";
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        int rowCount = sheet.getPhysicalNumberOfRows();
+//        rowCount=6;
+        System.out.println("Row found:  "+rowCount);
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        System.out.println("Col found:  "+colCount);
+        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+
+        for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
+            Row row = sheet.getRow(i);
+            Map<String, String> map = new HashMap<String, String>();
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j);
+                DataFormatter formatter = new DataFormatter();
+                String value = formatter.formatCellValue(cell);
+                System.out.println("the value:  "+value);
+                map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
+            }
+            data[i - 1][0] = map;
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
     }
 
     @Test(groups = {"inputterIBG"},dataProvider = "BankerChequeSingleIssuanceWalkinCust")
@@ -139,7 +179,7 @@ public class BankersChequeIssuance_IBG extends BaseClass {
     }
 
     @DataProvider(name = "BankerChequeSingleIssuanceWalkinCust")
-    public Object[][] dataMethod1() throws IOException {
+    public Object[][] dataMethod9() throws IOException {
         String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\BankersChequeIssuance_IBG.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
@@ -641,7 +681,7 @@ public class BankersChequeIssuance_IBG extends BaseClass {
     }
 
     @DataProvider(name = "IssuanceofBankerChqVendorBulkStep2")
-    public Object[][] dataMethod9() throws IOException {
+    public Object[][] dataMetho10() throws IOException {
         String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\BankersChequeIssuance_IBG.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);

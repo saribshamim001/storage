@@ -19,7 +19,7 @@ public class OrderInputterMenu extends BaseClass {
 
 
     //CaoInputter2
-    @Test(groups = {"CaoInputterIBG"},dataProvider = "StandingOrderINP")
+    @Test(groups = {"CaoInputterLogin4"},dataProvider = "StandingOrderINP")
     public void StandingOrderINP(Map<String, String> testData) throws IOException {
 
         PageObject.menu_Dropdown("Standing Order- Inputter Menu");
@@ -33,13 +33,13 @@ public class OrderInputterMenu extends BaseClass {
         PageObject.textinput_Locator("fieldName:CPTY.ACCT.NO", testData.get("DebitAccount"));
         PageObject.textinput_Locator("fieldName:PAYMENT.DETAILS:1", testData.get("Payment"));
         PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1", testData.get("CommisionType"));
-//        PageObject.img_Button("Commit the deal");
+        PageObject.img_Button("Commit the deal");
 
 
     }
 
     //CaoAuthorizer
-    @Test(groups = {"CaoAuthorizerIbg"},dataProvider = "StandingOrderAuth")
+    @Test(groups = {"CaoStandingAuthorizer"},dataProvider = "StandingOrderAuth")
     public void StandingOrderAuth(Map<String, String> testData) throws IOException {
 
         PageObject.menu_Dropdown("Standing Order-Authorizer Menu");

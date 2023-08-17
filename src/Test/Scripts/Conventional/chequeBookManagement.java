@@ -233,15 +233,16 @@ public class chequeBookManagement extends BaseClass {
         homePage = PageObject.switchToChildWindow();
         PageObject.switchFrame(0);
 
-            PageObject.textinput_Locator("value:1:1:1",testData.get("value:1:1:1")); //CD.1008203610.0000001
-        PageObject.click_Locator("defaultButton");
+            //PageObject.textinput_Locator("value:1:1:1",testData.get("value:1:1:1")); //CD.1008203610.0000001
+        PageObject.find_Button();
+        driver.manage().window().maximize();
         PageObject.form_Link("Activate Cheque Book");
 
         PageObject.parentFrame();
         PageObject.switchFrame(1);
 
         PageObject.select_Locator("fieldName:ISSUED.AGAINST","REQUISTION EXISTING A/C");
-        PageObject.textinput_Locator("fieldName:CHQ.NO.START",testData.get("CHQ.NO.START")); //34314526
+        //PageObject.textinput_Locator("fieldName:CHQ.NO.START",testData.get("CHQ.NO.START")); //34314526
         PageObject.textarea_Locator("fieldName:NOTES",testData.get("NOTES"));
 
         PageObject.commitDeal("chequeBookActivated");
