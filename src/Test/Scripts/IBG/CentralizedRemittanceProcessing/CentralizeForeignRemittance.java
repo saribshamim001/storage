@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class CentralizeForeignRemittance extends BaseClass {
     //IBG_CfrInputter
-    @Test(groups = "CaoInputterIBG", dataProvider = "CentralizeForeignRemittance")
+    @Test(groups = "IBG_CfrInputter", dataProvider = "CentralizeForeignRemittance")
     public void CentralizeForeignRemittance(Map<String, String> testData) throws InterruptedException, IOException {
 
         //VARIABLE FOR EXCEL DATA STORAGE
@@ -109,7 +109,7 @@ public class CentralizeForeignRemittance extends BaseClass {
     }
 
     //IBG_CfrAuthorizer
-    @Test(groups = "CaoAuthorizerIbg", dataProvider = "CentralizeForeignRemittance_Authorization")
+    @Test(groups = "IBG_CfrAuthorizer", dataProvider = "CentralizeForeignRemittance_Authorization")
     public void CentralizeForeignRemittance_Authorization(Map<String, String> testData) throws InterruptedException, IOException {
 
         //VARIABLE FOR EXCEL DATA STORAGE
@@ -157,7 +157,7 @@ public class CentralizeForeignRemittance extends BaseClass {
     /*_______________________________________________________________________________________________________________________________*/
 
     //IBG_CfrInputter
-    @Test(groups = "CaoInputterIBG", dataProvider = "CentralizeForeignRemittanceReversal")
+    @Test(groups = "IBG_CfrInputter", dataProvider = "CentralizeForeignRemittanceReversal")
     public void CentralizeForeignRemittanceReversal(Map<String, String> testData) throws InterruptedException, IOException {
 
         //VARIABLE FOR EXCEL DATA STORAGE
@@ -183,7 +183,7 @@ public class CentralizeForeignRemittance extends BaseClass {
         String FILE_PATH = System.getProperty("user.dir") + "\\Data\\IbgCentralizeForeignRemittance.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
-        Sheet sheet = workbook.getSheet(""); // Assuming data is in the first sheet
+        Sheet sheet = workbook.getSheet("CFR_Ibg"); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
@@ -206,7 +206,7 @@ public class CentralizeForeignRemittance extends BaseClass {
     }
 
     //IBG_CfrAuthorizer
-    @Test(groups = "CaoAuthorizerIbg", dataProvider = "CentralizeForeignRemittance_Authorization")
+    @Test(groups = "IBG_CfrAuthorizer", dataProvider = "CentralizeForeignRemittance_Authorization")
     public void CentralizeForeignRemittanceReversal_Authorization(Map<String, String> testData) throws InterruptedException, IOException {
 
         //VARIABLE FOR EXCEL DATA STORAGE
