@@ -23,6 +23,7 @@ import static Test.Scripts.Conventional.Customers.*;
 public class Accounts extends BaseClass {
 //    Customers customer = new Customers();
 
+    private static int count = 6;
     public static String PD,CUSTOMER;
     public static File  file;
 
@@ -455,7 +456,7 @@ public class Accounts extends BaseClass {
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
-        rowCount=6
+        rowCount=count
         ;
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
@@ -479,7 +480,7 @@ public class Accounts extends BaseClass {
 
     @DataProvider(name = "auth")
     public Object[][] auth() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\unAuthAccounts.xlsx";
+        String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\unAuthAccounts.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet

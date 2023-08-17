@@ -28,6 +28,8 @@ public class Customers extends BaseClass {
 
     public static String Txn;
 
+    private static int count = 6;
+
     public static String SECTOR;
     public static String TC;
 
@@ -144,7 +146,7 @@ public class Customers extends BaseClass {
 
         }
 
-//        PageObject.textinput_Locator("fieldName:CRP.CHANNEL:1",column.get("CRP.CHANNEL:1"));
+        PageObject.textinput_Locator("fieldName:CRP.CHANNEL:1",column.get("CRP.CHANNEL:1"));
         PageObject.textinput_Locator("fieldName:CUS.CATEG:1",column.get("CUS_CATEG"));
         Accounts.PD = column.get("CUS_CATEG");
         //Accounts.customerPD.add(column.get("CUS_CATEG"));
@@ -187,7 +189,7 @@ public class Customers extends BaseClass {
         txnValidate();
         saveToDS("Individual Customers");
         saveToDS("UnAuth_Customers");
-        Accounts.customerTxn.add(PageObject.getTxn());
+//        Accounts.customerTxn.add(PageObject.getTxn());
         //saveToDS("Accounts");
 
     }
@@ -359,7 +361,7 @@ public class Customers extends BaseClass {
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
-        rowCount=11;
+        rowCount=count;
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 
@@ -387,7 +389,7 @@ public class Customers extends BaseClass {
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
-        rowCount=6;
+        rowCount=count;
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 
