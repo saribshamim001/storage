@@ -26,7 +26,31 @@ public class MahanaAamdanDeposits3YearMigration extends BaseClass {
         PageObject.switchToChildWindow();
         driver.manage().window().maximize();
         PageObject.textinput_Locator("fieldName:FTD.TYPE",testData.get("Product Category"));
+
+//        PageObject.click_Locator("fieldName:PI.INT.KEY");
+//        PageObject.click_Locator("fieldName:TOT.INTEREST.AMT");
+//        PageObject.click_Locator("fieldName:TOT.INTEREST.AMT");
+//        PageObject.click_Locator("fieldName:TAX.INTEREST.KEY:1");
+//        PageObject.click_Locator("fieldName:INT.SCHEDULE");
+//        PageObject.click_Locator("fieldName:OUR.REMARKS:1");
+
         PageObject.textinput_Locator("fieldName:CUST.REMARKS:1",testData.get("Remarks"));
+
+//        PageObject.form_Tab("Settlemnt / Charge Details");
+//
+//        PageObject.click_Locator("fieldName:DRAWDOWN.ACCOUNT");
+//        PageObject.click_Locator("fieldName:PRIN.LIQ.ACCT");
+//        PageObject.click_Locator("fieldName:INT.LIQ.ACCT");
+//        PageObject.click_Locator("fieldName:CHRG.LIQ.ACCT");
+//        PageObject.click_Locator("fieldName:CHARGE.CODE:1");
+//        PageObject.click_Locator("fieldName:CHARGE.AMOUNT:1");
+//
+//        PageObject.form_Tab("Rollover Info");
+//
+//        PageObject.click_Locator("fieldName:AUTO.ROLL.TERM");
+//        PageObject.click_Locator("fieldName:ROLLOVER.INT.RATE");
+//        PageObject.click_Locator("fieldName:FINAL.MATURITY");
+
         PageObject.img_Button("Validate a deal");
 
     }
@@ -48,6 +72,10 @@ public class MahanaAamdanDeposits3YearMigration extends BaseClass {
         driver.close();
         PageObject.switchToParentWindow(form);
         PageObject.textinput_Locator("fieldName:PRINCIPAL",testData.get("Principal"));
+
+//        PageObject.click_Locator("fieldName:CUST.REMARKS:1");
+//        PageObject.select_Locator("fieldName:FIQAH","");
+
         PageObject.img_Button("Validate a deal");
 
     }

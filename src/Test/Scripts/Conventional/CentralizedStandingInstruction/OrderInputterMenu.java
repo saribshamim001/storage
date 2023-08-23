@@ -17,7 +17,7 @@ public class OrderInputterMenu extends BaseClass {
     public static String txn;
     String FILE_PATH = System.getProperty("user.dir") + "\\Excel Data\\OrderInputterMenu.xlsx";
 
-    @Test(groups = {"CaoStandingInputter"},dataProvider = "StandingOrderINP")
+    @Test(groups = {"CaoInputterIBG"},dataProvider = "StandingOrderINP")
     public void StandingOrderINP(Map<String, String> testData) throws IOException {
 
         PageObject.menu_Dropdown("Standing Order- Inputter Menu");
@@ -69,7 +69,7 @@ public class OrderInputterMenu extends BaseClass {
     }
 
 
-    @Test(groups = {"CaoStandingInputter"},dataProvider = "STOReversed")
+    @Test(groups = {"CaoInputterIBG"},dataProvider = "STOReversed")
     public void STOReversed(Map<String, String> testData) throws IOException{
 
         PageObject.menu_Dropdown("Standing Order- Inputter Menu");
@@ -85,7 +85,7 @@ public class OrderInputterMenu extends BaseClass {
 
     }
 
-    @Test(groups = {"CaoStandingInputter"},dataProvider = "AccountBalanceInformation")
+    @Test(groups = {"CaoInputterIBG"},dataProvider = "AccountBalanceInformation")
     public void AccountBalanceInformation(Map<String, String> testData) throws IOException {
 
         PageObject.menu_Dropdown("Account Enquiries ");

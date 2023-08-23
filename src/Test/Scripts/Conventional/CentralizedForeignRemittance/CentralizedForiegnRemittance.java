@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class CentralizedForiegnRemittance extends BaseClass {
 
-    @Test(groups = {"CaoClearInputter"},dataProvider = "CFRNostroInputter")
+    @Test(groups = {"CfrInputter"},dataProvider = "CFRNostroInputter")
     public void CFRNostroInputter(Map<String, String> testData) throws IOException{
 
         PageObject.menu_Dropdown("Centralized Foreign Remittance Menu");
@@ -45,16 +45,50 @@ public class CentralizedForiegnRemittance extends BaseClass {
         //
         PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER",testData.get("ChequeNumber"));
         PageObject.textinput_Locator("fieldName:DEBIT.THEIR.REF",testData.get("DebitNarrative"));
+
+//        PageObject.textinput_Locator("fieldName:TREASURY.RATE",testData.get("TREASURY.RATE"));
+//        PageObject.textinput_Locator("fieldName:CUST.RATE",testData.get("CUST.RATE"));
+
         PageObject.textinput_Locator("fieldName:BEN.BANK:1",testData.get("Beneficiary"));
+
+//        PageObject.textinput_Locator("fieldName:BEN.ACCT.NO",testData.get("BEN.ACCT.NO"));
+//        PageObject.textinput_Locator("fieldName:ORDERING.CUST:1",testData.get("ORDERING.CUST"));
 //        fieldName:COMMISSION.TYPE:1
         PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1",testData.get("CommissionType"));
 
+//        PageObject.textarea_Locator("fieldName:COMMISSION.AMT:1",testData.get("COMMISSION.AMT:1"));
+//        PageObject.select_Locator("fieldName:COMMISSION.FOR:1","");
+//        PageObject.radiobutton_Locator("radio:tab1:RATE.FIXING.IND",1);
+//        PageObject.select_Locator("fieldName:RELATED.MSG:1","");
+//        PageObject.textarea_Locator("fieldName:TIME.IND:1:1",testData.get("TIME.IND:1:1"));
+//        PageObject.textarea_Locator("fieldName:SBP.RET.CODE",testData.get("SBP.RET.CODE"));
+//        PageObject.textarea_Locator("fieldName:PAYMENT.DETAILS:1",testData.get("PAYMENT.DETAILS:1"));
+
         PageObject.textinput_Locator("fieldName:SWIFT.BIC",testData.get("BICCODE"));
+
+//        PageObject.textarea_Locator("fieldName:A.REMARKS",testData.get("A.REMARKS"));
+
+//        PageObject.form_Tab("MT 202 Details");
+//
+//        PageObject.textarea_Locator("fieldName:REC.CORR.BANK:1",testData.get("REC.CORR.BANK:1"));
+//        PageObject.textarea_Locator("fieldName:REC.CORR.BANK.ACC",testData.get("REC.CORR.BANK.ACC"));
+//        PageObject.textarea_Locator("fieldName:INTERMED.BANK:1",testData.get("INTERMED.BANK:1"));
+//        PageObject.textarea_Locator("fieldName:INTERMED.BANK.ACC",testData.get("INTERMED.BANK.ACC"));
+//        PageObject.textarea_Locator("fieldName:ACCT.WITH.BANK.ACC",testData.get("ACCT.WITH.BANK.ACC"));
+//        PageObject.textarea_Locator("fieldName:BEN.ACCT.NO",testData.get("BEN.ACCT.NO"));
+//        PageObject.textarea_Locator("fieldName:PYMT.NARRATION:1",testData.get("PYMT.NARRATION:1"));
+
+//        PageObject.form_Tab("Due Diligence Form");
+//
+//        PageObject.textarea_Locator("fieldName:DD.ADDRESS:1",testData.get("DD.ADDRESS:1"));
+//        PageObject.textarea_Locator("fieldName:PURP.REMITT:1",testData.get("PURP.REMITT:1"));
+//        PageObject.textarea_Locator("fieldName:REL.BENEFICIARY",testData.get("REL.BENEFICIARY"));
+
         PageObject.commitDeal("CFRNastoInputter");
 
     }
 
-    @Test(groups = {"CaoClearInputter"},dataProvider = "CFRVostroInputter")
+    @Test(groups = {"CfrInputter"},dataProvider = "CFRVostroInputter")
             public void CFRVostroInputter(Map<String, String> testData) throws IOException{
         PageObject.menu_Dropdown("Centralized Foreign Remittance Menu");
         PageObject.menu_Dropdown("Inward Remittance");
@@ -72,6 +106,26 @@ public class CentralizedForiegnRemittance extends BaseClass {
         PageObject.click_Locator("fieldName:CREDIT.VALUE.DATE");
         PageObject.textinput_Locator("fieldName:CREDIT.VALUE.DATE",testData.get("CreditValueDate"));
         PageObject.textinput_Locator("fieldName:CREDIT.THEIR.REF",testData.get("CreditNarrative"));
+
+//        PageObject.textarea_Locator("fieldName:BK.TO.BK.INFO:1",testData.get("BK.TO.BK.INFO:1"));
+//        PageObject.textarea_Locator("fieldName:ORDERING.CUST:1",testData.get("ORDERING.CUST:1"));
+//        PageObject.textarea_Locator("fieldName:PAYMENT.DETAILS:1",testData.get("PAYMENT.DETAILS:1"));
+//        PageObject.textarea_Locator("fieldName:COMMISSION.TYPE:1",testData.get("COMMISSION.TYPE:1"));
+//        PageObject.textarea_Locator("fieldName:COMMISSION.AMT:1",testData.get("COMMISSION.AMT:1"));
+//        PageObject.textarea_Locator("fieldName:SBP.RET.CODE",testData.get("SBP.RET.CODE"));
+//        PageObject.textarea_Locator("fieldName:PURPOSE:1",testData.get("PURPOSE:1"));
+
+//        PageObject.form_Tab("Due Diligence Form");
+//
+//        PageObject.textinput_Locator("fieldName:CX.USER.NAME",testData.get("CX.USER.NAME"));
+//        PageObject.textinput_Locator("fieldName:DD.ADDRESS:1",testData.get("DD.ADDRESS"));
+//        PageObject.textinput_Locator("fieldName:DD.CNIC.NO",testData.get("DD.CNIC.NO"));
+//        PageObject.textinput_Locator("fieldName:CONTACT.NO:1",testData.get("CONTACT.NO"));
+//        PageObject.textinput_Locator("fieldName:LINE.OF.BUSS.OC:1",testData.get("LINE.OF.BUSS.OC"));
+//        PageObject.textinput_Locator("fieldName:PURP.REMITT:1",testData.get("PURP.REMITT"));
+//        PageObject.textinput_Locator("fieldName:NAME.REMIT",testData.get("NAME.REMIT"));
+//        PageObject.textinput_Locator("fieldName:REL.BENEFICIARY",testData.get("REL.BENEFICIARY"));
+
         PageObject.commitDeal("CFRVostroInputter");
 
     }

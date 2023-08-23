@@ -34,7 +34,23 @@ public class AmendmentForTermDepositsRack extends BaseClass {
         PageObject.textinput_Locator("transactionId", testData.get("Transaction Number"));
         PageObject.img_Button("Edit a contract");
 
+        PageObject.click_Locator("fieldName:INTEND.DATE");
         PageObject.textinput_Locator("fieldName:CUST.REMARKS:1", "Testing");
+//        PageObject.click_Locator("fieldName:TAX.INTEREST.TYPE:1");
+//        PageObject.click_Locator("fieldName:CHARGE.CODE:1");
+//        PageObject.click_Locator("fieldName:CHARGE.AMOUNT:1");
+//
+//        PageObject.form_Tab("Settlemnt / Charge Details");
+//
+//        PageObject.click_Locator("fieldName:DRAWDOWN.ACCOUNT");
+//        PageObject.click_Locator("fieldName:PRIN.LIQ.ACCT");
+//        PageObject.click_Locator("fieldName:INT.LIQ.ACCT");
+//        PageObject.click_Locator("fieldName:CHRG.LIQ.ACCT");
+//
+//        PageObject.form_Tab("Rollover Info");
+//
+//        PageObject.click_Locator("fieldName:FINAL.MATURITY");
+//        PageObject.click_Locator("fieldName:EXP.DATE");
 
         String menu1 = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
@@ -42,7 +58,7 @@ public class AmendmentForTermDepositsRack extends BaseClass {
 
         PageObject.commitDeal("AmendmentForTermDepositsRack");
 
-//        PageObject.authorizeByTxn(testData.get("Transaction Number"));
+        PageObject.authorizeByTxn(testData.get("Transaction Number"));
 
 
         Txn = PageObject.getTxn();
@@ -132,7 +148,7 @@ public class AmendmentForTermDepositsRack extends BaseClass {
 
         PageObject.authorizeByTxn(testData.get("Transaction Number"));
 
-        PageObject.img_Button("Authorises a deal");
+//        PageObject.img_Button("Authorises a deal");
     }
 
     @DataProvider(name = "DataAmendmentForTermDepositsRack")

@@ -174,6 +174,8 @@ public class Accounts extends BaseClass {
         PageObject.textinput_Locator("fieldName:REFEREE",  REFEREE);
 
         PageObject.radiobutton_Locator("radio:tab1:BAF.PEN.ACCT", 1);
+
+//        PageObject.click_Locator("fieldName:ACC.OTH.FLAG:1");
         //Non mandatory fields:
 
 //        PageObject.textinput_Locator("fieldName:JOINT.HOLDER:1",  JOINT_HOLDER);
@@ -355,6 +357,9 @@ public class Accounts extends BaseClass {
         PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.1:1",  ACCOUNT_TITLE_1);
         PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.2:1",  ACCOUNT_TITLE_2);
         PageObject.textinput_Locator("fieldName:OTHER.OFFICER:1",  OTHER_OFFICER);
+
+//        PageObject.click_Locator("fieldName:MULTI.ACCT");
+
         PageObject.textinput_Locator("fieldName:REFEREE",  REFEREE);
 //        PageObject.textinput_Locator("fieldName:JOINT.HOLDER:1",  JOINT_HOLDER);
 //        PageObject.textinput_Locator("fieldName:RELATION.CODE:1",  RELATION_CODE);

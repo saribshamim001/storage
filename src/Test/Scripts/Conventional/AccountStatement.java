@@ -77,9 +77,15 @@ public class AccountStatement extends BaseClass {
         String menu1 = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
 
-        PageObject.textinput_Locator("value:1:1:1" , "20221201");
+//        PageObject.textinput_Locator("value:1:1:1" , "20221201");
         PageObject.textinput_Locator("value:2:1:1" , "1007609217");
         PageObject.find_Button();
+
+//        PageObject.textarea_Locator("fieldName:FROM.DATE","");
+//        PageObject.textarea_Locator("fieldName:TO.DATE","");
+//        PageObject.radiobutton_Locator("radio:mainTab:WAIVE.CHARGES",2);
+//        PageObject.select_Locator("fieldName:REASON","");
+
     }
 
     @Test(groups = {"Inputter"})

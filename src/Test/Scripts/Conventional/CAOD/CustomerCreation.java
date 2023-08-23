@@ -63,13 +63,25 @@ public class CustomerCreation extends BaseClass {
     PageObject.textinput_Locator("fieldName:SBP.IND.PARENT",SBPIndustryParent);
     PageObject.click_Locator("fieldName:SBP.INDUSTRY");
     PageObject.textinput_Locator("fieldName:SBP.INDUSTRY",SBPIndustry);
+//        PageObject.click_Locator("fieldName:CUS.CLASS");
+//        PageObject.click_Locator("fieldName:REL.MANAGER");
+//        PageObject.click_Locator("fieldName:CUS.TYPE.LC");
+//        PageObject.click_Locator("fieldName:NO.OF.EMP");
     PageObject.textinput_Locator("fieldName:ID.TYPE:1",CnicType);
     PageObject.textinput_Locator("fieldName:ID.NUMBER:1", CnicNumber);
     PageObject.click_Locator("fieldName:ID.VAL.DT:1");
     PageObject.textinput_Locator("fieldName:ID.VAL.DT:1", "20400101");
+//        PageObject.select_Locator("fieldName:VISUALY.IMPAIR","");
+//        PageObject.click_Locator("fieldName:NTN");
+//        PageObject.click_Locator("fieldName:INTRO.NO");
+//        PageObject.click_Locator("fieldName:REFFERED.BY");
+//        PageObject.select_Locator("fieldName:CUST.TITLE","");
     PageObject.click_Locator("fieldName:MNEMONIC");
     PageObject.textinput_Locator("fieldName:MNEMONIC",CustomerMnemonic);
     PageObject.textinput_Locator("fieldName:NAME.1:1","SomeTestingUser");
+        PageObject.click_Locator("fieldName:NAME.2:1");
+        PageObject.click_Locator("fieldName:SOLE.NAME");
+        PageObject.select_Locator("fieldName:A.ADDRESS.TYPE","");
     //        PageObject.textinput_Locator("fieldName:NAME.2:1","");
     //PageObject.textinput_Locator("fieldName:SHORT.NAME:1","Mrs. ABC");
     //        PageObject.select_Locator("fieldName:A.ADDRESS.TYPE","PERMANENT");
@@ -77,15 +89,40 @@ public class CustomerCreation extends BaseClass {
     PageObject.textarea_Locator("fieldName:ADD.H","SomeTestingAddress");
     PageObject.textinput_Locator("fieldName:STREET:1","SomeTestingStreet");
 
+//        PageObject.click_Locator("fieldName:TOWN.COUNTRY:1");
+//        PageObject.click_Locator("fieldName:POST.CODE:1");
+//        PageObject.click_Locator("fieldName:CUST.OFF.PHONE:1");
+//        PageObject.click_Locator("fieldName:CUST.PHONE.NO:1");
+//        PageObject.click_Locator("fieldName:CUST.MOB.PHONE:1");
+//        PageObject.click_Locator("fieldName:LANGUAGE");
+//        PageObject.click_Locator("fieldName:RELATION.CODE:1");
+//        PageObject.click_Locator("fieldName:REL.CUSTOMER:1");
+
     PageObject.click_Locator("fieldName:DATE.OF.BIRT.LC");
     PageObject.textinput_Locator("fieldName:NATIONALITY",Nationality);
     PageObject.textinput_Locator("fieldName:RESIDENCE",CountryResidence);
 
 
     PageObject.textinput_Locator("fieldName:DATE.OF.BIRT.LC","19800101");
+
+        PageObject.click_Locator("fieldName:BIRTH.INCORP.DATE");
+        PageObject.click_Locator("fieldName:PERSONAL.BANK");
+
     PageObject.textinput_Locator("fieldName:ACCOUNT.OFFICER","1099511041");
+
+//        PageObject.click_Locator("fieldName:OPEN.DATE");
+//        PageObject.click_Locator("fieldName:CRC");
+//        PageObject.select_Locator("fieldName:ASAN.ACCOUNT","");
+//        PageObject.select_Locator("fieldName:BAF.PREM.CUST","");
+//        PageObject.select_Locator("fieldName:BAF.PRM.THRSHLD","");
+
     PageObject.textinput_Locator("fieldName:FATCA.BIRTH.CON", CountryBirth);
     PageObject.textinput_Locator("fieldName:MB.FATH.HUS.NAM","SomeFather");
+
+//        PageObject.click_Locator("fieldName:VISA.NO");
+//        PageObject.click_Locator("fieldName:EXP.DATE");
+//
+//            PageObject.click_Locator("fieldName:INCM.LEVELSRC");
 
     PageObject.click_Locator("fieldName:CUS.CATEG:1");
     PageObject.textinput_Locator("fieldName:CUS.CATEG:1",ProductType);
@@ -96,6 +133,84 @@ public class CustomerCreation extends BaseClass {
     PageObject.textinput_Locator("fieldName:CREDIT.TURNOVER:1", MonthlyCredit);
     PageObject.select_Locator("fieldName:SEDING.FACTS:1","Not Applicable");
     PageObject.textarea_Locator("fieldName:FURTHER.DETAILS","Testing");
+
+//        PageObject.form_Tab("Introducer");
+//
+//        PageObject.click_Locator("fieldName:INTRO.ACC.NO");
+//        PageObject.click_Locator("fieldName:INTRO.MAINT.DAT");
+//        PageObject.click_Locator("fieldName:INTRO.NAME");
+//        PageObject.click_Locator("fieldName:INTRO.BNK.NAME:1");
+//        PageObject.click_Locator("fieldName:INTRO.BR.NAME:1");
+//        PageObject.click_Locator("fieldName:ITRO.ADD:1");
+//        PageObject.click_Locator("fieldName:INTRO.CON.NO");
+//
+//        PageObject.form_Tab("Contact Person");
+//
+//        PageObject.click_Locator("fieldName:CP.NAME:1");
+//        PageObject.click_Locator("fieldName:CP.TITLE:1");
+//        PageObject.click_Locator("fieldName:CP.ADD:1");
+//        PageObject.click_Locator("fieldName:CP.ADD2:1");
+//        PageObject.click_Locator("fieldName:CP.PH.OFF:1");
+//        PageObject.click_Locator("fieldName:CP.FAX.NO:1");
+//        PageObject.click_Locator("fieldName:CP.CELL.NO:1");
+//        PageObject.click_Locator("fieldName:CP.PH.RES:1");
+//
+//        PageObject.form_Tab("Guardian");
+
+//        PageObject.select_Locator("fieldName:GUARDIAN.TITLE","");
+//        PageObject.click_Locator("fieldName:MINOR.NAME");
+//        PageObject.click_Locator("fieldName:MINOR.ID.TYPE");
+//        PageObject.click_Locator("fieldName:MIN.ID.NO");
+//        PageObject.click_Locator("fieldName:P.ID.VALIDITY:1");
+//        PageObject.click_Locator("fieldName:GUARD.ADDRESS:1");
+//        PageObject.click_Locator("fieldName:MIN.FATH.NAME");
+//        PageObject.radiobutton_Locator("radio:tab4:REL.MINOR",1);
+//        PageObject.click_Locator("fieldName:GUARDIAN.DOB");
+//        PageObject.click_Locator("fieldName:GUARD.MOTH.MAID");
+//        PageObject.click_Locator("fieldName:GUARDIAN.MOBIL.");
+//        PageObject.click_Locator("fieldName:GUARDIAN.EMAIL");
+//        PageObject.radiobutton_Locator("radio:tab4:GUARDIAN.VIP",1);
+//        PageObject.click_Locator("fieldName:FATCA.CLS.GUARD");
+//        PageObject.click_Locator("fieldName:FATCA.G.TIN");
+//        PageObject.radiobutton_Locator("radio:tab4:FAT.GIN.W9",1);
+//        PageObject.radiobutton_Locator("radio:tab4:FAT.G.W8BEN",1);
+//        PageObject.click_Locator("fieldName:FAT.G.W8BEN.DT");
+//        PageObject.radiobutton_Locator("radio:tab4:FAT.G.W8ECI",1);
+//        PageObject.click_Locator("fieldName:FAT.G.W8ECI.DT");
+//        PageObject.radiobutton_Locator("radio:tab4:FAT.G.W8IMY",1);
+//        PageObject.radiobutton_Locator("radio:tab4:FAT.G.FORM8233",1);
+//        PageObject.click_Locator("fieldName:FAT.G.8233.DT");
+//        PageObject.radiobutton_Locator("radio:tab4:FAT.G.NONUSPAS",1);
+//        PageObject.click_Locator("fieldName:FAT.G.NONUS.DT");
+//        PageObject.radiobutton_Locator("radio:tab4:FAT.G.LOSSUSNAT",1);
+//        PageObject.radiobutton_Locator("radio:tab4:FAT.G.IDDOC",1);
+//        PageObject.click_Locator("fieldName:FAT.G.IDDOC.DT");
+//        PageObject.radiobutton_Locator("radio:tab4:FAT.G.USNATION",1);
+//        PageObject.radiobutton_Locator("radio:tab4:FAT.G.NOFATCA",1);
+//        PageObject.radiobutton_Locator("radio:tab4:FATCA.G.DOC.PEN",1);
+
+//        PageObject.form_Tab("PK.PREMIER");
+//
+//        PageObject.radiobutton_Locator("radio:tab5:BAF.PRM.ACT.HLD",1);
+//        PageObject.click_Locator("fieldName:PREM.EXIST.ACCT");
+//        PageObject.select_Locator("fieldName:PREM.UPD.INFO","");
+//        PageObject.click_Locator("fieldName:BAF.PRM.REL.BAN");
+//        PageObject.click_Locator("fieldName:PREM.BRNCH.NAME");
+//        PageObject.select_Locator("fieldName:PREM.BANK.PROD:1","");
+//        PageObject.radiobutton_Locator("radio:tab5:BAF.PRM.PRT.CUS",1);
+//        PageObject.select_Locator("fieldName:BAF.PREM.DISCON","");
+//        PageObject.click_Locator("fieldName:BAF.PRM.WED.DT");
+//        PageObject.click_Locator("fieldName:BAF.NAME.SPOUSE");
+//        PageObject.click_Locator("fieldName:BAF.SPOUSE.DOB");
+//        PageObject.click_Locator("fieldName:BAF.PRM.CHLD.NM:1");
+//        PageObject.click_Locator("fieldName:BAF.PRM.CHD.DOB:1");
+//        PageObject.select_Locator("fieldCaption:BAF.PREM.RATING","");
+//        PageObject.select_Locator("fieldName:BAF.PREM.ATTRIB","");
+//        PageObject.select_Locator("fieldName:BAF.PREM.LOYLTY","");
+//        PageObject.select_Locator("fieldName:BAF.RM.CONTACT","");
+//        PageObject.select_Locator("fieldName:BAF.PRM.MEDIUM","");
+//        PageObject.select_Locator("fieldName:PREM.PREF.TIME","");
+//        PageObject.click_Locator("fieldName:PRM.RM.CD");
 
     PageObject.commitDeal("CaoCustomerCreation");
 
@@ -142,9 +257,114 @@ public class CustomerCreation extends BaseClass {
         PageObject.textinput_Locator("transactionId",testData.get("txn"));
         //PageObject.commitDeal("CaoCustomerUpdation");
         PageObject.img_Button("Edit a contract");
+
+//        PageObject.click_Locator("fieldName:CRP.TYPE");
+//        PageObject.click_Locator("fieldName:SRC.FUNDS");
+//        PageObject.click_Locator("fieldName:TEXT:1");
+//        PageObject.radiobutton_Locator("radio:mainTab:CUS.PEP",1);
+
         PageObject.textinput_Locator("fieldName:MB.FATH.HUS.NAM",testData.get("FatherName"));
         PageObject.textinput_Locator("fieldName:CUST.OFF.PHONE:1",testData.get("cellPhone"));
+
+//        PageObject.click_Locator("fieldName:INCM.LEVELSRC");
+//        PageObject.click_Locator("fieldName:CUS.CATEG:1");
+//        PageObject.click_Locator("fieldName:CRP.CHANNEL:1");
+//        PageObject.click_Locator("fieldName:DELIVERY.WDRAW:1");
+//        PageObject.click_Locator("fieldName:EXP.GEO.INT:1");
+//        PageObject.click_Locator("fieldName:EXP.GEO.INT:2");
+//        PageObject.click_Locator("fieldName:EXP.GEO.LOCAL:1");
+//        PageObject.click_Locator("fieldName:CREDIT.TURNOVER:1");
+//        PageObject.select_Locator("fieldName:SEDING.FACTS:1","Not Applicable");
+//        PageObject.textarea_Locator("fieldName:FURTHER.DETAILS","");
+
+
+
+//        PageObject.form_Tab("Introducer");
+//
+//        PageObject.click_Locator("fieldName:INTRO.ACC.NO");
+//        PageObject.click_Locator("fieldName:INTRO.MAINT.DAT");
+//        PageObject.click_Locator("fieldName:INTRO.NAME");
+//        PageObject.click_Locator("fieldName:INTRO.BNK.NAME:1");
+//        PageObject.click_Locator("fieldName:INTRO.BR.NAME:1");
+//        PageObject.click_Locator("fieldName:ITRO.ADD:1");
+//        PageObject.click_Locator("fieldName:INTRO.CON.NO");
+//
+//        PageObject.form_Tab("Contact Person");
+//
+//        PageObject.click_Locator("fieldName:CP.NAME:1");
+//        PageObject.click_Locator("fieldName:CP.TITLE:1");
+//        PageObject.click_Locator("fieldName:CP.ADD:1");
+//        PageObject.click_Locator("fieldName:CP.ADD2:1");
+//        PageObject.click_Locator("fieldName:CP.PH.OFF:1");
+//        PageObject.click_Locator("fieldName:CP.FAX.NO:1");
+//        PageObject.click_Locator("fieldName:CP.CELL.NO:1");
+//        PageObject.click_Locator("fieldName:CP.PH.RES:1");
+
+//        PageObject.form_Tab("Guardian");
+//
+//        PageObject.select_Locator("fieldName:GUARDIAN.TITLE","");
+//        PageObject.click_Locator("fieldName:MINOR.NAME");
+//        PageObject.click_Locator("fieldName:MINOR.ID.TYPE");
+//        PageObject.click_Locator("fieldName:MIN.ID.NO");
+//        PageObject.click_Locator("fieldName:P.ID.VALIDITY:1");
+//        PageObject.click_Locator("fieldName:GUARD.ADDRESS:1");
+//        PageObject.click_Locator("fieldName:MIN.FATH.NAME");
+//        PageObject.radiobutton_Locator("radio:tab4:REL.MINOR",1);
+//        PageObject.click_Locator("fieldName:GUARDIAN.DOB");
+//        PageObject.click_Locator("fieldName:GUARD.MOTH.MAID");
+//        PageObject.click_Locator("fieldName:GUARDIAN.MOBIL.");
+//        PageObject.click_Locator("fieldName:GUARDIAN.EMAIL");
+//        PageObject.radiobutton_Locator("radio:tab4:GUARDIAN.VIP",1);
+//        PageObject.click_Locator("fieldName:FATCA.CLS.GUARD");
+//        PageObject.click_Locator("fieldName:FATCA.G.TIN");
+//        PageObject.radiobutton_Locator("radio:tab4:FAT.GIN.W9",1);
+//        PageObject.radiobutton_Locator("radio:tab4:FAT.G.W8BEN",1);
+//        PageObject.click_Locator("fieldName:FAT.G.W8BEN.DT");
+//        PageObject.radiobutton_Locator("radio:tab4:FAT.G.W8ECI",1);
+//        PageObject.click_Locator("fieldName:FAT.G.W8ECI.DT");
+//        PageObject.radiobutton_Locator("radio:tab4:FAT.G.W8IMY",1);
+//        PageObject.radiobutton_Locator("radio:tab4:FAT.G.FORM8233",1);
+//        PageObject.click_Locator("fieldName:FAT.G.8233.DT");
+//        PageObject.radiobutton_Locator("radio:tab4:FAT.G.NONUSPAS",1);
+//        PageObject.click_Locator("fieldName:FAT.G.NONUS.DT");
+//        PageObject.radiobutton_Locator("radio:tab4:FAT.G.LOSSUSNAT",1);
+//        PageObject.radiobutton_Locator("radio:tab4:FAT.G.IDDOC",1);
+//        PageObject.click_Locator("fieldName:FAT.G.IDDOC.DT");
+//        PageObject.radiobutton_Locator("radio:tab4:FAT.G.USNATION",1);
+//        PageObject.radiobutton_Locator("radio:tab4:FAT.G.NOFATCA",1);
+//        PageObject.radiobutton_Locator("radio:tab4:FATCA.G.DOC.PEN",1);
+
+//        PageObject.form_Tab("PK.PREMIER");
+//
+//        PageObject.radiobutton_Locator("radio:tab5:BAF.PRM.ACT.HLD",1);
+//        PageObject.click_Locator("fieldName:PREM.EXIST.ACCT");
+//        PageObject.select_Locator("fieldName:PREM.UPD.INFO","");
+//        PageObject.click_Locator("fieldName:BAF.PRM.REL.BAN");
+//        PageObject.click_Locator("fieldName:PREM.BRNCH.NAME");
+//        PageObject.select_Locator("fieldName:PREM.BANK.PROD:1","");
+//        PageObject.radiobutton_Locator("radio:tab5:BAF.PRM.PRT.CUS",1);
+//        PageObject.select_Locator("fieldName:BAF.PREM.DISCON","");
+//        PageObject.click_Locator("fieldName:BAF.PRM.WED.DT");
+//        PageObject.click_Locator("fieldName:BAF.NAME.SPOUSE");
+//        PageObject.click_Locator("fieldName:BAF.SPOUSE.DOB");
+//        PageObject.click_Locator("fieldName:BAF.PRM.CHLD.NM:1");
+//        PageObject.click_Locator("fieldName:BAF.PRM.CHD.DOB:1");
+//        PageObject.select_Locator("fieldCaption:BAF.PREM.RATING","");
+//        PageObject.select_Locator("fieldName:BAF.PREM.ATTRIB","");
+//        PageObject.select_Locator("fieldName:BAF.PREM.LOYLTY","");
+//        PageObject.select_Locator("fieldName:BAF.RM.CONTACT","");
+//        PageObject.select_Locator("fieldName:BAF.PRM.MEDIUM","");
+//        PageObject.select_Locator("fieldName:PREM.PREF.TIME","");
+//        PageObject.click_Locator("fieldName:PRM.RM.CD");
+
         PageObject.commitDeal("CaoUpdatingCustomer");
+
+
+
+
+
+
+
     }
 
 
@@ -232,7 +452,7 @@ public class CustomerCreation extends BaseClass {
 
     /*__________________________________________________________________________________________________*/
 
-    @Test(groups = {"CaoInputter"}, dataProvider = "corporateCustomerCreation" )
+    @Test(groups = {"caouser001"}, dataProvider = "corporateCustomerCreation" )
     public void corporateCustomerCreation(Map<String, String> testData) throws IOException {
 
         String EntityType = testData.get("EntityType");
@@ -270,6 +490,13 @@ public class CustomerCreation extends BaseClass {
         PageObject.textinput_Locator("fieldName:SBP.IND.PARENT",SBPIndustryParent);
         PageObject.click_Locator("fieldName:SBP.INDUSTRY");
         PageObject.textinput_Locator("fieldName:SBP.INDUSTRY",SBPIndustry);
+
+//        PageObject.select_Locator("fieldName:CUST.SEGMENT","");
+//        PageObject.radiobutton_Locator("radio:mainTab:SME.TYPE",1);
+//        PageObject.select_Locator("fieldName:CUS.CLASS","N.A");
+//        PageObject.click_Locator("fieldName:REL.MANAGER");
+//        PageObject.click_Locator("fieldName:CUS.TYPE.LC");
+
         PageObject.textinput_Locator("fieldName:ID.TYPE:1",CnicType);
         PageObject.textinput_Locator("fieldName:ID.NUMBER:1", CnicNumber);
         PageObject.click_Locator("fieldName:ID.VAL.DT:1");
@@ -277,6 +504,8 @@ public class CustomerCreation extends BaseClass {
         PageObject.click_Locator("fieldName:MNEMONIC");
         PageObject.textinput_Locator("fieldName:MNEMONIC",CustomerMnemonic);
         PageObject.textinput_Locator("fieldName:NAME.1:1","SomeTestingUser");
+        PageObject.click_Locator("fieldName:NAME.2:1");
+        PageObject.select_Locator("fieldName:A.ADDRESS.TYPE","");
         //        PageObject.textinput_Locator("fieldName:NAME.2:1","");
         //PageObject.textinput_Locator("fieldName:SHORT.NAME:1","Mrs. ABC");
         //        PageObject.select_Locator("fieldName:A.ADDRESS.TYPE","PERMANENT");
@@ -284,9 +513,19 @@ public class CustomerCreation extends BaseClass {
         PageObject.textarea_Locator("fieldName:ADD.H","SomeTestingAddress");
         PageObject.textinput_Locator("fieldName:STREET:1","SomeTestingStreet");
 
+//        PageObject.click_Locator("fieldName:TOWN.COUNTRY:1");
+//        PageObject.click_Locator("fieldName:POST.CODE:1");
+//        PageObject.click_Locator("fieldName:CUST.OFF.PHONE:1");
+
         PageObject.click_Locator("fieldName:BIRTH.INCORP.DATE");
         PageObject.textinput_Locator("fieldName:NATIONALITY",Nationality);
         PageObject.textinput_Locator("fieldName:RESIDENCE",CountryResidence);
+
+//        PageObject.click_Locator("fieldName:RELATION.CODE:1");
+//        PageObject.click_Locator("fieldName:REL.CUSTOMER:1");
+//        PageObject.click_Locator("fieldName:PERSONAL.BANK");
+//        PageObject.click_Locator("fieldName:OTHER.OFFICER:1");
+//        PageObject.click_Locator("fieldName:CRC");
 
 
         PageObject.textinput_Locator("fieldName:BIRTH.INCORP.DATE","19800101");
@@ -303,6 +542,27 @@ public class CustomerCreation extends BaseClass {
         PageObject.textinput_Locator("fieldName:CREDIT.TURNOVER:1", MonthlyCredit);
         PageObject.select_Locator("fieldName:SEDING.FACTS:1","Not Applicable");
         PageObject.textarea_Locator("fieldName:FURTHER.DETAILS","Testing");
+
+//        PageObject.form_Tab("Introducer");
+//
+//        PageObject.click_Locator("fieldName:INTRO.ACC.NO");
+//        PageObject.click_Locator("fieldName:INTRO.MAINT.DAT");
+//        PageObject.click_Locator("fieldName:INTRO.NAME");
+//        PageObject.click_Locator("fieldName:INTRO.BNK.NAME:1");
+//        PageObject.click_Locator("fieldName:INTRO.BR.NAME:1");
+//        PageObject.click_Locator("fieldName:ITRO.ADD:1");
+//        PageObject.click_Locator("fieldName:INTRO.CON.NO");
+//
+//        PageObject.form_Tab("Contact Person");
+//
+//        PageObject.click_Locator("fieldName:CP.NAME:1");
+//        PageObject.click_Locator("fieldName:CP.TITLE:1");
+//        PageObject.click_Locator("fieldName:CP.ADD:1");
+//        PageObject.click_Locator("fieldName:CP.ADD2:1");
+//        PageObject.click_Locator("fieldName:CP.PH.OFF:1");
+//        PageObject.click_Locator("fieldName:CP.FAX.NO:1");
+//        PageObject.click_Locator("fieldName:CP.CELL.NO:1");
+//        PageObject.click_Locator("fieldName:CP.PH.RES:1");
 
         PageObject.commitDeal("corporateCustomerCreation");
 

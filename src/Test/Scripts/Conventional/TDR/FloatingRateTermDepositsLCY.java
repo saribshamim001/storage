@@ -43,14 +43,13 @@ public class FloatingRateTermDepositsLCY extends BaseClass {
 
         PageObject.textinput_Locator("fieldName:AMOUNT:1",testData.get("AMOUNT:1"));
 
-        driver.findElement(By.xpath("///*[@id=\"fieldName:DRAWDOWN.ACCOUNT\"        ]")).sendKeys("1004057212");
+        driver.findElement(By.xpath("///*[@id=\"fieldName:DRAWDOWN.ACCOUNT\"]")).sendKeys("1004057212");
         PageObject.textinput_Locator("fieldName:PRIN.LIQ.ACCT","PRIN.LIQ.ACCT");
         PageObject.textinput_Locator("fieldName:INT.LIQ.ACCT","INT.LIQ.ACCT");
         PageObject.select_Locator("fieldName:LD.PP.TERM","MONTHLY");
         PageObject.radiobutton_Locator("radio:tab1:ZAKAT.EXEMP.LD",1);
         PageObject.radiobutton_Locator("radio:tab1:PROFIT.EXEMP.LD",1);
-
-        PageObject.click_Locator("fieldName:DRAWDOWN.ACCOUNT");
+//or("fieldName:EXP.DATE");
 
 //        String menu2 = PageObject.switchToChildWindow();
 
@@ -67,8 +66,14 @@ public class FloatingRateTermDepositsLCY extends BaseClass {
 
 //        PageObject.form_Tab("Rollover Info");
         PageObject.radiobutton_Locator("radio:tab1:ZAKAT.EXEMP.LD",Integer.parseInt(testData.get("ZAKAT.EXEMP.LD")));
-        PageObject.radiobutton_Locator("radio:tab1:PROFIT.EXEMP.LD",Integer.parseInt(testData.get("PROFIT.EXEMP.LD")));
+            PageObject.radiobutton_Locator("radio:tab1:PROFIT.EXEMP.LD",Integer.parseInt(testData.get("PROFIT.EXEMP.LD")));
 
+
+//        PageObject.click_Locator("fieldName:REST.PERIOD.LD");
+//        PageObject.click_Locator("fieldName:INTEND.DATE");
+//        PageObject.click_Locator("fieldName:CHRG.CODE:1");
+//        PageObject.click_Locator("fieldName:CHRG.AMOUNT:1");
+//        PageObject.click_Locat
 
 //        PageObject.commitDeal("FloatingRateTermDepositsLCY");
         driver.findElement(By.xpath("//tr/td/a/img[@alt='Commit the deal']")).click();
@@ -76,7 +81,7 @@ public class FloatingRateTermDepositsLCY extends BaseClass {
             WebElement override = driver.findElement(By.xpath("//tr/td/a[text()='Accept Overrides']"));
             override.click();
         }
-        PageObject.commitDeal("FloatingRateTermDepositsLCY");
+       // PageObject.commitDeal("FloatingRateTermDepositsLCY");
 
 
 

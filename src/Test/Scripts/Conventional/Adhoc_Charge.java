@@ -40,6 +40,18 @@ public class Adhoc_Charge  extends BaseClass {
         driver.findElement(By.xpath("//input[@id='fieldName:CHARGE.CODE:1']")).sendKeys("CCRS");
         driver.findElement(By.xpath(" //input[@id='fieldName:EXTRA.DETAILS:1']")).sendKeys("Testing");
 
+//        PageObject.form_Tab("Delivery Dets");
+//
+//        PageObject.textarea_Locator("fieldName:MSG.SERIES","");
+//        PageObject.textarea_Locator("fieldName:RELATED.REF","");
+//        PageObject.radiobutton_Locator("radio:tab2:ORD.INST.TYPE",1);
+//        PageObject.textarea_Locator("fieldName:ORDERING.INST:1","");
+//        PageObject.radiobutton_Locator("radio:tab2:ACCT.WITH.TYPE",1);
+//        PageObject.textarea_Locator("fieldName:ACCT.WITH.BANK:1","");
+//        PageObject.textarea_Locator("fieldName:SENDER.DETAIL","");
+//        PageObject.textarea_Locator("fieldName:SENDER.INFO:1","");
+//        PageObject.textarea_Locator("fieldName:REMARKS:1","");
+
         PageObject.commitDeal("AdhocChargeFixedRate");
         String txn = PageObject.getTxn();
         System.out.println(txn);
@@ -77,6 +89,18 @@ public class Adhoc_Charge  extends BaseClass {
         PageObject.switchFrame(2);
         driver.findElement(By.xpath("//input[@id='fieldName:CHARGE.CODE:1']")).sendKeys("ASP");
         driver.findElement(By.xpath(" //input[@id='fieldName:EXTRA.DETAILS:1']")).sendKeys("Testing");
+
+//        PageObject.form_Tab("Delivery Dets");
+//
+//        PageObject.textarea_Locator("fieldName:MSG.SERIES","");
+//        PageObject.textarea_Locator("fieldName:RELATED.REF","");
+//        PageObject.radiobutton_Locator("radio:tab2:ORD.INST.TYPE",1);
+//        PageObject.textarea_Locator("fieldName:ORDERING.INST:1","");
+//        PageObject.radiobutton_Locator("radio:tab2:ACCT.WITH.TYPE",1);
+//        PageObject.textarea_Locator("fieldName:ACCT.WITH.BANK:1","");
+//        PageObject.textarea_Locator("fieldName:SENDER.DETAIL","");
+//        PageObject.textarea_Locator("fieldName:SENDER.INFO:1","");
+//        PageObject.textarea_Locator("fieldName:REMARKS:1","");
 
         PageObject.commitDeal("AdhocChargeChangeableRate");
         String txn = PageObject.getTxn();

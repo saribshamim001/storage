@@ -91,8 +91,13 @@ public class AlfalahSpecialRateTDR_IBG extends BaseClass {
         PageObject.img_Button("Validate a deal");
         PageObject.textinput_Locator("fieldName:VALUE.DATE",testData.get("VALUE.DATE"));//20230702
         PageObject.textinput_Locator("fieldName:INTEREST.RATE:1",testData.get("INTEREST.RATE:1"));//1000
-        PageObject.img_Button("Validate a deal");
-        //PageObject.commitDeal("AlfalahIslamicSpRateTDRMonthlyProfit");
+        PageObject.form_Tab(" Settlement / Charges Details");
+        PageObject.textinput_Locator("fieldName:DRAWDOWN.ACCOUNT",testData.get("DRAWDOWN.ACCOUNT"));
+        PageObject.click_Locator("fieldName:PRIN.LIQ.ACCT");
+        PageObject.textinput_Locator("fieldName:PRIN.LIQ.ACCT",testData.get("PRIN.LIQ.ACCT"));
+        PageObject.textinput_Locator("fieldName:INT.LIQ.ACCT",testData.get("INT.LIQ.ACCT"));
+        //PageObject.img_Button("Validate a deal");
+        PageObject.commitDeal("AlfalahIslamicSpRateTDRMonthlyProfit");
 
     }
 
@@ -148,8 +153,13 @@ public class AlfalahSpecialRateTDR_IBG extends BaseClass {
         PageObject.click_Locator("fieldName:AMOUNT:1");
         PageObject.textinput_Locator("fieldName:AMOUNT:1", testData.get("AMOUNT:1"));//100
         PageObject.textinput_Locator("fieldName:INTEREST.RATE:1",testData.get("INTEREST.RATE:1"));
-        PageObject.img_Button("Validate a deal");
-        //PageObject.commitDeal("DealslipforspecialTDR");
+        PageObject.form_Tab(" Settlement / Charges Details");
+        PageObject.textinput_Locator("fieldName:DRAWDOWN.ACCOUNT",testData.get("DRAWDOWN.ACCOUNT"));
+        PageObject.click_Locator("fieldName:PRIN.LIQ.ACCT");
+        PageObject.textinput_Locator("fieldName:PRIN.LIQ.ACCT",testData.get("PRIN.LIQ.ACCT"));
+        PageObject.textinput_Locator("fieldName:INT.LIQ.ACCT",testData.get("INT.LIQ.ACCT"));
+        //PageObject.img_Button("Validate a deal");
+        PageObject.commitDeal("DealslipforspecialTDR");
 
     }
 
