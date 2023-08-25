@@ -22,6 +22,9 @@ public class BlockAccount extends BaseClass {
         PageObject.img_Button("New Deal");
 
         PageObject.textinput_Locator("fieldName:ACCOUNT.NUMBER" , "");
+
+//        PageObject.textarea_Locator("fieldName:DESCRIPTION","DESCRIPTION");
+
         PageObject.textinput_Locator("fieldName:FROM.DATE" , "");
         PageObject.textinput_Locator("fieldName:TO.DATE" , "");
         PageObject.textinput_Locator("fieldName:LOCKED.AMOUNT" , "");

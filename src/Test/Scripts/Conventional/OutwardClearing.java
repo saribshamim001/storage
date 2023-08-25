@@ -41,6 +41,9 @@ public class OutwardClearing extends BaseClass {
         PageObject.textinput_Locator("fieldName:BANKS:1","001");
         PageObject.textinput_Locator("fieldName:BRANCHES:1","001.1002");
 
+//        PageObject.textinput_Locator("fieldName:DEPT.SLIP.NO","");
+//        PageObject.textinput_Locator("fieldName:NARRATION","");
+
         PageObject.commitDeal("Outward Clearing ");
 
         outwardTxn = PageObject.getTxn();

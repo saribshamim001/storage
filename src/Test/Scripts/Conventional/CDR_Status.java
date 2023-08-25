@@ -81,12 +81,13 @@ public class CDR_Status extends BaseClass {
     @Test(groups = {"Authorizer"})
 
     public void CDRStatusStop_Auth() throws IOException, InterruptedException {
-
+        PageObject.switchFrame(1);
         PageObject.menu_Dropdown("Manager Operation Menu");
         PageObject.menu_Dropdown("Core Retail Menu");
 
-        PageObject.menu_Dropdown("Call Deposit Receipt- Authorizer Menu");
-        PageObject.menu_Dropdown("Call Deposit Receipt Maintenance Authorize");
+
+        PageObject.childmenu_Link("Call Deposit Receipt- Authorizer Menu",0);
+        PageObject.childmenu_Link("Call Deposit Receipt Maintenance Authorize",0);
 
         PageObject.menu_Link("Authorisation Change Status of Instrument ");
 

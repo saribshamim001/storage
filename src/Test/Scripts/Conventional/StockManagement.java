@@ -34,6 +34,8 @@ public class StockManagement extends BaseClass {
         PageObject.textinput_Locator("fieldName:DEBIT.AMOUNT",testData.get("Amount"));
         PageObject.textinput_Locator("fieldName:INVOICE.NUMBER",testData.get("InvoiceNum"));
 
+        PageObject.textinput_Locator("fieldName:A.REMARKS",testData.get("A.REMARKS"));
+
         PageObject.commitDeal("StockManagement_StocksReceived");
         String txn = PageObject.getTxn();
         System.out.println(txn);

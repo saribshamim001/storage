@@ -54,7 +54,9 @@ public class CDRInwardClearing extends BaseClass {
 
         PageObject.textinput_Locator("fieldName:BANK.SORT.CODE:1", testData.get("BANK.SORT.CODE:1"));
 
-        PageObject.commitDeal("CDRInwardClearingNormal");
+//        PageObject.textarea_Locator("fieldName:CL.RET.CODE:1",testData.get("CL.RET.CODE:1"));
+
+        //PageObject.commitDeal("CDRInwardClearingNormal");
 
     }
 

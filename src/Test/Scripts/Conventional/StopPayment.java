@@ -35,6 +35,7 @@ public class StopPayment extends BaseClass {
         PageObject.select_Locator("fieldName:WAIVE.CHARGE:1",testData.get("Waive"));
         PageObject.textinput_Locator("fieldName:BENEFICIARY:1",testData.get("Beneficiary"));
         PageObject.textinput_Locator("fieldName:LAST.CHEQUE.NO:1",testData.get("Remarks"));
+        PageObject.textinput_Locator("fieldName:REMARKS:1:1",testData.get("REMARKS:1:1"));
 //        PageObject.commitDeal("stopPaymentChequeBook");
 
         //2 times
@@ -79,6 +80,9 @@ public class StopPayment extends BaseClass {
         PageObject.textinput_Locator("fieldName:LAST.CHEQUE.NO:1",testData.get("Cheque Num"));
 
         PageObject.select_Locator("fieldName:WAIVE.CHARGE:1",testData.get("Waive"));
+
+        PageObject.textinput_Locator("fieldName:BENEFICIARY:1",testData.get("BENEFICIARY:1"));
+        PageObject.textinput_Locator("fieldName:REMARKS:1:1",testData.get("REMARKS:1:1"));
 
         PageObject.commitDeal("stopPaymentOfCheque");
         //2 times
@@ -171,6 +175,7 @@ public class StopPayment extends BaseClass {
         Sheet sheet = workbook.getSheet("stopPaymentChequeBook"); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = (sheet.getRow(0).getPhysicalNumberOfCells());
+        //rowCount=2;
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 
         for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row

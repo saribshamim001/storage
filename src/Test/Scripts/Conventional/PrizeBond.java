@@ -30,6 +30,8 @@ public class PrizeBond extends BaseClass {
         PageObject.textinput_Locator("fieldName:TELLER.ID.1","1005");
         PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1","10");
 
+//        PageObject.textinput_Locator("fieldName:NARRATIVE.1:1:1","");
+
         PageObject.commitDeal("LCY Till Transfer PB");
         lcyTxn = PageObject.getTxn();
     }
@@ -49,6 +51,9 @@ public class PrizeBond extends BaseClass {
         PageObject.img_Button("New Deal");
 
         PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1","10");
+
+//        PageObject.textinput_Locator("fieldName:NARRATIVE.1:1:1","");
+
         PageObject.commitDeal("Till To Vault PB");
         tillToVaultTxn = PageObject.getTxn();
 
@@ -69,6 +74,9 @@ public class PrizeBond extends BaseClass {
         PageObject.img_Button("New Deal");
 
         PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1","10");
+
+//        PageObject.textinput_Locator("fieldName:NARRATIVE.1:1:1","");
+
         PageObject.commitDeal("Vault To Till PB");
         vaultToTillTxn = PageObject.getTxn();
 
@@ -88,6 +96,14 @@ public class PrizeBond extends BaseClass {
 
         PageObject.img_Button("New Deal");
 
+//        PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1","");
+//        PageObject.textinput_Locator("radio:tab1:AML.TYP.CUST",1);
+//        PageObject.textinput_Locator("fieldName:CX.ACCOUNT","");
+//        PageObject.textarea_Locator("fieldName:NAME.COND.TXN","");
+//        PageObject.textinput_Locator("fieldName:TT.ID.TYPE:1","");
+//        PageObject.textarea_Locator("fieldName:TT.ID.VAL.DT:1","");
+//        PageObject.textinput_Locator("fieldName:CNIC.NO","");
+
     }
 
     @Test(groups = {"Inputter"})
@@ -103,6 +119,14 @@ public class PrizeBond extends BaseClass {
         PageObject.switchFrame(2);
 
         PageObject.img_Button("New Deal");
+
+       // PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1","");
+//        PageObject.textinput_Locator("radio:tab1:AML.TYP.CUST",1);
+//        PageObject.textinput_Locator("fieldName:CX.ACCOUNT","");
+//        PageObject.textarea_Locator("fieldName:NAME.COND.TXN","");
+//        PageObject.textinput_Locator("fieldName:TT.ID.TYPE:1","");
+//        PageObject.textarea_Locator("fieldName:TT.ID.VAL.DT:1","");
+//        PageObject.textinput_Locator("fieldName:CNIC.NO","");
 
     }
 

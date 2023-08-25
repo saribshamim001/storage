@@ -22,7 +22,7 @@ public class TillTransferCash extends BaseClass {
         PageObject.menu_Dropdown("Teller");
         PageObject.menu_Dropdown("Teller Menu");
         PageObject.menu_Dropdown("Till Transfer (CASH)");
-        PageObject.childmenu_Link("Vault To Till ",2);
+        PageObject.menu_Link("Vault To Till ");
 
         PageObject.parentFrame();
         PageObject.switchFrame(2);
@@ -31,6 +31,9 @@ public class TillTransferCash extends BaseClass {
 
         PageObject.textinput_Locator("fieldName:CURRENCY.1", "PKR");
         PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1", "10");
+
+        PageObject.textinput_Locator("fieldName:AMOUNT.FCY.1:1","");
+        PageObject.textinput_Locator("fieldName:NARRATIVE.1:1:1","");
 //        PageObject.textinput_Locator("fieldName:AMOUNT.FCY.1:1", "10");
 
         PageObject.commitDeal("Vault To Till");
@@ -54,6 +57,9 @@ public class TillTransferCash extends BaseClass {
 //        PageObject.textinput_Locator("fieldName:TELLER.ID.1", "1005");
         PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1", "10");
 
+//        PageObject.textinput_Locator("fieldName:TELLER.ID.1","");
+//        PageObject.textinput_Locator("fieldName:NARRATIVE.1:1:1","");
+
         PageObject.commitDeal("LCY Till Transfer");
         lcyTxn = PageObject.getTxn();
     }
@@ -76,6 +82,9 @@ public class TillTransferCash extends BaseClass {
         PageObject.textinput_Locator("fieldName:CURRENCY.1", "USD");
         PageObject.textinput_Locator("fieldName:AMOUNT.FCY.1:1", "10");
 
+    //        PageObject.textinput_Locator("fieldName:TELLER.ID.1","");
+    //        PageObject.textinput_Locator("fieldName:NARRATIVE.1:1:1","");
+
         PageObject.commitDeal("FCY Till Transfer");
         fcyTxn = PageObject.getTxn();
     }
@@ -97,6 +106,8 @@ public class TillTransferCash extends BaseClass {
         PageObject.textinput_Locator("fieldName:CURRENCY.1", "USD");
         PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1", "");
         PageObject.textinput_Locator("fieldName:AMOUNT.FCY.1:1", "10");
+
+//        PageObject.textinput_Locator("fieldName:NARRATIVE.1:1:1","");
 
         PageObject.commitDeal("Till To Vault");
         tillToVaultTxn = PageObject.getTxn();
@@ -121,6 +132,8 @@ public class TillTransferCash extends BaseClass {
         PageObject.click_Locator("fieldName:TELLER.ID.2");
         PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1", "10");
 
+//        PageObject.textinput_Locator("fieldName:NARRATIVE.1:1:1","");
+
         PageObject.commitDeal("Till To ATM");
         tillToATMTxn = PageObject.getTxn();
     }
@@ -144,6 +157,8 @@ public class TillTransferCash extends BaseClass {
         Thread.sleep(8000);
         PageObject.click_Locator("fieldName:TELLER.ID.1");
         PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1", "10");
+
+//        PageObject.textinput_Locator("fieldName:NARRATIVE.1:1:1","");
 
 
         PageObject.commitDeal("Till To ATM");

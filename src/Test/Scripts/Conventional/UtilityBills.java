@@ -110,6 +110,8 @@ public class UtilityBills extends BaseClass {
         PageObject.click_Locator("fieldName:DEN.AMT:8");
         PageObject.textinput_Locator("fieldName:DEN.AMT:8","1");
 
+        PageObject.textinput_Locator("fieldName:DEN.AMT:1","");
+
         PageObject.commitDeal("UtilityBillsAgainstCash");
         String txn = PageObject.getTxn();
         System.out.println(txn);

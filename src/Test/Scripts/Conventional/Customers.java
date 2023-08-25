@@ -223,6 +223,9 @@ public class Customers extends BaseClass {
         PageObject.textinput_Locator("fieldName:CRP.TYPE",column.get("CRP_TYPE"));
 
         //PageObject.textinput_Locator("fieldName:TARGET",column.get("TARGET"));
+
+//        PageObject.textarea_Locator("fieldName:TEXT:1","");
+
         PageObject.click_Locator("fieldName:NAME.1:1");
         PageObject.textinput_Locator("fieldName:TARGET",column.get("TARGET"));
         PageObject.click_Locator("fieldName:NAME.1:1");

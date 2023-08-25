@@ -41,6 +41,10 @@ public class FeeCollection extends BaseClass {
 
         PageObject.textinput_Locator("fieldName:DEBIT.AMOUNT","2");
 
+//       PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1","");
+//       PageObject.textinput_Locator("fieldName:COMMISSION.AMT:1","");
+//       PageObject.textinput_Locator("fieldName:VALUE:1","");
+
         PageObject.commitDeal("Fee Collection");
         String txn = PageObject.getTxn();
         System.out.println(txn);
@@ -78,6 +82,10 @@ public class FeeCollection extends BaseClass {
         PageObject.switchFrame(2);
         PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER","6200021458");
         PageObject.textinput_Locator("fieldName:A.CHEQUE.DATE","20221220");
+
+//        PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1","");
+//        PageObject.textinput_Locator("fieldName:COMMISSION.AMT:1","");
+//        PageObject.textinput_Locator("fieldName:VALUE:1","");
         //PageObject.commitDeal("Multi Fee Collection");
         driver.close();
     }
@@ -99,8 +107,10 @@ public class FeeCollection extends BaseClass {
         PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1","20");
         PageObject.click_Locator("fieldName:VALUE:1");
         PageObject.textinput_Locator("fieldName:VALUE:1","Soban Khan");
-        PageObject.textinput_Locator("fieldName:VALUE:2","BC1004100148");
-        PageObject.textinput_Locator("fieldName:DEN.AMT:8","2");
+        PageObject.textinput_Locator("fieldName:DEN.AMT:1","BC1004100148");
+//        PageObject.textinput_Locator("fieldName:DEN.AMT:8","2");
+
+
 
         PageObject.commitDeal("Fee Collection T24 Branches");
         String txn = PageObject.getTxn();

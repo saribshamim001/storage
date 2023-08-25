@@ -51,6 +51,8 @@ public class PostRestrictionMarking extends BaseClass {
         PageObject.textinput_Locator("fieldName:POSTING.DATE:1",testData.get("POSTING.DATE:1"));
         PageObject.select_Locator("fieldName:POSTING.REASON:1",testData.get("POSTING.REASON:1")); //Account Blocked By Court OR Blocked by CD - SS Unit
 
+//        PageObject.textinput_Locator("fieldName:LEGAL.LETTER:1",testData.get("LEGAL.LETTER:1"));
+
         PageObject.commitDeal("Posting Restrict Marking ");
         txn = PageObject.getTxn();
         System.out.println(txn);

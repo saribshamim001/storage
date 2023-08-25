@@ -49,7 +49,14 @@ public class Banker_Cheque extends BaseClass{
         PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER",testData.get("CHEQUE.NUMBER"));
         PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1",testData.get("BEN.CUSTOMER"));
         PageObject.textinput_Locator("fieldName:ORDERING.CUST:1",testData.get("ORDERING.CUST"));
+
+        PageObject.textarea_Locator("fieldName:ORDERING.BANK:1",testData.get(""));
+        PageObject.radiobutton_Locator("radio:tab1:COMMISSION.CODE",3);
+
         PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1",testData.get("COMMISSION.TYPE"));
+
+//        PageObject.textarea_Locator("fieldName:COMMISSION.AMT:1",testData.get("COMMISSION.AMT:1"));
+//        PageObject.textarea_Locator("fieldName:CUST.RATE",testData.get("CUST.RATE"));
 
         PageObject.form_Tab("Due Delligence");
 
@@ -106,7 +113,13 @@ public class Banker_Cheque extends BaseClass{
         PageObject.img_Button("New Deal");
         PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1",testData.get("AMOUNT.LOCAL"));
         PageObject.textinput_Locator("fieldName:NO.OF.INST",testData.get("NO.OF.INST"));
+
+//        PageObject.textarea_Locator("fieldName:NARRATIVE.2:1",testData.get("NARRATIVE.2:1"));
+
         PageObject.select_Locator("fieldName:INS.ISS.PURPOSE","Custom Duty/Import Duty");
+
+//        PageObject.textarea_Locator("fieldName:PURPOSE",testData.get("PURPOSE"));
+//        PageObject.textarea_Locator("fieldName:DEN.AMT:1",testData.get("DEN.AMT:1"));
 //        String Trans = PageObject.commitDeal("WalkInCusStp1");
 
         Thread.sleep(9000);
@@ -126,6 +139,8 @@ public class Banker_Cheque extends BaseClass{
         WebElement element = driver.findElement(By.xpath("//span[@id='disabled_DEBIT.ACCT.NO']"));
         String debitAcc = element.getText();
         PageObject.textinput_Locator("fieldName:ORDERING.CUST:1",testData.get("ORDERING.CUST"));
+
+        PageObject.textarea_Locator("fieldName:PAYMENT.DETAILS:1",testData.get("PAYMENT.DETAILS:1"));
 
         PageObject.form_Tab("Due Delligence");
 
