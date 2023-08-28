@@ -28,7 +28,7 @@ public class Customers extends BaseClass {
 
     public static String Txn;
 
-    private static int count = 6;
+    private static int count = 11;
 
     public static String SECTOR;
     public static String TC;

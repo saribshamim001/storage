@@ -23,7 +23,7 @@ import static Test.Scripts.Conventional.Customers.*;
 public class Accounts extends BaseClass {
 //    Customers customer = new Customers();
 
-    private static int count = 6;
+    private static int count = 11;
     public static String PD,CUSTOMER;
     public static File  file;
 
