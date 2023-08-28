@@ -1,13 +1,30 @@
+import { beforeEach } from 'mocha'
+import { LoginPage } from './POM/Login_Page'
+const obj = new LoginPage()
 
 
-import { LoginPage } from './POM/Login_Page';
+describe( 'Login Test Suite' , function(){
 
-const obj = new LoginPage();
+  beforeEach(function(){
+    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+  })
 
-it('Pom', function() {
-  cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+  it('TC 1', function() {
+    
+    obj.enterUsername('Admin')
+    obj.enterPassword('admin123')
+    obj.clickLoginBtn()
+    
+  })
+  
+  
+  it('TC 2', function() {
+    
+    obj.enterUsername('Admin')
+    obj.enterPassword('admin123')
+    obj.clickLoginBtn()
+    
+  })
 
-  obj.enterUsername('Admin');
-  obj.enterPassword('admin123');
-  obj.clickLoginBtn();
-});
+}
+)
