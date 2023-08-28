@@ -13,7 +13,7 @@
         </groups>
 
         <classes>
-            <class name="Test.Scripts.Conventional.Customers">
+            <class name="Test.Scripts.Conventional.RetailBanking.Customers">
             <methods>
                 <include name="corporateCustomer"/>
             </methods>
@@ -29,7 +29,7 @@
         </groups>
 
         <classes>
-            <class name="Test.Scripts.Conventional.Customers">
+            <class name="Test.Scripts.Conventional.RetailBanking.Customers">
                 <methods>
                     <include name="customerAuthorization"/>
                 </methods>
@@ -45,7 +45,7 @@
         </groups>
 
         <classes>
-            <class name="Test.Scripts.Conventional.Accounts">
+            <class name="Test.Scripts.Conventional.RetailBanking.Accounts">
                 <methods>
                     <include name="callAccountCreation"/>
                 </methods>
@@ -62,7 +62,7 @@
         </groups>
 
         <classes>
-            <class name="Test.Scripts.Conventional.Accounts">
+            <class name="Test.Scripts.Conventional.RetailBanking.Accounts">
                 <methods>
                     <include name="accountAuthorization"/>
                 </methods>
