@@ -77,10 +77,6 @@ public class Customers extends BaseClass {
 
         //if crp type == 8, remove solePropertierName, Txn: 17704647
 
-
-
-
-
         PageObject.click_Locator("fieldName:TARGET");
 
 
@@ -239,6 +235,19 @@ public class Customers extends BaseClass {
 //        PageObject.click_Locator("fieldName:NAME.1:1");
         PageObject.radiobutton_Locator("radio:mainTab:CUS.PEP",2);
 
+        //        PageObject.textinput_Locator("fieldName:SECTOR",column.get("SECTOR"));
+//        SECTOR = column.get("SECTOR");
+//        PageObject.select_Locator("fieldName:CUST.SEGMENT",column.get("CUST_SEGMENT"));
+//        PageObject.radiobutton_Locator("radio:mainTab:SME.TYPE",1);
+//        PageObject.textinput_Locator("fieldName:ID.TYPE:1",column.get("ID_TYPE"));
+//        String ID_TYPE= column.get("ID_TYPE");
+//        if (ID_TYPE.equalsIgnoreCase("ID-SPR")) {
+//            PageObject.textinput_Locator("fieldName:ID.NUMBER:1","EB344078" + PageObject.idNumber());
+//        }
+//        else  {
+//            PageObject.textinput_Locator("fieldName:ID.NUMBER:1","42344078" + PageObject.idNumber());
+//        }
+
         PageObject.textinput_Locator("fieldName:ID.TYPE:1",column.get("ID_TYPE"));
         PageObject.click_Locator("fieldName:NAME.1:1");
         PageObject.textinput_Locator("fieldName:ID.NUMBER:1",column.get("ID_NUMBER"));
@@ -266,6 +275,16 @@ public class Customers extends BaseClass {
         PageObject.textinput_Locator("fieldName:RESIDENCE",column.get("RESIDENCE"));
         PageObject.textinput_Locator("fieldName:BIRTH.INCORP.DATE",column.get("BIRTH_INCORP_DATE"));
         PageObject.radiobutton_Locator("radio:mainTab:TRADE.CRP",1);
+
+
+//        PageObject.select_Locator("fieldName:ASAN.ACCOUNT",column.get("ASAN_ACCOUNT"));
+//        PageObject.select_Locator("fieldName:BAF.PREM.CUST",column.get("BAF_PREM_CUST"));
+//        PageObject.select_Locator("fieldName:BAF.PRM.THRSHLD",column.get("BAF_PRM_THRSHLD"));
+//        PageObject.select_Locator("fieldName:IBG.PREM.CUST",column.get("IBG_PREM_CUST"));
+//        PageObject.select_Locator("fieldName:IBG.PRM.THRSHLD",column.get("IBG_PRM_THRSHLD"));
+//        PageObject.textinput_Locator("fieldName:VISA.NO",column.get("VISA_NO"));
+//        PageObject.textinput_Locator("fieldName:EXP.DATE",column.get("EXP_DATE"));
+//        PageObject.radiobutton_Locator("radio:mainTab:TRADE.CRP",1);
 
         // CRP
         //PageObject.textinput_Locator("fieldName:CRP.TYPE",column.get("CRP_TYPE"));
