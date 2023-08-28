@@ -70,8 +70,15 @@ public class FundsTransfer extends BaseClass {
         PageObject.textinput_Locator("fieldName:CREDIT.VALUE.DATE",testData.get("date"));
         PageObject.textinput_Locator("fieldName:DEBIT.THEIR.REF",testData.get("Narrative"));
         PageObject.textinput_Locator("fieldName:CREDIT.THEIR.REF",testData.get("CdNarrative"));
+
+//        PageObject.textinput_Locator("fieldName:TREASURY.RATE",testData.get("TREASURY.RATE"));
+//        PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1",testData.get("COMMISSION.TYPE:1"));
+//        PageObject.textinput_Locator("fieldName:COMMISSION.AMT:1",testData.get("COMMISSION.AMT:1"));
+//        PageObject.textinput_Locator("fieldName:CUST.RATE",testData.get("CUST.RATE"));
+
         PageObject.textinput_Locator("fieldName:PAYMENT.DETAILS:1",testData.get("Details"));
 
+//        PageObject.textinput_Locator("fieldName:A.REMARKS",testData.get("A.REMARKS"));
 
         PageObject.commitDeal("FundsTransferGeneral");
     }
@@ -94,6 +101,11 @@ public class FundsTransfer extends BaseClass {
         PageObject.switchToParentWindow(HomePage2);
         PageObject.parentFrame();
         PageObject.switchFrame(2);
+
+        PageObject.textinput_Locator("fieldName:CREDIT.THEIR.REF",testData.get("CREDIT.THEIR.REF"));
+        PageObject.textinput_Locator("fieldName:DEBIT.THEIR.REF",testData.get("DEBIT.THEIR.REF"));
+        PageObject.textinput_Locator("fieldName:TREASURY.RATE",testData.get("TREASURY.RATE"));
+
         PageObject.textinput_Locator("fieldName:CREDIT.AMOUNT",testData.get("amount"));
         PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER",testData.get("chequeNum"));
         ///PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER","123456789");
@@ -110,6 +122,9 @@ public class FundsTransfer extends BaseClass {
         PageObject.radiobutton_Locator("radio:tab1:COMMISSION.CODE",1);
         PageObject.textinput_Locator("fieldName:DEBIT.VALUE.DATE",testData.get("date"));
         PageObject.textinput_Locator("fieldName:CREDIT.VALUE.DATE",testData.get("date"));
+
+        PageObject.textinput_Locator("fieldName:CUST.RATE",testData.get("CUST.RATE"));
+        PageObject.textinput_Locator("fieldName:PAYMENT.DETAILS:1",testData.get("PAYMENT.DETAILS:1"));
 /*
 
         PageObject.textarea_Locator("fieldName:NAME.COND.TXN","Customer");
@@ -225,7 +240,7 @@ public class FundsTransfer extends BaseClass {
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
-//        rowCount=2;
+        rowCount=2;
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 
@@ -253,7 +268,7 @@ public class FundsTransfer extends BaseClass {
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(1); // ftOnlineSheet
         int rowCount = sheet.getPhysicalNumberOfRows();
-//        rowCount=2;
+        rowCount=2;
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 

@@ -129,7 +129,7 @@ public class BankersChequeMaintenance_IBG extends BaseClass {
         fis.close();
         return data;
     }
-
+//----------------------------------------------------------------------------------------------------------------------
     @Test(groups = {"SS328565505"},dataProvider = "BankersChequeDuplicateIssuance")
     public void BankersChequeDuplicateIssuance (Map<String, String> testData) throws IOException, InterruptedException  {
 
@@ -240,7 +240,7 @@ public class BankersChequeMaintenance_IBG extends BaseClass {
         fis.close();
         return data;
     }
-
+//----------------------------------------------------------------------------------------------------------------------
 
     @Test(groups = {"SS328565505"},dataProvider = "BankersChequeCancellation")
     public void BankersChequeCancellation (Map<String, String> testData) throws IOException, InterruptedException   {
@@ -317,7 +317,7 @@ public class BankersChequeMaintenance_IBG extends BaseClass {
         PageObject.switchToChildWindow();
 
     }
-
+    //----------------------------------------------------------------------------------------------------------------------
     @Test(groups = {"Authorizer"})
     public void DeleteIssueStaleInstrument () throws InterruptedException, IOException {
 

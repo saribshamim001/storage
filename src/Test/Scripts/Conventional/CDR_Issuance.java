@@ -36,7 +36,13 @@ public class CDR_Issuance extends BaseClass {
         PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO",testData.get("DEBIT.ACCT.NO"));
         PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1",testData.get("BEN.CUSTOMER:1"));
         PageObject.textinput_Locator("fieldName:CREDIT.AMOUNT",testData.get("CREDIT.AMOUNT"));
-        PageObject.radiobutton_Locator("radio:tab1:COMMISSION.CODE" , 4);
+        PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE" , 4);
+
+        PageObject.textarea_Locator("fieldName:CHEQUE.NUMBER",testData.get("CHEQUE.NUMBER"));
+        PageObject.textarea_Locator("fieldName:ORDERING.CUST:1",testData.get("ORDERING.CUST:1"));
+        PageObject.textarea_Locator("fieldName:PAYMENT.DETAILS:1",testData.get("PAYMENT.DETAILS:1"));
+        PageObject.textarea_Locator("fieldName:COMMISSION.TYPE:1",testData.get("COMMISSION.TYPE:1"));
+        PageObject.textarea_Locator("fieldName:COMMISSION.AMT:1",testData.get("COMMISSION.AMT:1"));
         //PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1","WAIVE");
 
         PageObject.form_Tab("Due Delligence");
@@ -46,6 +52,8 @@ public class CDR_Issuance extends BaseClass {
         PageObject.textinput_Locator("fieldName:ID.NUMBER",testData.get("ID.NUMBER"));
         PageObject.textinput_Locator("fieldName:CONTACT.NO:1",testData.get("CONTACT.NO:1"));
         PageObject.select_Locator("fieldName:INS.ISS.PURPOSE", testData.get("INS.ISS.PURPOSE"));
+
+//        PageObject.textarea_Locator("fieldName:PURPOSE:1",testData.get("PURPOSE:1"));
 
         PageObject.commitDeal("CDRIssuanceinput");
 

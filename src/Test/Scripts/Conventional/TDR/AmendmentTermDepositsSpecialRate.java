@@ -33,7 +33,23 @@ public class AmendmentTermDepositsSpecialRate extends BaseClass {
         PageObject.textinput_Locator("transactionId",testData.get("Transaction Number"));
         PageObject.img_Button("Edit a contract");
 
+//        PageObject.click_Locator("fieldName:CUSTOMER.ID");
+//        PageObject.click_Locator("fieldName:DEAL.DATE");
+//        PageObject.click_Locator("fieldName:VALUE.DATE");
+//        PageObject.click_Locator("fieldName:MATURITY.DATE");
+//        PageObject.click_Locator("fieldName:INTEREST.RATE");
+//        PageObject.click_Locator("fieldName:INTEND.DATE");
         PageObject.textinput_Locator("fieldName:CUST.REMARKS:1","Testing");
+//        PageObject.click_Locator("fieldName:LIMIT.REFERENCE");
+//        PageObject.click_Locator("fieldName:TAX.INTEREST.TYPE:1");
+//        PageObject.click_Locator("fieldName:AUTO.ROLL.TERM");
+//        PageObject.click_Locator("fieldName:ROLLOVER.INT.RATE");
+//        PageObject.click_Locator("fieldName:FINAL.MATURITY");
+
+        PageObject.form_Tab("Settlemnt / Charge Details");
+
+        PageObject.click_Locator("fieldName:CHRG.LIQ.ACCT");
+
 
         String menu1 = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
@@ -41,7 +57,7 @@ public class AmendmentTermDepositsSpecialRate extends BaseClass {
 
         PageObject.commitDeal("AmendmentTermDepositsSpecialRate");
 
-//        PageObject.authorizeByTxn(testData.get("Transaction Number"));
+        PageObject.authorizeByTxn(testData.get("Transaction Number"));
 
 
 
@@ -59,6 +75,7 @@ public class AmendmentTermDepositsSpecialRate extends BaseClass {
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
+        rowCount=2;
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 

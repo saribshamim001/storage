@@ -58,6 +58,12 @@ public class LockerInputter extends BaseClass {
         PageObject.radiobutton_Locator("radio:mainTab:KEY.DEPOSIT",1);
         PageObject.radiobutton_Locator("radio:tab1:MANDATEE",2);
 
+        PageObject.textinput_Locator("fieldName:OLD.LOCKER.NO",testData.get("OLD.LOCKER.NO"));
+        PageObject.textinput_Locator("fieldName:MAN.NAME:1",testData.get("MAN.NAME:1"));
+        PageObject.textinput_Locator("fieldName:MAN.ADDRESS:1:1",testData.get("MAN.ADDRESS:1:1"));
+        PageObject.textinput_Locator("fieldName:MAN.CONTACT.NO:1",testData.get("MAN.CONTACT.NO:1"));
+        PageObject.textinput_Locator("fieldName:MAN.ID.TYPE:1",testData.get("MAN.ID.TYPE:1"));
+        PageObject.textinput_Locator("fieldName:MAN.ID.NO:1",testData.get("MAN.ID.NO:1"));
 
         PageObject.commitDeal("Assign Locker");
 

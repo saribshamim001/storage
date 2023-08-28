@@ -66,6 +66,10 @@ public class TellerCash extends BaseClass {
         PageObject.refreshWindow(2);
 
         PageObject.textinput_Locator("fieldName:CASH.DSLIPNO", "1000001");
+
+//        PageObject.textinput_Locator("fieldName:NARRATIVE.2:1","");
+//        PageObject.textinput_Locator("fieldName:DEN.AMT:1","");
+
         PageObject.radiobutton_Locator("radio:tab1:AML.TYP.CUST", CustomerType);
         PageObject.textinput_Locator("fieldName:CX.ACCOUNT",  AccountNumber);
         PageObject.refreshWindow(2);
@@ -83,6 +87,16 @@ public class TellerCash extends BaseClass {
         PageObject.textarea_Locator("fieldName:OTHER.REMARKS", Remarks);
         PageObject.textinput_Locator("fieldName:DATE.OF.BIRTH", DateOfBirth);
         PageObject.textinput_Locator("fieldName:FATHER.NAME", FatherName);
+
+//        PageObject.form_Tab("CTR Details");
+//
+//        PageObject.textinput_Locator("fieldName:CX.DEST.BR.CODE","");
+//        PageObject.textarea_Locator('fieldName:ADDRESS',"");
+//        PageObject.textinput_Locator("fieldName:CX.SRC.BR.CODE","");
+//        PageObject.textinput_Locator("fieldName:CX.STD.ROLL.NO","");
+//        PageObject.textinput_Locator("fieldName:CX.STD.CLASS","");
+//        PageObject.textinput_Locator("fieldName:CX.OPER.TYPE","");
+//        PageObject.textinput_Locator("fieldName:CX.STD.NAME","");
 
         driver.findElement(By.xpath("//tr/td/a/img[@alt='Validate a deal']")).click();
 
@@ -109,7 +123,7 @@ public class TellerCash extends BaseClass {
 
         }
 
-//        commitDeal("cashDepoOnlineLCY");
+//        PageObject.commitDeal("cashDepoOnlineLCY");
     }
 
     @DataProvider(name = "cashDepoOnlineLCY")
@@ -229,6 +243,8 @@ public class TellerCash extends BaseClass {
         PageObject.switchFrame(2);
 
         PageObject.img_Button("New Deal");
+//        PageObject.textinput_Locator("fieldName:QMS.REFER.NUM","");
+
         PageObject.textinput_Locator("fieldName:ACCOUNT.2", AccountNumber);
 
         PageObject.refreshWindow(2);
@@ -238,6 +254,9 @@ public class TellerCash extends BaseClass {
         PageObject.refreshWindow(2);
 
         PageObject.textinput_Locator("fieldName:CASH.DSLIPNO", DepositSlip);
+
+//        PageObject.textinput_Locator("fieldName:NARRATIVE.2:1","");
+
         PageObject.radiobutton_Locator("radio:tab1:AML.TYP.CUST", CustomerType);
         if (CustomerTypeString.equalsIgnoreCase("2")) {
             PageObject.textinput_Locator("fieldName:CX.ACCOUNT", AccountNumber);

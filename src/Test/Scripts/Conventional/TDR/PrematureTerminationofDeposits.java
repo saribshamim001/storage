@@ -26,8 +26,29 @@ public class PrematureTerminationofDeposits extends BaseClass {
     PageObject.find_Button();
     PageObject.form_Link("Early Terminate Deal");
         PageObject.switchToChildWindow();
+
+//        PageObject.click_Locator("fieldName:INT.SCHEDULE");
+//        PageObject.click_Locator("fieldName:OUR.REMARKS:1");
+
         PageObject.textinput_Locator("fieldName:CUST.REMARKS:1",testData.get("REMARKS:1"));
         PageObject.textinput_Locator("fieldName:INT.SCHEDULE",testData.get("INT.SCHEDULE"));
+
+//        PageObject.form_Tab("Settlemnt / Charge Details");
+//
+//        PageObject.click_Locator("fieldName:DRAWDOWN.ACCOUNT");
+//        PageObject.click_Locator("fieldName:PRIN.LIQ.ACCT");
+//        PageObject.click_Locator("fieldName:INT.LIQ.ACCT");
+//        PageObject.click_Locator("fieldName:CHRG.LIQ.ACCT");
+//        PageObject.click_Locator("fieldName:CHARGE.CODE:1");
+//        PageObject.click_Locator("fieldName:CHARGE.AMOUNT:1");
+//
+//        PageObject.form_Tab("Rollover Info");
+//
+//        PageObject.click_Locator("fieldName:ROLLOVER.DATE");
+//        PageObject.click_Locator("fieldName:AUTO.ROLL.TERM");
+//        PageObject.click_Locator("fieldName:ROLLOVER.INT.RATE");
+//        PageObject.click_Locator("fieldName:FINAL.MATURITY");
+
         PageObject.commitDeal("PTDInputter");
 
     }
@@ -45,8 +66,28 @@ public class PrematureTerminationofDeposits extends BaseClass {
         PageObject.find_Button();
         PageObject.form_Link("Early Terminate Deal");
         PageObject.switchToChildWindow();
+
+//        PageObject.click_Locator("fieldName:PI.INT.KEY");
+//        PageObject.click_Locator("fieldName:OUR.REMARKS:1");
         PageObject.textinput_Locator("fieldName:CUST.REMARKS:1",testData.get("REMARKS:1"));
         //PageObject.textinput_Locator("fieldName:INT.SCHEDULE",testData.get("INT.SCHEDULE"));
+
+//        PageObject.form_Tab("Settlemnt / Charge Details");
+//
+//        PageObject.click_Locator("fieldName:DRAWDOWN.ACCOUNT");
+//        PageObject.click_Locator("fieldName:PRIN.LIQ.ACCT");
+//        PageObject.click_Locator("fieldName:INT.LIQ.ACCT");
+//        PageObject.click_Locator("fieldName:CHRG.LIQ.ACCT");
+//        PageObject.click_Locator("fieldName:CHARGE.CODE:1");
+//        PageObject.click_Locator("fieldName:CHARGE.AMOUNT:1");
+//
+//        PageObject.form_Tab("Rollover Info");
+//
+//        PageObject.click_Locator("fieldName:ROLLOVER.DATE");
+//        PageObject.click_Locator("fieldName:AUTO.ROLL.TERM");
+//        PageObject.click_Locator("fieldName:ROLLOVER.INT.RATE");
+//        PageObject.click_Locator("fieldName:FINAL.MATURITY");
+
         PageObject.commitDeal("PTDInputter");
 
     }

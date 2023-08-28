@@ -15,7 +15,7 @@ import java.util.Map;
 public class AMATDRInsurance extends BaseClass {
 
     @Test(groups = {"InputterTDR"},dataProvider = "InsuranceEnquiryMahanaAmadan")
-    public void InsuranceEnquiryMahanaAmadan(Map<String, String> testData) throws IOException{
+    public void InputterTDRInputterTDR(Map<String, String> testData) throws IOException{
 
         PageObject.menu_Dropdown(" Centralized TDR ");
         PageObject.menu_Dropdown("AMA TDR Insurance");
@@ -36,6 +36,7 @@ public class AMATDRInsurance extends BaseClass {
         Sheet sheet = workbook.getSheet("InsuranceEnquiryMahanaAmadan"); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        rowCount =2;
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 
         for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row

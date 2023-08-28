@@ -47,6 +47,8 @@ public class ForeignDemandDraft extends BaseClass {
         PageObject.click_Locator("fieldName:DEBIT.ACCT.NO");
         PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER",testData.get("CHEQUE.NUMBER"));
 
+//        PageObject.textinput_Locator("fieldName:TREASURY.RATE",testData.get("TREASURY.RATE"));
+//        PageObject.textinput_Locator("fieldName:CUST.RATE",testData.get("CUST.RATE"));
 
         PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1", testData.get("BEN.CUSTOMER:1"));
 
@@ -67,6 +69,12 @@ public class ForeignDemandDraft extends BaseClass {
         PageObject.select_Locator("fieldName:SEND.TO.PARTY:1", testData.get("SEND.TO.PARTY:1"));
 
         PageObject.textinput_Locator("fieldName:BK.TO.BK.OUT:1:1", testData.get("BK.TO.BK.OUT:1:1"));
+
+//        PageObject.form_Tab("Due Diligence Form");
+//
+//        PageObject.textinput_Locator("fieldName:DD.ADDRESS:1",testData.get("DD.ADDRESS:1"));
+//        PageObject.textinput_Locator("fieldName:PURP.REMITT:1",testData.get("PURP.REMITT:1"));
+//        PageObject.textinput_Locator("fieldName:REL.BENEFICIARY",testData.get("REL.BENEFICIARY"));
 
         PageObject.commitDeal("ForeignDemandDraftInput");
 

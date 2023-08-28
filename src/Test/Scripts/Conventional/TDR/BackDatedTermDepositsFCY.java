@@ -53,13 +53,26 @@ public class BackDatedTermDepositsFCY extends BaseClass {
         PageObject.textinput_Locator("fieldName:FTD.TYPE",testData.get("FTD.TYPE"));
         PageObject.click_Locator("fieldName:PRINCIPAL");
         PageObject.textinput_Locator("fieldName:PRINCIPAL",testData.get("PRINCIPAL"));
+//        PageObject.click_Locator("fieldName:INTEREST.RATE");
+//        PageObject.click_Locator    ("fieldName:INTEND.DATE");
+//        PageObject.click_Locator("fieldName:CUST.REMARKS:1");
+//        PageObject.click_Locator("fieldName:TAX.INTEREST.TYPE:1");
+
+//        PageObject.form_Tab("Settlemnt / Charge Details");
+//
+//        PageObject.click_Locator("fieldName:DRAWDOWN.ACCOUNT");
+//        PageObject.click_Locator("fieldName:PRIN.LIQ.ACCT");
+//        PageObject.click_Locator("fieldName:INT.LIQ.ACCT");
+//        PageObject.click_Locator("fieldName:CHRG.LIQ.ACCT");
 
         PageObject.form_Tab("Rollover Info");
         PageObject.radiobutton_Locator("radio:tab2:AUTO.ROLLOVER",Integer.parseInt(testData.get("AUTO.ROLLOVER")));
+//        PageObject.click_Locator("fieldName:FINAL.MATURITY");
+//        PageObject.click_Locator("fieldName:EXP.DATE");
 
         PageObject.commitDeal("BackDatedTermDepositsFCY");
 
-//        PageObject.authorizeByTxn(testData.get("Transaction Number"));
+        PageObject.authorizeByTxn(testData.get("Transaction Number"));
 
 
 

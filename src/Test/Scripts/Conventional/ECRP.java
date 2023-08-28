@@ -109,6 +109,16 @@ public class ECRP extends BaseClass  {
 
         TC = column.get("TC");
 
+//        PageObject.textinput_Locator("fieldName:CRP.TYPE",testData.get("CRP.TYPE"));
+//        PageObject.textinput_Locator("fieldName:SRC.FUNDS",testData.get("SRC.FUNDS"));
+//        PageObject.textinput_Locator("fieldName:TARGET",testData.get("TARGET"));
+//        PageObject.textinput_Locator("fieldName:TEXT:1",testData.get("TEXT"));
+//        PageObject.textinput_Locator("fieldName:CUS.PEP",testData.get("CUS.PEP"));
+//        PageObject.textinput_Locator("radio:mainTab:CUS.PEP",testData.get("mainTab"));
+//        PageObject.textinput_Locator("radio:mainTab:CUS.PEP",testData.get("mainTab"));
+//        PageObject.textinput_Locator("fieldName:SBP.IND.PARENT",testData.get("SBP.IND.PARENT"));
+//        PageObject.textinput_Locator("fieldName:SBP.INDUSTRY",testData.get("SBP.INDUSTRY"));
+
         PageObject.textinput_Locator("fieldName:SECTOR",column.get("SECTOR"));
         SECTOR = column.get("SECTOR");
         PageObject.select_Locator("fieldName:CUST.SEGMENT",column.get("CUST_SEGMENT"));
@@ -161,6 +171,8 @@ public class ECRP extends BaseClass  {
         else {
             incomeSourceLevel = "100,000 - 300,000";
         }
+
+        PageObject.textarea_Locator("fieldName:INCM.LEVELSRC","");
         PageObject.textinput_Locator("fieldName:CUS.CATEG:1",column.get("CUS_CATEG"));
         Accounts.PD = column.get("CUS_CATEG");
         PageObject.textinput_Locator("fieldName:CRP.CHANNEL:1",column.get("CRP_CHANNEL"));

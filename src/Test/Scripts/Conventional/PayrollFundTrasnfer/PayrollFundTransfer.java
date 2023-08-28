@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class PayrollFundTransfer extends BaseClass {
 
-    @Test(groups = {"CaoStandingInputter"},dataProvider = "PayrollFundTransfer")
+    @Test(groups = {"CaoInputterIBG"},dataProvider = "PayrollFundTransfer")
     public void PayrollFundTransfer(Map<String, String> testData) throws IOException{
 
         PageObject.menu_Dropdown("Funds Transfer Menu");
@@ -33,6 +33,12 @@ public class PayrollFundTransfer extends BaseClass {
         PageObject.click_Locator("fieldName:CREDIT.VALUE.DATE");
         PageObject.textinput_Locator("fieldName:CREDIT.VALUE.DATE",testData.get("CreditValueDate"));
         PageObject.textinput_Locator("fieldName:CREDIT.THEIR.REF",testData.get("CreditNarrative"));
+
+//        PageObject.textarea_Locator("fieldName:TREASURY.RATE",testData.get("TREASURY.RATE"));
+//        PageObject.textarea_Locator("fieldName:CUST.RATE",testData.get("CUST.RATE"));
+//        PageObject.textarea_Locator("fieldName:PAYMENT.DETAILS:1",testData.get("PAYMENT.DETAILS:1"));
+
+
 //        PageObject.textinput_Locator("fieldName:TREASURY.RATE","12");
         PageObject.click_Locator("radio:tab1:AML.TYP.CUST");
         PageObject.radiobutton_Locator("radio:tab1:AML.TYP.CUST",1);
@@ -44,7 +50,7 @@ public class PayrollFundTransfer extends BaseClass {
         //PageObject.textinput_Locator("fieldName:COMMISSION.AMT:1","1");
 //        PageObject.img_Button("Validate a deal");
 //        PageObject.img_Button("Commit the deal");
-        PageObject.commitDeal("PayrollFundTransfer");
+        //PageObject.commitDeal("PayrollFundTransfer");
 
 
     }

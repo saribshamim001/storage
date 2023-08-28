@@ -31,6 +31,11 @@ public class TDRMonthlyProfitMenu extends BaseClass {
         PageObject.textinput_Locator("fieldName:REST.PERIOD.LD", "T1YA");
         PageObject.click_Locator("fieldName:AMOUNT:1");
         PageObject.textinput_Locator("fieldName:AMOUNT:1", "100000");
+        PageObject.form_Tab(" Settlement / Charges Details");
+        PageObject.textinput_Locator("fieldName:DRAWDOWN.ACCOUNT",testData.get("DRAWDOWN.ACCOUNT"));
+        PageObject.click_Locator("fieldName:PRIN.LIQ.ACCT");
+        PageObject.textinput_Locator("fieldName:PRIN.LIQ.ACCT",testData.get("PRIN.LIQ.ACCT"));
+        PageObject.textinput_Locator("fieldName:INT.LIQ.ACCT",testData.get("INT.LIQ.ACCT"));
         PageObject.commitDeal("TDRIssuanceMaturityLCY_IBG");
 
     }
@@ -83,6 +88,11 @@ public class TDRMonthlyProfitMenu extends BaseClass {
         PageObject.textinput_Locator("fieldName:REST.PERIOD.LD", testData.get("REST.PERIOD.LD"));
         PageObject.click_Locator("fieldName:AMOUNT:1");
         PageObject.textinput_Locator("fieldName:AMOUNT:1", testData.get("AMOUNT:1") );
+        PageObject.form_Tab(" Settlement / Charges Details");
+        PageObject.textinput_Locator("fieldName:DRAWDOWN.ACCOUNT",testData.get("DRAWDOWN.ACCOUNT"));
+        PageObject.click_Locator("fieldName:PRIN.LIQ.ACCT");
+        PageObject.textinput_Locator("fieldName:PRIN.LIQ.ACCT",testData.get("PRIN.LIQ.ACCT"));
+        PageObject.textinput_Locator("fieldName:INT.LIQ.ACCT",testData.get("INT.LIQ.ACCT"));
         PageObject.commitDeal("TDRIssuanceMaturityFCY_IBG");
 
     }
@@ -136,6 +146,11 @@ public class TDRMonthlyProfitMenu extends BaseClass {
         PageObject.textinput_Locator("fieldName:REST.PERIOD.LD", testData.get("REST.PERIOD.LD"));//DF1YMTA
         PageObject.click_Locator("fieldName:AMOUNT:1");
         PageObject.textinput_Locator("fieldName:AMOUNT:1", testData.get("AMOUNT:1"));//100
+        PageObject.form_Tab(" Settlement / Charges Details");
+        PageObject.textinput_Locator("fieldName:DRAWDOWN.ACCOUNT",testData.get("DRAWDOWN.ACCOUNT"));
+        PageObject.click_Locator("fieldName:PRIN.LIQ.ACCT");
+        PageObject.textinput_Locator("fieldName:PRIN.LIQ.ACCT",testData.get("PRIN.LIQ.ACCT"));
+        PageObject.textinput_Locator("fieldName:INT.LIQ.ACCT",testData.get("INT.LIQ.ACCT"));
         PageObject.commitDeal("TDRBackDatedMaturityFCY_IBG");
 
 
@@ -191,6 +206,11 @@ public class TDRMonthlyProfitMenu extends BaseClass {
         PageObject.textinput_Locator("fieldName:REST.PERIOD.LD", testData.get("REST.PERIOD.LD"));//DF1YMTA
         PageObject.click_Locator("fieldName:AMOUNT:1");
         PageObject.textinput_Locator("fieldName:AMOUNT:1", testData.get("AMOUNT:1"));//100
+        PageObject.form_Tab(" Settlement / Charges Details");
+        PageObject.textinput_Locator("fieldName:DRAWDOWN.ACCOUNT",testData.get("DRAWDOWN.ACCOUNT"));
+        PageObject.click_Locator("fieldName:PRIN.LIQ.ACCT");
+        PageObject.textinput_Locator("fieldName:PRIN.LIQ.ACCT",testData.get("PRIN.LIQ.ACCT"));
+        PageObject.textinput_Locator("fieldName:INT.LIQ.ACCT",testData.get("INT.LIQ.ACCT"));
         PageObject.commitDeal("TDRBackDatedMaturityFCY_IBG");
 
 

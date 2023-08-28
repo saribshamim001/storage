@@ -35,12 +35,24 @@ public class Banker_Cheque_Issuance_Menu extends BaseClass{
         PageObject.switchFrame(2);
         PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER","82755198");
         PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1","Arshad Test");
+
+//        PageObject.textarea_Locator("fieldName:ORDERING.CUST:1","");
+//        PageObject.textarea_Locator("fieldName:PAYMENT.DETAILS:1","");
+//        PageObject.textarea_Locator("fieldName:ORDERING.BANK:1","");
+//        PageObject.radiobutton_Locator("radio:tab1:COMMISSION.CODE",3);
+//        PageObject.textarea_Locator("fieldName:COMMISSION.TYPE:1","");
+//        PageObject.textarea_Locator("fieldName:COMMISSION.AMT:1","");
+//        PageObject.textarea_Locator("fieldName:CUST.RATE","");
+
         PageObject.form_Tab("Due Delligence");
         PageObject.textinput_Locator("fieldName:DD.ADDRESS:1","Test 123 street");
         PageObject.textinput_Locator("fieldName:ID.TYPE","ID-N");
         PageObject.textinput_Locator("fieldName:ID.NUMBER","3214569874125");
         PageObject.textinput_Locator("fieldName:CONTACT.NO:1","03332233665");
         PageObject.select_Locator("fieldName:INS.ISS.PURPOSE","Donation/Charity");
+
+//        PageObject.textarea_Locator("fieldName:PURPOSE:1","");
+
         PageObject.commitDeal("Banker Cheque");
         driver.close();
     }
@@ -87,9 +99,15 @@ public class Banker_Cheque_Issuance_Menu extends BaseClass{
         PageObject.switchFrame(2);
         PageObject.img_Button("New Deal");
         PageObject.textinput_Locator("fieldName:CREDIT.AMOUNT","100");
+
+//        PageObject.textarea_Locator("fieldName:INST.NUMBER","");
+
         //PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","1006948260");
         PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1","Ahmed Test");
         PageObject.textinput_Locator("fieldName:ORDERING.CUST:1","Akber Test");
+
+//        PageObject.textarea_Locator("fieldName:PAYMENT.DETAILS:1","");
+
         PageObject.form_Tab("Due Delligence");
         PageObject.textinput_Locator("fieldName:APP.ADDRESS:1","Test 123 Street");
         PageObject.textinput_Locator("fieldName:APP.ID.TYPE","ID-N");
@@ -100,7 +118,10 @@ public class Banker_Cheque_Issuance_Menu extends BaseClass{
         PageObject.textinput_Locator("fieldName:ID.TYPE","ID-N");
         PageObject.textinput_Locator("fieldName:ID.NUMBER","3214569874563");
         PageObject.textinput_Locator("fieldName:CONTACT.NO:1","03138855662");
+
+
         //PageObject.textinput_Locator("fieldName:INS.ISS.PURPOSE","Clearing/Forwarding Charges");
+//        PageObject.textarea_Locator("fieldName:PURPOSE:1","");
         //PageObject.txnValidate("Banker Cheque");
         PageObject.commitDeal("Banker Cheque");
         driver.close();
@@ -122,9 +143,15 @@ public class Banker_Cheque_Issuance_Menu extends BaseClass{
         PageObject.switchFrame(2);
         PageObject.img_Button("New Deal");
         PageObject.textinput_Locator("fieldName:CREDIT.AMOUNT","100");
-        PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","1006948260");
+//        PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","1006948260");
+
+        PageObject.textarea_Locator("fieldName:INST.NUMBER","");
+
         PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1","");
         PageObject.textinput_Locator("fieldName:ORDERING.CUST:1","");
+
+        PageObject.textarea_Locator("fieldName:PAYMENT.DETAILS:1","");
+
         PageObject.form_Tab("Due Delligence");
         PageObject.textinput_Locator("fieldName:APP.ADDRESS:1","");
         PageObject.textinput_Locator("fieldName:APP.ID.TYPE","");
@@ -136,6 +163,9 @@ public class Banker_Cheque_Issuance_Menu extends BaseClass{
         PageObject.textinput_Locator("fieldName:ID.NUMBER","");
         PageObject.textinput_Locator("fieldName:CONTACT.NO:1","");
         PageObject.textinput_Locator("fieldName:INS.ISS.PURPOSE","Clearing/Forwarding Charges");
+
+//        PageObject.textarea_Locator("fieldName:PURPOSE:1","");
+
         PageObject.txnValidate("Banker Cheque");
         PageObject.commitDeal("Banker Cheque");
         driver.close();
@@ -151,13 +181,16 @@ public class Banker_Cheque_Issuance_Menu extends BaseClass{
         PageObject.childmenu_Dropdown("Cheque- Inputter Menu",1); //(//ul/li/span/img[contains(@alt,'Cheque- Inputter Menu')  ]  ) [1]
         PageObject.childmenu_Dropdown("Cheque Issuance",1);
         PageObject.childmenu_Dropdown("Cheq Single Issuance Menu",1);
-        PageObject.menu_Link("Fund Trf Credit- Vendor Payt Act Single/ Bulk");
+        PageObject.menu_Link("Fund Trf Credit- Vendor Payt Act Single/ Bulk ");
+        driver.switchTo().parentFrame();
+        PageObject.switchFrame(2);
         PageObject.img_Button("New Deal");
         PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","");
         PageObject.textinput_Locator("fieldName:DEBIT.CURRENCY","PKR");
         PageObject.textinput_Locator("fieldName:DEBIT.AMOUNT","");
-        PageObject.textinput_Locator("fieldName:DEBIT.AMOUNT","");
+        PageObject.textinput_Locator("fieldName:DEBIT.VALUE.DATE","");
         PageObject.textinput_Locator("fieldName:DEBIT.THEIR.REF","");
+//        PageObject.textarea_Locator("fieldName:ORDERING.CUST:1","");
         PageObject.textinput_Locator("fieldName:CREDIT.THEIR.REF","");
         PageObject.textinput_Locator("fieldName:ORDERING.BANK:1","");
         PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1","");
@@ -180,6 +213,7 @@ public class Banker_Cheque_Issuance_Menu extends BaseClass{
         PageObject.img_Button("New Deal");
         PageObject.textinput_Locator("fieldName:CREDIT.AMOUNT","");
         PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","");
+        PageObject.textarea_Locator("fieldName:CHEQUE.NUMBER","");
         PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1","");
         PageObject.textinput_Locator("fieldName:ORDERING.BANK:1","");
         PageObject.textinput_Locator("fieldName:NO.OF.INST","");
@@ -213,8 +247,13 @@ public class Banker_Cheque_Issuance_Menu extends BaseClass{
         PageObject.img_Button("New Deal");
         PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1","");
         PageObject.textinput_Locator("fieldName:NO.OF.INST","");
+
+//        PageObject.textarea_Locator("fieldName:NARRATIVE.2:1","");
+
         PageObject.select_Locator("fieldName:INS.ISS.PURPOSE","Clearing/Forwarding Charges");
 
+//        PageObject.textarea_Locator("fieldName:PURPOSE","");
+//        PageObject.textarea_Locator("fieldName:DEN.AMT:1","");
     }
 
     @Test(groups = {"Inputter"})

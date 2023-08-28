@@ -48,8 +48,17 @@ public class CDR_Dealslip extends BaseClass {
         PageObject.textinput_Locator("fieldName:CREDIT.AMOUNT","1000");
         PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1","SARA");
 
+//        PageObject.textarea_Locator("fieldName:CHEQUE.NUMBER","");
+
         //PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE" , 4 );//(//input[@id='radio:mainTab:COMMISSION.CODE'])[4]
-        PageObject.radiobutton_Locator("radio:tab1:COMMISSION.CODE" , 4 );
+        PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE" , 4 );
+
+//        PageObject.textarea_Locator("fieldName:ORDERING.CUST:1","");
+//        PageObject.textarea_Locator("fieldName:PAYMENT.DETAILS:1","");
+//        PageObject.textarea_Locator("fieldName:COMMISSION.TYPE:1","");
+//        PageObject.textarea_Locator("fieldName:COMMISSION.AMT:1","");
+
+
         //PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1","WAIVE");
 
 
@@ -61,7 +70,8 @@ public class CDR_Dealslip extends BaseClass {
         PageObject.textinput_Locator("fieldName:CONTACT.NO:1","03332125612");
         PageObject.select_Locator("fieldName:INS.ISS.PURPOSE", "Business Investment");
 
-        PageObject.commitDeal("CDRDealSliptxn");
+        PageObject.textarea_Locator("fieldName:PURPOSE:1","");
+//        PageObject.commitDeal("CDRDealSliptxn");
 
 
 

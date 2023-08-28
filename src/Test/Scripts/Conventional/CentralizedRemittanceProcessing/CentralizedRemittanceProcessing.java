@@ -71,9 +71,35 @@ import java.util.Map;
             String childPage = PageObject.switchToChildWindow();
             PageObject.switchFrame(2);
 
+//            PageObject.textarea_Locator("fieldName:DEBIT.VALUE.DATE",testData.get("DEBIT.VALUE.DATE"));
+//            PageObject.textarea_Locator("fieldName:DEBIT.THEIR.REF",testData.get("DEBIT.THEIR.REF"));
+
             PageObject.textarea_Locator("fieldName:OTHER.REMARKS", Remarks);
             PageObject.textinput_Locator("fieldName:DATE.OF.BIRTH", DateOfBirth);
             PageObject.textinput_Locator("fieldName:FATHER.NAME", FatherName);
+
+//            PageObject.textinput_Locator("fieldName:CREDIT.VALUE.DATE",testData.get("CREDIT.VALUE.DATE"));
+//            PageObject.textinput_Locator("fieldName:CREDIT.THEIR.REF",testData.get("CREDIT.THEIR.REF"));
+//            PageObject.textinput_Locator("fieldName:TREASURY.RATE",testData.get("TREASURY.RATE"));
+//            PageObject.textinput_Locator("fieldName:COMMISSION.CODE",testData.get("COMMISSION.CODE"));
+//            PageObject.textinput_Locator("radio:tab1:COMMISSION.CODE",testData.get("tab1"));
+//            PageObject.textinput_Locator("radio:tab1:COMMISSION.CODE",testData.get("tab1"));
+//            PageObject.textinput_Locator("radio:tab1:COMMISSION.CODE",testData.get("tab1"));
+//            PageObject.textinput_Locator("radio:tab1:COMMISSION.CODE",testData.get("tab1"));
+//            PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1",testData.get("COMMISSION.TYPE"));
+//            PageObject.textinput_Locator("fieldName:COMMISSION.AMT:1",testData.get("COMMISSION.AMT"));
+//            PageObject.textinput_Locator("fieldName:CUST.RATE",testData.get("CUST.RATE"));
+//            PageObject.textinput_Locator("fieldName:MKTG.EXCH.PROFIT",testData.get("MKTG.EXCH.PROFIT"));
+//            PageObject.textinput_Locator("fieldName:PAYMENT.DETAILS:1",testData.get("PAYMENT.DETAILS"));
+//            PageObject.textinput_Locator("fieldName:AMOUNT.DEBITED",testData.get("AMOUNT.DEBITED"));
+//            PageObject.textinput_Locator("fieldName:AMOUNT.CREDITED",testData.get("AMOUNT.CREDITED"));
+//            PageObject.textinput_Locator("fieldName:AML.TYP.CUST",testData.get("AML.TYP.CUST"));
+//            PageObject.textinput_Locator("radio:tab1:AML.TYP.CUST",testData.get("tab1"));
+//            PageObject.textinput_Locator("radio:tab1:AML.TYP.CUST",testData.get("tab1"));
+//            PageObject.textinput_Locator("fieldName:ID.TYPE",testData.get("ID.TYPE"));
+//            PageObject.textinput_Locator("fieldName:ID.NUMBER",testData.get("ID.NUMBER"));
+//            PageObject.textinput_Locator("fieldName:ID.VAL.DT",testData.get("ID.VAL.DT"));
+//            PageObject.textinput_Locator("fieldName:A.REMARKS",testData.get("A.REMARKS"));
         }
 
 

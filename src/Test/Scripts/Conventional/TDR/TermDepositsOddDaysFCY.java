@@ -56,8 +56,22 @@ public class TermDepositsOddDaysFCY extends BaseClass {
 //        PageObject.click_Locator("fieldName:INTEREST.RATE");
         PageObject.textinput_Locator("fieldName:INTEREST.RATE",testData.get("INTEREST.RATE"));
 
+//        PageObject.click_Locator("fieldName:INTEND.DATE");
+//        PageObject.click_Locator("fieldName:CUST.REMARKS:1");
+//        PageObject.click_Locator("fieldName:TAX.INTEREST.TYPE:1");
+
+//        PageObject.form_Tab("Settlemnt / Charge Details");
+//
+//        PageObject.click_Locator("fieldName:DRAWDOWN.ACCOUNT");
+//        PageObject.click_Locator("fieldName:PRIN.LIQ.ACCT");
+//        PageObject.click_Locator("fieldName:INT.LIQ.ACCT");
+//        PageObject.click_Locator("fieldName:CHRG.LIQ.ACCT");
+
         PageObject.form_Tab("Rollover Info");
         PageObject.radiobutton_Locator("radio:tab3:AUTO.ROLLOVER",Integer.parseInt(testData.get("AUTO.ROLLOVER")));
+
+//        PageObject.click_Locator("fieldName:FINAL.MATURITY");
+//        PageObject.click_Locator("fieldName:EXP.DATE");
 
         PageObject.commitDeal("TermDepositsOddDaysFCY");
 

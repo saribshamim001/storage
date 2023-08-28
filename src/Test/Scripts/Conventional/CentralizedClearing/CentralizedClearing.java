@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class CentralizedClearing extends BaseClass {
 
-        @Test(groups = {"CaoInputterCentralized"},dataProvider = "CCSameDayInputter")
+        @Test(groups = {"CaoInputter"},dataProvider = "CCSameDayInputter")
     public void CCSameDayInputter(Map<String, String> testData) throws IOException {
 
         PageObject.menu_Dropdown("Inward Sameday Image Based Clearing- Input");
@@ -25,6 +25,9 @@ public class CentralizedClearing extends BaseClass {
         PageObject.switchToChildWindow();
         driver.manage().window().maximize();
         PageObject.img_Button("New Deal");
+
+//            PageObject.click_Locator("fieldName:CL.NO.MV");
+
         PageObject.textinput_Locator("fieldName:CL.CHEQUE.NO:1",testData.get("InstNo"));
         PageObject.click_Locator("fieldName:BANK.SORT.CODE:1");
         String form = PageObject.switchToChildWindow();
@@ -48,7 +51,7 @@ public class CentralizedClearing extends BaseClass {
         //driver.findElement(By.xpath("//*[@id=\'enqsel\']/table/tbody/tr/td[2]/table/tbody/tr[1]/td/table/tbody/tr/td[3]/div/table/tbody/tr/td/a")).click();
     }
 
-    @Test(groups = {"CaoInputterCentralized"},dataProvider = "CCNormalDayInputter")
+    @Test(groups = {"CaoInputter"},dataProvider = "CCNormalDayInputter")
     public void CCNormalDayInputter(Map<String, String> testData) throws IOException {
 
         PageObject.menu_Dropdown("Inward Normal Image Based Clearing- Input");
@@ -58,6 +61,9 @@ public class CentralizedClearing extends BaseClass {
         PageObject.switchToChildWindow();
         driver.manage().window().maximize();
         PageObject.img_Button("New Deal");
+
+//        PageObject.click_Locator("fieldName:CL.NO.MV");
+
         PageObject.textinput_Locator("fieldName:CL.CHEQUE.NO:1",testData.get("InstNo"));
         PageObject.click_Locator("fieldName:BANK.SORT.CODE:1");
         String form = PageObject.switchToChildWindow();

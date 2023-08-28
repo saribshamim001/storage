@@ -24,10 +24,20 @@ public class MahanaAamdanDepositsSeniorCitizen extends BaseClass {
         driver.manage().window().maximize();
 
         PageObject.textinput_Locator("fieldName:CUSTOMER.ID",testData.get("Customer"));
-        PageObject.textinput_Locator("fieldName:FTD.TYPE",testData.get("DepositTerm"));
 
+//        PageObject.click_Locator("fieldName:DRAWDOWN.ACCOUNT");
+//        PageObject.click_Locator("fieldName:PRIN.LIQ.ACCT");
+//        PageObject.click_Locator("fieldName:INT.LIQ.ACCT");
+
+        PageObject.textinput_Locator("fieldName:FTD.TYPE",testData.get("DepositTerm"));
         PageObject.click_Locator("fieldName:PRINCIPAL");
         PageObject.textinput_Locator("fieldName:PRINCIPAL",testData.get("PRINCIPAL"));
+
+//        PageObject.click_Locator("fieldName:CUST.REMARKS:1");
+//        PageObject.select_Locator("fieldName:FIQAH","");
+//        PageObject.click_Locator("fieldName:INTEND.DATE");
+//        PageObject.click_Locator("fieldName:EXP.DATE");
+//        PageObject.click_Locator("fieldName:TAX.INTEREST.TYPE:1");
         PageObject.commitDeal("MahanaAamdanDepositInputterSenior");
     }
 

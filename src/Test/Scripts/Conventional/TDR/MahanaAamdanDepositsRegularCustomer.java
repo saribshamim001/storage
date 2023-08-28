@@ -25,6 +25,13 @@ public class MahanaAamdanDepositsRegularCustomer extends BaseClass {
         PageObject.textinput_Locator("fieldName:PRINCIPAL",testData.get("PRINCIPAL"));
         PageObject.textinput_Locator("fieldName:CUSTOMER.ID",testData.get("Customer"));
         PageObject.textinput_Locator("fieldName:FTD.TYPE",testData.get("DepositTerm"));
+
+//        PageObject.click_Locator("fieldName:CUST.REMARKS:1");
+//        PageObject.select_Locator("fieldName:FIQAH","");
+//        PageObject.click_Locator("fieldName:INTEND.DATE");
+//        PageObject.click_Locator("fieldName:EXP.DATE");
+//        PageObject.click_Locator("fieldName:TAX.INTEREST.TYPE:1");
+
         PageObject.click_Locator("fieldName:PRINCIPAL");
         PageObject.commitDeal("MahanaAamdanDepositInputter");
     }
@@ -70,7 +77,7 @@ public class MahanaAamdanDepositsRegularCustomer extends BaseClass {
     @DataProvider(name = "MahanaAamdanDepositsAuth")
     public Object[][] readExcelData2() throws IOException {
 
-        String FILE_PATH = System.getProperty("user.dir") + "\\Excel Data\\MahanaAamdanDepositsRegularCustomer.xlsx";
+        String FILE_PATH = System.getProperty("user.dir") + "\\Data\\MahanaAamdanDepositInputter.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheet("MahanaAamdanDepositsAuth"); // Assuming data is in the first sheet

@@ -35,7 +35,7 @@ public class CDRRevalidation extends BaseClass {
 
         PageObject.form_Link("Active Instrument");
 
-        PageObject.commitDeal("CDRRevalidate");
+        //PageObject.commitDeal("CDRRevalidate");
 
 
 

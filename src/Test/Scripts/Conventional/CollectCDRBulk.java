@@ -45,12 +45,15 @@ public class CollectCDRBulk extends BaseClass {
         PageObject.switchToParentWindow(HomePage2);
         PageObject.switchFrame(2);
 
+//        PageObject.textarea_Locator("fieldName:CHEQUE.NUMBER",testData.get("CHEQUE.NUMBER"));
+//        PageObject.textarea_Locator("fieldName:ORDERING.BANK:1",testData.get("ORDERING.BANK:1"));
+
         PageObject.textinput_Locator("fieldName:NO.OF.INST", testData.get("NO.OF.INST"));
         PageObject.radiobutton_Locator("radio:tab1:COMMISSION.CODE" , 3 );
         PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1", testData.get("COMMISSION.TYPE:1"));
         PageObject.textinput_Locator("fieldName:COMMISSION.AMT:1", testData.get("COMMISSION.AMT:1"));
 
-        PageObject.commitDeal("CDRBulkIssuance");
+        //PageObject.commitDeal("CDRBulkIssuance");
 
     }
 

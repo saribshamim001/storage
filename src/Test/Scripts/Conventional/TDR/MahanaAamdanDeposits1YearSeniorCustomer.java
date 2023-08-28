@@ -26,7 +26,14 @@ public class MahanaAamdanDeposits1YearSeniorCustomer extends BaseClass {
         PageObject.switchToChildWindow();
         PageObject.textinput_Locator("fieldName:CUSTOMER.ID",testData.get("Customer"));
         PageObject.textinput_Locator("fieldName:PRINCIPAL",testData.get("Principal"));
+
+//        PageObject.click_Locator("fieldName:CUST.REMARKS:1");
+//        PageObject.click_Locator("fieldName:FIQAH");
+//        PageObject.click_Locator("fieldName:INTEND.DATE");
+//        PageObject.click_Locator("fieldName:EXP.DATE");
+
         PageObject.img_Button("Validate a deal");
+        PageObject.commitDeal("MahanaAamdanDeposits1YearSeniorCustomer");
 
     }
 
