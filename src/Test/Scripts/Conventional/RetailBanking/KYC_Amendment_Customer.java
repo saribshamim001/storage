@@ -18,7 +18,7 @@ public class KYC_Amendment_Customer extends BaseClass {
 
     String txn;
 
-    String CusNumber="16992982";
+//    String CusNumber="16992982";
     String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\KYC_Amendment_Customer.xlsx";
 
     @Test(groups = {"Inputter"}, dataProvider = "excelDataKYC_Amendment_Customer")
@@ -183,7 +183,7 @@ public class KYC_Amendment_Customer extends BaseClass {
         String menu = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
 
-        PageObject.textinput_Locator("value:1:1:1",CusNumber);
+        PageObject.textinput_Locator("value:1:1:1",testData.get("Transaction Number"));
         PageObject.find_Button();
 
 

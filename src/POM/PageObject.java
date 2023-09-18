@@ -122,6 +122,10 @@ public class PageObject extends BaseClass {
         driver.findElement(By.xpath("//ul/li/span/img[@alt='"+alt_Value+"']")).click();
     }
 
+    public static void menu_DropdownEnv(String alt_Value) {
+        driver.findElement(By.xpath("//span[text()='"+alt_Value+"']")).click();
+    }
+
     public static void childmenu_Dropdown(String alt_Value, Integer index) {
         driver.findElement(By.xpath("(//ul/li/span/img[contains(@alt,'"+alt_Value+"')])["+index+"]")).click();
     }
@@ -131,6 +135,9 @@ public class PageObject extends BaseClass {
         driver.findElement(By.xpath("//ul/li/a[text()='"+text_Value+"']")).click();
     }
 
+    public static void menu_LinkEnv(String text_Value) {
+        driver.findElement(By.xpath("//a[text()='"+text_Value+"']")).click();
+    }
     public static void authformLink(String text_Value) {
         driver.findElement(By.xpath("//tr/td/a/b[text()='"+text_Value+"']")).click();
     }
@@ -170,6 +177,13 @@ public class PageObject extends BaseClass {
         Random rand = new Random();
         int min = 10000;
         int max = 99999;
+
+        int rand_value = rand.nextInt((max - min) + 1) + min;
+        return rand_value;
+    }
+
+    public static int idNumber(int max,int min) {
+        Random rand = new Random();
 
         int rand_value = rand.nextInt((max - min) + 1) + min;
         return rand_value;

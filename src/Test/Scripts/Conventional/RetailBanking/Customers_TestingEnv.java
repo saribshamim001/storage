@@ -3,6 +3,8 @@ package Test.Scripts.Conventional.RetailBanking;
 
 import POM.PageObject;
 import Test.General.BaseClass;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -10,24 +12,19 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.Map;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
-public class Customers extends BaseClass {
+public class Customers_TestingEnv extends BaseClass {
 
     public static String Txn;
 
-    private static int count = 2;
+    private static int count = 8
+            ;
 
     public static String SECTOR;
     public static String TC;
@@ -39,17 +36,17 @@ public class Customers extends BaseClass {
     @Test (groups = {"InputterNewEnv"}, dataProvider = "indCustomer")
     public void individualCustomer(Map<String, String> column) throws InterruptedException, IOException {
 
-        PageObject.menu_Dropdown("Customer Relation Officer Menu");
-        PageObject.menu_Dropdown("Alfalah Customer Information");
-        PageObject.menu_Dropdown("Branch Level Inputter");
-        PageObject.childmenu_Dropdown("Alfalah Customer Information",2);
-        PageObject.menu_Link("Individual/Sole/Proprietorship/Minor ");
+//        PageObject.menu_Dropdown("Customer Relation Officer Menu");
+//        PageObject.menu_Dropdown("Alfalah Customer Information");
+//        PageObject.menu_Dropdown("Branch Level Inputter");
+//        PageObject.childmenu_Dropdown("Alfalah Customer Information",2);
+//        PageObject.menu_Link("Individual/Sole/Proprietorship/Minor ");
 
-//        PageObject.menu_DropdownEnv("Customer Relation Officer Menu");
-//        PageObject.menu_DropdownEnv("Alfalah Customer Information");
-//        PageObject.menu_DropdownEnv("Branch Level Inputter");
-//        driver.findElement(By.xpath("(//span[text()='Alfalah Customer Information'])[2]")).click();
-//        PageObject.menu_LinkEnv("Individual/Sole/Proprietorship/Minor ");
+        PageObject.menu_DropdownEnv("Customer Relation Officer Menu");
+        PageObject.menu_DropdownEnv("Alfalah Customer Information");
+        PageObject.menu_DropdownEnv("Branch Level Inputter");
+        driver.findElement(By.xpath("(//span[text()='Alfalah Customer Information'])[2]")).click();
+        PageObject.menu_LinkEnv("Individual/Sole/Proprietorship/Minor ");
 
         PageObject.parentFrame();
         PageObject.switchFrame(2);
@@ -114,7 +111,7 @@ public class Customers extends BaseClass {
         PageObject.textinput_Locator("fieldName:NAME.2:1","MUHAMMAD");
         PageObject.textinput_Locator("fieldName:SOLE.NAME",column.get("SOLE_NAME"));
         PageObject.textinput_Locator("fieldName:MB.FATH.HUS.NAM",column.get("MB_FATH_HUS_NAM"));
-        PageObject.select_Locator("fieldName:A.ADDRESS.TYPE",column.get("ADDRESS_TYPE"));
+        PageObject.select_Locator("fieldName:ADDRESS.TYPE",column.get("ADDRESS_TYPE"));
         PageObject.textarea_Locator("fieldName:ADD.H",column.get("ADD_H"));
         PageObject.textinput_Locator("fieldName:STREET:1",column.get("STREET"));
 
@@ -351,20 +348,20 @@ public class Customers extends BaseClass {
 
 
 
-    @Test  (groups = {"Authorizer"}, dataProvider = "auth")
+    @Test  (groups = {"AuthorizerNewEnv"}, dataProvider = "auth")
     public void customerAuthorization(Map<String, String> column) throws InterruptedException, IOException {
 
-        PageObject.menu_Dropdown("Customer Services");
-        PageObject.menu_Dropdown("Alfalah Customer Information");
-        PageObject.menu_Dropdown("Branch Level Authorization");
-        PageObject.menu_Dropdown("Authorization of CIF & ACCOUNT");
-        PageObject.menu_Dropdown("Authorization of Customer");
-        PageObject.menu_Link("Authorization of CIF- Branch Level ");
+        PageObject.menu_DropdownEnv("Customer Services");
+        PageObject.menu_DropdownEnv("Alfalah Customer Information");
+        PageObject.menu_DropdownEnv("Branch Level Authorization");
+        PageObject.menu_DropdownEnv("Authorization of CIF & ACCOUNT");
+        PageObject.menu_DropdownEnv("Authorization of Customer");
+        PageObject.menu_LinkEnv("Authorization of CIF- Branch Level ");
 
         homePage = PageObject.switchToChildWindow();
 
         PageObject.textinput_Locator("value:1:1:1",column.get("Customer_ID"));
-        Customers.Txn = column.get("Customer_ID");
+        Customers_TestingEnv.Txn = column.get("Customer_ID");
 
         TC = column.get("TC");
         Accounts.PD = column.get("PD");
@@ -493,8 +490,8 @@ public class Customers extends BaseClass {
         String Transaction = Txn.getText();
         String[] first = Transaction.split(":");
         String[] second = first[1].split(" ");
-        Customers.Txn = second[1];
-        System.out.println("Customer Number is: "+Customers.Txn);
+        Customers_TestingEnv.Txn = second[1];
+        System.out.println("Customer Number is: "+ Customers_TestingEnv.Txn);
 
     }
 
@@ -535,9 +532,9 @@ public class Customers extends BaseClass {
         Sheet sheet = workbook.getSheetAt(0);
         row = sheet.createRow(rowNum++);
         cell = row.createCell(0);
-        cell.setCellValue(Customers.TC);
+        cell.setCellValue(Customers_TestingEnv.TC);
         cell = row.createCell(1);
-        cell.setCellValue(Customers.Txn);
+        cell.setCellValue(Customers_TestingEnv.Txn);
         cell = row.createCell(2);
         cell.setCellValue(Accounts.PD);
 

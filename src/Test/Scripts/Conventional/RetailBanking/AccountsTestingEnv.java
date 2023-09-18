@@ -19,10 +19,10 @@ import java.util.Map;
 
 import static Test.Scripts.Conventional.RetailBanking.Customers.*;
 
-public class Accounts extends BaseClass {
+public class AccountsTestingEnv extends BaseClass {
 //    Customers customer = new Customers();
 
-    private static int count = 2;
+    private static int count = 9;
     public static String PD,CUSTOMER;
     public static File  file;
 
@@ -37,16 +37,16 @@ public class Accounts extends BaseClass {
             RELATIONSHIP_BE,REMITTER_RESID,REMITTER_ID_TYP,CURRENCY;
     public static String[] LCY_CURRENT_ACCOUNTS = { "1001", "1005", "1007", "1010", "1011", "1014", "1017", "1022",
                                                     "1030", "1031", "1034", "1035", "1037", "1038", "1142", "1143",
-                                                    "1150", "1171", "1326" };
+                                                    "1150", "1171","1098", "1326" };
     //CurrentAcc,
-    public static String[] LCY_SAVING_ACCOUNTS = { "6001", "6004", "6005", "6009", "6012", "6014", "6018", "6025" };
+    public static String[] LCY_SAVING_ACCOUNTS = { "6001", "6063","6004", "6005", "6009", "6012", "6014", "6018", "6025" };
     public static String[] FCY_CURRENT_ACCOUNTS = { "1003", "1033", "1036", "1040", "1142", "1143" };
     public static String[] FCY_SAVING_ACCOUNTS = { "6003", "6019", "6030", "6035", "6039" };
     public static String[] KIDS_ACCOUNT = { "6020" };
 
     //		                         <<<<    CALLING DIFFERENT SCRIPTS    >>>>
 
-    @Test (groups = {"Inputter"}, dataProvider = "condition")
+    @Test (groups = {"InputterNewEnv"}, dataProvider = "condition")
     public void callAccountCreation(Map<String, String> column) throws InterruptedException, IOException {
 
 //        Getting the data
@@ -63,7 +63,7 @@ public class Accounts extends BaseClass {
 //
         System.out.println("Before increment, Index of customer and PD: "+Customerindex +" "+PDindex);
         CUSTOMER = customerTxn.get(Customerindex++);
-        Accounts.PD = customerPD.get(PDindex++);
+        AccountsTestingEnv.PD = customerPD.get(PDindex++);
         System.out.println("After increment, Index of customer and PD: "+Customerindex +" "+PDindex);
 
         TC = column.get("TC-Account Creation");
@@ -88,27 +88,27 @@ public class Accounts extends BaseClass {
         REMITTER_ID_TYP = column.get("REMITTER_ID_TYP");
 
         for (String typeOfProduct : LCY_CURRENT_ACCOUNTS) {
-            if ( Accounts.PD.equals(typeOfProduct)) {
+            if ( AccountsTestingEnv.PD.equals(typeOfProduct)) {
                 lcyCurrentAccount();
             }
         }
         for (String typeOfProduct : LCY_SAVING_ACCOUNTS) {
-            if ( Accounts.PD.equals(typeOfProduct)) {
+            if ( AccountsTestingEnv.PD.equals(typeOfProduct)) {
                 lcySavingAccount();
             }
         }
         for (String typeOfProduct : FCY_CURRENT_ACCOUNTS) {
-            if ( Accounts.PD.equals(typeOfProduct)) {
+            if ( AccountsTestingEnv.PD.equals(typeOfProduct)) {
                 fcyCurrentAccount();
             }
         }
         for (String typeOfProduct : FCY_SAVING_ACCOUNTS) {
-            if ( Accounts.PD.equals(typeOfProduct)) {
+            if ( AccountsTestingEnv.PD.equals(typeOfProduct)) {
                 fcySavingAccount();
             }
         }
         for (String typeOfProduct : KIDS_ACCOUNT) {
-            if ( Accounts.PD.equals(typeOfProduct)) {
+            if ( AccountsTestingEnv.PD.equals(typeOfProduct)) {
                 lcyKidsAccount();
             }
         }
@@ -152,12 +152,12 @@ public class Accounts extends BaseClass {
     public void lcyCurrentAccount() throws InterruptedException, IOException {
 //        System.out.println(customer.Txn);
 
-        PageObject.menu_Dropdown("Customer Relation Officer Menu");
-        PageObject.menu_Dropdown("Alfalah Customer Information");
-        PageObject.menu_Dropdown("Branch Level Inputter");
-        PageObject.menu_Dropdown("Alfalah Account Information");
-        PageObject.menu_Dropdown("Local Currency Account Open");
-        PageObject.menu_Link("Current Account ");
+        PageObject.menu_DropdownEnv("Customer Relation Officer Menu");
+        PageObject.menu_DropdownEnv("Alfalah Customer Information");
+        PageObject.menu_DropdownEnv("Branch Level Inputter");
+        PageObject.menu_DropdownEnv("Alfalah Account Information");
+        PageObject.menu_DropdownEnv("Local Currency Account Open");
+        PageObject.menu_LinkEnv("Current Account ");
 
         PageObject.parentFrame();
         PageObject.switchFrame(2);
@@ -167,9 +167,10 @@ public class Accounts extends BaseClass {
 
         PageObject.textinput_Locator("fieldName:CUSTOMER", CUSTOMER);
         PageObject.textinput_Locator("fieldName:CATEGORY", PD);
-        PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.1:1",  ACCOUNT_TITLE_1);
-        PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.2:1",  ACCOUNT_TITLE_2);
-        PageObject.textinput_Locator("fieldName:OTHER.OFFICER:1",  OTHER_OFFICER);
+        PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.1",  ACCOUNT_TITLE_1);
+        PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.2",  ACCOUNT_TITLE_2);
+//        PageObject.textinput_Locator("fieldName:OTHER.OFFICER:1",  OTHER_OFFICER);
+        driver.findElement(By.xpath("//input[@id='fieldName:OTHER.OFFICER:1']")).sendKeys(OTHER_OFFICER);
         PageObject.textinput_Locator("fieldName:REFEREE",  REFEREE);
 
         PageObject.radiobutton_Locator("radio:tab1:BAF.PEN.ACCT", 1);
@@ -208,12 +209,12 @@ public class Accounts extends BaseClass {
 
     public void lcySavingAccount() throws InterruptedException, IOException {
 
-        PageObject.menu_Dropdown("Customer Relation Officer Menu");
-        PageObject.menu_Dropdown("Alfalah Customer Information");
-        PageObject.menu_Dropdown("Branch Level Inputter");
-        PageObject.menu_Dropdown("Alfalah Account Information");
-        PageObject.menu_Dropdown("Local Currency Account Open");
-        PageObject.menu_Link("Saving Account ");
+        PageObject.menu_DropdownEnv("Customer Relation Officer Menu");
+        PageObject.menu_DropdownEnv("Alfalah Customer Information");
+        PageObject.menu_DropdownEnv("Branch Level Inputter");
+        PageObject.menu_DropdownEnv("Alfalah Account Information");
+        PageObject.menu_DropdownEnv("Local Currency Account Open");
+        PageObject.menu_LinkEnv("Saving Account ");
 
         PageObject.parentFrame();
         PageObject.switchFrame(2);
@@ -223,9 +224,11 @@ public class Accounts extends BaseClass {
         PageObject.textinput_Locator("fieldName:CUSTOMER", CUSTOMER);
         PageObject.click_Locator("fieldName:CATEGORY");
         PageObject.textinput_Locator("fieldName:CATEGORY", PD);
-        PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.1:1",  ACCOUNT_TITLE_1);
-        PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.2:1",  ACCOUNT_TITLE_2);
-        PageObject.textinput_Locator("fieldName:OTHER.OFFICER:1",  OTHER_OFFICER);
+        PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.1",  ACCOUNT_TITLE_1);
+        PageObject.click_Locator("fieldName:ACCOUNT.TITLE.2");
+        PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.2",  ACCOUNT_TITLE_2);
+//        PageObject.textinput_Locator("fieldName:OTHER.OFFICER",  OTHER_OFFICER);
+        driver.findElement(By.xpath("//input[@id='fieldName:OTHER.OFFICER:1']")).sendKeys(OTHER_OFFICER);
         PageObject.textinput_Locator("fieldName:REFEREE",  REFEREE);
         PageObject.radiobutton_Locator("radio:mainTab:BAF.PEN.ACCT", 1);
 
@@ -265,12 +268,12 @@ public class Accounts extends BaseClass {
 
     public void lcyKidsAccount() throws InterruptedException, IOException {
 
-        PageObject.menu_Dropdown("Customer Relation Officer Menu");
-        PageObject.menu_Dropdown("Alfalah Customer Information");
-        PageObject.menu_Dropdown("Branch Level Inputter");
-        PageObject.menu_Dropdown("Alfalah Account Information");
-        PageObject.menu_Dropdown("Local Currency Account Open");
-        PageObject.menu_Link("Alfalah SnaPack Kids Account ");
+        PageObject.menu_DropdownEnv("Customer Relation Officer Menu");
+        PageObject.menu_DropdownEnv("Alfalah Customer Information");
+        PageObject.menu_DropdownEnv("Branch Level Inputter");
+        PageObject.menu_DropdownEnv("Alfalah Account Information");
+        PageObject.menu_DropdownEnv("Local Currency Account Open");
+        PageObject.menu_LinkEnv("Alfalah SnaPack Kids Account ");
 
         PageObject.parentFrame();
         PageObject.switchFrame(2);
@@ -305,12 +308,12 @@ public class Accounts extends BaseClass {
 
     public void fcyCurrentAccount() throws InterruptedException, IOException {
 
-        PageObject.menu_Dropdown("Customer Relation Officer Menu");
-        PageObject.menu_Dropdown("Alfalah Customer Information");
-        PageObject.menu_Dropdown("Branch Level Inputter");
-        PageObject.menu_Dropdown("Alfalah Account Information");
-        PageObject.menu_Dropdown("Foreign Currency Account Open");
-//        PageObject.menu_Link("Current Account ");
+        PageObject.menu_DropdownEnv("Customer Relation Officer Menu");
+        PageObject.menu_DropdownEnv("Alfalah Customer Information");
+        PageObject.menu_DropdownEnv("Branch Level Inputter");
+        PageObject.menu_DropdownEnv("Alfalah Account Information");
+        PageObject.menu_DropdownEnv("Foreign Currency Account Open");
+//        PageObject.menu_LinkEnv();("Current Account ");
         PageObject.childmenu_Link("Current Account ",2);
 
         PageObject.parentFrame();
@@ -337,12 +340,12 @@ public class Accounts extends BaseClass {
 
     public void fcySavingAccount() throws InterruptedException, IOException {
 
-        PageObject.menu_Dropdown("Customer Relation Officer Menu");
-        PageObject.menu_Dropdown("Alfalah Customer Information");
-        PageObject.menu_Dropdown("Branch Level Inputter");
-        PageObject.menu_Dropdown("Alfalah Account Information");
-        PageObject.menu_Dropdown("Foreign Currency Account Open");
-//        PageObject.menu_Link("Saving Account ");
+        PageObject.menu_DropdownEnv("Customer Relation Officer Menu");
+        PageObject.menu_DropdownEnv("Alfalah Customer Information");
+        PageObject.menu_DropdownEnv("Branch Level Inputter");
+        PageObject.menu_DropdownEnv("Alfalah Account Information");
+        PageObject.menu_DropdownEnv("Foreign Currency Account Open");
+//        PageObject.menu_LinkEnv();("Saving Account ");
         PageObject.childmenu_Link("Saving Account ",2);
         //
 
@@ -372,15 +375,15 @@ public class Accounts extends BaseClass {
     }
 
 
-    @Test (groups = {"Authorizer"}, dataProvider = "auth")
+    @Test (groups = {"AuthorizerNewEnv"}, dataProvider = "auth")
     public void accountAuthorization(Map<String, String> column) throws InterruptedException, IOException {
 
-        PageObject.menu_Dropdown("Customer Services");
-        PageObject.menu_Dropdown("Alfalah Customer Information");
-        PageObject.menu_Dropdown("Branch Level Authorization");
-        PageObject.menu_Dropdown("Authorization of CIF & ACCOUNT");
-        PageObject.menu_Dropdown("Authorization of Account");
-        PageObject.menu_Link("Authorization for Account- Branch Level ");
+        PageObject.menu_DropdownEnv("Customer Services");
+        PageObject.menu_DropdownEnv("Alfalah Customer Information");
+        PageObject.menu_DropdownEnv("Branch Level Authorization");
+        PageObject.menu_DropdownEnv("Authorization of CIF & ACCOUNT");
+        PageObject.menu_DropdownEnv("Authorization of Account");
+        PageObject.menu_LinkEnv("Authorization for Account- Branch Level ");
 
 
         homePage = PageObject.switchToChildWindow();
@@ -550,7 +553,7 @@ public class Accounts extends BaseClass {
         cell = row.createCell(2);
         cell.setCellValue(CUSTOMER);
         cell = row.createCell(3);
-        cell.setCellValue(Accounts.PD);
+        cell.setCellValue(AccountsTestingEnv.PD);
 
         FileOutputStream fos = new FileOutputStream(file);
         workbook.write(fos);
