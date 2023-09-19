@@ -22,7 +22,7 @@ import static Test.Scripts.Conventional.RetailBanking.Customers.*;
 public class AccountsTestingEnv extends BaseClass {
 //    Customers customer = new Customers();
 
-    private static int count = 9;
+    private static int count = 8;
     public static String PD,CUSTOMER;
     public static File  file;
 

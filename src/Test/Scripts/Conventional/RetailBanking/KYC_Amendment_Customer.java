@@ -21,17 +21,17 @@ public class KYC_Amendment_Customer extends BaseClass {
 //    String CusNumber="16992982";
     String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\KYC_Amendment_Customer.xlsx";
 
-    @Test(groups = {"Inputter"}, dataProvider = "excelDataKYC_Amendment_Customer")
+    @Test(groups = {"InputterNewEnv"}, dataProvider = "excelDataKYC_Amendment_Customer")
 
     public void KYC_Amendment_Customer(Map<String, String> testData) throws IOException, InterruptedException {
 
-        PageObject.menu_Dropdown("Customer Relation Officer Menu");
-        PageObject.menu_Dropdown("Alfalah Customer Information");
-        PageObject.menu_Dropdown("Branch Level Inputter");
-        PageObject.menu_Dropdown("Alfalah KYC Information");
-        PageObject.menu_Dropdown("Alfalah Customer KYC Information");
+        PageObject.menu_DropdownEnv("Customer Relation Officer Menu");
+        PageObject.menu_DropdownEnv("Alfalah Customer Information");
+        PageObject.menu_DropdownEnv("Branch Level Inputter");
+        PageObject.menu_DropdownEnv("Alfalah KYC Information");
+        PageObject.menu_DropdownEnv("Alfalah Customer KYC Information");
 
-        PageObject.menu_Link("KYC Amendment Customer ");
+        PageObject.menu_LinkEnv("KYC Amendment Customer ");
 
         String menu = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
@@ -47,53 +47,55 @@ public class KYC_Amendment_Customer extends BaseClass {
         String menu2 = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
 
-        PageObject.select_Locator("fieldName:OCCUPATION",testData.get("OCCUPATION"));  //Business or Salaried
-        PageObject.textinput_Locator("fieldName:NAME.OF.BUS",testData.get("NAME.OF.BUS"));
-        PageObject.textinput_Locator("fieldName:NAT.OF.BUS",testData.get("NAT.OF.BUS"));
-        PageObject.textinput_Locator("fieldName:STAT.OWNER",testData.get("STAT.OWNER"));
+        PageObject.textinput_Locator("fieldName:KYC.REVW.COMENT",testData.get("KYC.REVW.COMENT"));
+
+//        PageObject.select_Locator("fieldName:OCCUPATION",testData.get("OCCUPATION"));  //Business or Salaried
+//        PageObject.textinput_Locator("fieldName:NAME.OF.BUS",testData.get("NAME.OF.BUS"));
+//        PageObject.textinput_Locator("fieldName:NAT.OF.BUS",testData.get("NAT.OF.BUS"));
+//        PageObject.textinput_Locator("fieldName:STAT.OWNER",testData.get("STAT.OWNER"));
         PageObject.textinput_Locator("fieldName:NAME.OF.EMP",testData.get("NAME.OF.EMP"));
         PageObject.textinput_Locator("fieldName:CS.POS",testData.get("CS.POS"));
         PageObject.textinput_Locator("fieldName:CS.EMP.SINCE",testData.get("CS.EMP.SINCE"));
-        PageObject.radiobutton_Locator("radio:mainTab:STATUS",1);
+//        PageObject.radiobutton_Locator("radio:mainTab:STATUS",1);
         PageObject.textinput_Locator("fieldName:CURRENT.SALARY",testData.get("CURRENT.SALARY"));
-        PageObject.textinput_Locator("fieldName:OTHER.INCOME",testData.get("OTHER.INCOME"));
-        PageObject.textinput_Locator("fieldName:OTHER.FUNDS",testData.get("OTHER.FUNDS"));
-        PageObject.textinput_Locator("fieldName:PER.PROP.INMNT",testData.get("PER.PROP.INMNT"));
-        PageObject.textinput_Locator("fieldName:CS.ANNUM.TO",testData.get("CS.ANNUM.TO"));
-        PageObject.textinput_Locator("fieldName:SOURCE.OF.INCOME",testData.get("SOURCE.OF.INCOME"));
-        PageObject.radiobutton_Locator("radio:mainTab:REL.POILITICAL",1);
+//        PageObject.textinput_Locator("fieldName:OTHER.INCOME",testData.get("OTHER.INCOME"));
+//        PageObject.textinput_Locator("fieldName:OTHER.FUNDS",testData.get("OTHER.FUNDS"));
+//        PageObject.textinput_Locator("fieldName:PER.PROP.INMNT",testData.get("PER.PROP.INMNT"));
+//        PageObject.textinput_Locator("fieldName:CS.ANNUM.TO",testData.get("CS.ANNUM.TO"));
+//        PageObject.textinput_Locator("fieldName:SOURCE.OF.INCOME",testData.get("SOURCE.OF.INCOME"));
+//        PageObject.radiobutton_Locator("radio:mainTab:REL.POILITICAL",1);
         PageObject.textinput_Locator("fieldName:POLITICAL.FIGURE",testData.get("POLITICAL.FIGURE"));
-        PageObject.radiobutton_Locator("radio:mainTab:PFAMAPPROVAL",1);
-        PageObject.textinput_Locator("fieldName:KYC.REVW.COMENT",testData.get("KYC.REVW.COMENT"));
-        PageObject.radiobutton_Locator("radio:mainTab:HRAMAPPROVAL",1);
-        PageObject.radiobutton_Locator("radio:mainTab:CH.BS.CNT.PHNO",1);
-        PageObject.textinput_Locator("fieldName:CUST.COMMENTS:1",testData.get("CUST.COMMENTS:1"));
-        PageObject.radiobutton_Locator("radio:mainTab:CH.FIN.STMT",1);
-        PageObject.radiobutton_Locator("radio:mainTab:CH.EXP.GEO.LOCAL",1);
-        PageObject.radiobutton_Locator("radio:mainTab:CH.EXP.GEO.INT",1);
-        PageObject.textinput_Locator("fieldName:EXP.COUNT.PARTY:1","Test4");
-        PageObject.radiobutton_Locator("radio:mainTab:CH.EXP.COUNT.PARTY",1);
-        PageObject.radiobutton_Locator("radio:mainTab:CH.CS.OCCUPATION",1);
-        PageObject.radiobutton_Locator("radio:mainTab:CH.NAME.OF.BUS",1);
-        PageObject.radiobutton_Locator("radio:mainTab:CH.NAT.OF.BUS",1);
-        PageObject.radiobutton_Locator("radio:mainTab:CH.STAT.OWNER",1);
-        PageObject.radiobutton_Locator("radio:mainTab:CH.NAME.OF.EMP",1);
-        PageObject.radiobutton_Locator("radio:mainTab:CH.CS.POS",1);
-        PageObject.radiobutton_Locator("radio:mainTab:CH.CS.EMP.SINCE",1);
-        PageObject.radiobutton_Locator("radio:mainTab:CH.STATUS",1);
-        PageObject.radiobutton_Locator("radio:mainTab:CH.CURRENT.SALARY",1);
-        PageObject.radiobutton_Locator("radio:mainTab:CH.COMMENTS",1);
-        PageObject.radiobutton_Locator("radio:mainTab:CH.CUS.SATISFY",1);
-        PageObject.radiobutton_Locator("radio:mainTab:CH.PER.PROP.INMNT",1);
-        PageObject.radiobutton_Locator("radio:mainTab:CH.CS.ANNUM.TO",1);
-        PageObject.radiobutton_Locator("radio:mainTab:CH.SOURCE.OF.INCOME",1);
-        PageObject.radiobutton_Locator("radio:mainTab:CH.REL.POILITICAL",1);
-        PageObject.radiobutton_Locator("radio:mainTab:CH.POLITICAL.FIGURE",1);
-        PageObject.radiobutton_Locator("radio:mainTab:CH.PFAMAPPROVAL",1);
-        PageObject.radiobutton_Locator("radio:mainTab:CH.RISKLEVEL",1);
-        PageObject.radiobutton_Locator("radio:mainTab:CH.AMEND.DATE",1);
-        PageObject.radiobutton_Locator("radio:mainTab:CH.KYC.REVW.COMENT",1);
-        PageObject.radiobutton_Locator("radio:mainTab:CH.HRAMAPPROVAL",1);
+//        PageObject.radiobutton_Locator("radio:mainTab:PFAMAPPROVAL",1);
+//        PageObject.textinput_Locator("fieldName:KYC.REVW.COMENT",testData.get("KYC.REVW.COMENT"));
+//        PageObject.radiobutton_Locator("radio:mainTab:HRAMAPPROVAL",1);
+//        PageObject.radiobutton_Locator("radio:mainTab:CH.BS.CNT.PHNO",1);
+//        PageObject.textinput_Locator("fieldName:CUST.COMMENTS:1",testData.get("CUST.COMMENTS:1"));
+//        PageObject.radiobutton_Locator("radio:mainTab:CH.FIN.STMT",1);
+//        PageObject.radiobutton_Locator("radio:mainTab:CH.EXP.GEO.LOCAL",1);
+//        PageObject.radiobutton_Locator("radio:mainTab:CH.EXP.GEO.INT",1);
+//        PageObject.textinput_Locator("fieldName:EXP.COUNT.PARTY:1","Test4");
+//        PageObject.radiobutton_Locator("radio:mainTab:CH.EXP.COUNT.PARTY",1);
+//        PageObject.radiobutton_Locator("radio:mainTab:CH.CS.OCCUPATION",1);
+//        PageObject.radiobutton_Locator("radio:mainTab:CH.NAME.OF.BUS",1);
+//        PageObject.radiobutton_Locator("radio:mainTab:CH.NAT.OF.BUS",1);
+//        PageObject.radiobutton_Locator("radio:mainTab:CH.STAT.OWNER",1);
+//        PageObject.radiobutton_Locator("radio:mainTab:CH.NAME.OF.EMP",1);
+//        PageObject.radiobutton_Locator("radio:mainTab:CH.CS.POS",1);
+//        PageObject.radiobutton_Locator("radio:mainTab:CH.CS.EMP.SINCE",1);
+//        PageObject.radiobutton_Locator("radio:mainTab:CH.STATUS",1);
+//        PageObject.radiobutton_Locator("radio:mainTab:CH.CURRENT.SALARY",1);
+//        PageObject.radiobutton_Locator("radio:mainTab:CH.COMMENTS",1);
+//        PageObject.radiobutton_Locator("radio:mainTab:CH.CUS.SATISFY",1);
+//        PageObject.radiobutton_Locator("radio:mainTab:CH.PER.PROP.INMNT",1);
+//        PageObject.radiobutton_Locator("radio:mainTab:CH.CS.ANNUM.TO",1);
+//        PageObject.radiobutton_Locator("radio:mainTab:CH.SOURCE.OF.INCOME",1);
+//        PageObject.radiobutton_Locator("radio:mainTab:CH.REL.POILITICAL",1);
+//        PageObject.radiobutton_Locator("radio:mainTab:CH.POLITICAL.FIGURE",1);
+//        PageObject.radiobutton_Locator("radio:mainTab:CH.PFAMAPPROVAL",1);
+//        PageObject.radiobutton_Locator("radio:mainTab:CH.RISKLEVEL",1);
+//        PageObject.radiobutton_Locator("radio:mainTab:CH.AMEND.DATE",1);
+//        PageObject.radiobutton_Locator("radio:mainTab:CH.KYC.REVW.COMENT",1);
+//        PageObject.radiobutton_Locator("radio:mainTab:CH.HRAMAPPROVAL",1);
 
         PageObject.commitDeal("KYC_Amendment_Customer");
 
@@ -165,20 +167,20 @@ public class KYC_Amendment_Customer extends BaseClass {
         return data;
     }
 
-    @Test(groups = {"Authorizer"},dataProvider = "excelData")
+    @Test(groups = {"AuthorizerNewEnv"},dataProvider = "excelData")
 
     public void kyc_Amendment_Customer_Auth(Map<String, String> testData) throws IOException, InterruptedException {
 
-//        PageObject.menu_Dropdown("Manager Operation Menu");
-//        PageObject.menu_Dropdown("Core Retail Menu");
-        PageObject.menu_Dropdown("Customer Services");
-        PageObject.menu_Dropdown("Alfalah Customer Information");
-        PageObject.menu_Dropdown("Branch Level Authorization");
-        PageObject.menu_Dropdown("Alfalah Account Information");
-        PageObject.menu_Dropdown("Authorization of KYC");
-        PageObject.menu_Dropdown("Alfalah KYC Information Authorization");
-        PageObject.menu_Dropdown("Authorization of Cusotmer KYC");
-        PageObject.menu_Link("Authorization for Customer KYC- Branch Level ");
+//        PageObject.menu_DropdownEnv();("Manager Operation Menu");
+//        PageObject.menu_DropdownEnv();("Core Retail Menu");
+        PageObject.menu_DropdownEnv("Customer Services");
+        PageObject.menu_DropdownEnv("Alfalah Customer Information");
+        PageObject.menu_DropdownEnv("Branch Level Authorization");
+        PageObject.menu_DropdownEnv("Alfalah Account Information");
+        PageObject.menu_DropdownEnv("Authorization of KYC");
+        PageObject.menu_DropdownEnv("Alfalah KYC Information Authorization");
+        PageObject.menu_DropdownEnv("Authorization of Cusotmer KYC");
+        PageObject.menu_LinkEnv("Authorization for Customer KYC- Branch Level ");
 
         String menu = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
