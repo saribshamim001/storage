@@ -47,7 +47,8 @@ public class BaseClass {
 
         action = new Actions(driver);
 
-        driver.get("http://172.24.157.16:9080/ENV/servlet/BrowserServlet");
+        driver.get("https://172.24.128.50/R22UAT2/servlet/BrowserServlet");
+//        driver.get("http://172.24.157.16:9080/ENV/servlet/BrowserServlet");
 //        driver.get("https://172.24.128.50/R22UAT1/servlet/BrowserServlet");
 //        driver.get("http://172.24.157.27:9080/R22SIT2/servlet/BrowserServlet");
         //driver.get("http://172.21.81.59:9080/R13UAT1/servlet/BrowserServlet");
@@ -351,13 +352,14 @@ public class BaseClass {
     public void inputterLogin() throws InterruptedException, AWTException {
 //        edgeConfig();
         chromeConfig();
-        PageObject.signIn("retail006","QWer1234");
+//        PageObject.signIn("retail006","QWer1234");
+        PageObject.signIn("retail1","QWer1234");
         //PageObject.signIn("SARA88", "QWer4321");
-        Thread.sleep(1000);
-        Robot robot = new Robot();  // Robot class throws AWT Exception
-        robot.keyPress(KeyEvent.VK_ENTER);  // press arrow down key of keyboard to navigate and select Save radio button
-        Thread.sleep(500);
-        robot.keyRelease(KeyEvent.VK_ENTER);  // press arrow down key of keyboard to navigate and select Save radio button
+//          Thread.sleep(1000);
+//        Robot robot = new Robot();  // Robot class throws AWT Exception
+//        robot.keyPress(KeyEvent.VK_ENTER);  // press arrow down key of keyboard to navigate and select Save radio button
+//        Thread.sleep(500);
+//        robot.keyRelease(KeyEvent.VK_ENTER);  // press arrow down key of keyboard to navigate and select Save radio button
 
 
         PageObject.switchFrame(1);
@@ -398,7 +400,7 @@ public class BaseClass {
     }
 
     @BeforeMethod(groups = {"CaoInputter"})
-    public void CaoInputterLogin2() {
+    public void CentralizedInputterLogin() {
 //        edgeConfig();
         chromeConfig();
         //
@@ -411,10 +413,9 @@ public class BaseClass {
         PageObject.textinput_Locator("transactionId","CAOUSER.002");
         PageObject.img_Button("Edit a contract");
         PageObject.textinput_Locator("fieldName:CURRENT.BRANCH","1003111040");
-        PageObject.img_Button("Commit the deal");
-        PageObject.img_Button("Commit the deal");
+        driver.findElement(By.xpath("//input[@id='fieldName:CURRENT.BRANCH']")).sendKeys(Keys.ENTER);
         try {
-            Thread.sleep(5000);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -643,13 +644,14 @@ public class BaseClass {
     public void authorizerLogin() throws AWTException, InterruptedException {
         chromeConfig();
 
-        PageObject.signIn("retailauth006", "QWer1234");
-        Thread.sleep(1000);
-
-        Robot robot = new Robot();  // Robot class throws AWT Exception
-        robot.keyPress(KeyEvent.VK_ENTER);  // press arrow down key of keyboard to navigate and select Save radio button
-        Thread.sleep(500);
-        robot.keyRelease(KeyEvent.VK_ENTER);
+        PageObject.signIn("retailauth1", "QWer1234");
+//        PageObject.signIn("retailauth006", "QWer1234");
+//        Thread.sleep(1000);
+//
+//        Robot robot = new Robot();  // Robot class throws AWT Exception
+//        robot.keyPress(KeyEvent.VK_ENTER);  // press arrow down key of keyboard to navigate and select Save radio button
+//        Thread.sleep(500);
+//        robot.keyRelease(KeyEvent.VK_ENTER);
 
         homePage = driver.getWindowHandle();
 
@@ -676,18 +678,18 @@ public class BaseClass {
 
     }
 
-    @AfterMethod(groups = {"Authorizer" , "Inputter", "IBGInputter", "IBGAuthorizer","InputterNewEnv","AuthorizerNewEnv"})
-    public void userLogout(){
-        this.driver.close();
-
-        PageObject.switchToParentWindow(homePage);
-
-        PageObject.switchFrame(0);
-
-        PageObject.signOff();
-
-        this.driver.close();
-    }
+//    @AfterMethod(groups = {"Authorizer" , "Inputter", "IBGInputter", "IBGAuthorizer","InputterNewEnv","AuthorizerNewEnv"})
+//    public void userLogout(){
+//        this.driver.close();
+//
+//        PageObject.switchToParentWindow(homePage);
+//
+//        PageObject.switchFrame(0);
+//
+//        PageObject.signOff();
+//
+//        this.driver.close();
+//    }
 
 
 //    @BeforeMethod(groups = {"PowerUser"})

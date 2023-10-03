@@ -67,7 +67,7 @@ public class PageObject extends BaseClass {
     //This method is to perform SignIn action
     public static void signIn (String userName , String passWord) {
         driver.findElement(By.xpath("//input[@name='signOnName']")).sendKeys(userName);
-        driver.findElement(By.xpath("//input[@name='password']")).sendKeys(passWord);
+        //driver.findElement(By.xpath("//input[@name='password']")).sendKeys(passWord);
         driver.findElement(By.xpath("//input[@type='submit']")).click();
     }
 

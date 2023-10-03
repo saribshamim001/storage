@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <listeners>
+        <listener class-name="Resources.Listeners"/>
+    </listeners>
+
+<!--    <test verbose="1" preserve-order="true" name="Retail Operations Inp1">-->
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="Inputter"/>-->
+<!--            </run>-->
+<!--        </groups>-->
+
+<!--        <classes>-->
+<!--            <class name="Test.Scripts.Conventional.RetailBanking.AccountStatement">-->
+<!--&lt;!&ndash;                <methods>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <include name="KYC"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </methods>&ndash;&gt;-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    <test verbose="1" preserve-order="true" name="Retail Operations Inp2">-->
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="Inputter"/>-->
+<!--            </run>-->
+<!--        </groups>-->
+
+<!--        <classes>-->
+<!--            <class name="Test.Scripts.Conventional.RetailBanking.CollectCDRBulk">-->
+<!--                <methods>-->
+<!--                    <include name="CDRBulkIssuance"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--        <test verbose="1" preserve-order="true" name="Retail Operations Auth2">-->
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="Authorizer"/>-->
+<!--            </run>-->
+<!--        </groups>-->
+
+<!--        <classes>-->
+<!--            <class name="Test.Scripts.Conventional.RetailBanking.CollectCDRBulk">-->
+<!--                <methods>-->
+<!--                    <include name="CDRBulkIssuance_Auth"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+
+        <test verbose="1" preserve-order="true" name="Retail Operations Inp3">
+            <groups>
+                <run>
+                    <include name="Inputter"/>
+                </run>
+            </groups>
+
+            <classes>
+                <class name="Test.Scripts.Conventional.RetailBanking.DDCancellation">
+                    <methods>
+                        <include name="CDRBulkIssuance"/>
+                    </methods>
+                </class>
+            </classes>
+        </test>
+
+
+</suite>

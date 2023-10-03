@@ -53,7 +53,7 @@ public class CollectCDRBulk extends BaseClass {
         PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1", testData.get("COMMISSION.TYPE:1"));
         PageObject.textinput_Locator("fieldName:COMMISSION.AMT:1", testData.get("COMMISSION.AMT:1"));
 
-        //PageObject.commitDeal("CDRBulkIssuance");
+        PageObject.commitDeal("CDRBulkIssuance");
 
     }
 
@@ -89,21 +89,28 @@ public class CollectCDRBulk extends BaseClass {
 
     public void CDRBulkIssuance_Auth() throws IOException, InterruptedException {
 
-        PageObject.menu_Dropdown("Manager Operation Menu");
-
-        PageObject.menu_Dropdown("Core Retail Menu");
+//        PageObject.menu_Dropdown("Manager Operation Menu");
+//
+//        PageObject.menu_Dropdown("Core Retail Menu");
 
         PageObject.menu_Dropdown("Call Deposit Receipt- Authorizer Menu");
 
         PageObject.menu_Dropdown("Call Deposit Receipt Instrument Authorization");
 
-        PageObject.menu_Link("Authorization Bulk CDR Instrument ");
-
-        PageObject.find_Button();
-
-        PageObject.form_Link("Authorize Transaction");
-
+//        PageObject.menu_Link("Authorization Bulk CDR Instrument ");
+        PageObject.menu_Link("Authorization of Bulk CDR Issuance- Step-1 ");
         String menu2 = PageObject.switchToChildWindow();
+        PageObject.switchFrame(0);
+
+        //PageObject.find_Button();
+
+        PageObject.form_Link("Authorise a Transaction");
+
+//        String menu2 = PageObject.switchToChildWindow();
+
+        driver.switchTo().parentFrame()
+                ;
+        PageObject.switchFrame(1);
 
         PageObject.img_Button("Authorises a deal");
 
