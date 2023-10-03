@@ -97,7 +97,7 @@ public class KYC_Amendment_Account extends BaseClass {
         System.out.println(txn);
 
         //saving acc number to file
-        saveAccNumToFile(accNumber);
+//        saveAccNumToFile(accNumber);
 
     }
 

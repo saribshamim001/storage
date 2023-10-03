@@ -35,7 +35,7 @@ public class DDCancellation extends BaseClass {
 
         PageObject.textinput_Locator("fieldName:CREDIT.THEIR.REF", testData.get("CREDIT.THEIR.REF"));
 
-        //PageObject.commitDeal("DemandDraftCancellation");
+        PageObject.commitDeal("DemandDraftCancellation");
 
 
     }
@@ -68,35 +68,38 @@ public class DDCancellation extends BaseClass {
         return data;
     }
 
-    @Test(groups = {"Authorizer"})
+    @Test(groups = {"Authorizer"},dataProvider = "DDCancellationAuth")
 
     public void DDCancellation_Auth() throws IOException, InterruptedException {
 
-        PageObject.menu_Dropdown("Manager Operation Menu");
-
-        PageObject.menu_Dropdown("Core Retail Menu");
+//        PageObject.menu_Dropdown("Manager Operation Menu");
+//
+//        PageObject.menu_Dropdown("Core Retail Menu");
 
         PageObject.menu_Dropdown("Call Deposit Receipt- Authorizer Menu");
 
         PageObject.menu_Dropdown("Call Deposit Receipt Maintenance Authorize");
 
         PageObject.menu_Link("Authorization CDR Cancellation Instrument ");
-
-        String menu1 = PageObject.switchToChildWindow();
-
-        PageObject.find_Button();
-
-        PageObject.form_Link("Authorize Transaction");
-
+//
         String menu2 = PageObject.switchToChildWindow();
+        PageObject.switchFrame(0);
+
+        //PageObject.find_Button();
+
+        PageObject.form_Link("Authorise a Transaction");
+
+//        String menu2 = PageObject.switchToChildWindow();
+
+        driver.switchTo().parentFrame();
+        PageObject.switchFrame(1);
 
         PageObject.img_Button("Authorises a deal");
-
     }
 
-    @DataProvider(name = "CDRCancellation")
-    public Object[][]  CDRCancellationinputData() throws IOException {
-        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\CDRCancellation.xlsx";
+    @DataProvider(name = "DDCancellationAuth")
+    public Object[][]  DDCancellationAuth() throws IOException {
+        String FILE_PATH = System.getProperty("user.dir")+"\\Data\\DemandDraftCancellation.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet

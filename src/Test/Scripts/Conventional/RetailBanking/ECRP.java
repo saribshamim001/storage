@@ -117,7 +117,7 @@ public class ECRP extends BaseClass  {
 //        PageObject.textinput_Locator("fieldName:SBP.IND.PARENT",testData.get("SBP.IND.PARENT"));
 //        PageObject.textinput_Locator("fieldName:SBP.INDUSTRY",testData.get("SBP.INDUSTRY"));
 
-        PageObject.textinput_Locator("fieldName:SECTOR",column.get("SECTOR"));
+//        PageObject.textinput_Locator("fieldName:SECTOR",column.get("SECTOR"));
         SECTOR = column.get("SECTOR");
         PageObject.select_Locator("fieldName:CUST.SEGMENT",column.get("CUST_SEGMENT"));
         PageObject.radiobutton_Locator("radio:mainTab:SME.TYPE",1);
