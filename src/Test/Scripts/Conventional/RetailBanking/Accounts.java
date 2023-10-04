@@ -22,7 +22,7 @@ import static Test.Scripts.Conventional.RetailBanking.Customers.*;
 public class Accounts extends BaseClass {
 //    Customers customer = new Customers();
 
-    private static int count = 2;
+    private static int count = 0;
     public static String PD,CUSTOMER;
     public static File  file;
 
@@ -401,6 +401,7 @@ public class Accounts extends BaseClass {
 
 
 
+
         String excelFilePath = System.getProperty("user.dir")+"\\Data\\UnAuth_Customers.xlsx";
 
         try (FileInputStream inputStream = new FileInputStream(excelFilePath);
@@ -437,6 +438,9 @@ public class Accounts extends BaseClass {
                 customerPD.add(pd);
             }
 
+            count = customerTxn.size();
+            System.out.println("count size:  "+count);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -461,8 +465,9 @@ public class Accounts extends BaseClass {
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
-        rowCount=count
-        ;
+
+        rowCount=( count + 1);
+
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
 

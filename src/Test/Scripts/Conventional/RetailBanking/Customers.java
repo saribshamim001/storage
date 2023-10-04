@@ -27,9 +27,9 @@ public class Customers extends BaseClass {
 
     public static String Txn;
 
-    private static int count = 2;
+    private static int count = 4;
 
-    public static String SECTOR;
+    public static String SECTOR,AccountType="",crpType="";
     public static String TC;
 
     public static File  file;
@@ -55,10 +55,12 @@ public class Customers extends BaseClass {
         PageObject.switchFrame(2);
 
         PageObject.img_Button("New Deal");
-
+        AccountType = column.get("Acc Desc");
         String crpType = column.get("CRP_TYPE") ;
         TC = column.get("TC");
         PageObject.textinput_Locator("fieldName:CRP.TYPE",crpType);
+        crpType = column.get("CRP_TYPE");
+
         PageObject.click_Locator("fieldName:ID.NUMBER:1");
         if ( (crpType.equalsIgnoreCase("9")) || (crpType.equalsIgnoreCase("1")) || (crpType.equalsIgnoreCase("5")) || (crpType.equalsIgnoreCase("6")) ){
             System.out.println("condition no1 true !");
@@ -110,10 +112,10 @@ public class Customers extends BaseClass {
 //        }
         PageObject.click_Locator("fieldName:ID.VAL.DT:1");
         PageObject.textinput_Locator("fieldName:ID.VAL.DT:1",column.get("ID_VAL_DT"));
-        PageObject.textinput_Locator("fieldName:NAME.1:1",column.get("NAME_1"));
+        PageObject.textinput_Locator("fieldName:NAME.1:1",column.get("NAME_1")+column.get("ID_NUMBER")+PageObject.idNumber(999,101));
         PageObject.textinput_Locator("fieldName:NAME.2:1","MUHAMMAD");
         PageObject.textinput_Locator("fieldName:SOLE.NAME",column.get("SOLE_NAME"));
-        PageObject.textinput_Locator("fieldName:MB.FATH.HUS.NAM",column.get("MB_FATH_HUS_NAM"));
+        PageObject.textinput_Locator("fieldName:MB.FATH.HUS.NAM",column.get("MB_FATH_HUS_NAM")+column.get("ID_NUMBER")+PageObject.idNumber(999,101));
         PageObject.select_Locator("fieldName:A.ADDRESS.TYPE",column.get("ADDRESS_TYPE"));
         PageObject.textarea_Locator("fieldName:ADD.H",column.get("ADD_H"));
         PageObject.textinput_Locator("fieldName:STREET:1",column.get("STREET"));
@@ -212,6 +214,7 @@ public class Customers extends BaseClass {
         PageObject.img_Button("New Deal");
 
         TC = column.get("TC");
+        AccountType = column.get("Acc Desc");
 
 //        PageObject.textinput_Locator("fieldName:SECTOR",column.get("SECTOR"));
 //        SECTOR = column.get("SECTOR");
@@ -222,6 +225,7 @@ public class Customers extends BaseClass {
 //        PageObject.click_Locator("fieldName:ID.VAL.DT:1");
 
         PageObject.textinput_Locator("fieldName:CRP.TYPE",column.get("CRP_TYPE"));
+        crpType = column.get("CRP_TYPE");
 
         //PageObject.textinput_Locator("fieldName:TARGET",column.get("TARGET"));
 
@@ -255,7 +259,7 @@ public class Customers extends BaseClass {
 
         PageObject.textinput_Locator("fieldName:ID.TYPE:1",column.get("ID_TYPE"));
         PageObject.click_Locator("fieldName:NAME.1:1");
-        PageObject.textinput_Locator("fieldName:ID.NUMBER:1",column.get("ID_NUMBER"));
+        PageObject.textinput_Locator("fieldName:ID.NUMBER:1",column.get("ID_NUMBER")+PageObject.idNumber(9999,1001));
         PageObject.click_Locator("fieldName:NAME.1:1");
         PageObject.textinput_Locator("fieldName:ID.VAL.DT:1",column.get("ID_VAL_DT"));
 
@@ -265,7 +269,7 @@ public class Customers extends BaseClass {
 
 //        PageObject.radiobutton_Locator("radio:mainTab:TRADE.CRP",1);
 
-        PageObject.textinput_Locator("fieldName:NAME.1:1",column.get("NAME_1"));
+        PageObject.textinput_Locator("fieldName:NAME.1:1",column.get("NAME_1")+column.get("ID_NUMBER")+PageObject.idNumber(999,101));
         PageObject.textinput_Locator("fieldName:NAME.2:1","COMPANY");
 //        PageObject.textinput_Locator("fieldName:SOLE.NAME","SOLE_NAME");
 //        PageObject.textinput_Locator("fieldName:MB.FATH.HUS.NAM","MB_FATH_HUS_NAM");
@@ -317,9 +321,12 @@ public class Customers extends BaseClass {
         PageObject.textinput_Locator("fieldName:CP.PH.RES:1",column.get("CP_PH_RES"));
         PageObject.textinput_Locator("fieldName:CP.EMAIL:1",column.get("CP_EMAIL"));
 
+        Thread.sleep(2000);
         // PARTNER
         PageObject.form_Tab("Director/Partner/Trustees/Office Bearer");
+        //Director/Partner/Trustees/Office Bearer
 
+        Thread.sleep(2000);
         PageObject.textinput_Locator("fieldName:NAME:1",column.get("NAME"));
         PageObject.textinput_Locator("fieldName:P.ID.TYPE:1",column.get("P_ID_TYPE"));
         PageObject.textinput_Locator("fieldName:ID.NO:1","47893978" + PageObject.idNumber());
@@ -505,9 +512,9 @@ public class Customers extends BaseClass {
             System.out.println("writting to file of accounts");
         }
 
-        else {
+        else { //  calling for individual,corporate and UnAuth Customers
             file = new File(System.getProperty("user.dir") + "\\Data\\" +testCaseName+ ".xlsx");
-            System.out.println("writting to file of customers");
+            System.out.println("writting to file of unAuth customers");
         }
         XSSFWorkbook workbook;
         Row row;
@@ -529,6 +536,10 @@ public class Customers extends BaseClass {
             cell.setCellValue("Customer_ID");
             cell = row.createCell(2);
             cell.setCellValue("PD");
+            cell = row.createCell(3);
+            cell.setCellValue("Accout Type Name");
+            cell = row.createCell(4);
+            cell.setCellValue("Customer Type");
 
         }
 
@@ -540,6 +551,10 @@ public class Customers extends BaseClass {
         cell.setCellValue(Customers.Txn);
         cell = row.createCell(2);
         cell.setCellValue(Accounts.PD);
+        cell = row.createCell(3);
+        cell.setCellValue(AccountType);
+        cell = row.createCell(4);
+        cell.setCellValue(crpType);
 
         FileOutputStream fos = new FileOutputStream(file);
         workbook.write(fos);
