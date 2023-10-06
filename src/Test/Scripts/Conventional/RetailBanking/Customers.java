@@ -27,7 +27,7 @@ public class Customers extends BaseClass {
 
     public static String Txn;
 
-    private static int count = 4;
+    private static int count = 54;
 
     public static String SECTOR,AccountType="",crpType="";
     public static String TC;
@@ -55,11 +55,11 @@ public class Customers extends BaseClass {
         PageObject.switchFrame(2);
 
         PageObject.img_Button("New Deal");
-        AccountType = column.get("Acc Desc");
-        String crpType = column.get("CRP_TYPE") ;
+        AccountType = column.get("Account Name");
+        //String crpType = column.get("CRP_TYPE") ;
         TC = column.get("TC");
-        PageObject.textinput_Locator("fieldName:CRP.TYPE",crpType);
         crpType = column.get("CRP_TYPE");
+        PageObject.textinput_Locator("fieldName:CRP.TYPE",crpType);
 
         PageObject.click_Locator("fieldName:ID.NUMBER:1");
         if ( (crpType.equalsIgnoreCase("9")) || (crpType.equalsIgnoreCase("1")) || (crpType.equalsIgnoreCase("5")) || (crpType.equalsIgnoreCase("6")) ){
@@ -112,7 +112,7 @@ public class Customers extends BaseClass {
 //        }
         PageObject.click_Locator("fieldName:ID.VAL.DT:1");
         PageObject.textinput_Locator("fieldName:ID.VAL.DT:1",column.get("ID_VAL_DT"));
-        PageObject.textinput_Locator("fieldName:NAME.1:1",column.get("NAME_1")+column.get("ID_NUMBER")+PageObject.idNumber(999,101));
+        PageObject.textinput_Locator("fieldName:NAME.1:1",column.get("NAME_1")+PageObject.idNumber(999,101));
         PageObject.textinput_Locator("fieldName:NAME.2:1","MUHAMMAD");
         PageObject.textinput_Locator("fieldName:SOLE.NAME",column.get("SOLE_NAME"));
         PageObject.textinput_Locator("fieldName:MB.FATH.HUS.NAM",column.get("MB_FATH_HUS_NAM")+column.get("ID_NUMBER")+PageObject.idNumber(999,101));
@@ -269,7 +269,7 @@ public class Customers extends BaseClass {
 
 //        PageObject.radiobutton_Locator("radio:mainTab:TRADE.CRP",1);
 
-        PageObject.textinput_Locator("fieldName:NAME.1:1",column.get("NAME_1")+column.get("ID_NUMBER")+PageObject.idNumber(999,101));
+        PageObject.textinput_Locator("fieldName:NAME.1:1",column.get("NAME_1")+PageObject.idNumber(999,101));
         PageObject.textinput_Locator("fieldName:NAME.2:1","COMPANY");
 //        PageObject.textinput_Locator("fieldName:SOLE.NAME","SOLE_NAME");
 //        PageObject.textinput_Locator("fieldName:MB.FATH.HUS.NAM","MB_FATH_HUS_NAM");

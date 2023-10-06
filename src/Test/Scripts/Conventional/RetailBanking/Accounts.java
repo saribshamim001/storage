@@ -22,7 +22,7 @@ import static Test.Scripts.Conventional.RetailBanking.Customers.*;
 public class Accounts extends BaseClass {
 //    Customers customer = new Customers();
 
-    private static int count = 0;
+    private static int count = 54;
     public static String PD,CUSTOMER;
     public static File  file;
 
@@ -34,10 +34,10 @@ public class Accounts extends BaseClass {
 
     public static String ACCOUNT_TITLE_1,ACCOUNT_TITLE_2,OTHER_OFFICER,REFEREE,JOINT_HOLDER,RELATION_CODE,
             JOINT_NOTES,MULTI_ACCT,BAF_PRM_IMD,BAF_PRM_CRDNAME,BAF_PRM_PEN,BAF_PRM_DATETME,REMITTER_NAME,REMITTER_ID_NO,
-            RELATIONSHIP_BE,REMITTER_RESID,REMITTER_ID_TYP,CURRENCY;
+            RELATIONSHIP_BE,REMITTER_RESID,REMITTER_ID_TYP,CURRENCY,FCY_Currency;
     public static String[] LCY_CURRENT_ACCOUNTS = { "1001", "1005", "1007", "1010", "1011", "1014", "1017", "1022",
                                                     "1030", "1031", "1034", "1035", "1037", "1038", "1142", "1143",
-                                                    "1150", "1171", "1326" };
+                                                    "1150", "1171", "1326","1047","1068" };
     //CurrentAcc,
     public static String[] LCY_SAVING_ACCOUNTS = { "6001", "6004", "6005", "6009", "6012", "6014", "6018", "6025" };
     public static String[] FCY_CURRENT_ACCOUNTS = { "1003", "1033", "1036", "1040", "1142", "1143" };
@@ -59,12 +59,13 @@ public class Accounts extends BaseClass {
 
 //        System.out.println("the array size:  "+customerTxn.size());
 //
-        System.out.println("Customer is:  "+customerTxn+" and the Category:  "+customerPD);
+//        System.out.println("Customer is:  "+customerTxn+" and the Category:  "+customerPD);
 //
-        System.out.println("Before increment, Index of customer and PD: "+Customerindex +" "+PDindex);
+//        System.out.println("Before increment, Index of customer and PD: "+Customerindex +" "+PDindex);
         CUSTOMER = customerTxn.get(Customerindex++);
+        System.out.println("The customer that will be used for acc making: "+CUSTOMER);
         Accounts.PD = customerPD.get(PDindex++);
-        System.out.println("After increment, Index of customer and PD: "+Customerindex +" "+PDindex);
+//        System.out.println("After increment, Index of customer and PD: "+Customerindex +" "+PDindex);
 
         TC = column.get("TC-Account Creation");
 
@@ -73,7 +74,7 @@ public class Accounts extends BaseClass {
 
 
         CURRENCY = column.get("CURRENCY");
-        ACCOUNT_TITLE_1 = column.get("ACCOUNT_TITLE_1");
+        ACCOUNT_TITLE_1 = column.get("ACCOUNT_TITLE_1")+PageObject.idNumber(999,101);
         ACCOUNT_TITLE_2 = column.get("ACCOUNT_TITLE_2");
         OTHER_OFFICER = column.get("OTHER_OFFICER");
         REFEREE = column.get("REFEREE");
@@ -86,6 +87,7 @@ public class Accounts extends BaseClass {
         RELATIONSHIP_BE = column.get("RELATIONSHIP_BE");
         REMITTER_RESID = column.get("REMITTER_RESID");
         REMITTER_ID_TYP = column.get("REMITTER_ID_TYP");
+        FCY_Currency = column.get("CURRENCY_FCY");
 
         for (String typeOfProduct : LCY_CURRENT_ACCOUNTS) {
             if ( Accounts.PD.equals(typeOfProduct)) {
@@ -320,7 +322,7 @@ public class Accounts extends BaseClass {
 
         PageObject.textinput_Locator("fieldName:CUSTOMER", CUSTOMER);
         PageObject.textinput_Locator("fieldName:CATEGORY", PD);
-        PageObject.textinput_Locator("fieldName:CURRENCY", CURRENCY);
+        PageObject.textinput_Locator("fieldName:CURRENCY", FCY_Currency);
         PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.1:1",  ACCOUNT_TITLE_1);
         PageObject.textinput_Locator("fieldName:ACCOUNT.TITLE.2:1",  ACCOUNT_TITLE_2);
         PageObject.textinput_Locator("fieldName:OTHER.OFFICER:1",  OTHER_OFFICER);
@@ -433,13 +435,13 @@ public class Accounts extends BaseClass {
                 Row row = sheet.getRow(rowIndex);
                 String Customer_ID = row.getCell(columnIdIndex).getStringCellValue();
                 String pd = row.getCell(pdIndex).getStringCellValue();
-                System.out.println("Customer_ID: " + Customer_ID + ", PD: " + pd);
+//                System.out.println("Customer_ID: " + Customer_ID + ", PD: " + pd);
                 customerTxn.add(Customer_ID);
                 customerPD.add(pd);
             }
 
-            count = customerTxn.size();
-            System.out.println("count size:  "+count);
+//            count = customerTxn.size();
+//            System.out.println("count size:  "+count);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -466,7 +468,7 @@ public class Accounts extends BaseClass {
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
 
-        rowCount=( count + 1);
+        rowCount=( count);
 
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
