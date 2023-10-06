@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Retail and Operation Regression R22 UAT2">
+    <listeners>
+        <listener class-name="Resources.Listeners"/>
+    </listeners>
+
+<!--    <test verbose="1" preserve-order="true" name="Retail Operations Inp1">-->
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="Inputter"/>-->
+<!--            </run>-->
+<!--        </groups>-->
+
+<!--        <classes>-->
+<!--            <class name="Test.Scripts.Conventional.RetailBanking.AccountStatement">-->
+<!--&lt;!&ndash;                <methods>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <include name="KYC"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </methods>&ndash;&gt;-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    <test verbose="1" preserve-order="true" name="Retail Operations Inp2">-->
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="Inputter"/>-->
+<!--            </run>-->
+<!--        </groups>-->
+
+<!--        <classes>-->
+<!--            <class name="Test.Scripts.Conventional.RetailBanking.CollectCDRBulk">-->
+<!--                <methods>-->
+<!--                    <include name="CDRBulkIssuance"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--        <test verbose="1" preserve-order="true" name="Retail Operations Auth2">-->
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="Authorizer"/>-->
+<!--            </run>-->
+<!--        </groups>-->
+
+<!--        <classes>-->
+<!--            <class name="Test.Scripts.Conventional.RetailBanking.CollectCDRBulk">-->
+<!--                <methods>-->
+<!--                    <include name="CDRBulkIssuance_Auth"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+
+<!--        <test verbose="1" preserve-order="true" name="Retail Operations Inp3">-->
+<!--            <groups>-->
+<!--                <run>-->
+<!--                    <include name="Inputter"/>-->
+<!--                </run>-->
+<!--            </groups>-->
+
+<!--            <classes>-->
+<!--                <class name="Test.Scripts.Conventional.RetailBanking.DDCancellation">-->
+<!--                    <methods>-->
+<!--                        <include name="DemandDraftCancellation"/>-->
+<!--                    </methods>-->
+<!--                </class>-->
+<!--            </classes>-->
+<!--        </test>-->
+
+
+<!--    <test verbose="1" preserve-order="true" name="Retail Operations Auth3">-->
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="Authorizer"/>-->
+<!--            </run>-->
+<!--        </groups>-->
+
+<!--        <classes>-->
+<!--            <class name="Test.Scripts.Conventional.RetailBanking.DDCancellation">-->
+<!--                <methods>-->
+<!--                    <include name="DDCancellation_Auth"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp4">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.ForeignDemandDraft">
+                <methods>
+                    <include name="ForeignDemandDraftInput"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Auth4">
+        <groups>
+            <run>
+                <include name="Authorizer"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.ForeignDemandDraft">
+                <methods>
+                    <include name="ForeignDemandDraft_Auth"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp5">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.IssueCDRBulk">
+<!--                <methods>-->
+<!--                    <include name="ForeignDemandDraftInput"/>-->
+<!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp6">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.KYC_Amendment_Account">
+                <!--                <methods>-->
+                <!--                    <include name="ForeignDemandDraftInput"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp7">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.KYC_Amendment_Customer">
+                                <methods>
+                                    <include name="KYC_Amendment_Customer"/>
+                                </methods>
+            </class>
+        </classes>
+    </test>
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp8">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.ECRP">
+<!--                <methods>-->
+<!--                    <include name="KYC_Amendment_Customer"/>-->
+<!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp9">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.LockerForceSurrender">
+                <!--                <methods>-->
+                <!--                    <include name="KYC_Amendment_Customer"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp10">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.LockerInputter">
+                <!--                <methods>-->
+                <!--                    <include name="KYC_Amendment_Customer"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp11">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.LockerSurrender">
+                <!--                <methods>-->
+                <!--                    <include name="KYC_Amendment_Customer"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp12">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.LockerVisit">
+                <!--                <methods>-->
+                <!--                    <include name="KYC_Amendment_Customer"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp13">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.OutwardClearing">
+                <!--                <methods>-->
+                <!--                    <include name="KYC_Amendment_Customer"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp14">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.OutwardClearingIntercity">
+                <!--                <methods>-->
+                <!--                    <include name="KYC_Amendment_Customer"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp15">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.PostingRestrictRemoval_LegacyData">
+                <!--                <methods>-->
+                <!--                    <include name="KYC_Amendment_Customer"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp16">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.LockerSignature">
+                <!--                <methods>-->
+                <!--                    <include name="KYC_Amendment_Customer"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp17">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.PostRestrictionMarking">
+                <!--                <methods>-->
+                <!--                    <include name="KYC_Amendment_Customer"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp18">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.UtilityBills">
+                                <methods>
+                                    <include name="UtilityBillsAgainstAccount"/>
+                                </methods>
+                                <methods>
+                                    <include name="MultiUtilityBillsAgainstAccount"/>
+                                </methods>
+            </class>
+        </classes>
+    </test>
+
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp19">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.CDR_Issuance">
+                <!--                <methods>-->
+                <!--                    <include name="KYC_Amendment_Customer"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp20">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.CDR_Status">
+                <!--                <methods>-->
+                <!--                    <include name="KYC_Amendment_Customer"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp21">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.CDRChangeStatus">
+                <!--                <methods>-->
+                <!--                    <include name="KYC_Amendment_Customer"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp22">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.CDRDuplicateIssuance">
+                <!--                <methods>-->
+                <!--                    <include name="KYC_Amendment_Customer"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp23">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.CDREncashment">
+                <!--                <methods>-->
+                <!--                    <include name="KYC_Amendment_Customer"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp24">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.CDRInwardClearing">
+                <!--                <methods>-->
+                <!--                    <include name="KYC_Amendment_Customer"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp25">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.CDRInwardClearing">
+                <!--                <methods>-->
+                <!--                    <include name="KYC_Amendment_Customer"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp26">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.CDRInwardSameDay">
+                <!--                <methods>-->
+                <!--                    <include name="KYC_Amendment_Customer"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp27">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.CDRRevalidation">
+                <!--                <methods>-->
+                <!--                    <include name="KYC_Amendment_Customer"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp28">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.CDRReport">
+                <!--                <methods>-->
+                <!--                    <include name="KYC_Amendment_Customer"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp29">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.Adhoc_Charge">
+                <!--                <methods>-->
+                <!--                    <include name="KYC_Amendment_Customer"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp30">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.BulkFileUploading">
+                <!--                <methods>-->
+                <!--                    <include name="KYC_Amendment_Customer"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp31">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.CDR_Dealslip">
+                <!--                <methods>-->
+                <!--                    <include name="KYC_Amendment_Customer"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp32">
+        <groups>
+            <run>
+                <include name="Inputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.RetailBanking.FeeCollection">
+                <!--                <methods>-->
+                <!--                    <include name="KYC_Amendment_Customer"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+</suite>

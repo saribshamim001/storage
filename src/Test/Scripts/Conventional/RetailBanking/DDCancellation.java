@@ -22,6 +22,9 @@ public class DDCancellation extends BaseClass {
 
         PageObject.menu_Dropdown("Remittance/Clearing Officer -Universal Teller");
         PageObject.menu_Dropdown("Remittance Menu");
+
+        Thread.sleep(1500);
+
         PageObject.menu_Dropdown("Alfalah Core/Retail Menu ");
         PageObject.childmenu_Dropdown("Customer Services",2);
         PageObject.menu_Dropdown("Call Deposit Receipt- Inputter Menu");

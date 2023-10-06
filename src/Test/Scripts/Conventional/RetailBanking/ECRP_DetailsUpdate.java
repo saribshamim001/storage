@@ -14,16 +14,22 @@ import java.util.Map;
 
 public class ECRP_DetailsUpdate extends BaseClass {
 
-    String FILE_PATH = System.getProperty("user.dir") + "\\Excel Data\\ECRP_Update.xlsx";
+//    String FILE_PATH = System.getProperty("user.dir") + "\\Data\\UnAuth_Customers.xlsx";
+//    String FILE_PATH = System.getProperty("user.dir") + "\\Excel Data\\KYC_Amendment_Customer.xlsx";
+//    String FILE_PATH = System.getProperty("user.dir") + "\\Excel Data\\ECRP_Update.xlsx";
+
+    String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\KYC_Amendment_Customer.xlsx";
+
 
     @Test(groups = {"PowerUser"}, dataProvider = "excelDataECRP_Update")
 
     public void ECRP_Update(Map<String, String> testData) throws IOException, InterruptedException {
 
         PageObject.textinput_Locator("transactionId", testData.get("value:1:1:1"));
+//        PageObject.textinput_Locator("transactionId", testData.get("Customer_ID"));
         PageObject.img_Button("Edit a contract");
         PageObject.switchToChildWindow();
-        PageObject.textinput_Locator("fieldName:ECRP.DATE","20230906");
+        PageObject.textinput_Locator("fieldName:ECRP.DATE","20230907");
 
         PageObject.commitDeal("ECRP_Update");
     }
