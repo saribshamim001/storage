@@ -222,7 +222,9 @@ public class LockerInputter extends BaseClass {
         PageObject.textinput_Locator("fieldName:KEY",testData.get("KEY"));
         PageObject.select_Locator("fieldName:STATUS",testData.get("STATUS"));
         PageObject.textinput_Locator("fieldName:CUST.ACCT",testData.get("CUST.ACCT")); //1000058935
-        PageObject.radiobutton_Locator("radio:tab1:CHARGES.WAIVE",1);
+
+        PageObject.radiobutton_Locator("radio:mainTab:CHARGES.WAIVE",1);
+        //PageObject.radiobutton_Locator("radio:tab1:CHARGES.WAIVE",1);
         PageObject.textinput_Locator("fieldName:BRK.REASON:1",testData.get("BRK.REASON:1"));
 
         PageObject.commitDeal("Amendment of Locker Single ");
@@ -365,7 +367,7 @@ public class LockerInputter extends BaseClass {
         PageObject.menu_Dropdown("Locker Inputter Menu");
         PageObject.menu_Dropdown("Locker Amendment");
 
-
+        Thread.sleep(1000);
         PageObject.menu_Link("Amendment of Locker Joint ");
 
         String menu = PageObject.switchToChildWindow();

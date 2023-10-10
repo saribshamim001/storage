@@ -4,6 +4,7 @@ import POM.PageObject;
 import Test.General.BaseClass;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -22,6 +23,7 @@ public class CDR_Issuance extends BaseClass {
         PageObject.menu_Dropdown("Remittance/Clearing Officer -Universal Teller");
         PageObject.menu_Dropdown("Remittance Menu");
         PageObject.menu_Dropdown("Alfalah Core/Retail Menu ");
+        Thread.sleep(1000);
         PageObject.childmenu_Dropdown("Customer Services",2);
         PageObject.menu_Dropdown("Call Deposit Receipt- Inputter Menu");
 
@@ -36,13 +38,15 @@ public class CDR_Issuance extends BaseClass {
         PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO",testData.get("DEBIT.ACCT.NO"));
         PageObject.textinput_Locator("fieldName:BEN.CUSTOMER:1",testData.get("BEN.CUSTOMER:1"));
         PageObject.textinput_Locator("fieldName:CREDIT.AMOUNT",testData.get("CREDIT.AMOUNT"));
-        PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE" , 4);
 
-        PageObject.textarea_Locator("fieldName:CHEQUE.NUMBER",testData.get("CHEQUE.NUMBER"));
-        PageObject.textarea_Locator("fieldName:ORDERING.CUST:1",testData.get("ORDERING.CUST:1"));
-        PageObject.textarea_Locator("fieldName:PAYMENT.DETAILS:1",testData.get("PAYMENT.DETAILS:1"));
-        PageObject.textarea_Locator("fieldName:COMMISSION.TYPE:1",testData.get("COMMISSION.TYPE:1"));
-        PageObject.textarea_Locator("fieldName:COMMISSION.AMT:1",testData.get("COMMISSION.AMT:1"));
+        PageObject.radiobutton_Locator("radio:tab1:COMMISSION.CODE" , 1);
+       // PageObject.radiobutton_Locator("radio:mainTab:COMMISSION.CODE" , 1);
+        driver.findElement(By.xpath("//input[@id='fieldName:CHEQUE.NUMBER']")).sendKeys(testData.get("CHEQUE.NUMBER"));
+        //PageObject.textarea_Locator("fieldName:CHEQUE.NUMBER",testData.get("CHEQUE.NUMBER"));
+        PageObject.textinput_Locator("fieldName:ORDERING.CUST:1",testData.get("ORDERING.CUST:1"));
+        PageObject.textinput_Locator("fieldName:PAYMENT.DETAILS:1",testData.get("PAYMENT.DETAILS:1"));
+        PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1",testData.get("COMMISSION.TYPE:1"));
+        PageObject.textinput_Locator("fieldName:COMMISSION.AMT:1",testData.get("COMMISSION.AMT:1"));
         //PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1","WAIVE");
 
         PageObject.form_Tab("Due Delligence");
