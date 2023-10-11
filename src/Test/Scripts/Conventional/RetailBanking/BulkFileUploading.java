@@ -25,12 +25,10 @@ public class BulkFileUploading extends BaseClass {
         String pgname = driver.getWindowHandle();
         PageObject.img_Button("New Deal");
         PageObject.textinput_Locator("fieldName:DESCRIPTION","TEST FILE");
-
-
-
-
-
-
+        PageObject.uploadFile("D:\\temp.csv","fileUploadIframe");
+        driver.switchTo().parentFrame();
+        String txn = PageObject.commitDeal("bulkFileUploadTxn");
+        System.out.println("The Upload txn:  "+txn);
 
     }
 }

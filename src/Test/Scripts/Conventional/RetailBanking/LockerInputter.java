@@ -31,6 +31,7 @@ public class LockerInputter extends BaseClass {
         String AssignLocker = "12105488";
 
         PageObject.menu_Dropdown("Remittance/Clearing Officer -Universal Teller");
+        Thread.sleep(1000);
         PageObject.menu_Dropdown("Remittance Menu");
         PageObject.menu_Dropdown("Alfalah Core/Retail Menu ");
         PageObject.menu_Dropdown("Locker Inputter Menu");
@@ -164,6 +165,13 @@ public class LockerInputter extends BaseClass {
 
         lockerTxn = PageObject.getTxn();
         System.out.println(lockerTxn);
+
+
+        //Authorizing the locker
+        String menu3 = PageObject.switchToChildWindow();
+        PageObject.maximizeWindow();
+
+        PageObject.img_Button("Authorises a deal");
 
     }
 
@@ -361,6 +369,7 @@ public class LockerInputter extends BaseClass {
 
     public void amendmentLockerJoint(Map<String, String> testData) throws IOException, InterruptedException {
 
+        Thread.sleep(1000);
         PageObject.menu_Dropdown("Remittance/Clearing Officer -Universal Teller");
         PageObject.menu_Dropdown("Remittance Menu");
         PageObject.menu_Dropdown("Alfalah Core/Retail Menu ");

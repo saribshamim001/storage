@@ -34,7 +34,7 @@ public class UtilityBills extends BaseClass {
         PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","1006593695");
         PageObject.click_Locator("fieldName:CHEQUE.NUMBER");
         PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER","200145879");
-        PageObject.textinput_Locator("fieldName:A.CHEQUE.DATE","20221230");
+        PageObject.textinput_Locator("fieldName:A.CHEQUE.DATE","20230907");
         PageObject.textinput_Locator("fieldName:DEBIT.AMOUNT","5");
 
         PageObject.switchToChildWindow();
@@ -74,7 +74,7 @@ public class UtilityBills extends BaseClass {
         PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","1006593695");
         PageObject.click_Locator("fieldName:CHEQUE.NUMBER");
         PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER","6200021458");
-        PageObject.textinput_Locator("fieldName:A.CHEQUE.DATE","20221230");
+        PageObject.textinput_Locator("fieldName:A.CHEQUE.DATE","20230907");
         PageObject.switchToChildWindow();
         driver.close();
         PageObject.switchToParentWindow(pgnameo);

@@ -27,6 +27,7 @@ public class CDR_Status extends BaseClass {
         PageObject.menu_Dropdown("Alfalah Core/Retail Menu ");
         PageObject.childmenu_Dropdown("Customer Services", 2);
         PageObject.menu_Dropdown("Call Deposit Receipt- Inputter Menu");
+        Thread.sleep(1000);
         PageObject.menu_Dropdown("Call Deposit Receipt Maintenance");
 
 
@@ -55,7 +56,7 @@ public class CDR_Status extends BaseClass {
 
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
-        Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+        Sheet sheet = workbook.getSheetAt(1); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
         //rowCount-=2;
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();

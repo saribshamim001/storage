@@ -21,7 +21,7 @@ public class KYCAccountAmendment extends BaseClass {
     String ibgHomePage;
     String menu1;
 
-    @Test(groups = {"caoInputter"},dataProvider = "TestData")
+    @Test(groups = {"CaoInputter"},dataProvider = "TestData")
     public void KYC(Map <String,String> testData) throws InterruptedException, IOException {
 
         PageObject.menu_Dropdown("CENTRALIZED ACCOUNT PROCESSOR");
@@ -33,7 +33,7 @@ public class KYCAccountAmendment extends BaseClass {
 
         menu1 = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
-//
+
         PageObject.switchFrame(0);
         PageObject.textinput_Locator("value:1:1:1",testData.get("Acc_ID"));
 //        PageObject.click_Locator("defaultButton");
