@@ -262,7 +262,18 @@ public class PageObject extends BaseClass {
                 acpOverride.click();
                 valueOfTxn=txnValidate(testCaseName);
             } catch (Exception e) {
-                throw new RuntimeException(e);
+
+                try {
+
+                    WebElement TxnText = driver.findElement(By.xpath("//table/tbody/tr/td[contains(text(),'NOT AUTH. RECORD NOT CHANGED')]"));
+                    Assert.assertTrue(TxnText.isDisplayed(), "Transaction Un-Successful");
+                    if (TxnText.isDisplayed())
+                        System.out.println("Record not changed, Transaction completed !");
+                }
+                catch (Exception e2){
+                    throw new RuntimeException(e2);
+                }
+                //throw new RuntimeException(e);
             }
 
         }

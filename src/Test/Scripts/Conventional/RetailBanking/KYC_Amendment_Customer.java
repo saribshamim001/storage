@@ -26,7 +26,9 @@ public class KYC_Amendment_Customer extends BaseClass {
 
     public void KYC_Amendment_Customer(Map<String, String> testData) throws IOException, InterruptedException {
 
+        Thread.sleep(500);
         PageObject.menu_DropdownEnv("Customer Relation Officer Menu");
+        Thread.sleep(500);
         PageObject.menu_DropdownEnv("Alfalah Customer Information");
         PageObject.menu_DropdownEnv("Branch Level Inputter");
         PageObject.menu_DropdownEnv("Alfalah KYC Information");
@@ -98,9 +100,9 @@ public class KYC_Amendment_Customer extends BaseClass {
 //        PageObject.radiobutton_Locator("radio:mainTab:CH.KYC.REVW.COMENT",1);
 //        PageObject.radiobutton_Locator("radio:mainTab:CH.HRAMAPPROVAL",1);
 
-        PageObject.commitDeal("KYC_Amendment_Customer");
+        txn = PageObject.commitDeal("KYC_Amendment_Customer");
 
-        txn = PageObject.getTxn();
+        //txn = PageObject.getTxn();
         System.out.println(txn);
 //        saveAccNumToFile(CusNumber);
 

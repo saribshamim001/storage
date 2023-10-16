@@ -27,7 +27,7 @@ public class PostingRestrictRemoval_LegacyData extends BaseClass {
         PageObject.menu_Dropdown("Account");
         PageObject.menu_Dropdown("Account Maintenance");
 
-        PageObject.menu_Link("Posting Restrict Removal- Legacy Data ");
+        PageObject.menu_Link("Posting Restrict Removal ");
 
         String menu = PageObject.switchToChildWindow();
         PageObject.maximizeWindow();
@@ -39,7 +39,13 @@ public class PostingRestrictRemoval_LegacyData extends BaseClass {
         PageObject.img_Button("Edit a contract");
 
         PageObject.textinput_Locator("fieldName:POSTING.RESTRICT:1",testData.get("POSTING.RESTRICT:1"));
-        PageObject.textinput_Locator("fieldName:REASON", testData.get("REASON"));
+        //PageObject.textinput_Locator("fieldName:REASON", testData.get("REASON"));
+
+        PageObject.select_Locator("fieldName:POSTING.REASON:1",testData.get("reason"));
+        PageObject.textinput_Locator("fieldName:POST.RESTR:1",testData.get("POSTING.RESTRICT:1"));
+        PageObject.textinput_Locator("fieldName:LEGAL.LETTER:1",testData.get("reference"));
+        PageObject.textinput_Locator("fieldName:POSTING.DATE:1",testData.get("date"));
+
 
         PageObject.commitDeal("PostingRestrictRemoval_LegacyData");
 

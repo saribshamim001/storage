@@ -51,8 +51,8 @@ public class LockerSurrender extends BaseClass {
 
         PageObject.img_Button("Commit the deal");
 
-        SurrTxn = PageObject.getTxn();
-        System.out.println(SurrTxn);
+//        SurrTxn = PageObject.getTxn();
+//        System.out.println(SurrTxn);
 
     }
 
@@ -126,7 +126,7 @@ public class LockerSurrender extends BaseClass {
         PageObject.menu_Link("Locker Surrender - Authorization ");
 
         String menu1 = PageObject.switchToChildWindow();
-        PageObject.parentFrame();
+//        PageObject.parentFrame();
         PageObject.switchFrame(1);
 
 //        PageObject.find_Button();

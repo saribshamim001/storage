@@ -75,26 +75,27 @@ public class KYC_Amendment_Account extends BaseClass {
         PageObject.textinput_Locator("fieldName:ATOGTM",testData.get("ATOGTM"));
         PageObject.select_Locator("fieldName:MONTH.TOVER.RG",testData.get("MONTH.TOVER.RG"));
         PageObject.textinput_Locator("fieldName:EXP.MONTH.TOVER",testData.get("EXP.MONTH.TOVER"));
-
-        PageObject.img_Button("Commit the deal");
-
-        String menu3 = PageObject.switchToChildWindow();
-        PageObject.maximizeWindow();
-
-        PageObject.select_Locator("fieldName:CUST.SEGMENT",testData.get("CUST.SEGMENT")); //MASS OR AFFLUENT
-        PageObject.img_Button("Commit the deal");
-
-        this.driver.close();
-
-        PageObject.switchToParentWindow(menu3);
-        PageObject.maximizeWindow();
-
-        PageObject.select_Locator("fieldName:OCCUPATION",testData.get("OCCUPATION")); //Business OR Salaried
-
         PageObject.commitDeal("KYC_Amendment_Account");
 
-        txn = PageObject.getTxn();
-        System.out.println(txn);
+//        PageObject.img_Button("Commit the deal");
+
+//        String menu3 = PageObject.switchToChildWindow();
+//        PageObject.maximizeWindow();
+
+//        PageObject.select_Locator("fieldName:CUST.SEGMENT",testData.get("CUST.SEGMENT")); //MASS OR AFFLUENT
+//        PageObject.img_Button("Commit the deal");
+
+        //this.driver.close();
+
+//        PageObject.switchToParentWindow(menu3);
+//        PageObject.maximizeWindow();
+//
+//        PageObject.select_Locator("fieldName:OCCUPATION",testData.get("OCCUPATION")); //Business OR Salaried
+//
+//        PageObject.commitDeal("KYC_Amendment_Account");
+//
+//        txn = PageObject.getTxn();
+//        System.out.println(txn);
 
         //saving acc number to file
 //        saveAccNumToFile(accNumber);
