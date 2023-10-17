@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Retail and Operation Regression R22 UAT2">
+    <listeners>
+        <listener class-name="Resources.Listeners"/>
+    </listeners>
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp1">
+        <groups>
+            <run>
+                <include name="CaoInputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.CAO.CAOD.CustomerCreation">
+<!--                <methods>-->
+<!--                    <include name="KYC"/>-->
+<!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp2">
+        <groups>
+            <run>
+                <include name="CaoInputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.CAO.CAOD.JointAccountCreation">
+                <!--                <methods>-->
+                <!--                    <include name="KYC"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp3">
+        <groups>
+            <run>
+                <include name="CaoInputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.CAO.CentralizedClearing.CentralizedClearing">
+                <!--                <methods>-->
+                <!--                    <include name="KYC"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp4">
+        <groups>
+            <run>
+                <include name="CaoInputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.CAO.CentralizedForeignRemittance.CentralizedForiegnRemittance">
+                <!--                <methods>-->
+                <!--                    <include name="KYC"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp5">
+        <groups>
+            <run>
+                <include name="CaoInputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.CAO.CentralizedRemittanceProcessing.CentralizedRemittanceProcessing">
+                <!--                <methods>-->
+                <!--                    <include name="KYC"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp6">
+        <groups>
+            <run>
+                <include name="CaoInputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.CAO.CentralizedStandingInstruction.OrderInputterMenu">
+                <!--                <methods>-->
+                <!--                    <include name="KYC"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp7">
+        <groups>
+            <run>
+                <include name="CaoInputter"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.Conventional.CAO.PayrollFundTrasnfer.PayrollFundTransfer">
+                <!--                <methods>-->
+                <!--                    <include name="KYC"/>-->
+                <!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+
+
+
+
+    <test verbose="1" preserve-order="true" name="Retail Operations Inp8">
+        <groups>
+            <run>
+                <include name="CaoInputter"/>
+            </run>
+        </groups>
+
+        <classes>
+
+
+            <class name="Test.Scripts.Conventional.CAO.TDR.AmendmentForTermDepositsRack">
+                <!--                <methods>-->
+                <!--                    <include name="KYC"/>-->
+                <!--                </methods>-->
+            </class>
+
+            <class name="Test.Scripts.Conventional.CAO.TDR.AmendmentTermDepositsSpecialRate">
+                <!--                <methods>-->
+                <!--                    <include name="KYC"/>-->
+                <!--                </methods>-->
+            </class>
+
+
+            <class name="Test.Scripts.Conventional.CAO.TDR.BackDatedTermDepositsFCY">
+                <!--                <methods>-->
+                <!--                    <include name="KYC"/>-->
+                <!--                </methods>-->
+            </class>
+
+
+            <class name="Test.Scripts.Conventional.CAO.TDR.BackDatedTermDepositsLCY">
+                <!--                <methods>-->
+                <!--                    <include name="KYC"/>-->
+                <!--                </methods>-->
+            </class>
+
+            <class name="Test.Scripts.Conventional.CAO.TDR.AMATDRInsurance">
+            <!--                <methods>-->
+            <!--                    <include name="KYC"/>-->
+            <!--                </methods>-->
+            </class>
+
+            <class name="Test.Scripts.Conventional.CAO.TDR.Create_Term_Deposits_LCY">
+                <!--                <methods>-->
+                <!--                    <include name="KYC"/>-->
+                <!--                </methods>-->
+            </class>
+
+            <class name="Test.Scripts.Conventional.CAO.TDR.Enquiries">
+                <!--                <methods>-->
+                <!--                    <include name="KYC"/>-->
+                <!--                </methods>-->
+            </class>
+
+            <class name="Test.Scripts.Conventional.CAO.TDR.MahanaAamdanDeposits1YearRegularCustomer">
+                <!--                <methods>-->
+                <!--                    <include name="KYC"/>-->
+                <!--                </methods>-->
+            </class>
+
+            <class name="Test.Scripts.Conventional.CAO.TDR.MahanaAamdanDepositsRegularCustomer">
+                <!--                <methods>-->
+                <!--                    <include name="KYC"/>-->
+                <!--                </methods>-->
+            </class>
+
+            <class name="Test.Scripts.Conventional.CAO.TDR.MahanaAamdanDepositsSeniorCitizen">
+                <!--                <methods>-->
+                <!--                    <include name="KYC"/>-->
+                <!--                </methods>-->
+            </class>
+
+            <class name="Test.Scripts.Conventional.CAO.TDR.PrematureEncashmentForAllProducts">
+                <!--                <methods>-->
+                <!--                    <include name="KYC"/>-->
+                <!--                </methods>-->
+            </class>
+
+
+            <class name="Test.Scripts.Conventional.CAO.TDR.PrematureTerminationofDeposits">
+                <!--                <methods>-->
+                <!--                    <include name="KYC"/>-->
+                <!--                </methods>-->
+            </class>
+
+
+            <class name="Test.Scripts.Conventional.CAO.TDR.RackRateFCY">
+                <!--                <methods>-->
+                <!--                    <include name="KYC"/>-->
+                <!--                </methods>-->
+            </class><class name="Test.Scripts.Conventional.CAO.TDR.RemoveRolloverofDeposits">
+            <!--                <methods>-->
+            <!--                    <include name="KYC"/>-->
+            <!--                </methods>-->
+            </class>
+
+            <class name="Test.Scripts.Conventional.CAO.TDR.RemoveRolloverofMahanaAamdanPlus1Year">
+            <!--                <methods>-->
+            <!--                    <include name="KYC"/>-->
+            <!--                </methods>-->
+            </class>
+
+            <class name="Test.Scripts.Conventional.CAO.TDR.SpecialRateFCY">
+            <!--                <methods>-->
+            <!--                    <include name="KYC"/>-->
+            <!--                </methods>-->
+            </class>
+
+
+            <class name="Test.Scripts.Conventional.CAO.TDR.SpecialRateLCY">
+                <!--                <methods>-->
+                <!--                    <include name="KYC"/>-->
+                <!--                </methods>-->
+            </class>
+
+
+            <class name="Test.Scripts.Conventional.CAO.TDR.TermDepositsOddDaysFCY">
+                <!--                <methods>-->
+                <!--                    <include name="KYC"/>-->
+                <!--                </methods>-->
+            </class>
+
+
+            <class name="Test.Scripts.Conventional.CAO.TDR.TermDepositsOddDaysLCY">
+            <!--                <methods>-->
+            <!--                    <include name="KYC"/>-->
+            <!--                </methods>-->
+            </class>
+
+
+            <class name="Test.Scripts.Conventional.CAO.TDR.FloatingRateTermDepositsLCY">
+                <!--                <methods>-->
+                <!--                    <include name="KYC"/>-->
+                <!--                </methods>-->
+            </class>
+
+
+            <class name="Test.Scripts.Conventional.CAO.TDR.MahanaAamdanDeposits1YearSeniorCustomer">
+                <!--                <methods>-->
+                <!--                    <include name="KYC"/>-->
+                <!--                </methods>-->
+            </class>
+
+            <class name="Test.Scripts.Conventional.CAO.TDR.MahanaAamdanDeposits3YearMigration">
+                <!--                <methods>-->
+                <!--                    <include name="KYC"/>-->
+                <!--                </methods>-->
+            </class>
+
+
+        </classes>
+    </test>
+
+
+</suite>
