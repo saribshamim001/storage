@@ -113,9 +113,10 @@ public class ForeignDemandDraft extends BaseClass {
 
     public void ForeignDemandDraft_Auth() throws IOException, InterruptedException {
 
-        PageObject.menu_Dropdown("Manager Operation Menu");
+        //PageObject.menu_Dropdown("Manager Operation Menu");
 
-        PageObject.menu_Dropdown("Core Retail Menu");
+
+//        PageObject.menu_Dropdown("Core Retail Menu");
 
         PageObject.menu_Dropdown("Deposit/Payment/Zakat");
 

@@ -21,6 +21,7 @@ public class CDRInwardClearing extends BaseClass {
     public void CDRInwardClearingNormal(Map<String, String> testData) throws InterruptedException, IOException {
 
         PageObject.menu_Dropdown("Remittance/Clearing Officer -Universal Teller");
+        Thread.sleep(500);
         PageObject.menu_Dropdown("Remittance Menu");
         PageObject.menu_Dropdown("Alfalah Core/Retail Menu ");
         PageObject.childmenu_Dropdown("Customer Services",2);

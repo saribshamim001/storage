@@ -33,7 +33,7 @@ public class FeeCollection extends BaseClass {
         PageObject.textinput_Locator("fieldName:DEBIT.ACCT.NO","1006593695");
         PageObject.click_Locator("fieldName:CHEQUE.NUMBER");
         PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER","250202235");
-        PageObject.textinput_Locator("fieldName:A.CHEQUE.DATE","20221220");
+        PageObject.textinput_Locator("fieldName:A.CHEQUE.DATE","20230907");
         PageObject.switchToChildWindow();
         driver.close();
         PageObject.switchToParentWindow(pgname);
@@ -81,7 +81,7 @@ public class FeeCollection extends BaseClass {
         PageObject.switchToParentWindow(pgnameo);
         PageObject.switchFrame(2);
         PageObject.textinput_Locator("fieldName:CHEQUE.NUMBER","6200021458");
-        PageObject.textinput_Locator("fieldName:A.CHEQUE.DATE","20221220");
+        PageObject.textinput_Locator("fieldName:A.CHEQUE.DATE","20230907");
 
 //        PageObject.textinput_Locator("fieldName:COMMISSION.TYPE:1","");
 //        PageObject.textinput_Locator("fieldName:COMMISSION.AMT:1","");
@@ -91,7 +91,7 @@ public class FeeCollection extends BaseClass {
     }
 
     @Test(groups = {"Inputter"})
-    public void FeeCollectionT24Branches() throws IOException {
+    public void FeeCollectionT24Branches() throws IOException, InterruptedException {
         PageObject.menu_Dropdown("Head Teller Menu-Universal Teller-Conventiona");
         PageObject.menu_Dropdown("Customer Services");
         PageObject.menu_Dropdown("Fee Collection");
@@ -102,6 +102,7 @@ public class FeeCollection extends BaseClass {
         String pgnameo = driver.getWindowHandle();
 
         PageObject.img_Button("New Deal");
+        Thread.sleep(500);
         PageObject.textinput_Locator("fieldName:INSTITUTE","14.0001");
         PageObject.click_Locator("fieldName:AMOUNT.LOCAL.1:1");
         PageObject.textinput_Locator("fieldName:AMOUNT.LOCAL.1:1","20");

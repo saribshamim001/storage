@@ -21,7 +21,7 @@ public class PostRestrictionMarking extends BaseClass {
     String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\postRestrictionMarking.xlsx";
 
     @Test(groups = {"Inputter"}, dataProvider = "excelDatapostRestrictionMarking")
-    public void postRestrictionMarking(Map<String, String> testData) throws IOException {
+    public void postRestrictionMarking(Map<String, String> testData) throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown("Customer Relation Officer Menu");
         PageObject.menu_Dropdown("Account");
@@ -45,7 +45,7 @@ public class PostRestrictionMarking extends BaseClass {
 
         PageObject.parentFrame();
         PageObject.switchFrame(1);
-
+        Thread.sleep(500);
         PageObject.textinput_Locator("fieldName:POSTING.RESTRICT:1",testData.get("POSTING.RESTRICT:1"));
         PageObject.textinput_Locator("fieldName:POST.RESTR:1",testData.get("POST.RESTR:1"));
         PageObject.textinput_Locator("fieldName:POSTING.DATE:1",testData.get("POSTING.DATE:1"));

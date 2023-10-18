@@ -22,6 +22,7 @@ public class CDRRevalidation extends BaseClass {
         PageObject.menu_Dropdown("Remittance Menu");
         PageObject.menu_Dropdown("Alfalah Core/Retail Menu ");
         PageObject.childmenu_Dropdown("Customer Services",2);
+        Thread.sleep(500);
         PageObject.menu_Dropdown("Call Deposit Receipt- Inputter Menu");
         PageObject.menu_Dropdown("Call Deposit Receipt Maintenance");
 

@@ -21,6 +21,7 @@ public class DDCancellation extends BaseClass {
     public void DemandDraftCancellation(Map<String, String> testData) throws InterruptedException, IOException {
 
         PageObject.menu_Dropdown("Remittance/Clearing Officer -Universal Teller");
+        Thread.sleep(500);
         PageObject.menu_Dropdown("Remittance Menu");
 
         Thread.sleep(1500);
@@ -71,7 +72,7 @@ public class DDCancellation extends BaseClass {
         return data;
     }
 
-    @Test(groups = {"Authorizer"},dataProvider = "DDCancellationAuth")
+    @Test(groups = {"Authorizer"})
 
     public void DDCancellation_Auth() throws IOException, InterruptedException {
 
@@ -86,16 +87,16 @@ public class DDCancellation extends BaseClass {
         PageObject.menu_Link("Authorization CDR Cancellation Instrument ");
 //
         String menu2 = PageObject.switchToChildWindow();
-        PageObject.switchFrame(0);
+//        PageObject.switchFrame(0);
 
-        //PageObject.find_Button();
+        PageObject.find_Button();
 
         PageObject.form_Link("Authorise a Transaction");
 
 //        String menu2 = PageObject.switchToChildWindow();
 
-        driver.switchTo().parentFrame();
-        PageObject.switchFrame(1);
+        //driver.switchTo().parentFrame();
+//        PageObject.switchFrame(1);
 
         PageObject.img_Button("Authorises a deal");
     }

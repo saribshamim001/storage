@@ -119,7 +119,7 @@ public class ECRP extends BaseClass  {
 
 //        PageObject.textinput_Locator("fieldName:SECTOR",column.get("SECTOR"));
         SECTOR = column.get("SECTOR");
-        PageObject.select_Locator("fieldName:CUST.SEGMENT",column.get("CUST_SEGMENT"));
+        //PageObject.select_Locator("fieldName:CUST.SEGMENT",column.get("CUST_SEGMENT"));
         PageObject.radiobutton_Locator("radio:mainTab:SME.TYPE",1);
         PageObject.textinput_Locator("fieldName:ID.TYPE:1",column.get("ID_TYPE"));
         String ID_TYPE= column.get("ID_TYPE");
