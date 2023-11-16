@@ -2,16 +2,8 @@ trigger:
 - master
 
 pool:
-  vmImage: 'windows-latest'
+  name: default
 
-stages:
-- stage: RunningMyTestScript
-  jobs:
-  - job: RunTests
-    steps:
-    - task: UseJavaVersion@0
-      inputs:
-        versionSpec: '11'
-
-    - script: echo Hello, Bhai jaan !!!
-      displayName: 'Hello Ji !!!'
+steps:
+- script: Hello writting the first .yaml script !
+  displayName: 'Run a one-line script'
