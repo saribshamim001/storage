@@ -13,5 +13,5 @@ stages:
       inputs:
         versionSpec: '11'
 
-  script: echo Hello, world!
-  displayName: 'Hello Ji !!!'
+    - script: echo Hello, Bhai jaan !!!
+      displayName: 'Hello Ji !!!'
