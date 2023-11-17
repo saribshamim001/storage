@@ -2,7 +2,7 @@ trigger:
 - master
 
 pool:
-  name: default
+  name: thisMachine
 
 steps:
 - script: Hello writting the first .yaml script !
