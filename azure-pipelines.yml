@@ -8,4 +8,4 @@ jobs:
   - task: PowerShell@2
     inputs:
       targetType: 'inline'
-      script: 'path/to/your/script.ps1'
+      script: 'src/Test/Scripts/Conventional/CAO/CentralizedClearing/CentralizedClearing.java'
