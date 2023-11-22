@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+
+<suite thread-count="2" name="testing_suite">
+  
+
+<test name="Check No.1" >
+
+<parameter name="location" value="London" />
+<parameter name="Hotels" value="Hotel Sunshine" />
+<parameter name="Date_pick_in" value="10/05/2022" />
+<parameter name="Date_pick_out" value="17/05/2022" />
+<parameter name="firstName" value="Ahmed" />
+<parameter name="lastName" value="Khalid" />
+<parameter name="billingAddress" value="North town, orange road, blue building, white house" />
+<parameter name="CVVNumber" value="2122" />
+<parameter name="CreditCardType" value="Master Card" />
+<parameter name="ExpiryMonth" value="December" />
+<parameter name="ExpiryYear" value="2022" />			
+
+
+      <classes>
+      <class name="SameBrowser_MultipleTestCases_Parameterization.testing"/>
+    </classes>
+
+  </test> <!-- Test -->
+   
+
+<test name="Check No.2" >
+
+
+<parameter name="location" value="Sydney" />
+<parameter name="Hotels" value="Hotel Sunshine" />
+<parameter name="Date_pick_in" value="11/05/2022" />
+<parameter name="Date_pick_out" value="19/05/2022" />
+<parameter name="firstName" value="Hasan" />
+<parameter name="lastName" value="Shamim" />
+<parameter name="billingAddress" value="West town, orange road, blue building, white house" />
+<parameter name="CVVNumber" value="9999" />
+<parameter name="CreditCardType" value="Master Card" />
+<parameter name="ExpiryMonth" value="September" />
+<parameter name="ExpiryYear" value="2022" />		
+
+
+
+    <classes>
+      <class name="SameBrowser_MultipleTestCases_Parameterization.testing"/>
+    </classes>
+
+  </test> <!-- Test -->
+
+
+
+</suite> <!-- Suite -->

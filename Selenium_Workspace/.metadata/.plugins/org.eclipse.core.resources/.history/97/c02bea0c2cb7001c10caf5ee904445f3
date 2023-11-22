@@ -1,0 +1,50 @@
+package TestNGListener;
+
+import org.testng.annotations.Test;
+
+import graphql.Assert;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
+
+@Listeners(ListenerTest.class)
+
+public class TestCases {
+
+@BeforeTest
+public void beforeTest() {
+	
+	
+	
+}
+	
+	
+@Test 
+public void test() {
+	
+	
+	System.setProperty("webdriver.chrome.driver","C:\\LOCAL DRIVE D\\Selenium\\ChromeDriverVersion99\\chromedriver_win32\\chromedriver.exe");
+	ChromeDriver driver = new ChromeDriver();
+	driver.manage().window().maximize();
+	
+	driver.get("https://adactinhotelapp.com/HotelAppBuild2/");
+	
+	driver.findElement(By.id("username")).sendKeys("xcelliti1");
+	driver.findElement(By.id("password")).sendKeys("QWer12345");
+	
+	driver.findElement(By.className("login_button")).click();
+	
+}
+
+@Test
+public void testToFailed() {
+	
+	System.out.println("Method to fail test");
+	Assert.assertTrue(false);
+	
+}
+
+
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+
+<suite thread-count="3" parallel="tests"  name="suite">
+  
+
+<test name="Check No.1" >
+      <parameter name="keyWord" value="Selenium" />
+      <classes>
+      <class name="third_project_short_basis.learning"/>
+    </classes>
+  </test> <!-- Test -->
+   
+
+<test name="Check No.2" >
+    <parameter name="keyWord" value="LambdaTest"/>
+    <classes>
+      <class name="third_project_short_basis.learning"/>
+    </classes>
+  </test> <!-- Test -->
+	<parameter name="keyWord" value="Browser Testing"/>
+   	
+
+<test name="Check No.3">
+    <classes>
+      <class name="third_project_short_basis.learning"/>
+    </classes>
+  </test> <!-- Test -->
+
+
+</suite> <!-- Suite -->

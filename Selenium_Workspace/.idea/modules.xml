@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/DarazCode/DarazCode.iml" filepath="$PROJECT_DIR$/DarazCode/DarazCode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Grid_Project/Grid_Project.iml" filepath="$PROJECT_DIR$/Grid_Project/Grid_Project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PageObjectModel/PageObjectModel.iml" filepath="$PROJECT_DIR$/PageObjectModel/PageObjectModel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SameBrowser_MultipleTests_With_Parameterization/SameBrowser_MultipleTests_With_Parameterization.iml" filepath="$PROJECT_DIR$/SameBrowser_MultipleTests_With_Parameterization/SameBrowser_MultipleTests_With_Parameterization.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SameBrowser_TwoTest_With_Parameterization/SameBrowser_TwoTest_With_Parameterization.iml" filepath="$PROJECT_DIR$/SameBrowser_TwoTest_With_Parameterization/SameBrowser_TwoTest_With_Parameterization.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Temp/Selenium_Workspace.iml" filepath="$PROJECT_DIR$/Temp/Selenium_Workspace.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TestNGListener/TestNGListener.iml" filepath="$PROJECT_DIR$/TestNGListener/TestNGListener.iml" />
+      <module fileurl="file://$PROJECT_DIR$/first_program/first_program.iml" filepath="$PROJECT_DIR$/first_program/first_program.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fourth_project_WebDriver_Event_Listener/fourth_project_WebDriver_Event_Listener.iml" filepath="$PROJECT_DIR$/fourth_project_WebDriver_Event_Listener/fourth_project_WebDriver_Event_Listener.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Maven.Project/src/main/main.iml" filepath="$PROJECT_DIR$/Maven.Project/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/second_program_edureka_course/second_program_edureka_course.iml" filepath="$PROJECT_DIR$/second_program_edureka_course/second_program_edureka_course.iml" />
+      <module fileurl="file://$PROJECT_DIR$/second_project/second_project.iml" filepath="$PROJECT_DIR$/second_project/second_project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Maven.Project/src/test/test.iml" filepath="$PROJECT_DIR$/Maven.Project/src/test/test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/third_project_short_basis/third_project_short_basis.iml" filepath="$PROJECT_DIR$/third_project_short_basis/third_project_short_basis.iml" />
+    </modules>
+  </component>
+</project>

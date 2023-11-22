@@ -1,0 +1,80 @@
+package SameBrowser_MultipleTestCases_Parameterization;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+public class testing {
+
+	String driverPath = "C:\\LOCAL DRIVE D\\Selenium\\chromedriver_win32\\chromedriver.exe";
+	WebDriver driver;
+	
+	SoftAssert softAssert = new SoftAssert();
+	private static String locationText;
+	private static String HotelsText;
+	private static String Date_pick_inText;
+	private static String Date_pick_outText;
+	private static String firstNameText;
+	private static String lastNameText;
+	private static String billingAddressText;
+	private static String CreditCardNoText;
+	private static String CVVNumberText;
+	private static String CreditCardTypeText;
+	private static String ExpiryMonthText;
+	private static String ExpiryYearText;
+	
+	
+	
+	@BeforeTest
+	@Parameters({"location","Hotels","Date_pick_in", "Date_pick_out","firstName","lastName","billingAddress", "CreditCardNo", "CVVNumber" ,"CreditCardType", "ExpiryMonth","ExpiryYear"})
+	public void setBrowserAndGetValues(String location, String Hotels, String Date_pick_in, String Date_pick_out, String firstName, String lastName, String billingAddress, String CreditCardNo, String CVVNumber, String CreditCardType, String ExpiryMonth, String ExpiryYear) {
+
+        System.setProperty("webdriver.chrome.driver", driverPath);        
+        driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        
+        
+        locationText =location;
+        HotelsText = Hotels;
+        Date_pick_inText=Date_pick_in;
+        Date_pick_outText=Date_pick_out;
+        firstNameText=firstName;
+        lastNameText=lastName;
+        billingAddressText=billingAddress;
+        CreditCardNoText=CreditCardNo;
+        CreditCardTypeText=CreditCardType;
+        ExpiryMonthText=ExpiryMonth;
+        ExpiryYearText=ExpiryYear;
+        
+        driver.manage().window().maximize();
+        
+	
+	}
+
+	
+	
+	
+	@Test
+	public void openBrowser() {
+		
+		
+		
+		
+	}
+
+	@AfterTest
+	public void shutDown() {
+		
+		driver.quit();
+		
+	}
+
+}

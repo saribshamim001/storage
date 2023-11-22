@@ -1,0 +1,65 @@
+package third_project_short_basis;
+
+
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.InputEvent;
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class learning {
+
+	
+	String driverPath = "C:\\LOCAL DRIVE D\\Selenium\\chromedriver_win32\\chromedriver.exe";
+	WebDriver driver;
+	private static String textToSearch;
+	
+	
+	@BeforeTest
+	@Parameters({"keyWord"})
+	public void setBrowser() {
+
+        System.setProperty("webdriver.chrome.driver", driverPath);        
+        driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        
+
+		
+		
+	}
+ 
+	@Test
+    public void testNoParameter(String keyWord) throws InterruptedException{
+        
+        driver.get("https://google.com");
+        WebElement searchText = driver.findElement(By.name("q"));
+        //Searching text in google text box
+        searchText.sendKeys(keyWord);
+        
+        Thread.sleep(3000);
+        System.out.println("Value in Google Search Box = "+searchText.getAttribute("value") +" ::: Value given by input = "+keyWord);
+        //verifying the value in google search box
+       // Assert.assertEquals();
+      //  searchText.getAttribute("value").equalsIgnoreCase(searchKey)
+        String searchtextValue=searchText.getAttribute("value").toString();
+        AssertJUnit.assertEquals(  searchtextValue , keyWord  );
+        
+    }	
+	
+
+}

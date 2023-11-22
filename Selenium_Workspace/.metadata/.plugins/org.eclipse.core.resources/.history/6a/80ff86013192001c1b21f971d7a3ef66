@@ -1,0 +1,15 @@
+package second_project;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class second_program {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		ChromeDriver driver = new ChromeDriver();
+		
+		
+	}
+
+}
