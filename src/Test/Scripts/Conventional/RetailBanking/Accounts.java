@@ -92,26 +92,31 @@ public class Accounts extends BaseClass {
         for (String typeOfProduct : LCY_CURRENT_ACCOUNTS) {
             if ( Accounts.PD.equals(typeOfProduct)) {
                 lcyCurrentAccount();
+                return;
             }
         }
         for (String typeOfProduct : LCY_SAVING_ACCOUNTS) {
             if ( Accounts.PD.equals(typeOfProduct)) {
                 lcySavingAccount();
+                return;
             }
         }
         for (String typeOfProduct : FCY_CURRENT_ACCOUNTS) {
             if ( Accounts.PD.equals(typeOfProduct)) {
                 fcyCurrentAccount();
+                return;
             }
         }
         for (String typeOfProduct : FCY_SAVING_ACCOUNTS) {
             if ( Accounts.PD.equals(typeOfProduct)) {
                 fcySavingAccount();
+                return;
             }
         }
         for (String typeOfProduct : KIDS_ACCOUNT) {
             if ( Accounts.PD.equals(typeOfProduct)) {
                 lcyKidsAccount();
+                return;
             }
         }
 

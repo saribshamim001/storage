@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <listeners>
+        <listener class-name="Resources.Listeners"/>
+    </listeners>
+
+    <test verbose="1" preserve-order="true" name="Testing">
+        <groups>
+            <run>
+                <include name="PowerUser"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Test.Scripts.creation">
+                <methods>
+                    <include name="UserCreate"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>

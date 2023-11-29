@@ -15,13 +15,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LockerVisit extends BaseClass {
-
     String VisitTxn;
-
     String FILE_PATH = System.getProperty("user.dir")+"\\Excel Data\\lockerVisit.xlsx";
-
     @Test(groups = {"Inputter"}, dataProvider = "excelDatalockerVisit")
-
     public void lockerVisit(Map<String, String> testData) throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown("Remittance/Clearing Officer -Universal Teller");
@@ -52,7 +48,6 @@ public class LockerVisit extends BaseClass {
 
 
     }
-
     @DataProvider(name = "excelDatalockerVisit")
     public Object[][] readExcelData1() throws IOException {
 
@@ -79,7 +74,6 @@ public class LockerVisit extends BaseClass {
         fis.close();
         return data;
     }
-
     public static void saveAccNumToFile(String accNumber) throws IOException {
 
         String TxnNum = accNumber ;
@@ -115,7 +109,6 @@ public class LockerVisit extends BaseClass {
 
     }
     @Test(groups = {"Authorizer"})
-
     public void lockerVisit_Auth() throws IOException, InterruptedException {
 
         PageObject.menu_Dropdown("Locker- Authorizer Menu");
@@ -143,14 +136,14 @@ public class LockerVisit extends BaseClass {
     }
 
     @DataProvider(name = "LockerVisitData")
-    public Object[][] LockerVisitData() throws IOException {
+    public Object[] LockerVisitData() throws IOException {
         String FILE_PATH = System.getProperty("user.dir")+"\\Data\\Locker VisitData.xlsx";
         FileInputStream fis = new FileInputStream(FILE_PATH);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
-        Object[][] data = new Object[rowCount - 1][1]; // One column to store the HashMap
+        Object[] data = new Object[rowCount - 1]; // One column to store the HashMap
 
         for (int i = 1; i < rowCount; i++) { // Start from row 1 to exclude header row
             Row row = sheet.getRow(i);
@@ -161,7 +154,7 @@ public class LockerVisit extends BaseClass {
                 String value = formatter.formatCellValue(cell);
                 map.put(sheet.getRow(0).getCell(j).toString(), value); // Assuming the first row contains column names
             }
-            data[i - 1][0] = map;
+            data[i - 1] = map;
         }
 
         workbook.close();
