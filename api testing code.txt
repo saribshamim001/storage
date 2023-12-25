@@ -23,7 +23,7 @@ responsBody = pm.response.text();
 statusCode = pm.response.code;
 
 pm.test('Asserting the ID', function (){
-idFound = pm.expect(jsonDataId).to.eql(2);
+idFound = pm.expect(jsonDataId).to.eql(parseInt(pm.collectionVariables.get('parameter')));
 }
 );
 
@@ -56,11 +56,54 @@ console.log('the date from responseHeader:  '+responseHeaderOfAPI);
 
 let csvData = `URL,Response header,Status Code,Response Body\n${url},${responseHeaderOfAPI},${statusCode},${responseBody}`;
 
-fs.writeFileSync(filePath, csvData, 'utf8');
+pm.test( 'Checking properties', function(){
+
+    pm.expect(jsonData).to.have.property('title');
+    pm.expect(jsonData.title).to.be.a('string');
+    pm.expect(jsonData.id).to.be.greaterThan(0);
+    pm.expect(jsonData.userId).to.be.eql(1);
+}
+);
+
+pm.test('Matching id property with Regex',function(){
+    pm.expect(jsonData.id).to.match(/[0-9]/);
+});
+
+//pm.collectionVariables.set('RandomName',pm.variables.replaceIn('{{$randomFullName}}'));
+
+console.log(pm.collectionVariables.get('RandomName'));
+
+
 // Set the CSV data as a global variable
 //postman.setGlobalVariable('csvData', csvData);
 
 // Log the data to the console
 //console.log(csvData);
 
+const schema = {
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "integer"
+    },
+    "id": {
+      "type": "integer"
+    },
+    "title": {
+      "type": "string"
+    },
+    "body": {
+      "type": "string"
+    }
+  },
+  "required": ["userId", "id", "title", "body"]
+};
+
+//const jsonData = pm.response.json(); // Get the response data
+
+// Validate against the schema
+
+pm.test('Checking schema',function(){
+    pm.expect(jsonData).to.have.jsonSchema(schema);
+});
 
