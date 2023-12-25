@@ -1,0 +1,66 @@
+// Fixed the assertion value
+console.log('successfully done')
+
+
+let filePath = '/home/saribshamim/1. Sarib Shamim/postmanResponses/output.csv';
+let responseHeaderOfAPI;
+let jsonDataId;
+let idFound;
+let statusCode200;
+let propertyBody;
+let responsBody;
+let statusCode;
+let url;
+
+
+pm.test("Status code is 200", function () {
+    statusCode200 = pm.response.to.have.status(200);
+});
+
+let jsonData = pm.response.json();
+jsonDataId = jsonData.id;
+responsBody = pm.response.text();
+statusCode = pm.response.code;
+
+pm.test('Asserting the ID', function (){
+idFound = pm.expect(jsonDataId).to.eql(2);
+}
+);
+
+pm.test('Checking body property', function () {
+    propertyBody = pm.expect(pm.response.json()).to.have.property('body');
+});
+
+if (statusCode200 && idFound && propertyBody)
+console.log('All tests have been passed !')
+
+url = pm.collectionVariables.get('url')+'/posts/'+pm.collectionVariables.get('parameter');
+
+responseHeaderOfAPI = pm.response.headers.get('date');
+
+console.log('the URL: ' + url);
+console.log('the response body: '+responsBody);
+console.log('the status code: '+ statusCode);
+console.log('the date from responseHeader:  '+responseHeaderOfAPI);
+
+//let responseHeaderss = pm.response.headers.toObject();
+
+// Log each key-value pair in the headers object
+// console.log("Response Headers:");
+// for (let headerName in responseHeaderss) {
+//   if (responseHeaderss.hasOwnProperty(headerName)) {
+//     let headerValue = responseHeaderss[headerName];
+//     console.log(`${headerName}: ${headerValue}`);
+//   }
+// }
+
+let csvData = `URL,Response header,Status Code,Response Body\n${url},${responseHeaderOfAPI},${statusCode},${responseBody}`;
+
+fs.writeFileSync(filePath, csvData, 'utf8');
+// Set the CSV data as a global variable
+//postman.setGlobalVariable('csvData', csvData);
+
+// Log the data to the console
+//console.log(csvData);
+
+
