@@ -107,3 +107,12 @@ pm.test('Checking schema',function(){
     pm.expect(jsonData).to.have.jsonSchema(schema);
 });
 
+
+//Log in Postman CLI
+
+postman login --with-api-key {{postman-api-key-here}}
+postman collection run ....COllectionIDGivenByPostman....
+
+//https://learning.postman.com/docs/postman-cli/postman-cli-options/#running-collections
+
+
