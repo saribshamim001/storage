@@ -1,0 +1,46 @@
+create database db;
+use db;
+create table table_name (
+name varchar(50),
+id int,
+PRIMARY KEY (ID)
+);
+insert into table_name (name,id) values("name 1",101);
+insert into table_name (name,id) values("name 2",102);
+insert into table_name (name,id) values("name 3",103);
+insert into table_name (name,id) values("name 4",104);
+insert into table_name (name,id) values("name 5",105);
+select * from table_name;
+select DISTINCT (name) from table_name;
+SELECT COUNT(distinct age) AS 'unique_age_count'
+FROM customers;
+update table table_name set name = "Ali" where id =103;
+delete from table_name where id = 104;
+insert into table_name (name,id) values("name 6",106);
+select * from table_name where id in (2,3);
+select * from table_name order by name asc;
+select * from table_name where name like 'abc%' //starts with abc
+select * from customers where first_name like '%hn' or last_name like 'd%' ;
+select count(*) as 'Count of same names' , name from table_name group by name ;
+drop table table_name_temp;
+truncate table table_name_temp2;
+show databases;
+SELECT EMP_ID, EMP_NAME FROM EMPLOYEE WHERE EMP_SAL in (Select SAL FROM SALARY WHERE Location='INDIA');
+SELECT employee_id, employee_name, salary FROM employees ORDER BY employee_id LIMIT 5;
+select distinct age from customers order by age desc limit 1 offset 2;
+select distinct age from customers order by age asc;
+select * from orders where customer_id in (select customer_id from customers where age between 25 and 30);
+
+
+//show records of all customers and matching condition of orders
+SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
+FROM Orders
+right JOIN Customers
+ON Orders.CustomerID=Customers.CustomerID;
+
+
+//show records of all customers and matching condition of orders
+SELECT customers.customer_id, customers.first_name, orders.order_id, orders.item
+FROM customers
+LEFT JOIN orders ON customers.customer_id = orders.customer_id;
+
