@@ -1,6 +1,6 @@
 let sum = 0;
 
-function f1 (){ // moduler to check remainder
+function f1 (){ // modulo to check remainder
 
     let a =10;
     let b=2;
@@ -171,7 +171,7 @@ function f9(){  // num > 0 ? 'positive' : num < 0 ? 'negative' : 'num is zero'
 }
 
 
-function f10(){
+function f10(){  // Filter method, to filter out the even numbers from the array 
 
   // Original array
 const numbers = [1, 2, 3, 4, 5, 6];
@@ -187,7 +187,7 @@ console.log(evenNumbers); // Outputs: [2, 4, 6]
 }
 
 
-function f11(){
+function f11(){  // Reduce method to find Avg from the given array, returning Single value !
 
   const numbers = [10, 20, 30, 40, 50];
 
