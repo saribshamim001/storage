@@ -1,0 +1,57 @@
+.admin-horizontal-menu {
+  margin: 30px auto 0 auto; /* 30px below header, centered horizontally */
+  width: fit-content;
+  background: rgba(255, 255, 255, 0.2); /* glassy effect */
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  padding: 10px 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  font-family: Arial, sans-serif;
+  z-index: 1000;
+}
+
+/* Label "Venus Management" styling */
+.menu-label {
+  font-weight: bold;
+  font-size: 18px;
+  color: #4a148c;
+  margin-right: 30px;
+  white-space: nowrap;
+}
+
+/* Horizontal nav */
+.sidebar-nav {
+  display: flex;
+  gap: 40px;
+  padding: 0;
+  margin: 0;
+}
+
+/* Nav links style */
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  transition: color 0.3s ease, transform 0.3s ease;
+  white-space: nowrap;
+}
+
+/* Icons inside links */
+.sidebar-nav a .icon {
+  margin-right: 8px;
+  font-size: 20px;
+  line-height: 1;
+}
+
+/* Hover effect */
+.sidebar-nav a:hover {
+  color: #6a1b9a;
+  font-weight: 700;
+  transform: translateY(-3px);
+}

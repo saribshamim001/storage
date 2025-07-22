@@ -1,0 +1,45 @@
+.view-bookings {
+    padding: 2rem;
+    background-color: #f8f9fa;
+    min-height: 80vh;
+}
+
+.bookings-container h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #333;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.modern-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.modern-table th, .modern-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.modern-table th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+.modern-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.modern-table td {
+    font-size: 0.95rem;
+}

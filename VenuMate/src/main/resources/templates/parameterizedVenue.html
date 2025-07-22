@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <th:block th:insert="fragments :: html_head"></th:block>
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/parameterizedVenue.css">
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+
+<main class="venue-detail-container">
+  <div class="venue-info">
+    <img id="venueImage" class="venue-img" src="" alt="Venue Image">
+    <div class="venue-description">
+      <h1 id="venueName">Venue Name</h1>
+      <h2>Details of Venue</h2>
+      <ul>
+        <li><strong>Capacity:</strong> <span id="venueCapacity"></span></li>
+        <li><strong>Lunch and Dinner Included</strong></li>
+        <li><strong>Available:</strong> <span id="venueTimeslot"></span></li>
+        <li><strong>Decoration:</strong> <span id="venueDecoration"></span></li>
+        <li><strong>Stage:</strong> <span id="venueStage"></span></li>
+        <li><strong>Flowers:</strong> <span id="venueFlowers"></span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="venue-buttons">
+    <!-- Admin sees "Update Venue" -->
+    <div th:if="${session.loggedInUser?.role == 'ADMIN'}">
+      <button onclick="updateVenue()">Update Venue</button>
+    </div>
+    <div th:if="${session.loggedInUser?.role == 'ADMIN'}">
+      <form th:action="@{'deleteVenue/' + ${venueId}}" method="post" onsubmit="return confirmDeleteForm()">
+        <input type="hidden" name="_method" value="delete" />
+        <button type="submit" class="delete-btn">Delete Venue</button>
+      </form>
+    </div>
+
+
+
+    <!-- Non-admin sees "Book Now" -->
+    <div th:if="${session.loggedInUser?.role != 'ADMIN'}">
+      <button onclick="bookNow()">Book Now</button>
+    </div>
+
+    <!-- Show Next Venue always visible -->
+    <button onclick="showNextVenue()">Show Next Venue</button>
+  </div>
+
+
+</main>
+
+<section class="about-us">
+  <h3>LEARN MORE</h3>
+  <h1>About Us</h1>
+  <p>
+    VenueMate is the web application where you will find your event venues at your fingertips and with full ease.
+  </p>
+</section>
+
+<div th:replace="fragments :: footer"></div>
+
+<div th:if="${successMessage}" class="toast success-toast">
+  <p th:text="${successMessage}"></p>
+</div>
+
+<div th:if="${errorMessage}" class="toast error-toast">
+  <p th:text="${errorMessage}"></p>
+</div>
+
+
+<script src="/js/parameterizedVenue.js"></script>
+</body>
+</html>

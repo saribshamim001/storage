@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Update Venue</title>
+    <th:block th:insert="fragments :: html_head"></th:block>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/update-venue.css" />
+</head>
+<body>
+
+<div class="page-wrapper">
+    <div th:replace="fragments :: header"></div>
+
+    <main class="main-content">
+        <div class="form-container">
+            <h2>Update Venue</h2>
+
+
+            <form class="venue-form"
+                  id="updateVenueForm"
+                  th:action="@{'/updateVenue/' + ${venueId}}"
+                  method="post"
+                  enctype="multipart/form-data">
+
+                <!-- Hidden method override for PUT -->
+                <input type="hidden" name="_method" value="put">
+
+                <label for="name">Venue Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="capacity">Capacity:</label>
+                <input type="number" id="capacity" name="capacity" required>
+
+                <label for="timeslot">Time Slot:</label>
+                <select id="timeslot" name="timeslot" required>
+                    <option value="" disabled selected>Select a time slot</option>
+                    <option value="Morning (8 AM - 12 PM)">Morning (8 AM - 12 PM)</option>
+                    <option value="Afternoon (12 PM - 4 PM)">Afternoon (12 PM - 4 PM)</option>
+                    <option value="Evening (4 PM - 8 PM)">Evening (4 PM - 8 PM)</option>
+                    <option value="Night (8 PM - 12 AM)">Night (8 PM - 12 AM)</option>
+                </select>
+
+                <label for="decoration">Decoration:</label>
+                <input type="text" id="decoration" name="decoration" required>
+
+                <label for="stage">Stage:</label>
+                <input type="text" id="stage" name="stage" required>
+
+                <label for="flowers">Flowers:</label>
+                <input type="text" id="flowers" name="flowers" required>
+
+                <!-- ✅ Image Upload Field -->
+                <label for="imageFile">Upload Venue Image:</label>
+                <input type="file" id="imageFile" name="imageFile" accept="image/*" required/>
+                <button type="submit" class="submit-btn">Update Venue</button>
+            </form>
+
+            <script th:if="${errorMessage != null}">
+                alert([[${errorMessage}]]);
+            </script>
+
+
+        </div>
+    </main>
+
+    <div th:replace="fragments :: footer"></div>
+</div>
+
+<script src="/js/update-venue.js"></script>
+</body>
+</html>

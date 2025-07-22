@@ -1,0 +1,24 @@
+<!-- templates/fragments.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="html_head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VenuMate</title>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/headerFooter.css">
+</head>
+
+<body>
+<header th:fragment="header" class="site-header">
+    <h1 class="site-title">
+        <a href="/venues" class="site-link">--- VenuMate ---</a>
+    </h1>
+</header>
+
+
+<footer th:fragment="footer" class="site-footer">
+    <p>&copy; 2025 VenuMate. All rights reserved.</p>
+</footer>
+</body>
+</html>

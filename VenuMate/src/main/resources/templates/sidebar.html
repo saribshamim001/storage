@@ -1,0 +1,11 @@
+<div th:fragment="sidebar" th:if="${session.loggedInUser?.role == 'ADMIN'}"
+     class="admin-horizontal-menu" xmlns:th="http://www.thymeleaf.org">
+
+  <div class="menu-label">Venus Management</div>
+
+  <nav class="sidebar-nav">
+    <a href="/venues"><span class="icon">🏠</span> Home</a>
+    <a href="/admin/add-venue"><span class="icon">➕</span> Add A Venue</a>
+    <a href="/admin/viewBookings"><span class="icon">📅</span> View Bookings</a>
+  </nav>
+</div>
