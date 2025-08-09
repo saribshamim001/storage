@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Venue</title>
+    <th:block th:insert="fragments :: html_head"></th:block>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/booking.css">
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+
+<main>
+    <div class="booking-form-container">
+        <!-- SINGLE FORM: No nested forms -->
+        <form id="bookingForm" action="/book-venue" method="post">
+            <h2>Venue: <span id="venueNameDisplay"></span></h2>
+
+            <label for="capacity">Capacity</label>
+            <input type="text" id="capacity" readonly>
+
+            <label for="date">Date</label>
+            <input type="date" id="date" required>
+
+            <label for="timeSlot">Time Slot</label>
+            <select id="timeSlot">
+                <option>Morning (9AM - 12PM)</option>
+                <option>Afternoon (1PM - 4PM)</option>
+                <option>Evening (5PM - 9PM)</option>
+            </select>
+
+            <label for="decoration">Decoration Guidelines</label>
+            <textarea id="decoration"></textarea>
+
+            <label for="stage">Stage Guidelines</label>
+            <textarea id="stage"></textarea>
+
+            <label for="flowers">Flowers Guidelines</label>
+            <textarea id="flowers"></textarea>
+
+            <label for="comments">Other Comments</label>
+            <textarea id="comments"></textarea>
+
+
+            <div th:if="${session.loggedInUser?.role != 'ADMIN'}">
+                <button class="crudVenue" type="button" onclick="confirmBooking(event)">Confirm Booking</button>
+            </div>
+        </form>
+    </div>
+</main>
+
+
+<div th:replace="fragments :: footer"></div>
+<script src="/js/booking.js"></script>
+</body>
+</html>

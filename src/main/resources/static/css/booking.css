@@ -1,0 +1,72 @@
+/* booking.css */
+
+.booking-form-container {
+    max-width: 700px;
+    margin: auto;
+    background: #ffffffcc;
+    padding: 30px 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(8px);
+    margin-bottom: 60px; /* <-- add this */
+}
+
+.booking-form-container h2 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+form label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #333;
+}
+
+form input[type="text"],
+form input[type="date"],
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #fff;
+    transition: border 0.2s ease-in-out;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+    border-color: #5dade2;
+    outline: none;
+    box-shadow: 0 0 6px rgba(93, 173, 226, 0.4);
+}
+
+form textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.crudVenue {
+    margin-top: 25px;
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    background: linear-gradient(to right, #6dd5fa, #2980b9);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.crudVenue:hover {
+    background: linear-gradient(to right, #5dc2ef, #2471a3);
+}
+

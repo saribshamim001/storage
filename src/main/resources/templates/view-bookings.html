@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>View Bookings</title>
+  <th:block th:insert="fragments :: html_head"></th:block>
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/view-bookings.css">
+</head>
+<body>
+
+<div th:replace="fragments :: header"></div>
+
+<main class="view-bookings">
+  <section class="bookings-container">
+    <h2>📋 All Venue Bookings</h2>
+
+    <div class="table-wrapper">
+      <table class="modern-table">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>🏛️ Venue Name</th>
+          <th>👥 Capacity</th>
+          <th>🕒 Time Slot</th>
+          <th>🎨 Decoration</th>
+          <th>🎭 Stage</th>
+          <th>🌺 Flowers</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="booking, iterStat : ${bookings}">
+          <td th:text="${iterStat.count}"></td>
+          <td th:text="${booking.name}"></td>
+          <td th:text="${booking.capacity}"></td>
+          <td th:text="${booking.timeslot}"></td>
+          <td th:text="${booking.decoration}"></td>
+          <td th:text="${booking.stage}"></td>
+          <td th:text="${booking.flowers}"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<div th:replace="fragments :: footer"></div>
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <th:block th:insert="fragments :: html_head"></th:block>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/venues.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+<div th:replace="sidebar :: sidebar"></div>
+
+<div class="page-heading">
+    <h1>Venues List</h1>
+</div>
+<main>
+    <div class="venue-container" id="venueContainer">
+        <!-- Venues will be inserted here dynamically -->
+    </div>
+</main>
+<div th:replace="fragments :: footer"></div>
+<script>
+    let venueIds = [];
+    let currentIndex = 0;
+
+    // Step 1: Fetch all venue IDs on page load
+    window.onload = function () {
+        fetch('/VenueIds')
+            .then(res => res.json())
+            .then(data => {
+                venueIds = data;
+                if (venueIds.length > 0) {
+                    // Load first venue
+                    loadVenue(venueIds[currentIndex]);
+                }
+            })
+            .catch(err => console.error('Error loading venue IDs:', err));
+    };
+
+    async function fetchVenues() {
+        try {
+            const response = await fetch('/listOfVenues');
+            const venues = await response.json();
+
+            const container = document.getElementById('venueContainer');
+            container.innerHTML = '';
+
+            venues.forEach(venue => {
+                const card = document.createElement('div');
+                card.className = 'venue-card';
+                card.innerHTML = `
+
+            <div class="venue-card-content">
+            <a href="/parameterizedVenue?id=${venue.id}">
+            <img src="${venue.imageUrl}" alt="${venue.name}" class="venue-image">
+            </a>
+            <div class="venue-content">
+            <a href="/parameterizedVenue?id=${venue.id}">
+                <h2>${venue.name}</h2>
+            </a>
+            <p><strong>Capacity:</strong> ${venue.capacity}</p>
+            <p><strong>Decoration:</strong> ${venue.decoration}</p>
+            <p><strong>Flowers:</strong> ${venue.flowers}</p>
+            <p><strong>Stage:</strong> ${venue.stage}</p>
+            <p><strong>Time Slot:</strong> ${venue.timeslot}</p>
+                </div>
+            </div>
+
+
+                `;
+                container.appendChild(card);
+            });
+
+        } catch (error) {
+            console.error('Error fetching venues:', error);
+        }
+    }
+    function loadVenue(id) {
+        fetch(`/Venue/${id}`)
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("venueName").textContent = data.name;
+                document.getElementById("venueLocation").textContent = "Location: " + data.location;
+                document.getElementById("venueCapacity").textContent = "Capacity: " + data.capacity;
+            })
+            .catch(err => console.error('Error loading venue:', err));
+    }
+
+
+    // Call it when page loads
+    window.onload = fetchVenues;
+</script>
+
+<script th:if="${successMessage != null}">
+    Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: [[${successMessage}]],
+        timer: 2000,
+        showConfirmButton: false
+    });
+</script>
+
+<script th:if="${errorMessage != null}">
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: [[${errorMessage}]],
+        timer: 3000,
+        showConfirmButton: true
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+/* Header Styling */
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centers header content */
+    padding: 20px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    backdrop-filter: blur(4px);
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* VenuMate clickable text */
+.site-title {
+    margin: 0;
+}
+
+/* Link inside header */
+.site-link {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.site-link:hover {
+    color: #2980b9; /* highlight color on hover */
+}
+
+/* Footer Styling */
+.site-footer {
+    padding: 15px;
+    text-align: center;
+    font-size: 1rem;
+    margin-top: auto;
+    backdrop-filter: blur(4px);
+    border-radius: 8px;
+    border-top: 2px dashed #888;
+}

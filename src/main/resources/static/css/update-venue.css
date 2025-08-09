@@ -1,0 +1,117 @@
+/* Reset and base */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  background: linear-gradient(to right, #cceeff, #d8b4f8, #ffe6f0);
+}
+
+html, body {
+  height: 100%;
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.form-container {
+  background: #fff;
+  padding: 40px 50px;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(101, 41, 255, 0.3);
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+}
+
+.form-container h2 {
+  margin-bottom: 25px;
+  font-weight: 700;
+  color: #5f0a87;
+}
+
+.venue-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.venue-form label {
+  font-weight: 600;
+  text-align: left;
+  color: #5f0a87;
+}
+
+.venue-form input[type="text"],
+.venue-form input[type="number"],
+.venue-form input[type="url"],
+.venue-form select,
+.venue-form textarea {
+  padding: 12px 15px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+.venue-form input[type="text"]:focus,
+.venue-form input[type="number"]:focus,
+.venue-form input[type="url"]:focus,
+.venue-form select:focus,
+.venue-form textarea:focus {
+  border-color: #a4508b;
+  outline: none;
+  box-shadow: 0 0 8px #a4508baa;
+}
+
+/* File input style */
+input[type="file"] {
+  padding: 8px 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input[type="file"]:focus {
+  border-color: #a4508b;
+  outline: none;
+  box-shadow: 0 0 8px #a4508baa;
+}
+
+.submit-btn {
+  background: #5f0a87;
+  color: #fff;
+  padding: 15px 0;
+  font-size: 18px;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 10px;
+}
+
+.submit-btn:hover {
+  background: #a4508b;
+}
