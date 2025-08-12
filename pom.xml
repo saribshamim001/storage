@@ -67,6 +67,12 @@
 			<artifactId>spring-boot-starter-mail</artifactId>
 			<version>3.5.0</version>
 		</dependency>
+			<!-- PostgreSQL Driver -->
+			<dependency>
+				<groupId>org.postgresql</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>42.7.3</version> <!-- Use latest stable version -->
+			</dependency>
 
 	</dependencies>
 
