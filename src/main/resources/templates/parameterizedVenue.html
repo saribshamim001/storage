@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="/css/parameterizedVenue.css">
 </head>
 <body>
+<div th:insert="fragments :: page_loader"></div>
 <div th:replace="fragments :: header"></div>
 
 <main class="venue-detail-container">
@@ -58,18 +59,14 @@
     VenueMate is the web application where you will find your event venues at your fingertips and with full ease.
   </p>
 </section>
-
 <div th:replace="fragments :: footer"></div>
-
 <div th:if="${successMessage}" class="toast success-toast">
   <p th:text="${successMessage}"></p>
 </div>
-
 <div th:if="${errorMessage}" class="toast error-toast">
   <p th:text="${errorMessage}"></p>
 </div>
-
-
+<script src="/js/page-loader.js"></script>
 <script src="/js/parameterizedVenue.js"></script>
 </body>
 </html>

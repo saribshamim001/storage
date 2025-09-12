@@ -55,3 +55,80 @@
   font-weight: 700;
   transform: translateY(-3px);
 }
+
+
+.sidebar-nav {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* space between links and search box */
+}
+
+.sidebar-nav .search-box {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px) saturate(180%);
+  border-radius: 14px;
+  padding: 6px 10px;
+  width: 260px; /* smaller for navbar fit */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.sidebar-nav .search-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  color: #000;
+}
+
+.sidebar-nav .search-box input::placeholder {
+  color: rgba(0,0,0,0.5);
+}
+
+.sidebar-nav .search-box button {
+  background: rgba(255,255,255,0.4);
+  border: none;
+  color: #000;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.sidebar-nav .search-box button:hover {
+  background: rgba(255,255,255,0.6);
+}
+
+.loader {
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #000;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  margin-left: 8px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.search-box.compact button {
+  width: 70px; /* fixed width so text doesn't expand */
+  padding: 6px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.3);
+  color: black;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease;
+  font-size: 13px;
+  position: relative;
+  overflow: hidden;
+}

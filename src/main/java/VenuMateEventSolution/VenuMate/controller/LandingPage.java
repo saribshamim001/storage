@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class LandingPage {
-    @GetMapping("/venumate.com")
+    @GetMapping("/backOffice")
     public String loginPage() {
         return "login";
     }

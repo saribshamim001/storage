@@ -1,11 +1,18 @@
 <div th:fragment="sidebar" th:if="${session.loggedInUser?.role == 'ADMIN'}"
      class="admin-horizontal-menu" xmlns:th="http://www.thymeleaf.org">
 
-  <div class="menu-label">Venus Management</div>
+  <div class="menu-label">Venues Management</div>
 
   <nav class="sidebar-nav">
     <a href="/venues"><span class="icon">🏠</span> Home</a>
     <a href="/admin/add-venue"><span class="icon">➕</span> Add A Venue</a>
     <a href="/admin/viewBookings"><span class="icon">📅</span> View Bookings</a>
+    <div class="search-box compact">
+      <input type="text" id="searchInput" placeholder="Search..." />
+      <button id="searchBtn" onclick="searchVenue()">
+        <span id="searchBtnText">Search</span>
+        <span id="searchBtnLoader" class="loader" style="display:none;"></span>
+      </button>
+    </div>
   </nav>
 </div>

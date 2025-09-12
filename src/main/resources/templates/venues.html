@@ -8,12 +8,29 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
+<div th:insert="fragments :: page_loader"></div>
 <div th:replace="fragments :: header"></div>
 <div th:replace="sidebar :: sidebar"></div>
 
 <div class="page-heading">
     <h1>Venues List</h1>
 </div>
+<!--<div class="search-box">-->
+<!--    <input type="text" placeholder="Search by venue name...">-->
+<!--    <button>Search</button>-->
+<!--</div>-->
+<!-- 🔍 Search Bar -->
+<div class="search-container"
+     th:if="${session.loggedInUser?.role != 'ADMIN'}">
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search by venue name...">
+        <button id="searchBtn" onclick="searchVenue()">
+            <span id="searchBtnText">Search</span>
+            <span id="searchBtnLoader" class="btn-loader" style="display:none;"></span>
+        </button>
+    </div>
+</div>
+
 <main>
     <div class="venue-container" id="venueContainer">
         <!-- Venues will be inserted here dynamically -->
@@ -88,6 +105,70 @@
     }
 
 
+async function searchVenue() {
+    const searchInput = document.getElementById("searchInput");
+    const searchValue = searchInput.value.trim().toLowerCase();
+    const btnText = document.getElementById("searchBtnText");
+    const btnLoader = document.getElementById("searchBtnLoader");
+    const searchBtn = document.getElementById("searchBtn");
+
+    if (!searchValue) {
+        Swal.fire("Enter a venue name to search!");
+        return;
+    }
+
+    searchInput.value = "";
+
+    try {
+        // Show loader & disable button
+        btnText.textContent = "Searching...";
+        btnLoader.style.display = "inline-block";
+        searchBtn.disabled = true;
+
+        const startTime = Date.now();
+
+        const response = await fetch('/listOfVenues');
+        const venues = await response.json();
+
+        // ⏳ Ensure loader shows for at least 800ms
+        const elapsed = Date.now() - startTime;
+        if (elapsed < 800) {
+            await new Promise(resolve => setTimeout(resolve, 1200 - elapsed));
+        }
+
+        // Reset button
+        btnText.textContent = "Search";
+        btnLoader.style.display = "none";
+        searchBtn.disabled = false;
+
+        const foundVenue = venues.find(v => v.name.toLowerCase() === searchValue);
+
+        if (foundVenue) {
+            window.location.href = `/parameterizedVenue?id=${foundVenue.id}`;
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Not Found',
+                text: 'No venue found with that name.',
+                timer: 2000,
+                showConfirmButton: false
+            });
+        }
+    } catch (error) {
+        // Reset button on error
+        btnText.textContent = "Search";
+        btnLoader.style.display = "none";
+        searchBtn.disabled = false;
+
+        console.error("Error during search:", error);
+        Swal.fire("Something went wrong while searching!");
+    }
+}
+
+
+
+
+
     // Call it when page loads
     window.onload = fetchVenues;
 </script>
@@ -111,7 +192,6 @@
         showConfirmButton: true
     });
 </script>
-
-
+<script src="/js/page-loader.js"></script>
 </body>
 </html>

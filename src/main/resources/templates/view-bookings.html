@@ -8,7 +8,8 @@
   <link rel="stylesheet" href="/css/view-bookings.css">
 </head>
 <body>
-
+<!-- Loader Overlay -->
+<div th:insert="fragments :: page_loader"></div>
 <div th:replace="fragments :: header"></div>
 
 <main class="view-bookings">
@@ -45,6 +46,6 @@
 </main>
 
 <div th:replace="fragments :: footer"></div>
-
+<script src="/js/page-loader.js"></script>
 </body>
 </html>

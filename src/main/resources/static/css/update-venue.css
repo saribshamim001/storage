@@ -115,3 +115,27 @@ input[type="file"]:focus {
 .submit-btn:hover {
   background: #a4508b;
 }
+
+.error-msg {
+  color: #ff4d6d;
+  font-size: 0.85em;
+  margin-top: 4px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  backdrop-filter: blur(8px);
+  background: rgba(255, 77, 109, 0.15);
+  border: 1px solid rgba(255, 77, 109, 0.3);
+  display: none; /* hidden until error appears */
+}
+
+input.error, textarea.error, select.error {
+  border: 2px solid #ff4d6d !important;
+  background: rgba(255, 77, 109, 0.05) !important;
+  box-shadow: 0 0 10px rgba(255, 77, 109, 0.2);
+}
+
+input.success, textarea.success, select.success {
+  border: 2px solid #4dff88 !important;
+  background: rgba(77, 255, 136, 0.05) !important;
+  box-shadow: 0 0 10px rgba(77, 255, 136, 0.2);
+}

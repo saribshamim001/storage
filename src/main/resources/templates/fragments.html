@@ -5,18 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VenuMate</title>
+    <!-- 🎨 Favicon -->
+    <link rel="icon" type="image/png" href="/images/venuMateIcon.png">
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/headerFooter.css">
 </head>
-
 <body>
 <header th:fragment="header" class="site-header">
     <h1 class="site-title">
         <a href="/venues" class="site-link">--- VenuMate ---</a>
     </h1>
 </header>
-
-
+<!-- fragments.html -->
+<div th:fragment="page_loader">
+    <div id="pageLoader" class="page-loader">
+        <div class="spinner"></div>
+    </div>
+</div>
 <footer th:fragment="footer" class="site-footer">
     <p>&copy; 2025 VenuMate. All rights reserved.</p>
 </footer>

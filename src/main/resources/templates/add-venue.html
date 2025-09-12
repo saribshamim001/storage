@@ -9,43 +9,60 @@
 
 </head>
 <body>
-
+<div th:insert="fragments :: page_loader"></div>
 <div class="page-wrapper">
 <div th:replace="fragments :: header"></div>
 <main>
+
   <div class="form-container">
     <h2>Add A Venue</h2>
-    <form th:action="@{/admin/add-new-venue}" method="post" enctype="multipart/form-data" class="venue-form">
+    <form th:action="@{/admin/add-new-venue}" method="post" enctype="multipart/form-data"
+          class="venue-form" id="venueForm" novalidate>
+
       <label for="name">Venue Name</label>
-      <input type="text" id="name" name="name" placeholder="Enter venue name" required />
+      <input type="text" id="name" name="name" placeholder="Enter venue name" required minlength="5" maxlength="100" />
+      <span class="error-msg" id="nameError"></span>
 
       <label for="capacity">Capacity</label>
-      <input type="number" id="capacity" name="capacity" placeholder="Enter capacity" min="1" required />
+      <input type="number" id="capacity" name="capacity" placeholder="Enter capacity" min="10" max="5000" required />
+      <span class="error-msg" id="capacityError"></span>
 
       <label for="timeslot">Time Slot</label>
       <select id="timeslot" name="timeslot" required>
         <option value="" disabled selected>Select a time slot</option>
-        <option>Morning (8 AM - 12 PM)</option>
-        <option>Afternoon (12 PM - 4 PM)</option>
-        <option>Evening (4 PM - 8 PM)</option>
-        <option>Night (8 PM - 12 AM)</option>
+        <option value="Morning">Morning (8 AM - 11 PM)</option>
+        <option value="Afternoon">Afternoon (12 PM - 3 PM)</option>
+        <option value="Evening">Evening (4 PM - 7 PM)</option>
+        <option value="Night">Night (8 PM - 01 AM)</option>
       </select>
+      <span class="error-msg" id="timeslotError"></span>
 
       <label for="decoration">Decoration Details</label>
-      <textarea id="decoration" name="decoration" placeholder="Describe decoration guidelines or options" rows="3"></textarea>
+      <textarea id="decoration" name="decoration" placeholder="Describe decoration guidelines or options" rows="3" required minlength="5" maxlength="100"></textarea>
+      <span class="error-msg" id="decorationError"></span>
+
       <label for="stage">Stage Details</label>
-      <textarea id="stage" name="stage" placeholder="Describe stage setup or options" rows="3"></textarea>
+      <textarea id="stage" name="stage" placeholder="Describe stage setup or options" rows="3" required minlength="5" maxlength="100"></textarea>
+      <span class="error-msg" id="stageError"></span>
+
       <label for="flowers">Flower Arrangements</label>
-      <textarea id="flowers" name="flowers" placeholder="Describe flower arrangement options" rows="3"></textarea>
+      <textarea id="flowers" name="flowers" placeholder="Describe flower arrangement options" rows="3" required minlength="5" maxlength="100"></textarea>
+      <span class="error-msg" id="flowersError"></span>
+
       <label for="imageFile">Upload Venue Image</label>
       <input type="file" id="imageFile" name="imageFile" accept="image/*" required />
+      <span class="error-msg" id="imageError"></span>
 
       <button type="submit" class="submit-btn">Add Venue</button>
     </form>
   </div>
+
+
 </main>
 <div th:replace="fragments :: footer"></div>
 </div>
 </body>
+<script src="/js/page-loader.js"></script>
 <script src="/js/add-venue.js"></script>
+<script src="/js/form-validation.js"></script>
 </html>
