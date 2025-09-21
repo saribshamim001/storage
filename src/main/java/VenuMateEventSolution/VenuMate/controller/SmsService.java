@@ -1,5 +1,6 @@
 package VenuMateEventSolution.VenuMate.controller;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.web.client.RestTemplate;
@@ -10,9 +11,13 @@ public class SmsService {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Value("${sms.api-key}")
+    private String apiKey;
+
+    @Value("${sms.sender}")
+    private String sender;
+
     public String sendSms(String toPhoneNumber, String message) {
-        String apiKey = "923362291106-32850d36-3e75-4d3e-81f2-2733d7968649";
-        String sender = "VenuMate"; // Your approved sender
 
         // Replace spaces with "+" — only this is needed
         String encodedMessage = message.replace(" ", "+");

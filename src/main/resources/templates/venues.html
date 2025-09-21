@@ -36,6 +36,22 @@
         <!-- Venues will be inserted here dynamically -->
     </div>
 </main>
+<div th:if="${successMessage}">
+    <script th:inline="javascript">
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true
+        });
+
+        Toast.fire({
+            icon: 'success',
+            title: /*[[${successMessage}]]*/ ''
+        });
+    </script>
+</div>
 <div th:replace="fragments :: footer"></div>
 <script>
     let venueIds = [];
@@ -43,12 +59,14 @@
 
     // Step 1: Fetch all venue IDs on page load
     window.onload = function () {
+        console.log("Fetching venue IDs...")
         fetch('/VenueIds')
             .then(res => res.json())
             .then(data => {
                 venueIds = data;
                 if (venueIds.length > 0) {
                     // Load first venue
+                    console.log("Loading first venue with ID:", venueIds[0]);
                     loadVenue(venueIds[currentIndex]);
                 }
             })
@@ -58,11 +76,12 @@
     async function fetchVenues() {
         try {
             const response = await fetch('/listOfVenues');
+            console.log("The get api: /listOfVenues response came:",response);
             const venues = await response.json();
-
             const container = document.getElementById('venueContainer');
             container.innerHTML = '';
-
+            console.log("Fetched venues:", venues);
+            console.log("Rendering venues...");
             venues.forEach(venue => {
                 const card = document.createElement('div');
                 card.className = 'venue-card';
@@ -106,6 +125,7 @@
 
 
 async function searchVenue() {
+    console.log("Search button clicked");
     const searchInput = document.getElementById("searchInput");
     const searchValue = searchInput.value.trim().toLowerCase();
     const btnText = document.getElementById("searchBtnText");
@@ -113,6 +133,7 @@ async function searchVenue() {
     const searchBtn = document.getElementById("searchBtn");
 
     if (!searchValue) {
+        console.log("No search input provided");
         Swal.fire("Enter a venue name to search!");
         return;
     }
@@ -144,8 +165,27 @@ async function searchVenue() {
         const foundVenue = venues.find(v => v.name.toLowerCase() === searchValue);
 
         if (foundVenue) {
-            window.location.href = `/parameterizedVenue?id=${foundVenue.id}`;
-        } else {
+    console.log("Venue found:", foundVenue);
+
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true
+    });
+
+    Toast.fire({
+        icon: 'success',
+        title: 'Venue found! Redirecting...'
+    });
+
+    setTimeout(() => {
+        window.location.href = `/parameterizedVenue?id=${foundVenue.id}`;
+    }, 2000);
+}
+         else {
+            console.log("No venue found with that name");
             Swal.fire({
                 icon: 'error',
                 title: 'Not Found',
@@ -164,33 +204,8 @@ async function searchVenue() {
         Swal.fire("Something went wrong while searching!");
     }
 }
-
-
-
-
-
     // Call it when page loads
     window.onload = fetchVenues;
-</script>
-
-<script th:if="${successMessage != null}">
-    Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: [[${successMessage}]],
-        timer: 2000,
-        showConfirmButton: false
-    });
-</script>
-
-<script th:if="${errorMessage != null}">
-    Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: [[${errorMessage}]],
-        timer: 3000,
-        showConfirmButton: true
-    });
 </script>
 <script src="/js/page-loader.js"></script>
 </body>

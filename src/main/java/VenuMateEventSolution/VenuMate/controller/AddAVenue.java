@@ -14,9 +14,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class AddAVenue {
+
+    private static final Logger logger = LoggerFactory.getLogger(AddAVenue.class);
 
     @Autowired
     EventRepository eventRepository;
@@ -34,7 +39,7 @@ public class AddAVenue {
                            @RequestParam("stage") String stage,
                            @RequestParam("flowers") String flowers,
                            @RequestParam("imageFile") MultipartFile imageFile,
-                           Model model) {
+                           RedirectAttributes redirectAttributes) {
 
         String uploadDir = Paths.get(System.getProperty("user.dir"), "uploaded-images").toString();
         File uploadFolder = new File(uploadDir);
@@ -52,7 +57,7 @@ public class AddAVenue {
 
         // Get original filename
         if (fileName == null || fileName.isEmpty()) {
-            model.addAttribute("errorMessage", "Invalid file name.");
+            redirectAttributes.addFlashAttribute("errorMessage", "Invalid file name.");
             return "add-venue";  // Return to form with error
         }
 
@@ -60,7 +65,7 @@ public class AddAVenue {
 
         // Save relative path to DB for frontend access
         String imageUrl = "images/" + fileName;
-
+        logger.info("Adding venue with image");
         VenuesList venue = new VenuesList();
         venue.setName(name);
         venue.setCapacity(capacity);
@@ -70,13 +75,13 @@ public class AddAVenue {
         venue.setFlowers(flowers);
         venue.setImageUrl(imageUrl);
         eventRepository.save(venue);
-        model.addAttribute("successMessage", "Venue added successfully!");
+        logger.debug("Venue saved successfully: {}", venue);
+        redirectAttributes.addFlashAttribute("successMessage", "Venue added successfully!");
         } catch (IOException e) {
             e.printStackTrace();
-            model.addAttribute("errorMessage", "Failed to upload image.");
+            redirectAttributes.addFlashAttribute("errorMessage", "Failed to add venue.");
             return "add-venue";
         }
-        model.addAttribute("successMessage", "Venue added successfully!");
         return "redirect:/venues"; // or return back to the form
     }
 }

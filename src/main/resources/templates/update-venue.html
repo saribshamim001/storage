@@ -55,17 +55,14 @@
 
                 <button type="submit" class="submit-btn">Update Venue</button>
             </form>
-
-            <script th:if="${errorMessage != null}">
-                alert([[${errorMessage}]]);
-            </script>
         </div>
     </main>
 
     <div th:replace="fragments :: footer"></div>
 </div>
+<div th:replace="fragments :: notifications"></div>
+</body>
 <script src="/js/page-loader.js"></script>
 <script src="/js/update-venue.js"></script>
 <script src="/js/form-validation.js"></script>
-</body>
 </html>

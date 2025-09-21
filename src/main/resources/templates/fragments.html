@@ -9,6 +9,7 @@
     <link rel="icon" type="image/png" href="/images/venuMateIcon.png">
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/headerFooter.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <header th:fragment="header" class="site-header">
@@ -22,6 +23,53 @@
         <div class="spinner"></div>
     </div>
 </div>
+<div th:fragment="notifications">
+    <script th:if="${successMessage != null}">
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true
+        });
+
+        Toast.fire({
+            icon: 'success',
+            title: [[${successMessage}]]
+        });
+    </script>
+
+    <script th:if="${errorMessage != null}">
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true
+        });
+
+        Toast.fire({
+            icon: 'error',
+            title: [[${errorMessage}]]
+        });
+    </script>
+
+    <script th:if="${warningMessage != null}">
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true
+        });
+
+        Toast.fire({
+            icon: 'warning',
+            title: [[${warningMessage}]]
+        });
+    </script>
+</div>
+
 <footer th:fragment="footer" class="site-footer">
     <p>&copy; 2025 VenuMate. All rights reserved.</p>
 </footer>
