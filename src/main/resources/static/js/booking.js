@@ -41,12 +41,29 @@ function confirmBooking() {
         },
         body: JSON.stringify(formData)
     }).then(response => {
-    if (response.status === 204) {
-        alert("Booking confirmed!");
-        window.location.href = "/venues";
-    }
-     else {
-            alert("Booking failed.");
-        }
+   if (response.status === 204) {
+           Swal.fire({
+               icon: 'success',
+               title: 'Venue booked successfully!',
+               text: 'Redirecting to the main page...',
+               confirmButtonText: 'OK'
+           }).then(() => {
+               window.location.href = "/venues";
+           });
+       } else if (response.status === 500) {
+           Swal.fire({
+               icon: 'error',
+               title: 'Booking saved, but SMS could not be sent.',
+               text: 'Please check SMS service settings.',
+               confirmButtonText: 'OK'
+           });
+       } else {
+           Swal.fire({
+               icon: 'error',
+               title: 'Booking failed!',
+               text: 'Please try again.',
+               confirmButtonText: 'OK'
+           });
+       }
     });
 }

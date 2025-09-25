@@ -3,6 +3,8 @@ import VenuMateEventSolution.VenuMate.model.Booking;
 import VenuMateEventSolution.VenuMate.model.Users;
 import VenuMateEventSolution.VenuMate.repository.BookingRepository;
 import jakarta.servlet.http.HttpSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -20,6 +23,9 @@ import java.util.Map;
 
 @Controller
 public class booking {
+
+    private static final Logger logger = LoggerFactory.getLogger(booking.class);
+
 
     @Autowired
     private SmsService smsService;
@@ -42,7 +48,7 @@ public class booking {
     private BookingRepository bookingRepository;
 
     @PostMapping("/book-venue")
-    public ResponseEntity<Void> bookVenue(@RequestBody Map<String, String> bookingData) {
+    public ResponseEntity<Void> bookVenue(@RequestBody Map<String, String> bookingData, RedirectAttributes redirectAttributes) {
         // Extract values from the map
         String name = bookingData.get("name");
         String date = bookingData.get("date");
@@ -73,12 +79,20 @@ public class booking {
         String receiverEmail = "siddiqui00095@gmail.com";
         emailService.sendEmail(receiverEmail, "Booking Confirmation - VenuMate", emailBody);
 
-        String smsMsg = "Your booking for " +name+" is confirmed on the time slot: "+timeSlot;
-        smsService.sendSms("923345493325", smsMsg);
+        String smsMsg = "Your booking for " + name + " is confirmed on the time slot: " + timeSlot;
 
-        return ResponseEntity.noContent().build(); // HTTP 204
+        try {
+            smsService.sendSms("923345493325", smsMsg);
+            redirectAttributes.addFlashAttribute("successMessage", "Venue booked successfully!");
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            // Log the error
+            logger.error("Failed to send SMS: {}", e.getMessage(), e);
+            // Add error message to UI
+            redirectAttributes.addFlashAttribute("errorMessage", "Booking saved, but SMS could not be sent, an error occured");
+            // Return appropriate response
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
-
-
-}
+    }
