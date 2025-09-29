@@ -1,4 +1,4 @@
-package VenuMateEventSolution.VenuMate.controller;
+package VenuMateEventSolution.VenuMate.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;

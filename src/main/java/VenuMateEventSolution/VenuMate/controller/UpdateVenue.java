@@ -89,6 +89,7 @@ public class UpdateVenue {
         }
 
         eventRepository.save(venue);
+        logger.info("Venue updated successfully: {}", venue.getName());
         redirectAttributes.addFlashAttribute("successMessage", "Venue updated successfully!");
         return "redirect:/venues";
     }

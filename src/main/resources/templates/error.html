@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Error - Something Went Wrong</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/error.css" />
+</head>
+<body>
+<div th:insert="fragments :: page_loader"></div>
+
+<!-- Header -->
+<main class="error-container">
+    <div class="error-box">
+        <h1>Oops! Something went wrong</h1>
+        <p th:text="${message}">An unexpected error occurred.</p>
+        <a href="/venues" class="btn-home">Go to main page</a>
+    </div>
+</main>
+<script src="/js/page-loader.js"></script>
+</body>
+</html>

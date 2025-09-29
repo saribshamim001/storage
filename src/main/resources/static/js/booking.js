@@ -15,8 +15,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-function confirmBooking() {
+function confirmBooking(event) {
     event.preventDefault();
+
     const venue = JSON.parse(sessionStorage.getItem("selectedVenue"));
 
     const formData = {
@@ -34,6 +35,15 @@ function confirmBooking() {
         comments: document.getElementById("comments").value
     };
 
+    // 🔹 Show loader spinner before fetch
+    Swal.fire({
+        title: 'Booking in progress...',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
+
     fetch("/book-venue", {
         method: "POST",
         headers: {
@@ -41,29 +51,39 @@ function confirmBooking() {
         },
         body: JSON.stringify(formData)
     }).then(response => {
-   if (response.status === 204) {
-           Swal.fire({
-               icon: 'success',
-               title: 'Venue booked successfully!',
-               text: 'Redirecting to the main page...',
-               confirmButtonText: 'OK'
-           }).then(() => {
-               window.location.href = "/venues";
-           });
-       } else if (response.status === 500) {
-           Swal.fire({
-               icon: 'error',
-               title: 'Booking saved, but SMS could not be sent.',
-               text: 'Please check SMS service settings.',
-               confirmButtonText: 'OK'
-           });
-       } else {
-           Swal.fire({
-               icon: 'error',
-               title: 'Booking failed!',
-               text: 'Please try again.',
-               confirmButtonText: 'OK'
-           });
-       }
+        Swal.close(); // 🔹 Stop loader when response arrives
+
+        if (response.status === 204) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Venue booked successfully!',
+                text: 'Redirecting to the main page...',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                window.location.href = "/venues";
+            });
+        } else if (response.status === 500) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Booking saved, but SMS could not be sent.',
+                text: 'Please check SMS service settings.',
+                confirmButtonText: 'OK'
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Booking failed!',
+                text: 'Please try again.',
+                confirmButtonText: 'OK'
+            });
+        }
+    }).catch(error => {
+        Swal.close(); // close loader if error happens
+        Swal.fire({
+            icon: 'error',
+            title: 'Network Error!',
+            text: 'Unable to reach server. Please try again.',
+            confirmButtonText: 'OK'
+        });
     });
 }
