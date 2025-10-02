@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const venueData = JSON.parse(sessionStorage.getItem("selectedVenue"));
 
     if (venueData) {
+        console.log("Working on update venue JS file, Venue Data found:", venueData);
         let venueId = getVenueIdFromURL()
 //        document.getElementById("name").value = getVenueIdFromURL();
         document.getElementById("name").value = venueData.name;
@@ -38,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("flowers").value = venueData.flowers;
 
     } else {
+        console.log("No venue data found in sessionStorage.");
         alert("⚠️ No venue data found. Please go back and select a venue.");
         window.location.href = "/venues";
     }
@@ -45,12 +47,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 function getVenueIdFromURL() {
+    console.log("Extracting venue ID from URL");
     const params = new URLSearchParams(window.location.search);
     return params.get('id');
 }
 
 
 document.getElementById("updateVenueForm").addEventListener("submit", function (e) {
+    console.log("Form submission triggered");
     const requiredFields = ["decoration", "stage", "flowers"];
     let allValid = true;
 

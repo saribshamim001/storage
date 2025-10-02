@@ -10,7 +10,7 @@
                 venueIds = data;
                 if (venueIds.length > 0) {
                     // Load first venue
-                    console.log("Loading first venue with ID:", venueIds[0]);
+                    console.log("On venues JS file, Loading first venue with ID:", venueIds[0]);
                     loadVenue(venueIds[currentIndex]);
                 }
             })
@@ -23,6 +23,7 @@ let totalPages = 0;
 
 async function fetchVenues(page = 0) {
     try {
+        console.log(`On venues JS file, Fetching venues for page ${page} with size ${pageSize}...`);
         const response = await fetch(`/listOfVenues?page=${page}&size=${pageSize}`);
         const data = await response.json();
 
@@ -33,7 +34,7 @@ async function fetchVenues(page = 0) {
         const container = document.getElementById('venueContainer');
         container.innerHTML = '';
 
-        console.log(`Rendering page ${currentPage + 1} of ${totalPages}, venues:`, venues);
+        console.log(`On venues JS file, Rendering page ${currentPage + 1} of ${totalPages}, venues:`, venues);
 
         venues.forEach(venue => {
             const card = document.createElement('div');
@@ -57,7 +58,7 @@ async function fetchVenues(page = 0) {
             `;
             container.appendChild(card);
         });
-
+        console.log("On venues JS file, Finished rendering venues.");
         // Update pagination info
         const info = document.getElementById('paginationInfo');
         info.textContent = `Page ${currentPage + 1} of ${totalPages} — Showing ${venues.length} venues (out of ${data.totalElements})`;
@@ -65,23 +66,68 @@ async function fetchVenues(page = 0) {
         // Update buttons
         document.getElementById('prevBtn').disabled = currentPage === 0;
         document.getElementById('nextBtn').disabled = currentPage === totalPages - 1;
-
+        console.log("On venues JS file, Pagination buttons updated.");
     } catch (error) {
+        console.log("On venues JS file, Error fetching venues:", error);
         console.error('Error fetching venues:', error);
     }
 }
+function showLoader() {
+    const loader = document.getElementById("pageLoader");
+    console.log("In venue js file, Showing loader..."+loader); // ✅ debug
+    if (loader) {
+        console.log("In venue js file, Loader element found, not showing this: ", loader); // Log the loader value
+        loader.classList.remove("hide");
+        loader.style.display = "flex"; // Use "flex" to match CSS
+    }
+}
+function hideLoader() {
+    const loader = document.getElementById("pageLoader");
+    if (loader) {
+        loader.classList.add("hide");
+        setTimeout(() => {
+          console.log("hiding loader in venues.js method..."); // ✅ debug
+        loader.style.display = "none";
+        }, 1200);
+    }
+}
+async function prevPage() {
+    if (currentPage > 0) {
+        showLoader();
+        try {
+            await fetchVenues(currentPage - 1);
+        } finally {
+            hideLoader();
+        }
+    }
+    console.log("On venues JS file, Previous page button clicked");
+}
+
+async function nextPage() {
+    if (currentPage < totalPages - 1) {
+        showLoader();
+        try {
+            await fetchVenues(currentPage + 1);
+        } finally {
+            hideLoader();
+        }
+    }
+    console.log("On venues JS file, Next page button clicked");
+}
 
 // Pagination button handlers
-function prevPage() {
-    if (currentPage > 0) {
-        fetchVenues(currentPage - 1);
-    }
-}
-function nextPage() {
-    if (currentPage < totalPages - 1) {
-        fetchVenues(currentPage + 1);
-    }
-}
+//function prevPage() {
+//    if (currentPage > 0) {
+//        fetchVenues(currentPage - 1);
+//    }
+//    console.log("On venues JS file, Previous page button clicked");
+//}
+//function nextPage() {
+//    if (currentPage < totalPages - 1) {
+//        fetchVenues(currentPage + 1);
+//    }
+//    console.log("On venues JS file, Next page button clicked");
+//}
 
 // Load first page on start
 window.onload = () => fetchVenues(0);
@@ -90,6 +136,7 @@ window.onload = () => fetchVenues(0);
         fetch(`/Venue/${id}`)
             .then(res => res.json())
             .then(data => {
+                console.log("On venues JS file, Loaded venue data:", data);
                 document.getElementById("venueName").textContent = data.name;
                 document.getElementById("venueLocation").textContent = "Location: " + data.location;
                 document.getElementById("venueCapacity").textContent = "Capacity: " + data.capacity;
@@ -99,7 +146,7 @@ window.onload = () => fetchVenues(0);
 
 
 async function searchVenue() {
-    console.log("Search button clicked");
+    console.log("On venues JS file, Search button clicked");
     const searchInput = document.getElementById("searchInput");
     const searchValue = searchInput.value.trim().toLowerCase();
     const btnText = document.getElementById("searchBtnText");
@@ -107,7 +154,7 @@ async function searchVenue() {
     const searchBtn = document.getElementById("searchBtn");
 
     if (!searchValue) {
-        console.log("No search input provided");
+        console.log("On venues JS file, No search input provided");
         Swal.fire("Enter a venue name to search!");
         return;
     }
@@ -139,7 +186,7 @@ async function searchVenue() {
         const foundVenue = venues.find(v => v.name.toLowerCase() === searchValue);
 
         if (foundVenue) {
-    console.log("Venue found:", foundVenue);
+    console.log("On venues JS file, Venue found:", foundVenue);
 
     const Toast = Swal.mixin({
         toast: true,
@@ -159,7 +206,7 @@ async function searchVenue() {
     }, 2000);
 }
          else {
-            console.log("No venue found with that name");
+            console.log("On venues JS file, No venue found with that name");
             Swal.fire({
                 icon: 'error',
                 title: 'Not Found',
@@ -174,7 +221,7 @@ async function searchVenue() {
         btnLoader.style.display = "none";
         searchBtn.disabled = false;
 
-        console.error("Error during search:", error);
+        console.error("On venues JS file, Error during search:", error);
         Swal.fire("Something went wrong while searching!");
     }
 }

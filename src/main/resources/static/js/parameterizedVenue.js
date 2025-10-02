@@ -3,8 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const id = params.get("id");
 
     if (id) {
+        console.log(`In parameterizedVenue js file, Fetching venue with id: ${id}`);
         fetch(`/Venue/${id}`)
             .then(response => {
+                console.log(`Received response with status: ${response.status}`);
                 console.assert(response.ok, `Failed response: ${response.status}`);
                 return response.json();
             })
@@ -43,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function bookNow() {
+    console.log("bookNow() called");
     const venueData = {
         name: document.getElementById('venueName').textContent,
         capacity: document.getElementById('venueCapacity').textContent,
@@ -51,29 +54,30 @@ function bookNow() {
         stage: document.getElementById('venueStage').textContent,
         flowers: document.getElementById('venueFlowers').textContent,
     };
+    console.log("Venue data to be booked:", venueData);
     sessionStorage.setItem("selectedVenue", JSON.stringify(venueData));
+    console.log("Venue data saved to sessionStorage. Redirecting to /booking");
     window.location.href = "/booking";
 }
 
 
 function updateVenue() {
+    console.log("updateVenue() called");
     const venueData = {
-            name: document.getElementById('venueName').textContent,
-            capacity: document.getElementById('venueCapacity').textContent,
-            timeslot: document.getElementById('venueTimeslot').textContent,
-            decoration: document.getElementById('venueDecoration').textContent,
-            stage: document.getElementById('venueStage').textContent,
-            flowers: document.getElementById('venueFlowers').textContent,
+         name: document.getElementById('venueName').textContent,
+         capacity: document.getElementById('venueCapacity').textContent,
+         timeslot: document.getElementById('venueTimeslot').textContent,
+         decoration: document.getElementById('venueDecoration').textContent,
+         stage: document.getElementById('venueStage').textContent,
+         flowers: document.getElementById('venueFlowers').textContent,
         };
-
-
-    // Save to session storage
+    console.log("Venue data to update:", venueData);
     sessionStorage.setItem("selectedVenue", JSON.stringify(venueData));
-//    sessionStorage.setItem("mode", "update");
-//    window.location.href = "/updateVenue";
-        let venueId  =  getVenueIdFromURL()
-        window.location.href = `/updateVenue?id=${venueId}`; // pass id via URL
+    console.log("Venue data saved to sessionStorage");
 
+    let venueId = getVenueIdFromURL();
+    console.log("Redirecting to /updateVenue with id:", venueId);
+    window.location.href = `/updateVenue?id=${venueId}`;
 }
 
 function deleteVenue(){
