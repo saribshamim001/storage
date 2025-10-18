@@ -76,12 +76,10 @@ public class booking {
         // Send email
         String receiverEmail = "siddiqui00095@gmail.com";
         emailService.sendEmail(receiverEmail, "Booking Confirmation - VenuMate", emailBody);
-
         String smsMsg = "Your booking for " + name + " is confirmed on the time slot: " + timeSlot;
-
         try {
             smsService.sendSms("923345493325", smsMsg);
-            logger.info("SMS sent successfully to client.");
+            logger.info("Booking saved, async tasks (email + sms) triggered.");
             return ResponseEntity.noContent().build();
         } catch (Exception e) {
             logger.error("Failed to send SMS: {}", e.getMessage(), e);

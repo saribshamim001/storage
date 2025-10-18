@@ -4,40 +4,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (id) {
         console.log(`In parameterizedVenue js file, Fetching venue with id: ${id}`);
+
         fetch(`/Venue/${id}`)
             .then(response => {
                 console.log(`Received response with status: ${response.status}`);
                 console.assert(response.ok, `Failed response: ${response.status}`);
                 return response.json();
             })
-            .then(data => {
+            .then(wrapper => {
+                console.assert(wrapper, "Wrapper is null or undefined");
+                console.log("Full API response:", wrapper);
+                const data = wrapper.data;
                 console.assert(data, "Data is null or undefined");
-
                 console.assert(data.imageUrl, "Missing imageUrl");
                 document.getElementById("venueImage").src = data.imageUrl;
-
                 console.assert(data.name, "Missing name");
                 document.getElementById("venueImage").alt = data.name;
                 document.getElementById("venueName").textContent = data.name;
-
                 console.assert(data.capacity, "Missing capacity");
                 document.getElementById("venueCapacity").textContent = data.capacity;
-
                 console.assert(data.decoration, "Missing decoration");
                 document.getElementById("venueDecoration").textContent = data.decoration;
-
                 console.assert(data.flowers, "Missing flowers");
                 document.getElementById("venueFlowers").textContent = data.flowers;
-
                 console.assert(data.stage, "Missing stage");
                 document.getElementById("venueStage").textContent = data.stage;
-
                 console.assert(data.timeslot, "Missing timeslot");
                 document.getElementById("venueTimeslot").textContent = data.timeslot;
             })
             .catch(error => {
-                console.error("Error loading venue:", error);
-                alert("Failed to load venue data.");
+                console.error("Error fetching venue:", error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Could not load venue details.',
+                    timer: 2000,
+                    showConfirmButton: false
+                });
             });
     } else {
         alert("No venue ID specified in the URL.");

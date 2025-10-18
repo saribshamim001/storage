@@ -2,11 +2,13 @@ package VenuMateEventSolution.VenuMate.rest;
 
 import VenuMateEventSolution.VenuMate.model.VenuesList;
 import VenuMateEventSolution.VenuMate.repository.EventRepository;
+import VenuMateEventSolution.VenuMate.response.ApiResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,34 +26,45 @@ public class MainPage {
 //    public List<VenuesList> listOfVenues(){
 //        return eventRepository.findAll();
 //    }
+
     @GetMapping("/listOfVenues")
-    public Page<VenuesList> listVenues(
+    public ResponseEntity<ApiResponse<List<VenuesList>>> listVenues(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "8") int size) {
-        return eventRepository.findAll(PageRequest.of(page, size));
+
+        Page<VenuesList> venuesPage = eventRepository.findAll(PageRequest.of(page, size));
+
+        ApiResponse<List<VenuesList>> response = new ApiResponse<>(
+                "Successfully retrieved venues",
+                200,
+                venuesPage.getContent(),
+                venuesPage.getNumber(),
+                venuesPage.getTotalPages(),
+                venuesPage.getTotalElements()
+        );
+
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/Venue/{id}")
-    public ResponseEntity<VenuesList> getVenue(@PathVariable Integer id) {
+    public ResponseEntity<ApiResponse<VenuesList>> getVenue(@PathVariable Integer id) {
         Optional<VenuesList> venue = eventRepository.findById(id);
-        logger.info("Venues list found, now returning the list");
-        return venue.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        if (venue.isPresent()) {
+            ApiResponse<VenuesList> response = new ApiResponse<>(
+                    "Venue found successfully",
+                    200,
+                    venue.get()
+            );
+            return ResponseEntity.ok(response);
+        } else {
+            ApiResponse<VenuesList> response = new ApiResponse<>(
+                    "Venue not found",
+                    404,
+                    null
+            );
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+        }
     }
 
 
-    @PostMapping("/create")
-    public VenuesList create(@RequestBody Map<String,String> body){
-        VenuesList venue = new VenuesList();
-        venue.setName(body.get("name"));
-        venue.setCapacity(Integer.parseInt(body.get("capacity")));
-        venue.setTimeslot(body.get("timeslot"));
-        venue.setFlowers(body.get("flowers"));
-        venue.setStage(body.get("stage"));
-        venue.setDecoration(body.get("decoration"));
-        venue.setImageUrl(body.get("image_url"));
-        eventRepository.save(venue);
-        logger.info("New venue created successfully");
-        return venue;
-    }
 }

@@ -23,18 +23,21 @@ let totalPages = 0;
 
 async function fetchVenues(page = 0) {
     try {
-        console.log(`On venues JS file, Fetching venues for page ${page} with size ${pageSize}...`);
+        console.log(`Fetching venues for page ${page} with size ${pageSize}...`);
         const response = await fetch(`/listOfVenues?page=${page}&size=${pageSize}`);
-        const data = await response.json();
+        const apiResponse = await response.json();
 
-        const venues = data.content;
-        totalPages = data.totalPages;
-        currentPage = data.number;
+        console.log("Full API Response:", apiResponse);
+
+        const venues = apiResponse.data || [];
+        totalPages = apiResponse.totalPages;
+        currentPage = apiResponse.currentPage;
+        const totalElements = apiResponse.totalElements;
 
         const container = document.getElementById('venueContainer');
         container.innerHTML = '';
 
-        console.log(`On venues JS file, Rendering page ${currentPage + 1} of ${totalPages}, venues:`, venues);
+        console.log(`Rendering page ${currentPage + 1} of ${totalPages}`, venues);
 
         venues.forEach(venue => {
             const card = document.createElement('div');
@@ -58,18 +61,25 @@ async function fetchVenues(page = 0) {
             `;
             container.appendChild(card);
         });
-        console.log("On venues JS file, Finished rendering venues.");
-        // Update pagination info
-        const info = document.getElementById('paginationInfo');
-        info.textContent = `Page ${currentPage + 1} of ${totalPages} — Showing ${venues.length} venues (out of ${data.totalElements})`;
 
-        // Update buttons
+        // ✅ Update pagination info
+        const info = document.getElementById('paginationInfo');
+        info.textContent = `Page ${currentPage + 1} of ${totalPages} — Showing ${venues.length} venues (out of ${totalElements})`;
+
+        // ✅ Update buttons
         document.getElementById('prevBtn').disabled = currentPage === 0;
         document.getElementById('nextBtn').disabled = currentPage === totalPages - 1;
-        console.log("On venues JS file, Pagination buttons updated.");
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (error) {
-        console.log("On venues JS file, Error fetching venues:", error);
         console.error('Error fetching venues:', error);
+    } finally {
+        const btnText = document.getElementById("searchBtnText");
+        const btnLoader = document.getElementById("searchBtnLoader");
+        const searchBtn = document.getElementById("searchBtn");
+        if (btnText) btnText.textContent = "Search";
+        if (btnLoader) btnLoader.style.display = "none";
+        if (searchBtn) searchBtn.disabled = false;
     }
 }
 function showLoader() {
@@ -170,7 +180,8 @@ async function searchVenue() {
         const startTime = Date.now();
 
         const response = await fetch('/listOfVenues');
-        const venues = await response.json();
+        const venuesResponse = await response.json();
+        const venues = venuesResponse.data || [];
 
         // ⏳ Ensure loader shows for at least 800ms
         const elapsed = Date.now() - startTime;
@@ -218,6 +229,7 @@ async function searchVenue() {
     } catch (error) {
         // Reset button on error
         btnText.textContent = "Search";
+
         btnLoader.style.display = "none";
         searchBtn.disabled = false;
 
