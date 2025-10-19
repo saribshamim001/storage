@@ -75,12 +75,16 @@ public class booking {
 
         // Send email
         String receiverEmail = "siddiqui00095@gmail.com";
-        emailService.sendEmail(receiverEmail, "Booking Confirmation - VenuMate", emailBody);
         String smsMsg = "Your booking for " + name + " is confirmed on the time slot: " + timeSlot;
+        //Apply exception when SMS api is ready
         smsService.sendSms("923345493325", smsMsg);
-        logger.info("Booking saved, async tasks (email + sms) triggered.");
-        //Exception handling is required ...
-        return ResponseEntity.noContent().build();
+        try {
+            emailService.sendEmail(receiverEmail, "Booking Confirmation - VenuMate", emailBody);
+            logger.info("Booking saved, async tasks (email + sms) triggered.");
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            logger.error("Failed to send email: {}", e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
-
     }
