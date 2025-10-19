@@ -19,7 +19,7 @@ public class RestExceptionHandler {
         logger.error("Bad request: {}", ex.getMessage(), ex);
         ApiError error = new ApiError(
                 HttpStatus.BAD_REQUEST.value(),
-                "Bad Request he yawr ye to",
+                "Bad request, something is wrong with the input",
                 ex.getMessage(),
                 request.getDescription(false)
         );
