@@ -124,21 +124,6 @@ async function nextPage() {
     }
     console.log("On venues JS file, Next page button clicked");
 }
-
-// Pagination button handlers
-//function prevPage() {
-//    if (currentPage > 0) {
-//        fetchVenues(currentPage - 1);
-//    }
-//    console.log("On venues JS file, Previous page button clicked");
-//}
-//function nextPage() {
-//    if (currentPage < totalPages - 1) {
-//        fetchVenues(currentPage + 1);
-//    }
-//    console.log("On venues JS file, Next page button clicked");
-//}
-
 // Load first page on start
 window.onload = () => fetchVenues(0);
 
@@ -179,10 +164,10 @@ async function searchVenue() {
 
         const startTime = Date.now();
 
-        const response = await fetch('/listOfVenues');
+        const response = await fetch('/searchAllVenues');
         const venuesResponse = await response.json();
         const venues = venuesResponse.data || [];
-
+        console.log("📋 Fetched venues:", venues);
         // ⏳ Ensure loader shows for at least 800ms
         const elapsed = Date.now() - startTime;
         if (elapsed < 800) {
@@ -193,9 +178,13 @@ async function searchVenue() {
         btnText.textContent = "Search";
         btnLoader.style.display = "none";
         searchBtn.disabled = false;
-
+        console.log("🔍 Searching for venue with name:", searchValue);
         const foundVenue = venues.find(v => v.name.toLowerCase() === searchValue);
-
+        if (foundVenue) {
+          console.log("✅ Venue found:", foundVenue);
+        } else {
+          console.warn("⚠️ No venue found matching:", searchValue);
+        }
         if (foundVenue) {
     console.log("On venues JS file, Venue found:", foundVenue);
 

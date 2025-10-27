@@ -46,6 +46,13 @@ public class MainPage {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/searchAllVenues")
+    public ResponseEntity<ApiResponse<List<VenuesList>>> searchAllVenues() {
+        List<VenuesList> allVenues = eventRepository.findAll();
+        ApiResponse<List<VenuesList>> response = new ApiResponse<>("Successfully retrieved all venues", 200, allVenues);
+        return ResponseEntity.ok(response);
+    }
+
     @GetMapping("/Venue/{id}")
     public ResponseEntity<ApiResponse<VenuesList>> getVenue(@PathVariable Integer id) {
         Optional<VenuesList> venue = eventRepository.findById(id);

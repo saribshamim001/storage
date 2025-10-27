@@ -63,14 +63,14 @@ function confirmBooking(event) {
                 window.location.href = "/venues";
             });
         } else if (response.status === 500) {
-            console.log("Booking is confirmed but SMS could not sent due to some issue")
-            Swal.fire({
-                icon: 'error',
-                title: 'Booking saved, but SMS could not be sent.',
-                text: 'Please check SMS service settings.',
-                confirmButtonText: 'OK'
-            });
-        } else {
+                      console.log("Booking failed !")
+                      Swal.fire({
+                          icon: 'error',
+                          title: 'Booking failed ! Issue being faced while confirming the booking.',
+                          text: 'Plz try again later.',
+                          confirmButtonText: 'OK'
+                      });
+            } else {
         console.log("Booking failed !")
             Swal.fire({
                 icon: 'error',

@@ -13,11 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class Venues {
 
-//    @GetMapping("/venues")
-//    public String showVenuesPage() {
-//        return "venues"; // returns templates/venue[s.html
-//    }
-
     private final VenueService venueService;
     public Venues(VenueService venueService) {
         this.venueService = venueService;
