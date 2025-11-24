@@ -21,18 +21,16 @@ function confirmBooking(event) {
     console.log("Confirming booking with the venue"+venue)
     const formData = {
         name: venue.name,
-        capacity: venue.capacity,
-        timeslot: venue.timeslot,
-        decoration: venue.decoration,
-        stage: venue.stage,
-        flowers: venue.flowers,
+        capacity: document.getElementById("capacity").value,
         date: document.getElementById("date").value,
         timeSlot: document.getElementById("timeSlot").value,
-        decorationGuidelines: document.getElementById("decoration").value,
-        stageGuidelines: document.getElementById("stage").value,
-        flowersGuidelines: document.getElementById("flowers").value,
+        decoration: document.getElementById("decoration").value,
+        stage: document.getElementById("stage").value,
+        flowers: document.getElementById("flowers").value,
         comments: document.getElementById("comments").value
     };
+    console.log("Form Data to be sent for booking:", formData);
+    //yaha tak sahi chal rha he
 
     // 🔹 Show loader spinner before fetch
     Swal.fire({

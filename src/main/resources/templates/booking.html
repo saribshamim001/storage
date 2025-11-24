@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Book Venue</title>
@@ -13,45 +13,63 @@
 
 <main>
     <div class="booking-form-container">
-        <!-- SINGLE FORM: No nested forms -->
+
         <form id="bookingForm" action="/book-venue" method="post">
+
             <h2>Venue: <span id="venueNameDisplay"></span></h2>
 
+            <!-- Capacity -->
             <label for="capacity">Capacity</label>
-            <input type="text" id="capacity" readonly>
+            <input type="text" id="capacity" name="capacity" readonly>
+            <span id="capacityError" class="error-message"></span>
 
+            <!-- Date -->
             <label for="date">Date</label>
-            <input type="date" id="date" required>
+            <input type="date" id="date" name="date" required>
+            <span id="dateError" class="error-message"></span>
 
+            <!-- Time Slot -->
             <label for="timeSlot">Time Slot</label>
-            <select id="timeSlot">
+            <select id="timeSlot" name="timeSlot" required>
+                <option value="">-- Select Time Slot --</option>
                 <option>Morning (9AM - 12PM)</option>
                 <option>Afternoon (1PM - 4PM)</option>
                 <option>Evening (5PM - 9PM)</option>
             </select>
+            <span id="timeSlotError" class="error-message"></span>
 
-            <label for="decoration">Decoration Guidelines</label>
-            <textarea id="decoration"></textarea>
+            <label for="decoration">Decoration Details</label>
+            <textarea id="decoration" name="decoration" placeholder="Describe decoration guidelines or options" rows="3" required minlength="5" maxlength="100"></textarea>
+            <span class="error-msg" id="decorationError"></span>
 
-            <label for="stage">Stage Guidelines</label>
-            <textarea id="stage"></textarea>
+            <label for="stage">Stage Details</label>
+            <textarea id="stage" name="stage" placeholder="Describe stage setup or options" rows="3" required minlength="5" maxlength="100"></textarea>
+            <span class="error-msg" id="stageError"></span>
 
-            <label for="flowers">Flowers Guidelines</label>
-            <textarea id="flowers"></textarea>
+            <label for="flowers">Flower Arrangements</label>
+            <textarea id="flowers" name="flowers" placeholder="Describe flower arrangement options" rows="3" required minlength="5" maxlength="100"></textarea>
+            <span class="error-msg" id="flowersError"></span>
 
+            <!-- Comments -->
             <label for="comments">Other Comments</label>
-            <textarea id="comments"></textarea>
+            <textarea id="comments" name="comments"></textarea>
+            <span id="commentsError" class="error-message"></span>
 
-
+            <!-- Submit button (only for non-admin users) -->
             <div th:if="${session.loggedInUser?.role != 'ADMIN'}">
-                <button class="crudVenue" type="button" onclick="confirmBooking(event)">Confirm Booking</button>
+                <button class="crudVenue" type="submit">Confirm Booking</button>
             </div>
+
         </form>
+
     </div>
 </main>
+
 <div th:replace="fragments :: footer"></div>
+
 <script src="/js/booking.js"></script>
 <script src="/js/page-loader.js"></script>
 <script src="/js/form-validation.js"></script>
+
 </body>
 </html>

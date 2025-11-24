@@ -56,7 +56,14 @@ public class booking {
         String decoration = bookingData.get("decoration");
         String stage = bookingData.get("stage");
         String flowers = bookingData.get("flowers");
-
+        logger.info("Booking name to be saved: {}", name);
+        logger.info("Booking date to be saved: {}", date);
+        logger.info("Booking time slot to be saved: {}", timeSlot);
+        logger.info("Booking comments to be saved: {}", comments);
+        logger.info("Booking capacity to be saved: {}", capacity);
+        logger.info("Booking decoration to be saved: {}", decoration);
+        logger.info("Booking stage to be saved: {}", stage);
+        logger.info("Booking flowers to be saved: {}", flowers);
         Booking booking = new Booking();
         booking.setName(name);
         booking.setCapacity(Integer.parseInt(capacity));
@@ -64,9 +71,8 @@ public class booking {
         booking.setDecoration(decoration);
         booking.setStage(stage);
         booking.setFlowers(flowers);
-
         bookingRepository.save(booking);
-
+        logger.info("Booking saved to database");
         // Email body
         String emailBody = String.format(
                 "Booking Confirmation:\n\nVenue: %s\nDate: %s\nTime Slot: %s\nCapacity: %s\nDecoration: %s\nStage: %s\nFlowers: %s\n\nComments: %s\n\nThank you for choosing VenuMate.",
