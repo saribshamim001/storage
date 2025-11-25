@@ -19,10 +19,15 @@
             <h2>Venue: <span id="venueNameDisplay"></span></h2>
 
             <!-- Capacity -->
-            <label for="capacity">Capacity</label>
-            <input type="text" id="capacity" name="capacity" readonly>
+            <label for="capacity">Capacity:</label>
+            <input type="number" id="capacity" name="capacity" min="10" required>
             <span id="capacityError" class="error-message"></span>
-
+            <script>
+                const venueData = JSON.parse(sessionStorage.getItem("selectedVenue"));
+                if (venueData && venueData.capacity) {
+                    document.getElementById("capacity").max = venueData.capacity;
+                }
+            </script>
             <!-- Date -->
             <label for="date">Date</label>
             <input type="date" id="date" name="date" required>
@@ -69,7 +74,7 @@
 
 <script src="/js/booking.js"></script>
 <script src="/js/page-loader.js"></script>
-<script src="/js/form-validation.js"></script>
+<script src="/js/booking-validations.js"></script>
 
 </body>
 </html>

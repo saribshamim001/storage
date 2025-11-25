@@ -1,7 +1,7 @@
 body {
-     background: linear-gradient(to right, #d63384, #3b82f6, #8b5cf6);
+     background: linear-gradient(to right, #cceeff, #d8b4f8, #ffe6f0);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+ }
 .page-loader {
   position: fixed;
   top: 0;
