@@ -59,8 +59,9 @@ function bookNow() {
     };
     console.log("Venue data to be booked:", venueData);
     sessionStorage.setItem("selectedVenue", JSON.stringify(venueData));
+    let venueId = getVenueIdFromURL();
     console.log("Venue data saved to sessionStorage. Redirecting to /booking");
-    window.location.href = "/booking";
+    window.location.href = `/booking?id=${venueId}`;
 }
 
 

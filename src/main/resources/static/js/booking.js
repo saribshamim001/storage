@@ -1,6 +1,16 @@
+let venueIdObtained = null;
+
 document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    venueIdObtained = params.get("id");
+    if (!venueIdObtained) {
+        console.error("No venue ID provided in URL");
+        Swal.fire("Error", "Venue not selected", "error");
+        window.location.href = "/error";
+        return;
+    }
     const venueData = JSON.parse(sessionStorage.getItem("selectedVenue"));
-    console.log("Working on booking with venue data")
+    console.log("Working on booking with venue data");
     if (venueData) {
         document.getElementById("venueNameDisplay").textContent = venueData.name;
         document.getElementById("capacity").value = venueData.capacity;
@@ -8,82 +18,63 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("decoration").value = venueData.decoration;
         document.getElementById("stage").value = venueData.stage;
         document.getElementById("flowers").value = venueData.flowers;
-        console.log("Venue data found successfully")
+        console.log("Venue data loaded successfully");
     } else {
-        alert("⚠️ No venue data found. Please go back and select a venue.");
-         window.location.href = "/venues";
+        Swal.fire("Error", "No venue data found. Please select a venue again.", "error");
+        window.location.href = "/error";
     }
 });
 
 function confirmBooking(event) {
     event.preventDefault();
+    if (!venueIdObtained) {
+        Swal.fire("Error", "Venue ID missing. Please retry.", "error");
+        return;
+    }
     const venue = JSON.parse(sessionStorage.getItem("selectedVenue"));
-    console.log("Confirming booking with the venue"+venue)
+    console.log("Confirming booking with venue:", venue);
     const formData = {
         name: venue.name,
         capacity: document.getElementById("capacity").value,
-        date: document.getElementById("date").value,
         timeSlot: document.getElementById("timeSlot").value,
         decoration: document.getElementById("decoration").value,
         stage: document.getElementById("stage").value,
         flowers: document.getElementById("flowers").value,
-        comments: document.getElementById("comments").value
+        date: document.getElementById("date").value,
+        venueId: venueIdObtained
     };
     console.log("Form Data to be sent for booking:", formData);
-    //yaha tak sahi chal rha he
-
-    // 🔹 Show loader spinner before fetch
     Swal.fire({
         title: 'Booking in progress...',
         allowOutsideClick: false,
-        didOpen: () => {
-            Swal.showLoading();
-        }
+        didOpen: () => Swal.showLoading()
     });
-
     fetch("/book-venue", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(formData)
-    }).then(response => {
-        Swal.close(); // 🔹 Stop loader when response arrives
-
+    })
+    .then(response => {
+        Swal.close();
         if (response.status === 204) {
-            console.log("Booking is confirmed successfully")
             Swal.fire({
                 icon: 'success',
                 title: 'Venue booked successfully!',
-                text: 'Redirecting to the main page...',
+                text: 'Redirecting to venues...',
                 confirmButtonText: 'OK'
             }).then(() => {
+                sessionStorage.removeItem("selectedVenue");
                 window.location.href = "/venues";
             });
-        } else if (response.status === 500) {
-                      console.log("Booking failed !")
-                      Swal.fire({
-                          icon: 'error',
-                          title: 'Booking failed ! Issue being faced while confirming the booking.',
-                          text: 'Plz try again later.',
-                          confirmButtonText: 'OK'
-                      });
-            } else {
-        console.log("Booking failed !")
-            Swal.fire({
-                icon: 'error',
-                title: 'Booking failed!',
-                text: 'Please try again.',
-                confirmButtonText: 'OK'
-            });
+        } else {
+            Swal.fire("Booking failed", "Please try again later.", "error");
         }
-    }).catch(error => {
-        Swal.close(); // close loader if error happens
-        Swal.fire({
-            icon: 'error',
-            title: 'Network Error!',
-            text: 'Unable to reach server. Please try again.',
-            confirmButtonText: 'OK'
-        });
+    })
+    .catch(error => {
+        Swal.close();
+        Swal.fire("Network Error", "Unable to reach server.", "error");
+        console.error(error);
     });
 }

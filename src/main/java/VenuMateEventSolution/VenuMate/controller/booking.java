@@ -1,7 +1,9 @@
 package VenuMateEventSolution.VenuMate.controller;
 import VenuMateEventSolution.VenuMate.model.Booking;
 import VenuMateEventSolution.VenuMate.model.Users;
+import VenuMateEventSolution.VenuMate.model.VenuesList;
 import VenuMateEventSolution.VenuMate.repository.BookingRepository;
+import VenuMateEventSolution.VenuMate.repository.EventRepository;
 import VenuMateEventSolution.VenuMate.services.EmailService;
 import VenuMateEventSolution.VenuMate.services.SmsService;
 import jakarta.servlet.http.HttpSession;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.time.LocalDate;
 import java.util.Map;
 
 
@@ -24,6 +27,8 @@ public class booking {
 
     private static final Logger logger = LoggerFactory.getLogger(booking.class);
 
+    @Autowired
+    EventRepository eventRepository;
 
     @Autowired
     private SmsService smsService;
@@ -48,6 +53,22 @@ public class booking {
     @PostMapping("/book-venue")
     public ResponseEntity<Void> bookVenue(@RequestBody Map<String, String> bookingData) {
         // Extract values from the map
+        logger.debug("debugger point 1");
+        String venueIdStr = bookingData.get("venueId");
+        if (venueIdStr == null || venueIdStr.isBlank()) {
+            logger.error("venueId missing in booking request");
+            return ResponseEntity.badRequest().build();
+        }
+        Integer venueId;
+        try {
+            venueId = Integer.parseInt(venueIdStr);
+        } catch (NumberFormatException e) {
+            logger.error("Invalid venueId: {}", venueIdStr);
+            return ResponseEntity.badRequest().build();
+        }
+        LocalDate bookingDate = LocalDate.parse(bookingData.get("date"));
+        VenuesList venue = eventRepository.findById(venueId)
+                .orElseThrow(() -> new RuntimeException("Venue not found"));
         String name = bookingData.get("name");
         String date = bookingData.get("date");
         String timeSlot = bookingData.get("timeSlot");
@@ -56,6 +77,8 @@ public class booking {
         String decoration = bookingData.get("decoration");
         String stage = bookingData.get("stage");
         String flowers = bookingData.get("flowers");
+
+        logger.debug("debugger point 2");
         logger.info("Booking name to be saved: {}", name);
         logger.info("Booking date to be saved: {}", date);
         logger.info("Booking time slot to be saved: {}", timeSlot);
@@ -64,6 +87,7 @@ public class booking {
         logger.info("Booking decoration to be saved: {}", decoration);
         logger.info("Booking stage to be saved: {}", stage);
         logger.info("Booking flowers to be saved: {}", flowers);
+        logger.debug("debugger point 3");
         Booking booking = new Booking();
         booking.setName(name);
         booking.setCapacity(Integer.parseInt(capacity));
@@ -71,7 +95,11 @@ public class booking {
         booking.setDecoration(decoration);
         booking.setStage(stage);
         booking.setFlowers(flowers);
+        booking.setBookingDate(LocalDate.parse(bookingData.get("date"))); // parse date
+        booking.setVenue(venue);               // ✅ REQUIRED
         bookingRepository.save(booking);
+
+
         logger.info("Booking saved to database");
         // Email body
         String emailBody = String.format(

@@ -1,7 +1,7 @@
 package VenuMateEventSolution.VenuMate.model;
 
 import jakarta.persistence.*;
-
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "bookings")
@@ -19,14 +19,20 @@ public class Booking {
     private String flowers;
 
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    @Column(name = "bookingDate", nullable = false)
+    private LocalDate bookingDate;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "bookingVenueId", nullable = false)
+    private VenuesList venue;
+
+    // ===== Getters & Setters =====
 
     public int getId() {
         return id;
     }
 
+    public void setId(int id) {this.id = id;}
     public String getName() {
         return name;
     }
@@ -64,5 +70,16 @@ public class Booking {
     public void setFlowers(String flowers) {
         this.flowers = flowers;
     }
-
+    public LocalDate getBookingDate() {
+        return bookingDate;
+    }
+    public void setBookingDate(LocalDate bookingDate) {
+        this.bookingDate = bookingDate;
+    }
+    public VenuesList getVenue() {
+        return venue;
+    }
+    public void setVenue(VenuesList venue) {
+        this.venue = venue;
+    }
 }

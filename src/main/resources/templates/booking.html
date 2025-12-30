@@ -13,9 +13,7 @@
 
 <main>
     <div class="booking-form-container">
-
-        <form id="bookingForm" action="/book-venue" method="post">
-
+            <form id="bookingForm" onsubmit="confirmBooking(event)">
             <h2>Venue: <span id="venueNameDisplay"></span></h2>
 
             <!-- Capacity -->
