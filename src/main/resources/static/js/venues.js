@@ -24,29 +24,62 @@ let totalPages = 0;
 async function fetchVenues(page = 0) {
     try {
         console.log(`Fetching venues for page ${page} with size ${pageSize}...`);
+
+        // 1️⃣ Fetch paginated venues
         const response = await fetch(`/listOfVenues?page=${page}&size=${pageSize}`);
         const apiResponse = await response.json();
-
-        console.log("Full API Response:", apiResponse);
 
         const venues = apiResponse.data || [];
         totalPages = apiResponse.totalPages;
         currentPage = apiResponse.currentPage;
         const totalElements = apiResponse.totalElements;
 
+        // 2️⃣ Fetch booked venues
+        const bookedResponse = await fetch('/booked-venues');
+        const bookedVenues = await bookedResponse.json();
+
+        // 3️⃣ Map booked venue ID → array of bookings
+        const bookedMap = {};
+        bookedVenues.forEach(bv => {
+            if (!bookedMap[bv.bookingVenueId]) {
+                bookedMap[bv.bookingVenueId] = [];
+            }
+            bookedMap[bv.bookingVenueId].push(bv);
+        });
+
         const container = document.getElementById('venueContainer');
         container.innerHTML = '';
 
         console.log(`Rendering page ${currentPage + 1} of ${totalPages}`, venues);
 
+        let visibleVenuesCount = 0;
+
+        // 4️⃣ Render each venue
         venues.forEach(venue => {
+            visibleVenuesCount++;
+
+            const bookingsForVenue = bookedMap[venue.id] || [];
+            const isBooked = bookingsForVenue.length > 0;
+
+            // Generate booked dates HTML
+            const bookedText = bookingsForVenue.map(bv => {
+                return `<p class="booked-info"><strong>Booked on:</strong> ${bv.bookingDate}</p>`;
+            }).join('');
+
+            const statusText = isBooked
+                ? `<p class="booked-status">Status: <span style="color:red;font-weight:bold;">Booked</span></p>`
+                : `<p class="booked-status">Status: <span style="color:green;font-weight:bold;">Available</span></p>`;
+
             const card = document.createElement('div');
-            card.className = 'venue-card';
+            card.className = `venue-card ${isBooked ? 'booked-card' : ''}`;
+
             card.innerHTML = `
                 <div class="venue-card-content">
-                    <a href="/parameterizedVenue?id=${venue.id}">
-                        <img src="${venue.imageUrl}" alt="${venue.name}" class="venue-image">
-                    </a>
+                    <div class="venue-image-wrapper">
+                        <a href="/parameterizedVenue?id=${venue.id}">
+                            <img src="${venue.imageUrl}" alt="${venue.name}" class="venue-image">
+                        </a>
+                    </div>
                     <div class="venue-content">
                         <a href="/parameterizedVenue?id=${venue.id}">
                             <h2>${venue.name}</h2>
@@ -56,17 +89,18 @@ async function fetchVenues(page = 0) {
                         <p><strong>Flowers:</strong> ${venue.flowers}</p>
                         <p><strong>Stage:</strong> ${venue.stage}</p>
                         <p><strong>Time Slot:</strong> ${venue.timeslot}</p>
+                        ${statusText}
+                        ${bookedText}
                     </div>
                 </div>
             `;
             container.appendChild(card);
         });
 
-        // ✅ Update pagination info
+        // 5️⃣ Update pagination info
         const info = document.getElementById('paginationInfo');
-        info.textContent = `Page ${currentPage + 1} of ${totalPages} — Showing ${venues.length} venues (out of ${totalElements})`;
+        info.textContent = `Page ${currentPage + 1} of ${totalPages} — Showing ${visibleVenuesCount} venues (out of ${totalElements})`;
 
-        // ✅ Update buttons
         document.getElementById('prevBtn').disabled = currentPage === 0;
         document.getElementById('nextBtn').disabled = currentPage === totalPages - 1;
 
