@@ -19,7 +19,7 @@ public class Booking {
     private String flowers;
 
 
-    @Column(name = "bookingDate", nullable = false)
+    @Column(name = "booking_date", nullable = false)
     private LocalDate bookingDate;
 
     @ManyToOne(fetch = FetchType.LAZY)

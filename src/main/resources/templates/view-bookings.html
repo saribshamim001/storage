@@ -22,6 +22,7 @@
         <tr>
           <th>#</th>
           <th>🏛️ Venue Name</th>
+          <th>📅 Booking Date</th>
           <th>👥 Capacity</th>
           <th>🕒 Time Slot</th>
           <th>🎨 Decoration</th>
@@ -29,10 +30,11 @@
           <th>🌺 Flowers</th>
         </tr>
         </thead>
-        <tbody>
+       <tbody>
         <tr th:each="booking, iterStat : ${bookings}">
           <td th:text="${iterStat.count}"></td>
           <td th:text="${booking.name}"></td>
+          <td th:text="${booking.bookingDate}"></td>
           <td th:text="${booking.capacity}"></td>
           <td th:text="${booking.timeslot}"></td>
           <td th:text="${booking.decoration}"></td>
