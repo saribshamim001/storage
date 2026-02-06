@@ -16,7 +16,8 @@
   <section class="bookings-container">
     <h2>📋 All Venue Bookings</h2>
 
-    <div class="table-wrapper">
+    <input type="hidden" id="bookingCount" th:value="${bookings.size()}" />
+    <div class="table-wrapper" th:if="${#lists.size(bookings) > 0}">
       <table class="modern-table">
         <thead>
         <tr>
@@ -49,5 +50,7 @@
 
 <div th:replace="fragments :: footer"></div>
 <script src="/js/page-loader.js"></script>
+<script src="/js/view-bookings.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

@@ -30,6 +30,18 @@ async function fetchVenues(page = 0) {
         const apiResponse = await response.json();
 
         const venues = apiResponse.data || [];
+        if (venues.length === 0) {
+            document.getElementById('venueContainer').innerHTML = '';
+            document.querySelector('.pagination-container').style.display = 'none';
+            Swal.fire({
+                icon: 'info',
+                title: 'No Venues Listed Yet',
+                text: 'There are currently no venues available. Please check back later.',
+                confirmButtonText: 'Okay',
+                backdrop: true,
+            });
+            return; // ⛔ stop further rendering
+        }
         totalPages = apiResponse.totalPages;
         currentPage = apiResponse.currentPage;
         const totalElements = apiResponse.totalElements;

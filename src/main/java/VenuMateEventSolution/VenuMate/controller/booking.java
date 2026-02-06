@@ -69,6 +69,13 @@ public class booking {
         LocalDate bookingDate = LocalDate.parse(bookingData.get("date"));
         VenuesList venue = eventRepository.findById(venueId)
                 .orElseThrow(() -> new RuntimeException("Venue not found"));
+
+// 🔥 CONFLICT CHECK
+        boolean alreadyBooked = bookingRepository.existsByVenue_IdAndBookingDate(venueId, bookingDate);
+        if (alreadyBooked) {
+            logger.warn("Booking conflict: venue already booked for the selected date/slot");
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
         String name = bookingData.get("name");
         String date = bookingData.get("date");
         String timeSlot = bookingData.get("timeSlot");

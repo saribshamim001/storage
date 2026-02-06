@@ -68,7 +68,15 @@ function confirmBooking(event) {
                 sessionStorage.removeItem("selectedVenue");
                 window.location.href = "/venues";
             });
-        } else {
+        } else if (response.status === 409) {
+                  Swal.fire({
+                      icon: 'warning',
+                      title: 'Booking Conflict',
+                      text: 'This venue is already booked on the selected date.',
+                      confirmButtonText: 'Choose another date'
+                  });
+              }
+        else {
             Swal.fire("Booking failed", "Please try again later.", "error");
         }
     })
