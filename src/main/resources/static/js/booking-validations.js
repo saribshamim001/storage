@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("venueForm");
+  const form = document.getElementById("bookingForm");
   let venueData = null;
 
 try {
@@ -21,7 +21,9 @@ console.log("Venue capacity:", venueData.capacity)
     decoration: value => value.length >= 5 && value.length <= 100,
     stage: value => value.length >= 5 && value.length <= 100,
     flowers: value => value.length >= 5 && value.length <= 100,
-    imageFile: value => value !== ""
+    imageFile: value => value !== "",
+    email: value => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value),
+    mobile: value => /^03\d{9}$/.test(value)
   };
 
   const errorMessages = {
@@ -31,13 +33,17 @@ console.log("Venue capacity:", venueData.capacity)
     decoration: "Decoration details must be 5–100 characters.",
     stage: "Stage details must be 5–100 characters.",
     flowers: "Flower details must be 5–100 characters.",
-    imageFile: "Please upload a venue image."
+    imageFile: "Please upload a venue image.",
+    email: "Enter valid email (e.g., test123@gmail.com).",
+    mobile: "Mobile must be 11 digits starting with 03."
   };
 
   function validateField(field) {
     const value = field.value.trim();
     const isValid = validators[field.id](value);
     const errorSpan = document.getElementById(field.id + "Error");
+
+    console.log("Validating field:", field.id, "Value:", field.value);
 
 if (!isValid) {
   field.classList.add("error");
@@ -51,6 +57,7 @@ if (!isValid) {
   errorSpan.style.display = "none"; // hide
 }
 
+    console.log("Is valid?", isValid);
     return isValid;
   }
 
@@ -65,13 +72,32 @@ if (!isValid) {
 
   // Final form check
   form.addEventListener("submit", (e) => {
+  console.log("FORM SUBMIT TRIGGERED");
     let valid = true;
     Object.keys(validators).forEach(id => {
+    console.log("Checking field:", id);
       const field = document.getElementById(id);
       if (field && !validateField(field)) {
         valid = false;
       }
     });
-    if (!valid) e.preventDefault();
+    console.log("Final valid status in form submit:", valid);
+    document.querySelector("button[type='submit']").disabled = !valid;
+
+      if (!valid) {
+        e.preventDefault();
+        console.log("🚫 Form blocked due to validation errors");
+        Swal.fire({
+            icon: 'error',
+              title: 'Error obtaining the selectedVenue from sessionStorage.',
+              text: 'Plz try again later.',
+              confirmButtonText: 'OK'
+            }).then(() => {
+                  window.location.reload();
+              });
+        return;
+      }
+      e.preventDefault(); // prevent default submit anyway
+      confirmBooking();   // ✅ call only when valid
   });
 });

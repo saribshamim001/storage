@@ -111,7 +111,7 @@ async function fetchVenues(page = 0) {
 
         // 5️⃣ Update pagination info
         const info = document.getElementById('paginationInfo');
-        info.textContent = `Page ${currentPage + 1} of ${totalPages} — Showing ${visibleVenuesCount} venues (out of ${totalElements})`;
+        info.textContent = `Page ${currentPage + 1} of ${totalPages} — Showing ${visibleVenuesCount} designs (out of ${totalElements})`;
 
         document.getElementById('prevBtn').disabled = currentPage === 0;
         document.getElementById('nextBtn').disabled = currentPage === totalPages - 1;

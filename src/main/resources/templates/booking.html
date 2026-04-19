@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Book Venue</title>
+    <title>Get Quote</title>
     <th:block th:insert="fragments :: html_head"></th:block>
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/booking.css">
@@ -13,8 +13,8 @@
 
 <main>
     <div class="booking-form-container">
-            <form id="bookingForm" onsubmit="confirmBooking(event)">
-            <h2>Venue: <span id="venueNameDisplay"></span></h2>
+            <form id="bookingForm">
+            <h2>Occasion: <span id="venueNameDisplay"></span></h2>
 
             <!-- Capacity -->
             <label for="capacity">Capacity:</label>
@@ -38,6 +38,7 @@
                 <option>Morning (9AM - 12PM)</option>
                 <option>Afternoon (1PM - 4PM)</option>
                 <option>Evening (5PM - 9PM)</option>
+                <option>Night (7PM - 1AM midnight)</option>
             </select>
             <span id="timeSlotError" class="error-message"></span>
 
@@ -53,6 +54,16 @@
             <textarea id="flowers" name="flowers" placeholder="Describe flower arrangement options" rows="3" required minlength="5" maxlength="100"></textarea>
             <span class="error-msg" id="flowersError"></span>
 
+            <!-- Email -->
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="test123@gmail.com" required>
+            <span id="emailError" class="error-message"></span>
+
+            <!-- Mobile Number -->
+            <label for="mobile">Mobile Number</label>
+            <input type="text" id="mobile" name="mobile" placeholder="03101113398" maxlength="11" required>
+            <span id="mobileError" class="error-message"></span>
+
             <!-- Comments -->
             <label for="comments">Other Comments</label>
             <textarea id="comments" name="comments"></textarea>
@@ -60,7 +71,7 @@
 
             <!-- Submit button (only for non-admin users) -->
             <div th:if="${session.loggedInUser?.role != 'ADMIN'}">
-                <button class="crudVenue" type="submit">Confirm Booking</button>
+                <button class="crudVenue" type="submit">Almost there</button>
             </div>
 
         </form>

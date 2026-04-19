@@ -1,40 +1,74 @@
-/* Header Styling */
+/* ================= HEADER ================= */
+
 .site-header {
     display: flex;
     align-items: center;
-    justify-content: center; /* Centers header content */
-    padding: 20px;
-    font-size: 1.8rem;
-    font-weight: bold;
-    backdrop-filter: blur(4px);
-    border-radius: 8px;
-    margin-bottom: 20px;
+    justify-content: center;
+    padding: 18px 0;
+    margin-bottom: 25px;
+
+    /* Glassmorphism */
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
 }
 
-/* VenuMate clickable text */
+/* Remove default margin */
 .site-title {
     margin: 0;
 }
 
-/* Link inside header */
-.site-link {
+/* Link wrapper */
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     text-decoration: none;
-    color: inherit;
-    cursor: pointer;
+}
+
+/* Logo image */
+.site-logo {
+    height: 48px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+/* Smooth hover effect */
+.logo-link:hover .site-logo {
+    transform: scale(1.06);
+}
+
+/* Brand text next to logo */
+.brand-text {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #3b0764;
     transition: color 0.3s ease;
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.site-link:hover {
-    color: #2980b9; /* highlight color on hover */
+.logo-link:hover .brand-text {
+    color: #6a11cb;
 }
 
-/* Footer Styling */
+/* ================= FOOTER ================= */
+
 .site-footer {
-    padding: 15px;
+    padding: 18px;
     text-align: center;
     font-size: 1rem;
     margin-top: auto;
-    backdrop-filter: blur(4px);
-    border-radius: 8px;
-    border-top: 2px dashed #888;
+
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 14px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    color: #444;
 }

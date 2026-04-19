@@ -29,6 +29,7 @@ form label {
 form input[type="text"],
 form input[type="date"],
 form input[type="number"],
+input[type="email"],
 form select,
 form textarea {
     width: 100%;

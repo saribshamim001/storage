@@ -42,11 +42,11 @@
 
     <!-- Non-admin sees "Book Now" -->
     <div th:if="${session.loggedInUser?.role != 'ADMIN'}">
-      <button onclick="bookNow()">Book Now</button>
+      <button onclick="bookNow()">Get Quote</button>
     </div>
 
     <!-- Show Next Venue always visible -->
-    <button onclick="showNextVenue()">Show Next Venue</button>
+    <button onclick="showNextVenue()">Show Next Decor Setup</button>
   </div>
 
 
@@ -56,7 +56,7 @@
   <h3>LEARN MORE</h3>
   <h1>About Us</h1>
   <p>
-    VenueMate is the web application where you will find your event venues at your fingertips and with full ease.
+    The web application where you will find your venues / designs at your fingertips and with full ease of event bookings.
   </p>
 </section>
 <div th:replace="fragments :: footer"></div>

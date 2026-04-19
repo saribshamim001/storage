@@ -25,8 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-function confirmBooking(event) {
-    event.preventDefault();
+function confirmBooking() {
     if (!venueIdObtained) {
         Swal.fire("Error", "Venue ID missing. Please retry.", "error");
         return;
@@ -61,8 +60,8 @@ function confirmBooking(event) {
         if (response.status === 204) {
             Swal.fire({
                 icon: 'success',
-                title: 'Venue booked successfully!',
-                text: 'Redirecting to venues...',
+                title: 'You will be contacted by our representative soon! Plz be patient. Thanks 😊',
+                text: 'Redirecting to main page...',
                 confirmButtonText: 'OK'
             }).then(() => {
                 sessionStorage.removeItem("selectedVenue");

@@ -14,7 +14,7 @@
 
 <main class="view-bookings">
   <section class="bookings-container">
-    <h2>📋 All Venue Bookings</h2>
+    <h2>📋 Tentative Venue Reservations</h2>
 
     <input type="hidden" id="bookingCount" th:value="${bookings.size()}" />
     <div class="table-wrapper" th:if="${#lists.size(bookings) > 0}">

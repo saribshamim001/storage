@@ -13,7 +13,7 @@
 <div th:replace="sidebar :: sidebar"></div>
 
 <div class="page-heading">
-    <h1>Venues List</h1>
+    <h1>Our Offerings</h1>
 </div>
 <!--<div class="search-box">-->
 <!--    <input type="text" placeholder="Search by venue name...">-->
@@ -23,7 +23,7 @@
 <div class="search-container"
      th:if="${session.loggedInUser?.role != 'ADMIN'}">
     <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Search by venue name...">
+        <input type="text" id="searchInput" placeholder="Search by design name...">
         <button id="searchBtn" onclick="searchVenue()">
             <span id="searchBtnText">Search</span>
             <span id="searchBtnLoader" class="btn-loader" style="display:none;"></span>
